@@ -1,0 +1,29 @@
+{
+  "name": "wikicommons-art-scraper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "fetch": "npm run build && node dist/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plaintalkjon/wikicommons-art-scraper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/plaintalkjon/wikicommons-art-scraper/issues"
+  },
+  "homepage": "https://github.com/plaintalkjon/wikicommons-art-scraper#readme",
+  "devDependencies": {
+    "@types/node": "^22.7.5",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.48.0",
+    "dotenv": "^16.4.5"
+  }
+}
