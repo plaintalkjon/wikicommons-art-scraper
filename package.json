@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc --project tsconfig.json",
-    "fetch": "npm run build && node dist/cli.js"
+    "fetch": "npm run build && node dist/cli.js",
+    "delete-art": "npm run build && node dist/cli-delete.js"
   },
   "repository": {
     "type": "git",
