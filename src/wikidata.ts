@@ -118,3 +118,81 @@ function urlToCommonsTitle(url: string): string {
   }
 }
 
+export interface WikidataItemTags {
+  genre?: string; // P136
+  movement?: string; // P135
+  depicts: string[]; // P180
+  mainSubject?: string; // P921
+}
+
+/**
+ * Fetch curated tags from Wikidata item properties:
+ * - P136: genre (e.g., "landscape art")
+ * - P135: movement (e.g., "Post-Impressionism")
+ * - P180: depicts (subjects like "wheat field", "sunflower")
+ * - P921: main subject
+ */
+export async function fetchWikidataItemTags(itemId: string): Promise<WikidataItemTags> {
+  if (!itemId || !itemId.startsWith('Q')) {
+    return { depicts: [] };
+  }
+
+  const query = `
+    SELECT ?genreLabel ?movementLabel ?depictsLabel ?mainSubjectLabel WHERE {
+      OPTIONAL { wd:${itemId} wdt:P136 ?genre . }
+      OPTIONAL { wd:${itemId} wdt:P135 ?movement . }
+      OPTIONAL { wd:${itemId} wdt:P180 ?depicts . }
+      OPTIONAL { wd:${itemId} wdt:P921 ?mainSubject . }
+      SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "en" .
+      }
+    }
+  `;
+
+  try {
+    const res = await fetch(SPARQL_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/sparql-query',
+        Accept: 'application/sparql-results+json',
+        'User-Agent': 'wikicommons-art-scraper/1.0 (contact: developer@example.com)',
+      },
+      body: query,
+    });
+
+    if (!res.ok) {
+      return { depicts: [] };
+    }
+
+    const data = (await res.json()) as {
+      results: { bindings: Array<Record<string, { type: string; value: string; 'xml:lang'?: string }>> };
+    };
+
+    const tags: WikidataItemTags = { depicts: [] };
+    const seenDepicts = new Set<string>();
+
+    for (const binding of data.results?.bindings ?? []) {
+      if (binding.genreLabel?.value && !tags.genre) {
+        tags.genre = binding.genreLabel.value;
+      }
+      if (binding.movementLabel?.value && !tags.movement) {
+        tags.movement = binding.movementLabel.value;
+      }
+      if (binding.depictsLabel?.value) {
+        const val = binding.depictsLabel.value.toLowerCase().trim();
+        if (val && !seenDepicts.has(val)) {
+          tags.depicts.push(binding.depictsLabel.value);
+          seenDepicts.add(val);
+        }
+      }
+      if (binding.mainSubjectLabel?.value && !tags.mainSubject) {
+        tags.mainSubject = binding.mainSubjectLabel.value;
+      }
+    }
+
+    return tags;
+  } catch {
+    return { depicts: [] };
+  }
+}
+

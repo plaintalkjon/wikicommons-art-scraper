@@ -5,7 +5,7 @@ import { downloadImage } from './downloader';
 import { uploadToStorage } from './storage';
 import { WikimediaImage } from './types';
 import { ensureArtist, insertArtAsset, linkArtTags, upsertArt, upsertArtSource, upsertTags } from './db';
-import { fetchWikidataPaintings } from './wikidata';
+import { fetchWikidataPaintings, fetchWikidataItemTags } from './wikidata';
 
 export interface FetchOptions {
   artist: string;
@@ -78,7 +78,16 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
           imageUrl: upload.publicUrl,
           artistId,
         });
-        const normalizedTags = normalizeTags(image.categories, image.museum);
+
+        // Use Wikidata tags if available, otherwise fall back to Commons categories
+        let normalizedTags: string[];
+        if (image.sourceItem && source === 'wikidata') {
+          const wikidataTags = await fetchWikidataItemTags(image.sourceItem);
+          normalizedTags = normalizeWikidataTags(wikidataTags, image.museum);
+        } else {
+          normalizedTags = normalizeTags(image.categories, image.museum);
+        }
+
         const tagIds = await upsertTags(normalizedTags).then((rows) => rows.map((r) => r.id));
         await linkArtTags(artId, tagIds);
         await upsertArtSource({
@@ -175,5 +184,34 @@ function normalizeTags(categories: string[], museum?: string): string[] {
     .filter((c) => c.length <= 80);
 
   return Array.from(new Set(cleaned));
+}
+
+function normalizeWikidataTags(
+  tags: { genre?: string; movement?: string; depicts: string[]; mainSubject?: string },
+  museum?: string,
+): string[] {
+  const result: string[] = [];
+
+  if (tags.genre) {
+    result.push(tags.genre.toLowerCase().trim());
+  }
+  if (tags.movement) {
+    result.push(tags.movement.toLowerCase().trim());
+  }
+  if (tags.mainSubject) {
+    result.push(tags.mainSubject.toLowerCase().trim());
+  }
+  // Add depicts (subjects like "wheat field", "sunflower")
+  for (const depicts of tags.depicts) {
+    const cleaned = depicts.toLowerCase().trim();
+    if (cleaned && cleaned.length <= 80) {
+      result.push(cleaned);
+    }
+  }
+  if (museum) {
+    result.push(museum.toLowerCase().trim());
+  }
+
+  return Array.from(new Set(result.filter(Boolean)));
 }
 
