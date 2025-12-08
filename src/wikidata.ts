@@ -121,28 +121,25 @@ function urlToCommonsTitle(url: string): string {
 export interface WikidataItemTags {
   genre?: string; // P136
   movement?: string; // P135
-  depicts: string[]; // P180
-  mainSubject?: string; // P921
+  inceptionDate?: string; // P571
 }
 
 /**
  * Fetch curated tags from Wikidata item properties:
  * - P136: genre (e.g., "landscape art")
  * - P135: movement (e.g., "Post-Impressionism")
- * - P180: depicts (subjects like "wheat field", "sunflower")
- * - P921: main subject
+ * - P571: inception/creation date (e.g., "1889")
  */
 export async function fetchWikidataItemTags(itemId: string): Promise<WikidataItemTags> {
   if (!itemId || !itemId.startsWith('Q')) {
-    return { depicts: [] };
+    return {};
   }
 
   const query = `
-    SELECT ?genreLabel ?movementLabel ?depictsLabel ?mainSubjectLabel WHERE {
+    SELECT ?genreLabel ?movementLabel ?inceptionDate WHERE {
       OPTIONAL { wd:${itemId} wdt:P136 ?genre . }
       OPTIONAL { wd:${itemId} wdt:P135 ?movement . }
-      OPTIONAL { wd:${itemId} wdt:P180 ?depicts . }
-      OPTIONAL { wd:${itemId} wdt:P921 ?mainSubject . }
+      OPTIONAL { wd:${itemId} wdt:P571 ?inceptionDate . }
       SERVICE wikibase:label {
         bd:serviceParam wikibase:language "en" .
       }
@@ -161,15 +158,14 @@ export async function fetchWikidataItemTags(itemId: string): Promise<WikidataIte
     });
 
     if (!res.ok) {
-      return { depicts: [] };
+      return {};
     }
 
     const data = (await res.json()) as {
       results: { bindings: Array<Record<string, { type: string; value: string; 'xml:lang'?: string }>> };
     };
 
-    const tags: WikidataItemTags = { depicts: [] };
-    const seenDepicts = new Set<string>();
+    const tags: WikidataItemTags = {};
 
     for (const binding of data.results?.bindings ?? []) {
       if (binding.genreLabel?.value && !tags.genre) {
@@ -178,21 +174,21 @@ export async function fetchWikidataItemTags(itemId: string): Promise<WikidataIte
       if (binding.movementLabel?.value && !tags.movement) {
         tags.movement = binding.movementLabel.value;
       }
-      if (binding.depictsLabel?.value) {
-        const val = binding.depictsLabel.value.toLowerCase().trim();
-        if (val && !seenDepicts.has(val)) {
-          tags.depicts.push(binding.depictsLabel.value);
-          seenDepicts.add(val);
+      if (binding.inceptionDate?.value && !tags.inceptionDate) {
+        // P571 returns dates in various formats, extract year if possible
+        const dateValue = binding.inceptionDate.value;
+        const yearMatch = dateValue.match(/\d{4}/);
+        if (yearMatch) {
+          tags.inceptionDate = yearMatch[0];
+        } else {
+          tags.inceptionDate = dateValue;
         }
-      }
-      if (binding.mainSubjectLabel?.value && !tags.mainSubject) {
-        tags.mainSubject = binding.mainSubjectLabel.value;
       }
     }
 
     return tags;
   } catch {
-    return { depicts: [] };
+    return {};
   }
 }
 

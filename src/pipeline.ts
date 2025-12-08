@@ -187,7 +187,7 @@ function normalizeTags(categories: string[], museum?: string): string[] {
 }
 
 function normalizeWikidataTags(
-  tags: { genre?: string; movement?: string; depicts: string[]; mainSubject?: string },
+  tags: { genre?: string; movement?: string; inceptionDate?: string },
   museum?: string,
 ): string[] {
   const result: string[] = [];
@@ -198,15 +198,8 @@ function normalizeWikidataTags(
   if (tags.movement) {
     result.push(tags.movement.toLowerCase().trim());
   }
-  if (tags.mainSubject) {
-    result.push(tags.mainSubject.toLowerCase().trim());
-  }
-  // Add depicts (subjects like "wheat field", "sunflower")
-  for (const depicts of tags.depicts) {
-    const cleaned = depicts.toLowerCase().trim();
-    if (cleaned && cleaned.length <= 80) {
-      result.push(cleaned);
-    }
+  if (tags.inceptionDate) {
+    result.push(tags.inceptionDate.toLowerCase().trim());
   }
   if (museum) {
     result.push(museum.toLowerCase().trim());
