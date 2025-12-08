@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc --project tsconfig.json",
     "fetch": "npm run build && node dist/cli.js",
-    "delete-art": "npm run build && node dist/cli-delete.js"
+    "delete-art": "npm run build && node dist/cli-delete.js",
+    "show-tags": "npm run build && node dist/show-tags.js"
   },
   "repository": {
     "type": "git",

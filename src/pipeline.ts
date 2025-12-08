@@ -1,5 +1,5 @@
 import { config } from './config';
-import { fetchImagesForArtist, fetchImageInfoByTitle, pickBestVariant } from './wikimedia';
+import { fetchImageInfoByTitle, pickBestVariant } from './wikimedia';
 import { slugify } from './utils';
 import { downloadImage } from './downloader';
 import { uploadToStorage } from './storage';
@@ -13,7 +13,6 @@ export interface FetchOptions {
   dryRun?: boolean;
   paintingsOnly?: boolean;
   maxUploads?: number;
-  source?: 'wikimedia' | 'wikidata';
 }
 
 export interface FetchResult {
@@ -25,25 +24,20 @@ export interface FetchResult {
 
 export async function fetchAndStoreArtworks(options: FetchOptions): Promise<FetchResult> {
   const limit = options.limit ?? 50;
-  const source = options.source ?? 'wikidata';
-  let images: WikimediaImage[] = [];
-
-  if (source === 'wikidata') {
-    const items = await fetchWikidataPaintings({ limit });
-    const fetched: WikimediaImage[] = [];
-    for (const item of items) {
-      if (fetched.length >= limit) break;
-      if (!item.title) continue;
-      const info = await fetchImageInfoByTitle(item.title);
-      if (!info) continue;
-      info.museum = item.museum;
-      info.sourceItem = item.itemId;
-      fetched.push(info);
-    }
-    images = fetched;
-  } else {
-    images = await fetchImagesForArtist({ artist: options.artist, limit });
+  
+  // Always use Wikidata for discovery (museum-filtered paintings)
+  const items = await fetchWikidataPaintings({ limit });
+  const images: WikimediaImage[] = [];
+  for (const item of items) {
+    if (images.length >= limit) break;
+    if (!item.title) continue;
+    const info = await fetchImageInfoByTitle(item.title);
+    if (!info) continue;
+    info.museum = item.museum;
+    info.sourceItem = item.itemId;
+    images.push(info);
   }
+  
   const artistId = await ensureArtist(options.artist);
 
   let uploaded = 0;
@@ -79,12 +73,13 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
           artistId,
         });
 
-        // Use Wikidata tags if available, otherwise fall back to Commons categories
+        // Always use Wikidata tags (genre, movement, inception date)
         let normalizedTags: string[];
-        if (image.sourceItem && source === 'wikidata') {
+        if (image.sourceItem) {
           const wikidataTags = await fetchWikidataItemTags(image.sourceItem);
           normalizedTags = normalizeWikidataTags(wikidataTags, image.museum);
         } else {
+          // Fallback: if no sourceItem, use Commons categories (shouldn't happen with Wikidata source)
           normalizedTags = normalizeTags(image.categories, image.museum);
         }
 
@@ -92,7 +87,7 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
         await linkArtTags(artId, tagIds);
         await upsertArtSource({
           artId,
-          source: source === 'wikidata' ? 'wikidata' : 'wikimedia',
+          source: 'wikidata',
           sourcePageId: image.pageid,
           sourceTitle: image.title,
           sourceUrl: image.pageUrl,
