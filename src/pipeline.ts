@@ -5,7 +5,7 @@ import { downloadImage } from './downloader';
 import { uploadToStorage } from './storage';
 import { WikimediaImage } from './types';
 import { ensureArtist, insertArtAsset, linkArtTags, upsertArt, upsertArtSource, upsertTags } from './db';
-import { fetchWikidataPaintings, fetchWikidataItemTags } from './wikidata';
+import { fetchWikidataPaintings, fetchWikidataItemTags, findArtistQID } from './wikidata';
 
 export interface FetchOptions {
   artist: string;
@@ -48,8 +48,16 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
   const limit = options.limit ?? 50;
   const CONCURRENCY = 5; // Process 5 images in parallel
   
+  // Look up artist QID from name
+  console.log(`Looking up Wikidata QID for artist: ${options.artist}...`);
+  const artistQid = await findArtistQID(options.artist);
+  if (!artistQid) {
+    throw new Error(`Could not find Wikidata QID for artist: ${options.artist}`);
+  }
+  console.log(`Found artist QID: ${artistQid}`);
+  
   // Always use Wikidata for discovery (museum-filtered paintings)
-  const items = await fetchWikidataPaintings({ limit });
+  const items = await fetchWikidataPaintings({ limit, artistQid: `wd:${artistQid}` });
   console.log(`Found ${items.length} paintings from Wikidata, fetching image info...`);
   
   // Fetch image info in parallel batches to avoid rate limiting (lower concurrency for API)
@@ -104,8 +112,11 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
 
   // Process images in parallel batches
   const processImage = async (image: WikimediaImage): Promise<void> => {
+    let reservedSlot = false;
     try {
+      // Early exit if we've hit the upload limit (check before any processing)
       if (options.maxUploads && uploaded >= options.maxUploads) {
+        processed += 1;
         return;
       }
 
@@ -126,6 +137,24 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
           console.log(`Progress: ${processed}/${images.length} processed, ${uploaded} uploaded, ${skipped} skipped`);
         }
         return;
+      }
+
+      // Reserve upload slot immediately (before any async work) to prevent race condition
+      if (options.maxUploads) {
+        const currentCount = uploaded;
+        if (currentCount >= options.maxUploads) {
+          processed += 1;
+          return;
+        }
+        uploaded += 1; // Reserve the slot immediately
+        reservedSlot = true;
+        // If we went over (another process also incremented), release and skip
+        if (uploaded > options.maxUploads) {
+          uploaded -= 1;
+          reservedSlot = false;
+          processed += 1;
+          return;
+        }
       }
 
       const downloaded = await downloadImage(variant);
@@ -169,13 +198,23 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
           mimeType: downloaded.mime,
           sha256: downloaded.sha256,
         });
-        uploaded += 1;
+        // Slot was already reserved above, so uploaded counter is correct
+      } else {
+        // In dry-run mode, release the reserved slot since we didn't actually upload
+        if (reservedSlot) {
+          uploaded -= 1;
+          reservedSlot = false;
+        }
       }
       processed += 1;
       if (processed % 10 === 0 || processed === images.length) {
         console.log(`Progress: ${processed}/${images.length} processed, ${uploaded} uploaded, ${skipped} skipped`);
       }
     } catch (err) {
+      // If we reserved a slot but failed, release it
+      if (reservedSlot) {
+        uploaded -= 1;
+      }
       errors.push({ title: image.title, message: (err as Error).message });
       processed += 1;
     }
