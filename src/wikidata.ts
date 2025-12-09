@@ -8,26 +8,80 @@ export interface WikidataPainting {
 }
 
 const DEFAULT_MUSEUMS = [
+  // Netherlands
   'wd:Q224124', // Van Gogh Museum
   'wd:Q1051928', // Kröller-Müller Museum
-  'wd:Q23402', // Musée d'Orsay
-  'wd:Q160236', // Metropolitan Museum of Art
-  'wd:Q685038', // Kunsthaus Zürich
   'wd:Q190804', // Rijksmuseum
   'wd:Q12013217', // Noordbrabants Museum
-  'wd:Q666331', // Foundation E.G. Bührle Collection
-  'wd:Q214867', // National Gallery of Art (US)
-  'wd:Q239303', // Art Institute of Chicago
-  'wd:Q132783', // Hermitage Museum
-  'wd:Q808462', // Barnes Foundation
-  'wd:Q1752085', // Norton Simon Museum
-  'wd:Q180788', // National Gallery (UK)
-  'wd:Q1760539', // Saint Louis Art Museum
-  'wd:Q179190', // National Museum of Western Art
   'wd:Q679527', // Museum Boijmans Van Beuningen
+  
+  // France
+  'wd:Q23402', // Musée d'Orsay
+  'wd:Q19675', // Louvre
+  
+  // United States - East Coast
+  'wd:Q160236', // Metropolitan Museum of Art
+  'wd:Q214867', // National Gallery of Art (US)
   'wd:Q49133', // Museum of Fine Arts Boston
-  'wd:Q160112', // (include alternate Van Gogh Museum id if any)
   'wd:Q510324', // Philadelphia Museum of Art
+  'wd:Q188740', // Museum of Modern Art (MoMA)
+  'wd:Q201469', // Solomon R. Guggenheim Museum
+  'wd:Q682827', // Frick Collection
+  'wd:Q808462', // Barnes Foundation
+  
+  // United States - Midwest
+  'wd:Q239303', // Art Institute of Chicago
+  'wd:Q1760539', // Saint Louis Art Museum
+  'wd:Q657415', // Cleveland Museum of Art
+  'wd:Q1201549', // Detroit Institute of Arts
+  'wd:Q1700481', // Minneapolis Institute of Art
+  
+  // United States - West Coast
+  'wd:Q1752085', // Norton Simon Museum
+  'wd:Q731126', // J. Paul Getty Museum
+  'wd:Q1641836', // Los Angeles County Museum of Art (LACMA)
+  'wd:Q913672', // San Francisco Museum of Modern Art
+  'wd:Q1416890', // Fine Arts Museums of San Francisco
+  
+  // United Kingdom
+  'wd:Q180788', // National Gallery (UK)
+  'wd:Q430682', // Tate Britain
+  'wd:Q193375', // Tate Modern
+  'wd:Q12110695', // Courtauld Gallery
+  
+  // Switzerland
+  'wd:Q685038', // Kunsthaus Zürich
+  'wd:Q666331', // Foundation E.G. Bührle Collection
+  
+  // Russia
+  'wd:Q132783', // Hermitage Museum
+  'wd:Q4872', // Pushkin Museum
+  'wd:Q183334', // Tretyakov Gallery
+  
+  // Spain
+  'wd:Q160112', // Museo del Prado
+  'wd:Q176251', // Thyssen-Bornemisza Museum
+  
+  // Italy
+  'wd:Q51252', // Uffizi Gallery
+  'wd:Q10855544', // Galleria dell'Accademia
+  'wd:Q150066', // Pinacoteca di Brera
+  'wd:Q841506', // Galleria Borghese
+  
+  // Germany
+  'wd:Q154568', // Alte Pinakothek
+  'wd:Q170152', // Neue Pinakothek
+  'wd:Q162111', // Alte Nationalgalerie
+  
+  // Austria
+  'wd:Q95569', // Kunsthistorisches Museum
+  'wd:Q371908', // Albertina
+  'wd:Q303139', // Belvedere
+  
+  // Japan
+  'wd:Q1362629', // National Museum of Western Art
+  'wd:Q653433', // Tokyo National Museum
+  'wd:Q147286', // Kyoto National Museum
 ];
 
 export async function fetchWikidataPaintings(options: {

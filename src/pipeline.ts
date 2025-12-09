@@ -22,43 +22,110 @@ export interface FetchResult {
   errors: Array<{ title: string; message: string }>;
 }
 
+async function processInParallel<T>(
+  items: T[],
+  processor: (item: T) => Promise<void>,
+  concurrency: number,
+): Promise<void> {
+  const executing = new Set<Promise<void>>();
+
+  for (const item of items) {
+    const promise = processor(item).finally(() => {
+      executing.delete(promise);
+    });
+
+    executing.add(promise);
+
+    if (executing.size >= concurrency) {
+      await Promise.race(executing);
+    }
+  }
+
+  await Promise.all(executing);
+}
+
 export async function fetchAndStoreArtworks(options: FetchOptions): Promise<FetchResult> {
   const limit = options.limit ?? 50;
+  const CONCURRENCY = 5; // Process 5 images in parallel
   
   // Always use Wikidata for discovery (museum-filtered paintings)
   const items = await fetchWikidataPaintings({ limit });
-  const images: WikimediaImage[] = [];
-  for (const item of items) {
-    if (images.length >= limit) break;
-    if (!item.title) continue;
+  console.log(`Found ${items.length} paintings from Wikidata, fetching image info...`);
+  
+  // Fetch image info in parallel batches to avoid rate limiting (lower concurrency for API)
+  const validItems = items.filter((item) => item.title).slice(0, limit);
+  
+  // Process in smaller batches with rate limiting (3 concurrent API calls)
+  const fetchWithMetadata = async (item: { title: string; museum?: string; itemId?: string }) => {
     const info = await fetchImageInfoByTitle(item.title);
-    if (!info) continue;
+    if (!info) return null;
     info.museum = item.museum;
     info.sourceItem = item.itemId;
-    images.push(info);
+    return info;
+  };
+
+  // Process in smaller batches (2 at a time) with longer delays to respect rate limits
+  const imageResults: (WikimediaImage | null)[] = [];
+  const BATCH_SIZE = 2; // Reduced from 3 to 2
+  const DELAY_MS = 1500; // 1.5 seconds between batches
+  
+  for (let i = 0; i < validItems.length; i += BATCH_SIZE) {
+    const batch = validItems.slice(i, i + BATCH_SIZE);
+    try {
+      const batchResults = await Promise.all(batch.map(fetchWithMetadata));
+      imageResults.push(...batchResults);
+    } catch (err) {
+      // If rate limited, add the batch items as null and wait longer
+      console.warn(`Rate limit hit at batch ${i / BATCH_SIZE + 1}, waiting 5 seconds...`);
+      await new Promise((resolve) => setTimeout(resolve, 5000));
+      // Retry the batch
+      const batchResults = await Promise.all(batch.map(fetchWithMetadata));
+      imageResults.push(...batchResults);
+    }
+    
+    // Delay between batches
+    if (i + BATCH_SIZE < validItems.length) {
+      await new Promise((resolve) => setTimeout(resolve, DELAY_MS));
+      if ((i / BATCH_SIZE) % 20 === 0 && i > 0) {
+        console.log(`Fetched info for ${i + batch.length}/${validItems.length} items...`);
+      }
+    }
   }
+
+  const images = imageResults.filter((img): img is WikimediaImage => img !== null);
+  console.log(`Fetched info for ${images.length} images, processing...`);
   
   const artistId = await ensureArtist(options.artist);
 
   let uploaded = 0;
   let skipped = 0;
   const errors: FetchResult['errors'] = [];
+  let processed = 0;
 
-  for (const image of images) {
+  // Process images in parallel batches
+  const processImage = async (image: WikimediaImage): Promise<void> => {
     try {
       if (options.maxUploads && uploaded >= options.maxUploads) {
-        break;
+        return;
       }
 
       if (options.paintingsOnly && !isLikelyColorPainting(image)) {
         skipped += 1;
-        continue;
+        processed += 1;
+        if (processed % 10 === 0) {
+          console.log(`Progress: ${processed}/${images.length} processed, ${uploaded} uploaded, ${skipped} skipped`);
+        }
+        return;
       }
 
       const variant = pickBestVariant(image);
       if (!variant) {
         skipped += 1;
-        continue;
+        processed += 1;
+        if (processed % 10 === 0) {
+          console.log(`Progress: ${processed}/${images.length} processed, ${uploaded} uploaded, ${skipped} skipped`);
+        }
+        return;
       }
 
       const downloaded = await downloadImage(variant);
@@ -104,10 +171,17 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
         });
         uploaded += 1;
       }
+      processed += 1;
+      if (processed % 10 === 0 || processed === images.length) {
+        console.log(`Progress: ${processed}/${images.length} processed, ${uploaded} uploaded, ${skipped} skipped`);
+      }
     } catch (err) {
       errors.push({ title: image.title, message: (err as Error).message });
+      processed += 1;
     }
-  }
+  };
+
+  await processInParallel(images, processImage, CONCURRENCY);
 
   return {
     attempted: images.length,
@@ -202,4 +276,3 @@ function normalizeWikidataTags(
 
   return Array.from(new Set(result.filter(Boolean)));
 }
-
