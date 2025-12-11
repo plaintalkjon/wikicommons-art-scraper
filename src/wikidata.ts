@@ -62,6 +62,44 @@ export async function findArtistQID(artistName: string): Promise<string | null> 
           return binding.item.value.replace('http://www.wikidata.org/entity/', '');
         }
       }
+      
+      // Try fuzzy search with CONTAINS as last resort
+      const fuzzyQuery = `
+        SELECT ?item ?itemLabel WHERE {
+          ?item rdfs:label ?itemLabel .
+          FILTER(CONTAINS(LCASE(?itemLabel), LCASE("${artistName.replace(/"/g, '\\"')}")))
+          FILTER(LANG(?itemLabel) = "en")
+          OPTIONAL { ?item wdt:P106 ?occupation . }
+          FILTER(EXISTS { ?item wdt:P106/wdt:P279* wd:Q1028181 } || EXISTS { ?item wdt:P106/wdt:P279* wd:Q42973 })
+          SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+        }
+        LIMIT 1
+      `;
+      
+      try {
+        const fuzzyRes = await fetch(SPARQL_ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/sparql-query',
+            Accept: 'application/sparql-results+json',
+            'User-Agent': 'wikicommons-art-scraper/1.0 (contact: developer@example.com)',
+          },
+          body: fuzzyQuery,
+        });
+        
+        if (fuzzyRes.ok) {
+          const fuzzyData = (await fuzzyRes.json()) as {
+            results: { bindings: Array<Record<string, { type: string; value: string }>> };
+          };
+          const fuzzyBinding = fuzzyData.results?.bindings?.[0];
+          if (fuzzyBinding?.item?.value) {
+            return fuzzyBinding.item.value.replace('http://www.wikidata.org/entity/', '');
+          }
+        }
+      } catch {
+        // Ignore fuzzy search errors
+      }
+      
       return null;
     }
 
@@ -100,6 +138,7 @@ const DEFAULT_MUSEUMS = [
   'wd:Q3330218', // Musée des Beaux-Arts Jules Chéret (Nice)
   'wd:Q333', // Musée Fabre (Montpellier)
   'wd:Q333064', // Musée Granet (Aix-en-Provence)
+  'wd:Q193509', // Palais des Beaux-Arts de Lille
   
   // United States - East Coast
   'wd:Q160236', // Metropolitan Museum of Art
@@ -155,6 +194,7 @@ const DEFAULT_MUSEUMS = [
   'wd:Q1327919', // Wallace Collection
   'wd:Q6373', // British Museum
   'wd:Q213322', // Victoria and Albert Museum
+  'wd:Q1459037', // Royal Collection (UK)
   
   // Canada
   'wd:Q1068063', // National Gallery of Canada
@@ -200,6 +240,8 @@ const DEFAULT_MUSEUMS = [
   'wd:Q1056170', // Ca' Rezzonico (Venice)
   'wd:Q151015', // Gallerie dell'Accademia (Venice)
   'wd:Q1049033', // Peggy Guggenheim Collection
+  'wd:Q132137', // Vatican Museums
+  'wd:Q133799', // Capitoline Museums (Rome)
   
   // Germany
   'wd:Q154568', // Alte Pinakothek
@@ -211,6 +253,9 @@ const DEFAULT_MUSEUMS = [
   'wd:Q703640', // Museum Ludwig (Cologne)
   'wd:Q693591', // Kunsthalle Bremen
   'wd:Q1136465', // Museum Folkwang (Essen)
+  'wd:Q165631', // Gemäldegalerie (Berlin)
+  'wd:Q151803', // Germanisches Nationalmuseum (Nuremberg)
+  'wd:Q151828', // Pergamon Museum (Berlin)
   
   // Austria
   'wd:Q95569', // Kunsthistorisches Museum
@@ -259,12 +304,17 @@ export async function fetchWikidataPaintings(options: {
 
   const museumValues = museums.join(' ');
 
+  // First, get artworks from museum collections (standard query)
   const query = `
     SELECT ?item ?title ?image ?museumLabel WHERE {
-      ?item wdt:P31 wd:Q3305213 ;          # instance of painting
-            wdt:P170 ${artistQid} ;        # creator = artist
-            wdt:P18 ?image ;               # has an image
-            wdt:P195 ?museum .             # collection (museum)
+      {
+        ?item wdt:P31 wd:Q3305213 ;          # instance of painting
+      } UNION {
+        ?item wdt:P31 wd:Q860861 ;           # instance of sculpture
+      }
+      ?item wdt:P170 ${artistQid} ;          # creator = artist
+            wdt:P18 ?image ;                  # has an image
+            wdt:P195 ?museum .                # collection (museum)
       VALUES ?museum { ${museumValues} }
       ${licenseFilter}
       OPTIONAL { ?item rdfs:label ?title FILTER (LANG(?title) = "en") }
@@ -320,6 +370,7 @@ export interface WikidataItemTags {
   genre?: string; // P136
   movement?: string; // P135
   inceptionDate?: string; // P571
+  artworkType?: string; // P31 (instance of) - e.g., "painting", "sculpture"
 }
 
 /**
@@ -327,6 +378,7 @@ export interface WikidataItemTags {
  * - P136: genre (e.g., "landscape art")
  * - P135: movement (e.g., "Post-Impressionism")
  * - P571: inception/creation date (e.g., "1889")
+ * - P31: instance of (e.g., "painting", "sculpture")
  */
 export async function fetchWikidataItemTags(itemId: string): Promise<WikidataItemTags> {
   if (!itemId || !itemId.startsWith('Q')) {
@@ -334,10 +386,14 @@ export async function fetchWikidataItemTags(itemId: string): Promise<WikidataIte
   }
 
   const query = `
-    SELECT ?genreLabel ?movementLabel ?inceptionDate WHERE {
+    SELECT ?genreLabel ?movementLabel ?inceptionDate ?instanceOfLabel WHERE {
       OPTIONAL { wd:${itemId} wdt:P136 ?genre . }
       OPTIONAL { wd:${itemId} wdt:P135 ?movement . }
       OPTIONAL { wd:${itemId} wdt:P571 ?inceptionDate . }
+      OPTIONAL { 
+        wd:${itemId} wdt:P31 ?instanceOf .
+        FILTER(?instanceOf IN (wd:Q3305213, wd:Q860861)) # painting or sculpture
+      }
       SERVICE wikibase:label {
         bd:serviceParam wikibase:language "en" .
       }
@@ -380,6 +436,15 @@ export async function fetchWikidataItemTags(itemId: string): Promise<WikidataIte
           tags.inceptionDate = yearMatch[0];
         } else {
           tags.inceptionDate = dateValue;
+        }
+      }
+      if (binding.instanceOfLabel?.value && !tags.artworkType) {
+        // Map Wikidata labels to our tag names
+        const instanceLabel = binding.instanceOfLabel.value.toLowerCase();
+        if (instanceLabel === 'painting') {
+          tags.artworkType = 'painting';
+        } else if (instanceLabel === 'sculpture') {
+          tags.artworkType = 'sculpture';
         }
       }
     }

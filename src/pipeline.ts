@@ -6,6 +6,7 @@ import { uploadToStorage } from './storage';
 import { WikimediaImage } from './types';
 import { ensureArtist, insertArtAsset, linkArtTags, upsertArt, upsertArtSource, upsertTags } from './db';
 import { fetchWikidataPaintings, fetchWikidataItemTags, findArtistQID } from './wikidata';
+import { saveFailure } from './failureTracker';
 
 export interface FetchOptions {
   artist: string;
@@ -50,7 +51,30 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
   
   // Look up artist QID from name
   console.log(`Looking up Wikidata QID for artist: ${options.artist}...`);
-  const artistQid = await findArtistQID(options.artist);
+  let artistQid = await findArtistQID(options.artist);
+  
+  // Special case for known problematic artists
+  if (!artistQid) {
+    const knownArtists: Record<string, string> = {
+      'Jean‑François Millet': 'Q148458',
+      'Jean-François Millet': 'Q148458',
+      'Jean Francois Millet': 'Q148458',
+      'Jean-Francois Millet': 'Q148458',
+      'Édouard Manet': 'Q40599',
+      'Edouard Manet': 'Q40599',
+      'Rembrandt van Rijn': 'Q5598',
+      'Rembrandt': 'Q5598',
+      'Rembrandt Harmenszoon van Rijn': 'Q5598',
+      'Michelangelo Merisi da Caravaggio': 'Q42207',
+      'Caravaggio': 'Q42207',
+      'Michelangelo Merisi': 'Q42207',
+      'Diego Velázquez': 'Q297',
+      'Diego Velazquez': 'Q297',
+      'Diego Rodríguez de Silva y Velázquez': 'Q297',
+    };
+    artistQid = knownArtists[options.artist] || null;
+  }
+  
   if (!artistQid) {
     throw new Error(`Could not find Wikidata QID for artist: ${options.artist}`);
   }
@@ -169,14 +193,21 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
           artistId,
         });
 
-        // Always use Wikidata tags (genre, movement, inception date)
+        // Always use Wikidata tags (genre, movement, inception date, artwork type)
         let normalizedTags: string[];
         if (image.sourceItem) {
           const wikidataTags = await fetchWikidataItemTags(image.sourceItem);
+          // If no artwork type detected but we have a sourceItem, default to "painting"
+          // (since current queries filter for paintings only; when we expand to sculptures, this will be detected)
+          if (!wikidataTags.artworkType) {
+            wikidataTags.artworkType = 'painting';
+          }
           normalizedTags = normalizeWikidataTags(wikidataTags, image.museum);
         } else {
           // Fallback: if no sourceItem, use Commons categories (shouldn't happen with Wikidata source)
-          normalizedTags = normalizeTags(image.categories, image.museum);
+          // Default to "painting" for existing artworks
+          const fallbackTags = normalizeTags(image.categories, image.museum);
+          normalizedTags = ['painting', ...fallbackTags];
         }
 
         const tagIds = await upsertTags(normalizedTags).then((rows) => rows.map((r) => r.id));
@@ -215,7 +246,21 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
       if (reservedSlot) {
         uploaded -= 1;
       }
-      errors.push({ title: image.title, message: (err as Error).message });
+      const errorMessage = (err as Error).message;
+      errors.push({ title: image.title, message: errorMessage });
+      
+      // Save failure for later retry (only for download/upload errors, not skipped items)
+      if (errorMessage.includes('Failed to download') || errorMessage.includes('Failed to insert') || errorMessage.includes('429') || errorMessage.includes('503')) {
+        await saveFailure({
+          artist: options.artist,
+          title: image.title,
+          imageUrl: image.original?.url || image.thumb?.url,
+          error: errorMessage,
+          timestamp: new Date().toISOString(),
+          retryCount: 0,
+        });
+      }
+      
       processed += 1;
     }
   };
@@ -230,7 +275,7 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
   };
 }
 
-function buildStoragePath(artist: string, image: WikimediaImage, ext: string): string {
+export function buildStoragePath(artist: string, image: WikimediaImage, ext: string): string {
   const artistSlug = slugify(artist);
   const titleSlug = slugify(image.title.replace(/^File:/i, ''));
   const safeTitle = titleSlug || `image-${image.pageid}`;
@@ -265,7 +310,7 @@ function isLikelyColorPainting(image: WikimediaImage): boolean {
   return true;
 }
 
-function normalizeTitle(title: string): string {
+export function normalizeTitle(title: string): string {
   return title.replace(/^File:/i, '').trim();
 }
 
@@ -294,11 +339,16 @@ function normalizeTags(categories: string[], museum?: string): string[] {
   return Array.from(new Set(cleaned));
 }
 
-function normalizeWikidataTags(
-  tags: { genre?: string; movement?: string; inceptionDate?: string },
+export function normalizeWikidataTags(
+  tags: { genre?: string; movement?: string; inceptionDate?: string; artworkType?: string },
   museum?: string,
 ): string[] {
   const result: string[] = [];
+
+  // Add artwork type first (painting or sculpture)
+  if (tags.artworkType) {
+    result.push(tags.artworkType.toLowerCase().trim());
+  }
 
   if (tags.genre) {
     result.push(tags.genre.toLowerCase().trim());
@@ -315,3 +365,4 @@ function normalizeWikidataTags(
 
   return Array.from(new Set(result.filter(Boolean)));
 }
+

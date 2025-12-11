@@ -5,7 +5,7 @@ const API_ENDPOINT = 'https://commons.wikimedia.org/w/api.php';
 const MAX_RETRIES = 3;
 const RETRY_DELAY_MS = 1500;
 const MIN_VARIANT_WIDTH = 1280;
-const MIN_ORIGINAL_WIDTH = 3000;
+const MIN_ORIGINAL_DIMENSION = 1800; // Minimum width OR height for original image
 const MAX_VARIANT_WIDTH = 4000;
 
 interface CategoryOptions {
@@ -194,8 +194,9 @@ function delay(ms: number) {
 }
 
 export function pickBestVariant(image: WikimediaImage): ImageVariant | null {
-  // Require an original that is at least MIN_ORIGINAL_WIDTH to ensure a high-quality source exists.
-  if (!image.original || image.original.width < MIN_ORIGINAL_WIDTH) {
+  // Require an original that has at least MIN_ORIGINAL_DIMENSION in either width OR height
+  // This ensures tall paintings (portrait orientation) with good quality are included
+  if (!image.original || (image.original.width < MIN_ORIGINAL_DIMENSION && image.original.height < MIN_ORIGINAL_DIMENSION)) {
     return null;
   }
 

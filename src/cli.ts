@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { fetchAndStoreArtworks } from './pipeline';
+import { notifyCompletion } from './notify';
 
 function parseArgs() {
   const args = process.argv.slice(2);
@@ -44,10 +45,29 @@ async function main() {
       console.error(`- ${err.title}: ${err.message}`);
     }
   }
+  
+  // Send notification when complete
+  await notifyCompletion(artist, {
+    attempted: result.attempted,
+    uploaded: result.uploaded,
+    skipped: result.skipped,
+    errors: result.errors.length,
+  });
 }
 
-main().catch((err) => {
+main().catch(async (err) => {
   console.error(err);
+  // Send error notification
+  try {
+    await notifyCompletion('Unknown', {
+      attempted: 0,
+      uploaded: 0,
+      skipped: 0,
+      errors: 1,
+    });
+  } catch {
+    // Ignore notification errors
+  }
   process.exit(1);
 });
 
