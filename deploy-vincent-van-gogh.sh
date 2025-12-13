@@ -49,3 +49,4 @@ echo ""
 echo "3. Test the function:"
 echo "   curl \"https://$PROJECT_REF.supabase.co/functions/v1/vincent-van-gogh?PREFIX=vincent-van-gogh\" \\"
 echo "     -H \"Authorization: Bearer YOUR_ANON_KEY\""
+

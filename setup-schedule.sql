@@ -75,3 +75,4 @@ SELECT cron.schedule(
 
 -- To unschedule a job:
 -- SELECT cron.unschedule('vincent-van-gogh-12am');
+

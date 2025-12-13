@@ -69,3 +69,4 @@ SELECT cron.unschedule('vincent-van-gogh-6pm');
 ```sql
 SELECT * FROM cron.job;
 ```
+

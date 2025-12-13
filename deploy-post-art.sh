@@ -1,9 +1,9 @@
 #!/bin/bash
-# Deployment script for Supabase Edge Function
+# Deployment script for generic post-art Edge Function
 
 set -e
 
-echo "=== Supabase Edge Function Deployment ==="
+echo "=== Deploying Generic post-art Edge Function ==="
 echo ""
 
 # Check if Supabase CLI is available
@@ -27,27 +27,24 @@ else
 fi
 
 echo ""
-echo "Step 1: Login to Supabase"
-echo "You'll need to open a browser to complete login..."
-$SUPABASE_CLI login
-
-echo ""
-echo "Step 2: Linking to project $PROJECT_REF"
-$SUPABASE_CLI link --project-ref "$PROJECT_REF"
-
-echo ""
-echo "Step 3: Deploying mastodon-post function..."
-$SUPABASE_CLI functions deploy mastodon-post
+echo "Deploying post-art function..."
+$SUPABASE_CLI functions deploy post-art
 
 echo ""
 echo "=== Deployment Complete! ==="
 echo ""
-echo "Next steps:"
-echo "1. Set environment variables in Supabase Dashboard:"
-echo "   - Go to Edge Functions → mastodon-post → Settings"
-echo "   - Add: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, MASTODON_BASE_URL, MASTODON_ACCESS_TOKEN"
+echo "The function is now available at:"
+echo "  https://$PROJECT_REF.supabase.co/functions/v1/post-art?artist=Artist Name"
 echo ""
-echo "2. Test the function:"
-echo "   curl \"https://$PROJECT_REF.supabase.co/functions/v1/mastodon-post?PREFIX=vincent-van-gogh\" \\"
+echo "Usage examples:"
+echo "  ?artist=Vincent van Gogh"
+echo "  ?artist=Rembrandt van Rijn"
+echo "  ?artist=Caravaggio"
+echo ""
+echo "Next steps:"
+echo "1. Set up scheduling using setup-multi-artist-schedule.sql"
+echo "2. Add artist accounts to mastodon_accounts table"
+echo "3. Test manually:"
+echo "   curl \"https://$PROJECT_REF.supabase.co/functions/v1/post-art?artist=Vincent van Gogh\" \\"
 echo "     -H \"Authorization: Bearer YOUR_ANON_KEY\""
 

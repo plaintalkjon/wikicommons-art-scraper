@@ -1,13 +1,16 @@
-// Image-only Mastodon poster reading directly from Supabase Storage
+// Mastodon poster with artwork titles - reads from Supabase Storage and Database
 // Env: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, MASTODON_BASE_URL, MASTODON_ACCESS_TOKEN
 // Config: BUCKET (default: 'Art'), PREFIX (default: 'vincent-van-gogh')
+// Posts images with artwork titles from the database
 
 import { createClient } from "npm:@supabase/supabase-js@2.46.1";
 
 const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
-const MASTODON_BASE_URL = Deno.env.get('MASTODON_BASE_URL') ?? 'https://mastodon.social'
-const MASTODON_ACCESS_TOKEN = Deno.env.get('MASTODON_ACCESS_TOKEN')!
+
+// Legacy support: fallback to env vars if database lookup fails
+const MASTODON_BASE_URL_LEGACY = Deno.env.get('MASTODON_BASE_URL') ?? 'https://mastodon.social'
+const MASTODON_ACCESS_TOKEN_LEGACY = Deno.env.get('MASTODON_ACCESS_TOKEN')
 
 // Default to 'Art' (capitalized) to match the scraper's SUPABASE_BUCKET
 const BUCKET = Deno.env.get('BUCKET') ?? 'Art'
@@ -16,7 +19,6 @@ const RAW_PREFIX = Deno.env.get('PREFIX') ?? 'vincent-van-gogh'
 const PREFIX = RAW_PREFIX.replace(/^\/+/, '').replace(/\/+$/, '')
 
 if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) console.error('Missing Supabase env vars')
-if (!MASTODON_ACCESS_TOKEN) console.error('Missing Mastodon access token')
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
 
@@ -141,14 +143,74 @@ async function getImageBytes(path: string): Promise<{ bytes: Uint8Array, content
   return { bytes, contentType }
 }
 
-async function uploadMediaToMastodon(bytes: Uint8Array, contentType: string): Promise<string> {
+/**
+ * Get Mastodon credentials for an artist from the database
+ * Falls back to environment variables if not found in database
+ */
+async function getMastodonCredentials(artistName: string): Promise<{ baseUrl: string; accessToken: string }> {
+  try {
+    // First, get the artist ID
+    const { data: artist, error: artistError } = await supabase
+      .from('artists')
+      .select('id')
+      .eq('name', artistName)
+      .single()
+    
+    if (artistError || !artist) {
+      console.warn(`Artist not found: ${artistName}, using legacy env vars`)
+      if (!MASTODON_ACCESS_TOKEN_LEGACY) {
+        throw new Error('No Mastodon credentials found (neither in database nor env vars)')
+      }
+      return {
+        baseUrl: MASTODON_BASE_URL_LEGACY,
+        accessToken: MASTODON_ACCESS_TOKEN_LEGACY
+      }
+    }
+    
+    // Get Mastodon account for this artist
+    const { data: account, error: accountError } = await supabase
+      .from('mastodon_accounts')
+      .select('mastodon_base_url, mastodon_access_token')
+      .eq('artist_id', artist.id)
+      .eq('active', true)
+      .single()
+    
+    if (accountError || !account) {
+      console.warn(`No Mastodon account found for ${artistName}, using legacy env vars`)
+      if (!MASTODON_ACCESS_TOKEN_LEGACY) {
+        throw new Error(`No Mastodon account configured for ${artistName} and no legacy env vars`)
+      }
+      return {
+        baseUrl: MASTODON_BASE_URL_LEGACY,
+        accessToken: MASTODON_ACCESS_TOKEN_LEGACY
+      }
+    }
+    
+    return {
+      baseUrl: account.mastodon_base_url,
+      accessToken: account.mastodon_access_token
+    }
+  } catch (err) {
+    console.error('Error fetching Mastodon credentials:', err)
+    // Fallback to legacy env vars
+    if (MASTODON_ACCESS_TOKEN_LEGACY) {
+      return {
+        baseUrl: MASTODON_BASE_URL_LEGACY,
+        accessToken: MASTODON_ACCESS_TOKEN_LEGACY
+      }
+    }
+    throw err
+  }
+}
+
+async function uploadMediaToMastodon(bytes: Uint8Array, contentType: string, baseUrl: string, accessToken: string): Promise<string> {
   const form = new FormData()
   form.append('file', new Blob([bytes], { type: contentType }), 'image')
   // Alt text intentionally omitted per requirement
 
-  const res = await fetch(`${MASTODON_BASE_URL.replace(/\/$/, '')}/api/v2/media`, {
+  const res = await fetch(`${baseUrl.replace(/\/$/, '')}/api/v2/media`, {
     method: 'POST',
-    headers: { Authorization: `Bearer ${MASTODON_ACCESS_TOKEN}` },
+    headers: { Authorization: `Bearer ${accessToken}` },
     body: form,
   })
   if (!res.ok) {
@@ -159,15 +221,52 @@ async function uploadMediaToMastodon(bytes: Uint8Array, contentType: string): Pr
   return json.id as string
 }
 
-async function createImageOnlyStatus(mediaId: string): Promise<any> {
+async function getArtworkTitle(storagePath: string): Promise<string | null> {
+  try {
+    // Query database to get artwork title from storage path
+    // First get the art_id from art_assets
+    const { data: asset, error: assetError } = await supabase
+      .from('art_assets')
+      .select('art_id')
+      .eq('storage_path', storagePath)
+      .single()
+    
+    if (assetError || !asset) {
+      console.error(`Error fetching asset for ${storagePath}:`, assetError)
+      return null
+    }
+    
+    // Then get the title from arts table
+    const { data: art, error: artError } = await supabase
+      .from('arts')
+      .select('title')
+      .eq('id', asset.art_id)
+      .single()
+    
+    if (artError || !art) {
+      console.error(`Error fetching art title:`, artError)
+      return null
+    }
+    
+    return art.title || null
+  } catch (err) {
+    console.error(`Exception fetching title:`, err)
+    return null
+  }
+}
+
+async function createStatusWithTitle(mediaId: string, title: string | null, baseUrl: string, accessToken: string): Promise<any> {
   const form = new URLSearchParams()
-  form.set('status', '')
+  
+  // Include title in status if available, otherwise empty
+  const statusText = title ? title : ''
+  form.set('status', statusText)
   form.append('media_ids[]', mediaId)
 
-  const res = await fetch(`${MASTODON_BASE_URL.replace(/\/$/, '')}/api/v1/statuses`, {
+  const res = await fetch(`${baseUrl.replace(/\/$/, '')}/api/v1/statuses`, {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${MASTODON_ACCESS_TOKEN}`,
+      'Authorization': `Bearer ${accessToken}`,
       'Content-Type': 'application/x-www-form-urlencoded',
     },
     body: form,
@@ -184,7 +283,11 @@ Deno.serve(async (req: Request) => {
     const url = new URL(req.url)
     const overridePath = url.searchParams.get('path')
     const useDatabase = url.searchParams.get('use_db') === 'true'
-    const artistName = url.searchParams.get('artist') // Optional: query by artist name instead of prefix
+    let artistName = url.searchParams.get('artist') // Optional: query by artist name instead of prefix
+    // Default to Vincent van Gogh for this function
+    if (!artistName) {
+      artistName = 'Vincent van Gogh'
+    }
 
     let candidates: string[] = []
 
@@ -216,15 +319,28 @@ Deno.serve(async (req: Request) => {
     const pick = candidates[Math.floor(Math.random() * candidates.length)]
     console.log(`Selected: ${pick}`)
 
+    // Get Mastodon credentials for this artist
+    const credentials = await getMastodonCredentials(artistName)
+    console.log(`Using Mastodon account for: ${artistName}`)
+
+    // Get artwork title from database
+    const artworkTitle = await getArtworkTitle(pick)
+    if (artworkTitle) {
+      console.log(`Found title: ${artworkTitle}`)
+    } else {
+      console.log(`No title found for ${pick}`)
+    }
+
     const payload = await getImageBytes(pick)
-    const mediaId = await uploadMediaToMastodon(payload.bytes, payload.contentType)
-    const status = await createImageOnlyStatus(mediaId)
+    const mediaId = await uploadMediaToMastodon(payload.bytes, payload.contentType, credentials.baseUrl, credentials.accessToken)
+    const status = await createStatusWithTitle(mediaId, artworkTitle, credentials.baseUrl, credentials.accessToken)
 
     return new Response(JSON.stringify({ 
       ok: true, 
       media_id: mediaId, 
       status_id: status.id, 
       storage_path: pick,
+      title: artworkTitle,
       candidates_count: candidates.length
     }), {
       headers: { 'Content-Type': 'application/json', 'Connection': 'keep-alive' },

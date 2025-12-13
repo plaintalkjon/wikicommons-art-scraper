@@ -186,8 +186,11 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
 
       if (!options.dryRun) {
         const upload = await uploadToStorage(path, downloaded);
+        // Clean the title before storing
+        const rawTitle = normalizeTitle(image.title);
+        const cleanedTitle = cleanTitle(rawTitle);
         const artId = await upsertArt({
-          title: normalizeTitle(image.title),
+          title: cleanedTitle,
           description: image.description ?? null,
           imageUrl: upload.publicUrl,
           artistId,
@@ -312,6 +315,40 @@ function isLikelyColorPainting(image: WikimediaImage): boolean {
 
 export function normalizeTitle(title: string): string {
   return title.replace(/^File:/i, '').trim();
+}
+
+/**
+ * Clean up artwork titles by removing filename artifacts
+ * This is the same logic as cli-clean-titles.ts
+ */
+export function cleanTitle(title: string): string {
+  let cleaned = title;
+  
+  // Remove "File:" prefix
+  cleaned = cleaned.replace(/^File:\s*/i, '');
+  
+  // Remove file extensions
+  cleaned = cleaned.replace(/\.(jpg|jpeg|png|gif|tiff|tif|webp|svg)$/i, '');
+  
+  // Remove common museum codes and identifiers
+  cleaned = cleaned.replace(/\s*-\s*(s\d+[VvMmAa]\d+|Google Art Project|Art Project)/gi, '');
+  cleaned = cleaned.replace(/\s*-\s*\d{4}\.\d+\s*-\s*[^-]+$/i, ''); // Museum accession numbers
+  cleaned = cleaned.replace(/\s*\(\d{4}\)\s*$/i, ''); // Years in parentheses at end
+  
+  // Remove artist name if it appears at the start (common pattern)
+  cleaned = cleaned.replace(/^(Vincent\s+van\s+Gogh|Van\s+Gogh|Rembrandt|Peter\s+Paul\s+Rubens|John\s+Singer\s+Sargent)[\s\-:]+/i, '');
+  
+  // Clean up multiple spaces/hyphens
+  cleaned = cleaned.replace(/\s+/g, ' ');
+  cleaned = cleaned.replace(/\s*-\s*/g, ' - ');
+  cleaned = cleaned.replace(/^\s+|\s+$/g, '');
+  
+  // Capitalize first letter
+  if (cleaned.length > 0) {
+    cleaned = cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
+  }
+  
+  return cleaned;
 }
 
 function normalizeTags(categories: string[], museum?: string): string[] {

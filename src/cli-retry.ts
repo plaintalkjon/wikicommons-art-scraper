@@ -81,9 +81,12 @@ async function main() {
       // Upload to storage
       const upload = await uploadToStorage(storagePath, downloaded);
       
-      // Upsert art record
+      // Upsert art record (with title cleaning)
+      const { cleanTitle } = require('./pipeline');
+      const rawTitle = normalizeTitle(image.title);
+      const cleanedTitle = cleanTitle(rawTitle);
       const artId = await upsertArt({
-        title: normalizeTitle(image.title),
+        title: cleanedTitle,
         description: image.description ?? null,
         imageUrl: upload.publicUrl,
         artistId,

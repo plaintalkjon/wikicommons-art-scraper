@@ -380,6 +380,48 @@ export interface WikidataItemTags {
  * - P571: inception/creation date (e.g., "1889")
  * - P31: instance of (e.g., "painting", "sculpture")
  */
+/**
+ * Fetch the English title/label for a Wikidata item
+ */
+export async function fetchWikidataItemTitle(itemId: string): Promise<string | null> {
+  if (!itemId || !itemId.startsWith('Q')) {
+    return null;
+  }
+
+  const query = `
+    SELECT ?titleLabel WHERE {
+      wd:${itemId} rdfs:label ?titleLabel .
+      FILTER(LANG(?titleLabel) = "en")
+    }
+    LIMIT 1
+  `;
+
+  try {
+    const res = await fetch(SPARQL_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/sparql-query',
+        Accept: 'application/sparql-results+json',
+        'User-Agent': 'wikicommons-art-scraper/1.0 (contact: developer@example.com)',
+      },
+      body: query,
+    });
+
+    if (!res.ok) {
+      return null;
+    }
+
+    const data = (await res.json()) as {
+      results: { bindings: Array<Record<string, { type: string; value: string }>> };
+    };
+
+    const title = data.results?.bindings?.[0]?.titleLabel?.value;
+    return title || null;
+  } catch {
+    return null;
+  }
+}
+
 export async function fetchWikidataItemTags(itemId: string): Promise<WikidataItemTags> {
   if (!itemId || !itemId.startsWith('Q')) {
     return {};

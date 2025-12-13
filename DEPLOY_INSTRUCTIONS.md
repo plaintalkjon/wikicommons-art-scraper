@@ -56,3 +56,4 @@ curl "https://lxtkpwsxupzkxuhhmvvz.supabase.co/functions/v1/mastodon-post?PREFIX
 - **Project Ref**: `lxtkpwsxupzkxuhhmvvz`
 - **Project URL**: `https://lxtkpwsxupzkxuhhmvvz.supabase.co`
 - **Function Path**: `supabase/functions/mastodon-post/index.ts`
+
