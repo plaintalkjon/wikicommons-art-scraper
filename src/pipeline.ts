@@ -71,6 +71,116 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
       'Diego Velázquez': 'Q297',
       'Diego Velazquez': 'Q297',
       'Diego Rodríguez de Silva y Velázquez': 'Q297',
+      'Jean Auguste Dominique Ingres': 'Q5592',
+      'Jean-Auguste-Dominique Ingres': 'Q5592',
+      'J.A.D. Ingres': 'Q5592',
+      'Ingres': 'Q5592',
+      'Antoine Calbet': 'Q585816',
+      'Andoine Calbet': 'Q585816', // Common misspelling
+      'Charles-Joseph Panckoucke': 'Q312858',
+      'Évariste-Vital Luminais': 'Q2060248',
+      'Evariste-Vital Luminais': 'Q2060248', // Without accent
+      'Jean-Simon Berthélemy': 'Q317527',
+      'Adolf Hirémy-Hirschl': 'Q331047',
+      'Adolf Hirschl': 'Q331047', // Alternative name
+      'François Lemoyne': 'Q732468',
+      'François Le Moine': 'Q732468', // Alternative spelling
+      'Francois Lemoyne': 'Q732468', // Without accent
+      'Zdzisław Beksiński': 'Q169246',
+      'Zdzislaw Beksinski': 'Q169246', // Without special characters
+      'Jules Joseph Lefebvre': 'Q433973',
+      'Edward Poynter': 'Q333995',
+      'Sir Edward John Poynter': 'Q333995',
+      'Edward John Poynter': 'Q333995',
+      'Édouard Bernard Debat-Ponsan': 'Q305991',
+      'Edouard Bernard Debat-Ponsan': 'Q305991', // Without accent
+      'Édouard Debat-Ponsan': 'Q305991',
+      'Edouard Debat-Ponsan': 'Q305991', // Without accent
+      'Édouard-Marie-Guillaume Dubufe': 'Q17495238',
+      'Edouard-Marie-Guillaume Dubufe': 'Q17495238', // Without accent
+      'Édouard Dubufe': 'Q17495238', // Shortened name
+      'Edouard Dubufe': 'Q17495238', // Shortened name without accent
+      'Max Švabinský': 'Q159074',
+      'Max Svabinsky': 'Q159074', // Without special character
+      'Gustave Doré': 'Q6682',
+      'Gustave Dore': 'Q6682', // Without accent
+      'Vittorio Reggiani': 'Q21462984',
+      'Vittorio Reggianini': 'Q21462984', // Full name
+      'Gaston Bussière': 'Q1495565',
+      'Gaston Bussiere': 'Q1495565', // Without accent
+      'Eugène Delacroix': 'Q33477',
+      'Eugene Delacroix': 'Q33477', // Without accent
+      'Henri Camille Danger': 'Q15970232',
+      'Henri-Camille Danger': 'Q15970232', // With hyphen
+      'Caesar Van Everdingen': 'Q455013',
+      'Caesar van Everdingen': 'Q455013', // Lowercase "van"
+      'Georges-Antoine Rochegrosse': 'Q346846',
+      'Georges Antoine Rochegrosse': 'Q346846', // Without hyphen
+      'Hughes Taraval': 'Q113660692',
+      'Hugues Taraval': 'Q113660692', // With 's' (correct spelling)
+      'Jean-Hugues Taraval': 'Q113660692', // Full name
+      'Leopold Schutzier': 'Q17456711',
+      'Leopold Schmutzler': 'Q17456711', // Correct spelling
+      'Edwin Longsden Long': 'Q534366',
+      'Edwin Long': 'Q534366', // Shortened name
+      'Carlo Maratti': 'Q312990',
+      'Carlo Maratta': 'Q312990', // Alternative spelling
+      'Tintoretto': 'Q9319',
+      'Jacopo Tintoretto': 'Q9319', // Full name
+      'Ernst Karl Eugen Koerner': 'Q99761',
+      'Ernst Koerner': 'Q99761', // Shortened name
+      'François Musin': 'Q1977323',
+      'Francois Musin': 'Q1977323', // Without accent
+      'Francisco de Goya': 'Q6640',
+      'Francisco Goya': 'Q6640', // Without "de"
+      'Goya': 'Q6640', // Shortened name
+      'Mihály Zichy': 'Q742959',
+      'Mihaly Zichy': 'Q742959', // Without accent
+      'Paul Émile Chabas': 'Q338995',
+      'Paul Emile Chabas': 'Q338995', // Without accent
+      'Salvador Dali': 'Q5575',
+      'Salvador Dalí': 'Q5575', // With accent
+      'Sylvester Shchedrin': 'Q1861382',
+      'Briton Riviere': 'Q2470305',
+      'Herbert James': 'Q918605', // Herbert James Draper
+      'Herbert James Draper': 'Q918605',
+      'Alex Alemany': 'Q6172638',
+      'Raffaelo Monti': 'Q7282537',
+      'Raffaele Monti': 'Q7282537', // Correct spelling
+      'Norman Lindsay': 'Q333348',
+      'Jean-François Portaels': 'Q919158',
+      'Jean Francois Portaels': 'Q919158', // Without accent
+      'Gaspard Fossati': 'Q123442',
+      'Gaspare Fossati': 'Q123442', // Correct spelling
+      'François-Joseph Navez': 'Q647641',
+      'Francois-Joseph Navez': 'Q647641', // Without accent
+      'Leopold Carl Muller': 'Q640342',
+      'Leopold Carl Müller': 'Q640342', // With umlaut
+      'François de Nomé': 'Q309350',
+      'Francois de Nome': 'Q309350', // Without accent
+      'Théodore Gudin': 'Q555885',
+      'Theodore Gudin': 'Q555885', // Without accent
+      'Louis Icart': 'Q325041',
+      'Peder Mørk Mønsted': 'Q448207',
+      'Peder Mønsted': 'Q448207', // Without middle name
+      'Peder Mork Monsted': 'Q448207', // Without special characters
+      'Adolphe Valette': 'Q3237916',
+      'Pierre Adolphe Valette': 'Q3237916', // Full name
+      'André Castaigne': 'Q476298',
+      'Andre Castaigne': 'Q476298', // Without accent
+      'Jean-Léon Gérôme': 'Q212499',
+      'Jean Leon Gerome': 'Q212499', // Without accents
+      'Léon François Comerre': 'Q316527',
+      'Leon Francois Comerre': 'Q316527', // Without accents
+      'Léon Comerre': 'Q316527', // Shortened name
+      'Louis Jean François Lagrenée': 'Q1871782',
+      'Louis-Jean-François Lagrenée': 'Q1871782', // With hyphens
+      'Louis Jean Francois Lagrenee': 'Q1871782', // Without accents
+      'Louis Lagrenée': 'Q1871782', // Shortened name
+      'Edmund Leighton': 'Q142420',
+      'Edmund Blair Leighton': 'Q142420', // Full name
+      'Jacques Raymond Brascassat': 'Q390581',
+      'Jacques-Raymond Brascassat': 'Q390581', // With hyphen
     };
     artistQid = knownArtists[options.artist] || null;
   }
@@ -81,13 +191,12 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
   console.log(`Found artist QID: ${artistQid}`);
   
   // Always use Wikidata for discovery (museum-filtered paintings)
-  const items = await fetchWikidataPaintings({ limit, artistQid: `wd:${artistQid}` });
+  const items = await fetchWikidataPaintings({ limit, artistQid: `wd:${artistQid}`, paintingsOnly: options.paintingsOnly });
   console.log(`Found ${items.length} paintings from Wikidata, fetching image info...`);
   
-  // Fetch image info in parallel batches to avoid rate limiting (lower concurrency for API)
+  // Fetch image info in batches to avoid rate limiting
   const validItems = items.filter((item) => item.title).slice(0, limit);
   
-  // Process in smaller batches with rate limiting (3 concurrent API calls)
   const fetchWithMetadata = async (item: { title: string; museum?: string; itemId?: string }) => {
     const info = await fetchImageInfoByTitle(item.title);
     if (!info) return null;
@@ -96,30 +205,29 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
     return info;
   };
 
-  // Process in smaller batches (2 at a time) with longer delays to respect rate limits
+  // Process in smaller batches with delays - simple and reliable
   const imageResults: (WikimediaImage | null)[] = [];
-  const BATCH_SIZE = 2; // Reduced from 3 to 2
-  const DELAY_MS = 1500; // 1.5 seconds between batches
+  const BATCH_SIZE = 3;
+  const DELAY_MS = 1000; // 1 second between batches
   
   for (let i = 0; i < validItems.length; i += BATCH_SIZE) {
     const batch = validItems.slice(i, i + BATCH_SIZE);
-    try {
-      const batchResults = await Promise.all(batch.map(fetchWithMetadata));
-      imageResults.push(...batchResults);
-    } catch (err) {
-      // If rate limited, add the batch items as null and wait longer
-      console.warn(`Rate limit hit at batch ${i / BATCH_SIZE + 1}, waiting 5 seconds...`);
-      await new Promise((resolve) => setTimeout(resolve, 5000));
-      // Retry the batch
-      const batchResults = await Promise.all(batch.map(fetchWithMetadata));
-      imageResults.push(...batchResults);
-    }
+    const batchResults = await Promise.allSettled(batch.map(fetchWithMetadata));
     
-    // Delay between batches
+    batchResults.forEach((result) => {
+      if (result.status === 'fulfilled') {
+        imageResults.push(result.value);
+      } else {
+        console.warn(`Failed to fetch: ${result.reason?.message || 'Unknown error'}`);
+        imageResults.push(null);
+      }
+    });
+    
+    // Delay between batches (except after the last one)
     if (i + BATCH_SIZE < validItems.length) {
       await new Promise((resolve) => setTimeout(resolve, DELAY_MS));
       if ((i / BATCH_SIZE) % 20 === 0 && i > 0) {
-        console.log(`Fetched info for ${i + batch.length}/${validItems.length} items...`);
+        console.log(`Fetched info for ${Math.min(i + BATCH_SIZE, validItems.length)}/${validItems.length} items...`);
       }
     }
   }
@@ -144,7 +252,10 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
         return;
       }
 
-      if (options.paintingsOnly && !isLikelyColorPainting(image)) {
+      // When paintingsOnly is set, we already filtered at Wikidata level (P31 wd:Q3305213)
+      // So we can skip the Commons category check - trust Wikidata's classification
+      // Only apply the filter if NOT using paintingsOnly (for backward compatibility)
+      if (!options.paintingsOnly && !isLikelyColorPainting(image)) {
         skipped += 1;
         processed += 1;
         if (processed % 10 === 0) {
@@ -402,4 +513,5 @@ export function normalizeWikidataTags(
 
   return Array.from(new Set(result.filter(Boolean)));
 }
+
 

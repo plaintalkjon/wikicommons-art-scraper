@@ -1,0 +1,26 @@
+[
+  {
+    "artist": "Tintoretto",
+    "title": "File:De verkondiging aan Maria de engel, SK-A-3986.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9a/De_verkondiging_aan_Maria_de_engel%2C_SK-A-3986.jpg",
+    "error": "Failed to insert art: duplicate key value violates unique constraint \"unique_art_title_artist\"",
+    "timestamp": "2025-12-14T20:40:39.703Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Tintoretto",
+    "title": "File:Esther before Ahasuerus (1547-48); Tintoretto, Jacopo.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/49/Esther_before_Ahasuerus_%281547-48%29%3B_Tintoretto%2C_Jacopo.jpg",
+    "error": "Failed to insert art: duplicate key value violates unique constraint \"unique_art_title_artist\"",
+    "timestamp": "2025-12-14T20:40:57.972Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Tintoretto",
+    "title": "File:Three Venetian city chamberlains before St. Mark by Tintoretto (Gemäldegalerie, Berlin) 9459.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Three_Venetian_city_chamberlains_before_St._Mark_by_Tintoretto_%28Gem%C3%A4ldegalerie%2C_Berlin%29_9459.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Three_Venetian_city_chamberlains_before_St._Mark_by_Tintoretto_%28Gem%C3%A4ldegalerie%2C_Berlin%29_9459.jpg/3380px-Three_Venetian_city_chamberlains_before_St._Mark_by_Tintoretto_%28Gem%C3%A4ldegalerie%2C_Berlin%29_9459.jpg: 503 Backend fetch failed",
+    "timestamp": "2025-12-14T20:42:26.007Z",
+    "retryCount": 0
+  }
+]

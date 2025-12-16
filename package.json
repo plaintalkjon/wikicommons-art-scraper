@@ -10,9 +10,9 @@
     "delete-art": "npm run build && node dist/cli-delete.js",
     "show-tags": "npm run build && node dist/show-tags.js",
     "tag-existing": "npm run build && node dist/cli-tag-existing.js",
-    "update-titles": "npm run build && node dist/cli-update-titles.js",
     "clean-titles": "npm run build && node dist/cli-clean-titles.js",
     "add-artist-bot": "npm run build && node dist/cli-add-artist-bot.js",
+    "add-tag-bot": "npm run build && node dist/cli-add-tag-bot.js",
     "fetch-specific": "npm run build && node dist/cli-fetch-specific.js"
   },
   "repository": {

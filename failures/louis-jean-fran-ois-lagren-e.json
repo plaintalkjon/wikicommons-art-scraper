@@ -1,0 +1,10 @@
+[
+  {
+    "artist": "Louis Jean François Lagrenée",
+    "title": "File:Louis-Jean-François Lagrenée - Marte y Venus, alegoría de la Paz, Jean Paul Getty Museum, 1770.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/40/Louis-Jean-Fran%C3%A7ois_Lagren%C3%A9e_-_Marte_y_Venus%2C_alegor%C3%ADa_de_la_Paz%2C_Jean_Paul_Getty_Museum%2C_1770.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Louis-Jean-Fran%C3%A7ois_Lagren%C3%A9e_-_Marte_y_Venus%2C_alegor%C3%ADa_de_la_Paz%2C_Jean_Paul_Getty_Museum%2C_1770.jpg/3357px-Louis-Jean-Fran%C3%A7ois_Lagren%C3%A9e_-_Marte_y_Venus%2C_alegor%C3%ADa_de_la_Paz%2C_Jean_Paul_Getty_Museum%2C_1770.jpg: 503 Backend fetch failed",
+    "timestamp": "2025-12-16T10:24:20.867Z",
+    "retryCount": 0
+  }
+]

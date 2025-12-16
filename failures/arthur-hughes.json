@@ -1,0 +1,10 @@
+[
+  {
+    "artist": "Arthur Hughes",
+    "title": "File:Arthur Hughes - April Love - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Arthur_Hughes_-_April_Love_-_Google_Art_Project.jpg",
+    "error": "Failed to insert art: duplicate key value violates unique constraint \"unique_art_title_artist\"",
+    "timestamp": "2025-12-14T20:26:55.370Z",
+    "retryCount": 0
+  }
+]

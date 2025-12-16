@@ -11,3 +11,4 @@ echo ""
 curl -X POST "https://lxtkpwsxupzkxuhhmvvz.supabase.co/functions/v1/post-art?artist=$ARTIST" \
   -H "Authorization: Bearer $ANON_KEY" \
   -H "Content-Type: application/json" | python3 -m json.tool
+

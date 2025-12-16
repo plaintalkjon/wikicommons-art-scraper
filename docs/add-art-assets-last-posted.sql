@@ -14,3 +14,5 @@ WHERE last_posted_at IS NOT NULL;
 CREATE INDEX IF NOT EXISTS idx_art_assets_unposted 
 ON art_assets(art_id) 
 WHERE last_posted_at IS NULL;
+
+

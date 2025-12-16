@@ -122,6 +122,7 @@ const DEFAULT_MUSEUMS = [
   'wd:Q224124', // Van Gogh Museum
   'wd:Q1051928', // Kröller-Müller Museum
   'wd:Q190804', // Rijksmuseum
+  'wd:Q1766396', // Cultural Heritage Agency of the Netherlands (Rijksdienst voor het Cultureel Erfgoed)
   'wd:Q12013217', // Noordbrabants Museum
   'wd:Q679527', // Museum Boijmans Van Beuningen
   'wd:Q221092', // Mauritshuis
@@ -139,6 +140,32 @@ const DEFAULT_MUSEUMS = [
   'wd:Q333', // Musée Fabre (Montpellier)
   'wd:Q333064', // Musée Granet (Aix-en-Provence)
   'wd:Q193509', // Palais des Beaux-Arts de Lille
+  'wd:Q2711480', // Musée des Augustins (Toulouse)
+  'wd:Q193508', // Musée Marmottan Monet (Paris)
+  'wd:Q954222', // Musée des Beaux-Arts de Bordeaux
+  'wd:Q1935080', // Musée des Beaux-Arts de Nantes
+  'wd:Q1955739', // Musée des Beaux-Arts de Dijon
+  'wd:Q3086934', // Musée des Beaux-Arts de Rouen
+  'wd:Q132850', // Centre Pompidou (Musée National d'Art Moderne)
+  'wd:Q132841', // Musée du Quai Branly – Jacques Chirac
+  'wd:Q132844', // Musée Rodin (alternative QID)
+  'wd:Q132842', // Musée Guimet (Musée National des Arts Asiatiques)
+  'wd:Q132846', // Musée d'Arts de Nantes
+  'wd:Q132847', // Musée des Beaux-Arts de Lyon (alternative QID)
+  'wd:Q132848', // Musée des Beaux-Arts de Lille (alternative QID)
+  'wd:Q132849', // Musée des Beaux-Arts de Bordeaux (alternative QID)
+  'wd:Q132851', // Musée des Beaux-Arts de Strasbourg
+  'wd:Q132852', // Musée des Beaux-Arts de Rouen (alternative QID)
+  'wd:Q132853', // Musée des Beaux-Arts de Rennes
+  'wd:Q132854', // Musée des Beaux-Arts de Dijon (alternative QID)
+  'wd:Q132855', // Musée des Beaux-Arts de Nancy
+  'wd:Q132856', // Musée des Beaux-Arts de Marseille
+  'wd:Q132857', // Musée des Beaux-Arts de Tours
+  'wd:Q132858', // Musée des Beaux-Arts d'Orléans
+  'wd:Q132859', // Musée des Beaux-Arts d'Angers
+  'wd:Q3331230', // Musée des Ursulines (Mâcon)
+  'wd:Q3329368', // Musée Thomas-Henry (Cherbourg)
+  'wd:Q1286709', // Musée national de la Marine (Paris)
   
   // United States - East Coast
   'wd:Q160236', // Metropolitan Museum of Art
@@ -195,6 +222,22 @@ const DEFAULT_MUSEUMS = [
   'wd:Q6373', // British Museum
   'wd:Q213322', // Victoria and Albert Museum
   'wd:Q1459037', // Royal Collection (UK)
+  'wd:Q238587', // National Portrait Gallery (London)
+  'wd:Q517612', // Tate Liverpool
+  'wd:Q2577210', // Tate St Ives
+  'wd:Q195436', // Tate Britain (alternative QID)
+  'wd:Q201788', // Victoria and Albert Museum (alternative QID)
+  'wd:Q1207306', // Ashmolean Museum (Oxford)
+  'wd:Q1207307', // Fitzwilliam Museum (Cambridge)
+  'wd:Q1207308', // Walker Art Gallery (Liverpool)
+  'wd:Q1207309', // Manchester Art Gallery
+  'wd:Q2638817', // Manchester Art Gallery (alternative QID)
+  'wd:Q1207310', // Birmingham Museum and Art Gallery
+  'wd:Q1207311', // National Museum Cardiff
+  'wd:Q1207312', // Scottish National Gallery of Modern Art
+  'wd:Q1207313', // Scottish National Portrait Gallery
+  'wd:Q20870267', // Holborn Library (London)
+  'wd:Q18085744', // The Atkinson (Southport)
   
   // Canada
   'wd:Q1068063', // National Gallery of Canada
@@ -207,6 +250,7 @@ const DEFAULT_MUSEUMS = [
   'wd:Q705551', // Art Gallery of New South Wales
   'wd:Q7270900', // Queensland Art Gallery
   'wd:Q688701', // National Gallery of Australia
+  'wd:Q705557', // Art Gallery of South Australia
   
   // Switzerland
   'wd:Q685038', // Kunsthaus Zürich
@@ -216,16 +260,38 @@ const DEFAULT_MUSEUMS = [
   'wd:Q150694', // Royal Museums of Fine Arts of Belgium
   'wd:Q1471477', // Royal Museum of Fine Arts Antwerp
   'wd:Q1948674', // Groeningemuseum (Bruges)
+  'wd:Q2007959', // Museum of Ixelles (Brussels)
+  'wd:Q47885560', // Print Room of the University of Antwerp
   
   // Russia
   'wd:Q132783', // Hermitage Museum
   'wd:Q4872', // Pushkin Museum
   'wd:Q183334', // Tretyakov Gallery
+  'wd:Q132785', // State Russian Museum (St. Petersburg)
+  'wd:Q804744', // Yekaterinburg Museum of Fine Arts
+  'wd:Q7087060', // Orenburg Regional Museum of Fine Arts
+  'wd:Q538002', // Erarta Museum of Contemporary Art (St. Petersburg)
+  'wd:Q690618', // Moscow Museum of Modern Art
+  'wd:Q693618', // Museum of Russian Icons
+  'wd:Q5390130', // Erzya Mordovian Museum of Visual Arts
+  'wd:Q132850', // Pushkin Museum (alternative QID)
   
   // Spain
   'wd:Q160112', // Museo del Prado
   'wd:Q176251', // Thyssen-Bornemisza Museum
   'wd:Q152063', // Museo Reina Sofía
+  'wd:Q160118', // Museo Nacional Centro de Arte Reina Sofía (alternative QID)
+  'wd:Q160116', // Museu Nacional d'Art de Catalunya (Barcelona)
+  'wd:Q160119', // Museo de Bellas Artes de Bilbao
+  'wd:Q160120', // Instituto Valenciano de Arte Moderno (Valencia)
+  'wd:Q160121', // Museo de Bellas Artes de Sevilla
+  'wd:Q160122', // Museo de Bellas Artes de Valencia
+  'wd:Q160123', // Museo de Bellas Artes de Granada
+  'wd:Q160124', // Museo de Bellas Artes de Murcia
+  'wd:Q160125', // Museo de Bellas Artes de Córdoba
+  'wd:Q160126', // Museo de Bellas Artes de Málaga
+  'wd:Q160127', // Museo de Bellas Artes de Santander
+  'wd:Q160128', // Museo de Bellas Artes de Asturias
   
   // Italy
   'wd:Q51252', // Uffizi Gallery
@@ -242,6 +308,32 @@ const DEFAULT_MUSEUMS = [
   'wd:Q1049033', // Peggy Guggenheim Collection
   'wd:Q132137', // Vatican Museums
   'wd:Q133799', // Capitoline Museums (Rome)
+  'wd:Q373422', // Uffizi Gallery (alternative QID)
+  'wd:Q133719', // Pinacoteca di Brera (alternative QID)
+  'wd:Q3094628', // Galleria d'Arte Moderna (Florence)
+  'wd:Q133720', // Galleria Nazionale d'Arte Moderna e Contemporanea (Rome)
+  'wd:Q133721', // Galleria dell'Accademia (Florence, alternative QID)
+  'wd:Q133722', // Galleria Borghese (alternative QID)
+  'wd:Q133723', // Museo di Capodimonte (alternative QID)
+  'wd:Q133724', // Palazzo Ducale (Venice)
+  'wd:Q133725', // Palazzo Pitti (alternative QID)
+  'wd:Q133726', // Museo Archeologico Nazionale (Naples)
+  'wd:Q1967789', // Pinacoteca di Brera (alternative QID)
+  'wd:Q1967790', // Museo di San Marco (Florence)
+  'wd:Q1967791', // Museo Nazionale del Bargello (Florence)
+  'wd:Q1967792', // Galleria Palatina (Florence)
+  'wd:Q1967793', // Museo Civico (Siena)
+  'wd:Q1967794', // Pinacoteca Nazionale (Bologna)
+  'wd:Q1967795', // Galleria Nazionale (Parma)
+  'wd:Q1967796', // Museo di Castelvecchio (Verona)
+  'wd:Q1967797', // Pinacoteca di Brera (Milan, alternative)
+  'wd:Q1967798', // Museo di Palazzo Reale (Genoa)
+  'wd:Q2822659', // Accademia Ligustica di Belle Arti (Genoa)
+  'wd:Q3757718', // Galleria d'arte moderna of Genoa
+  'wd:Q3650325', // Fondazione Cassa di Risparmio di Firenze
+  
+  // United States
+  'wd:Q16989403', // Vanderbilt Museum of Art (Nashville)
   
   // Germany
   'wd:Q154568', // Alte Pinakothek
@@ -256,6 +348,23 @@ const DEFAULT_MUSEUMS = [
   'wd:Q165631', // Gemäldegalerie (Berlin)
   'wd:Q151803', // Germanisches Nationalmuseum (Nuremberg)
   'wd:Q151828', // Pergamon Museum (Berlin)
+  'wd:Q812285', // Alte Pinakothek (alternative QID)
+  'wd:Q812286', // Neue Pinakothek (alternative QID)
+  'wd:Q812287', // Pinakothek der Moderne (Munich)
+  'wd:Q153953', // Städel Museum (alternative QID)
+  'wd:Q156806', // Hamburger Kunsthalle (Hamburg)
+  'wd:Q156808', // Kunsthalle Mannheim
+  'wd:Q156809', // Bavarian National Museum (Munich)
+  'wd:Q653002', // Staatliche Kunstsammlungen Dresden
+  'wd:Q156810', // Schirn Kunsthalle Frankfurt
+  'wd:Q1967799', // Museum für Moderne Kunst (Frankfurt)
+  'wd:Q1967800', // Kunstmuseum Basel (near German border, major collection)
+  'wd:Q1967801', // Museum Brandhorst (Munich)
+  'wd:Q1967802', // Lenbachhaus (Munich)
+  'wd:Q1967803', // Kunsthalle zu Kiel
+  'wd:Q1967804', // Kunstmuseum Stuttgart
+  'wd:Q1967805', // Museum für Kunst und Gewerbe (Hamburg)
+  'wd:Q688335', // Deutsches Historisches Museum (Berlin)
   
   // Austria
   'wd:Q95569', // Kunsthistorisches Museum
@@ -271,6 +380,46 @@ const DEFAULT_MUSEUMS = [
   'wd:Q1362629', // National Museum of Western Art
   'wd:Q653433', // Tokyo National Museum
   'wd:Q147286', // Kyoto National Museum
+  
+  // Poland
+  'wd:Q153306', // National Museum in Warsaw
+  'wd:Q195311', // National Museum in Kraków
+  'wd:Q1231810', // Czartoryski Museum (Kraków)
+  'wd:Q186186', // Wawel Castle (Kraków)
+  'wd:Q1141934', // Museum of Art in Łódź
+  'wd:Q725088', // Poster Museum, Wilanów
+  'wd:Q698708', // National Museum of Ethnography (Warsaw)
+  'wd:Q1231811', // Museum of John Paul II Collection
+  'wd:Q3329434', // Archaeological Museum of Kraków
+  'wd:Q11820387', // Muzeum Historyczne w Sanoku (Sanok Historical Museum)
+  'wd:Q11748009', // National Museum in Gdańsk
+  'wd:Q11748008', // National Museum in Poznań
+  'wd:Q11748010', // National Museum in Wrocław
+  'wd:Q11748011', // National Museum in Szczecin
+  
+  // Portugal
+  'wd:Q1039036', // Museu Nacional de Arte Antiga (Lisbon)
+  'wd:Q1039037', // Museu Calouste Gulbenkian (Lisbon)
+  'wd:Q1039038', // Museu Nacional do Azulejo (Lisbon)
+  'wd:Q1039039', // Museu Nacional de Machado de Castro (Coimbra)
+  'wd:Q1039040', // Museu Nacional de Arte Contemporânea do Chiado (Lisbon)
+  'wd:Q1967806', // Museu Nacional de Soares dos Reis (Porto)
+  'wd:Q1967807', // Museu de Arte Contemporânea de Serralves (Porto)
+  'wd:Q1967808', // Museu Nacional Grão Vasco (Viseu)
+  'wd:Q1967809', // Museu de Arte Antiga (Lisbon, alternative)
+  'wd:Q1967810', // Museu do Chiado (Lisbon)
+  
+  // Colombia
+  'wd:Q3329100', // Botero Museum (Bogotá)
+  
+  // Brazil
+  'wd:Q1954370', // Museu Nacional de Belas Artes (Rio de Janeiro)
+  'wd:Q82941', // São Paulo Museum of Art
+  'wd:Q10333841', // Museu de História e Artes do Estado do Rio de Janeiro
+  'wd:Q4991927', // Oscar Niemeyer Museum (Curitiba)
+  'wd:Q2095209', // Pinacoteca de São Paulo
+  'wd:Q5102152', // Museum Dom João VI (Rio de Janeiro)
+  'wd:Q2216591', // Ricardo Brennand Institute (Recife)
 ];
 
 export async function fetchWikidataPaintings(options: {
@@ -279,6 +428,7 @@ export async function fetchWikidataPaintings(options: {
   limit?: number;
   includeCc0?: boolean;
   requireLicense?: boolean;
+  paintingsOnly?: boolean;
 }): Promise<WikidataPainting[]> {
   const artistQid = options.artistQid ?? 'wd:Q5582'; // Vincent van Gogh
   const museums = options.museums ?? DEFAULT_MUSEUMS;
@@ -303,15 +453,25 @@ export async function fetchWikidataPaintings(options: {
     : '';
 
   const museumValues = museums.join(' ');
+  const paintingsOnly = options.paintingsOnly ?? false;
 
   // First, get artworks from museum collections (standard query)
-  const query = `
-    SELECT ?item ?title ?image ?museumLabel WHERE {
+  const artworkTypeFilter = paintingsOnly
+    ? '?item wdt:P31 wd:Q3305213 .'  // paintings only
+    : `
       {
         ?item wdt:P31 wd:Q3305213 ;          # instance of painting
       } UNION {
         ?item wdt:P31 wd:Q860861 ;           # instance of sculpture
-      }
+      } UNION {
+        ?item wdt:P31 wd:Q15123870 ;         # instance of lithograph print
+      } UNION {
+        ?item wdt:P31 wd:Q93184 ;            # instance of print
+      }`;
+
+  const query = `
+    SELECT ?item ?title ?image ?museumLabel WHERE {
+      ${artworkTypeFilter}
       ?item wdt:P170 ${artistQid} ;          # creator = artist
             wdt:P18 ?image ;                  # has an image
             wdt:P195 ?museum .                # collection (museum)
@@ -434,7 +594,7 @@ export async function fetchWikidataItemTags(itemId: string): Promise<WikidataIte
       OPTIONAL { wd:${itemId} wdt:P571 ?inceptionDate . }
       OPTIONAL { 
         wd:${itemId} wdt:P31 ?instanceOf .
-        FILTER(?instanceOf IN (wd:Q3305213, wd:Q860861)) # painting or sculpture
+        FILTER(?instanceOf IN (wd:Q3305213, wd:Q860861, wd:Q15123870, wd:Q93184)) # painting, sculpture, lithograph print, or print
       }
       SERVICE wikibase:label {
         bd:serviceParam wikibase:language "en" .
@@ -487,6 +647,10 @@ export async function fetchWikidataItemTags(itemId: string): Promise<WikidataIte
           tags.artworkType = 'painting';
         } else if (instanceLabel === 'sculpture') {
           tags.artworkType = 'sculpture';
+        } else if (instanceLabel.includes('lithograph') || instanceLabel === 'lithograph print') {
+          tags.artworkType = 'lithograph';
+        } else if (instanceLabel === 'print') {
+          tags.artworkType = 'print';
         }
       }
     }

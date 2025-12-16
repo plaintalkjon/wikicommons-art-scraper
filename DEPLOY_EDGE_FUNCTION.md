@@ -125,3 +125,4 @@ If you get authentication errors:
 - Verify your `SUPABASE_SERVICE_ROLE_KEY` is correct
 - Make sure the key has the right permissions
 
+

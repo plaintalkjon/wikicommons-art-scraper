@@ -46,3 +46,4 @@ export async function notifyCompletion(artist: string, result: {
   }, null, 2));
 }
 
+

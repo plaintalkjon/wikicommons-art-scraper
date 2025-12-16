@@ -71,3 +71,4 @@ SELECT cron.schedule('rembrandt-12am', '0 0 * * *', $$...?artist=Rembrandt van R
 
 Would you like me to create a generic `post-art` function that works for any artist? That would be the cleanest solution.
 
+

@@ -128,3 +128,4 @@ You could create a generic `post-art` function that:
 
 This would eliminate the need for separate functions per artist!
 
+

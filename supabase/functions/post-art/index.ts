@@ -1,7 +1,10 @@
-// Generic Mastodon poster for any artist - reads from Supabase Storage and Database
+// Generic Mastodon poster for artists and tag-based accounts
+// Reads from Supabase Storage and Database
 // Env: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY
 // Config: BUCKET (default: 'Art')
-// Usage: ?artist=Artist Name (required)
+// Usage: 
+//   - ?artist=Artist Name (post for specific artist)
+//   - No params (post for all active accounts - both artist and tag accounts)
 
 import { createClient } from "npm:@supabase/supabase-js@2.46.1";
 
@@ -32,6 +35,123 @@ function slugify(value: string): string {
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
     .replace(/-{2,}/g, '-')
+}
+
+/**
+ * Get all tag IDs associated with a tag account
+ * Reads from the mastodon_account_tags junction table
+ */
+async function getTagAccountTagIds(accountId: string): Promise<string[]> {
+  try {
+    // Get all tags associated with this account from the junction table
+    const { data: accountTags, error } = await supabase
+      .from('mastodon_account_tags')
+      .select('tag_id')
+      .eq('mastodon_account_id', accountId)
+    
+    if (error) {
+      console.error(`Error fetching tags for account ${accountId}:`, error)
+      return []
+    }
+    
+    if (!accountTags || accountTags.length === 0) {
+      // Fallback: try the legacy tag_id column if junction table is empty
+      const { data: account } = await supabase
+        .from('mastodon_accounts')
+        .select('tag_id')
+        .eq('id', accountId)
+        .single()
+      
+      if (account?.tag_id) {
+        return [account.tag_id]
+      }
+      
+      return []
+    }
+    
+    return accountTags.map(at => at.tag_id)
+  } catch (err) {
+    console.error('Exception in getTagAccountTagIds:', err)
+    return []
+  }
+}
+
+/**
+ * Query database for storage paths for a tag account (using all tags associated with the account)
+ * Prioritizes artworks that haven't been posted (NULL last_posted_at) or have oldest last_posted_at
+ * Returns the selected path and whether all artworks have been posted
+ */
+async function getNextArtworkPathByTag(accountId: string): Promise<{ path: string | null; allPosted: boolean }> {
+  // Get all tag IDs associated with this account from the junction table
+  const tagIds = await getTagAccountTagIds(accountId)
+  
+  if (tagIds.length === 0) {
+    return { path: null, allPosted: false }
+  }
+  
+  // Get all art IDs that have any of these tags
+  const { data: artTags, error: artTagsError } = await supabase
+    .from('art_tags')
+    .select('art_id')
+    .in('tag_id', tagIds)
+  
+  if (artTagsError) {
+    throw new Error(`Failed to fetch art_tags: ${artTagsError.message}`)
+  }
+  
+  if (!artTags || artTags.length === 0) {
+    return { path: null, allPosted: false }
+  }
+  
+  // Get unique art IDs
+  const artIds = [...new Set(artTags.map(at => at.art_id))]
+  
+  const allAssets: Array<{ storage_path: string; last_posted_at: string | null }> = []
+  const BATCH_SIZE = 100
+  
+  // Batch the art IDs to avoid query size limits
+  for (let i = 0; i < artIds.length; i += BATCH_SIZE) {
+    const batch = artIds.slice(i, i + BATCH_SIZE)
+    const { data: assets, error: assetsError } = await supabase
+      .from('art_assets')
+      .select('storage_path, last_posted_at')
+      .in('art_id', batch)
+    
+    if (assetsError) {
+      console.error(`Error fetching batch ${Math.floor(i / BATCH_SIZE) + 1}:`, assetsError)
+      continue
+    }
+    
+    if (assets) {
+      allAssets.push(...assets)
+    }
+  }
+  
+  // Filter to image files only
+  const imageAssets = allAssets.filter(asset => {
+    const ext = asset.storage_path.split('.').pop()?.toLowerCase()
+    return ext && IMAGE_EXTS.has(ext)
+  })
+  
+  if (imageAssets.length === 0) {
+    return { path: null, allPosted: false }
+  }
+  
+  // Sort: NULL last_posted_at first, then oldest last_posted_at
+  imageAssets.sort((a, b) => {
+    if (a.last_posted_at === null && b.last_posted_at === null) return 0
+    if (a.last_posted_at === null) return -1
+    if (b.last_posted_at === null) return 1
+    return new Date(a.last_posted_at).getTime() - new Date(b.last_posted_at).getTime()
+  })
+  
+  const selected = imageAssets[0]
+  
+  // Check if all artworks have been posted
+  const hasUnposted = imageAssets.some(asset => asset.last_posted_at === null)
+  const allPosted = !hasUnposted && selected.last_posted_at !== null
+  
+  return { path: selected.storage_path, allPosted }
 }
 
 /**
@@ -113,6 +233,56 @@ async function getNextArtworkPath(artistName: string): Promise<{ path: string | 
   const allPosted = !hasUnposted && selected.last_posted_at !== null
   
   return { path: selected.storage_path, allPosted }
+}
+
+/**
+ * Reset all last_posted_at timestamps for a tag account (when all artworks have been posted)
+ */
+async function resetTagPostHistory(accountId: string): Promise<void> {
+  try {
+    // Get all tag IDs associated with this account
+    const tagIds = await getTagAccountTagIds(accountId)
+    
+    if (tagIds.length === 0) {
+      console.warn(`Could not reset post history: no tags found for account: ${accountId}`)
+      return
+    }
+    
+    // Get all art IDs with these tags
+    const { data: artTags } = await supabase
+      .from('art_tags')
+      .select('art_id')
+      .in('tag_id', tagIds)
+    
+    if (!artTags || artTags.length === 0) {
+      console.warn(`Could not reset post history: no arts found for account: ${accountId}`)
+      return
+    }
+    
+    const artIds = [...new Set(artTags.map(at => at.art_id))]
+    
+    // Reset all last_posted_at to NULL in batches
+    const BATCH_SIZE = 100
+    let resetCount = 0
+    
+    for (let i = 0; i < artIds.length; i += BATCH_SIZE) {
+      const batch = artIds.slice(i, i + BATCH_SIZE)
+      const { error: updateError } = await supabase
+        .from('art_assets')
+        .update({ last_posted_at: null })
+        .in('art_id', batch)
+      
+      if (updateError) {
+        console.warn(`Error resetting batch ${Math.floor(i / BATCH_SIZE) + 1}:`, updateError)
+      } else {
+        resetCount += batch.length
+      }
+    }
+    
+    console.log(`Reset post history for account ${accountId} - ${resetCount} artworks are now available again`)
+  } catch (err) {
+    console.error('Exception resetting tag post history:', err)
+  }
 }
 
 /**
@@ -408,39 +578,259 @@ async function createStatusWithTitle(mediaId: string, title: string | null, base
 }
 
 /**
- * Get all active artists from the mastodon_accounts table
- * Returns array of artist names
+ * Get all active accounts from the mastodon_accounts table
+ * Returns array of account identifiers (artist names for artist accounts, tag names for tag accounts)
+ * along with timing metadata used for interval-based scheduling.
  */
-async function getAllActiveArtists(): Promise<string[]> {
+async function getAllActiveAccounts(): Promise<Array<{
+  type: 'artist' | 'tag'
+  identifier: string
+  accountId: string
+  lastPostedAt: string | null
+  createdAt: string
+}>> {
   try {
-    // Get all active accounts
+    // Get all active accounts (both artist and tag accounts)
     const { data: accounts, error } = await supabase
       .from('mastodon_accounts')
-      .select('artist_id')
+      .select('id, artist_id, tag_id, account_type, account_username, last_posted_at, created_at')
       .eq('active', true)
     
     if (error || !accounts || accounts.length === 0) {
-      console.error('Error fetching active artists:', error)
+      console.error('Error fetching active accounts:', error)
       return []
     }
     
-    const artistIds = accounts.map(a => a.artist_id)
+    const result: Array<{
+      type: 'artist' | 'tag'
+      identifier: string
+      accountId: string
+      lastPostedAt: string | null
+      createdAt: string
+    }> = []
     
-    // Get artist names
-    const { data: artists, error: artistError } = await supabase
-      .from('artists')
-      .select('name, id')
-      .in('id', artistIds)
-    
-    if (artistError || !artists) {
-      console.error('Error fetching artist names:', artistError)
-      return []
+    // Process artist accounts
+    const artistAccounts = accounts.filter((a: any) => a.account_type === 'artist' || (!a.account_type && a.artist_id))
+    if (artistAccounts.length > 0) {
+      const artistIds = artistAccounts.map((a: any) => a.artist_id).filter(Boolean) as string[]
+      const { data: artists, error: artistError } = await supabase
+        .from('artists')
+        .select('name, id')
+        .in('id', artistIds)
+      
+      if (!artistError && artists) {
+        const artistMap = new Map(artists.map(a => [a.id, a.name]))
+        artistAccounts.forEach((acc: any) => {
+          const artistName = artistMap.get(acc.artist_id as string)
+          if (artistName) {
+            result.push({
+              type: 'artist',
+              identifier: artistName,
+              accountId: acc.id as string,
+              lastPostedAt: (acc.last_posted_at as string | null) ?? null,
+              createdAt: acc.created_at as string,
+            })
+          }
+        })
+      }
     }
     
-    return artists.map(a => a.name)
+    // Process tag accounts (using junction table)
+    const tagAccounts = accounts.filter((a: any) => a.account_type === 'tag')
+    if (tagAccounts.length > 0) {
+      const tagAccountIds = tagAccounts.map((a: any) => a.id as string)
+      
+      // Get tags for these accounts from the junction table
+      const { data: accountTags, error: accountTagsError } = await supabase
+        .from('mastodon_account_tags')
+        .select('mastodon_account_id, tag_id')
+        .in('mastodon_account_id', tagAccountIds)
+      
+      if (!accountTagsError && accountTags && accountTags.length > 0) {
+        // Get unique tag IDs
+        const tagIds = [...new Set(accountTags.map((at: any) => at.tag_id))]
+        
+        // Fetch tag names
+        const { data: tags, error: tagsError } = await supabase
+          .from('tags')
+          .select('id, name')
+          .in('id', tagIds)
+        
+        if (!tagsError && tags) {
+          const tagMap = new Map(tags.map((t: any) => [t.id, t.name]))
+          
+          // Group tags by account
+          const accountTagMap = new Map<string, string[]>()
+          accountTags.forEach((at: any) => {
+            const accountId = at.mastodon_account_id
+            const tagName = tagMap.get(at.tag_id)
+            if (tagName) {
+              if (!accountTagMap.has(accountId)) {
+                accountTagMap.set(accountId, [])
+              }
+              accountTagMap.get(accountId)!.push(tagName)
+            }
+          })
+          
+          // Add tag accounts to result (use first tag name as identifier, or account username)
+          tagAccounts.forEach((acc: any) => {
+            const tagNames = accountTagMap.get(acc.id) || []
+            // Use first tag name, or account username, or a generic identifier
+            const identifier = tagNames.length > 0 
+              ? tagNames[0] 
+              : (acc.account_username || `tag-account-${acc.id.substring(0, 8)}`)
+            result.push({
+              type: 'tag',
+              identifier,
+              accountId: acc.id as string,
+              lastPostedAt: (acc.last_posted_at as string | null) ?? null,
+              createdAt: acc.created_at as string,
+            })
+          })
+        } else {
+          // If we can't get tag names, use account username
+          tagAccounts.forEach((acc: any) => {
+            const identifier = acc.account_username || `tag-account-${acc.id.substring(0, 8)}`
+            result.push({
+              type: 'tag',
+              identifier,
+              accountId: acc.id as string,
+              lastPostedAt: (acc.last_posted_at as string | null) ?? null,
+              createdAt: acc.created_at as string,
+            })
+          })
+        }
+      } else {
+        // No tags found or error - use account username as fallback
+        tagAccounts.forEach((acc: any) => {
+          const identifier = acc.account_username || `tag-account-${acc.id.substring(0, 8)}`
+          result.push({
+            type: 'tag',
+            identifier,
+            accountId: acc.id as string,
+            lastPostedAt: (acc.last_posted_at as string | null) ?? null,
+            createdAt: acc.created_at as string,
+          })
+        })
+      }
+    }
+    
+    return result
   } catch (err) {
-    console.error('Exception in getAllActiveArtists:', err)
+    console.error('Exception in getAllActiveAccounts:', err)
     return []
+  }
+}
+
+/**
+ * Post artwork for a tag account
+ * Returns success status and details
+ */
+async function postForTag(accountId: string): Promise<{ success: boolean; error?: string; details?: any }> {
+  try {
+    // Get account info including tag name for logging
+    const { data: account, error: accountError } = await supabase
+      .from('mastodon_accounts')
+      .select('mastodon_base_url, mastodon_access_token, account_username')
+      .eq('id', accountId)
+      .eq('active', true)
+      .single()
+    
+    if (accountError || !account) {
+      throw new Error(`No Mastodon account found for account ID: ${accountId}`)
+    }
+    
+    const accountName = account.account_username || `account-${accountId.substring(0, 8)}`
+    console.log(`Processing post for tag account: ${accountName}`)
+    
+    const credentials = {
+      baseUrl: account.mastodon_base_url,
+      accessToken: account.mastodon_access_token
+    }
+
+    // Try up to 5 artworks in case some files don't exist in storage
+    const maxAttempts = 5
+    let lastError: string | null = null
+    
+    for (let attempt = 0; attempt < maxAttempts; attempt++) {
+      // Get the next artwork to post (prioritizes unposted, then oldest)
+      const { path: pick, allPosted } = await getNextArtworkPathByTag(accountId)
+
+      if (!pick) {
+        return { success: false, error: `No images found in database for tag account: ${accountName}` }
+      }
+
+      // If all artworks have been posted, reset and start over
+      if (allPosted && attempt === 0) {
+        console.log(`All artworks for tag account ${accountName} have been posted. Resetting post history...`)
+        await resetTagPostHistory(accountId)
+        // Continue to next iteration to get a fresh artwork after reset
+        continue
+      }
+
+      console.log(`Selected artwork (attempt ${attempt + 1}): ${pick}`)
+
+      try {
+        // Log which Mastodon account we're using for this tag-based post
+        console.log(`Using Mastodon tag account: ${accountName}`)
+
+        // Get artwork title from database
+        const artworkTitle = await getArtworkTitle(pick)
+        if (artworkTitle) {
+          console.log(`Found title: ${artworkTitle}`)
+        }
+
+        // Try to download the image - if it fails, mark it as posted and try next
+        let payload
+        try {
+          payload = await getImageBytes(pick)
+        } catch (storageError: any) {
+          console.warn(`File not found in storage: ${pick}, marking as posted and trying next artwork`)
+          // Mark this as posted so we don't try it again
+          await updateArtworkLastPosted(pick)
+          lastError = `File not found in storage: ${pick}`
+          continue // Try next artwork
+        }
+
+        const mediaId = await uploadMediaToMastodon(payload.bytes, payload.contentType, credentials.baseUrl, credentials.accessToken)
+        const status = await createStatusWithTitle(mediaId, artworkTitle, credentials.baseUrl, credentials.accessToken)
+
+        // Update last_posted_at timestamp for this specific artwork
+        await updateArtworkLastPosted(pick)
+
+        // Also update the account's last_posted_at in mastodon_accounts (for reference)
+        await updateLastPostedAtForAccount(accountId)
+
+        return {
+          success: true,
+          details: {
+            media_id: mediaId,
+            status_id: status.id,
+            storage_path: pick,
+            title: artworkTitle,
+            account: accountName,
+            account_id: accountId,
+            all_posted_reset: allPosted
+          }
+        }
+      } catch (err: any) {
+        // If it's a storage error, mark as posted and try next
+        if (err.message?.includes('Storage') || err.message?.includes('not found') || err.message?.includes('does not exist')) {
+          console.warn(`Storage error for ${pick}, marking as posted and trying next`)
+          await updateArtworkLastPosted(pick)
+          lastError = String(err)
+          continue
+        }
+        // Other errors, throw them
+        throw err
+      }
+    }
+    
+    // If we've tried maxAttempts and all failed
+    return { success: false, error: lastError || `Failed after ${maxAttempts} attempts` }
+  } catch (err) {
+    console.error(`Error posting for tag account ${accountId}:`, err)
+    return { success: false, error: String(err) }
   }
 }
 
@@ -539,6 +929,24 @@ async function postForArtist(artistName: string): Promise<{ success: boolean; er
 }
 
 /**
+ * Update the last_posted_at timestamp for an account (by account ID)
+ */
+async function updateLastPostedAtForAccount(accountId: string): Promise<void> {
+  try {
+    const { error: updateError } = await supabase
+      .from('mastodon_accounts')
+      .update({ last_posted_at: new Date().toISOString() })
+      .eq('id', accountId)
+    
+    if (updateError) {
+      console.warn(`Could not update last_posted_at for account ${accountId}:`, updateError)
+    }
+  } catch (err) {
+    console.error('Exception updating last_posted_at:', err)
+  }
+}
+
+/**
  * Update the last_posted_at timestamp for an artist
  */
 async function updateLastPostedAt(artistName: string): Promise<void> {
@@ -600,45 +1008,122 @@ Deno.serve(async (req: Request) => {
       })
     }
 
-    // If no artist specified, post for ALL active artists
-    console.log('No artist specified, posting for all active artists...')
-    const activeArtists = await getAllActiveArtists()
+    // If no artist specified, use automatic, interval-based rotation across all active accounts
+    console.log('No artist specified, using automatic interval-based account rotation...')
+    const activeAccounts = await getAllActiveAccounts()
     
-    if (activeArtists.length === 0) {
+    if (activeAccounts.length === 0) {
       return new Response(JSON.stringify({ 
-        error: 'No active artists found in mastodon_accounts table. Add artists using the add-artist-bot script or manually.' 
+        error: 'No active accounts found in mastodon_accounts table. Add accounts using the add-artist-bot script or manually.' 
       }), { 
         status: 404, 
         headers: { 'Content-Type': 'application/json' } 
       })
     }
 
-    console.log(`Found ${activeArtists.length} active artists: ${activeArtists.join(', ')}`)
+    // Determine which account(s) to process
+    // Option 1: Manual offset/limit (for debugging / one-off runs)
+    // Option 2: Interval-based scheduling: each account posts every N hours, independent of account count
+    
+    let accountsToProcess: Array<{
+      type: 'artist' | 'tag'
+      identifier: string
+      accountId: string
+      lastPostedAt: string | null
+      createdAt: string
+    }> = []
+    
+    const explicitOffset = url.searchParams.get('offset')
+    const explicitLimit = url.searchParams.get('limit')
+    
+    if (explicitOffset !== null && explicitLimit !== null) {
+      // Manual pagination mode
+      const offset = parseInt(explicitOffset)
+      const limit = parseInt(explicitLimit)
+      accountsToProcess = activeAccounts.slice(offset, offset + limit)
+      console.log(`Manual pagination: Processing accounts ${offset + 1}-${offset + accountsToProcess.length} of ${activeAccounts.length}`)
+    } else {
+      // Interval-based scheduling: each account should post every interval_hours
+      // Default: interval_hours=6 → 4 posts per account per day
+      const intervalHours = parseFloat(url.searchParams.get('interval_hours') || '6')
+      const maxAccounts = parseInt(url.searchParams.get('max_accounts') || '10')
+      const intervalMs = intervalHours * 60 * 60 * 1000
+      const nowMs = Date.now()
 
-    // Post for each artist (in parallel for speed, but with error handling)
-    const results = await Promise.allSettled(
-      activeArtists.map(artist => postForArtist(artist))
-    )
+      const dueAccounts = activeAccounts
+        .map(acc => {
+          const createdMs = acc.createdAt ? new Date(acc.createdAt).getTime() : nowMs
+          const lastMs = acc.lastPostedAt ? new Date(acc.lastPostedAt).getTime() : null
+          const referenceMs = lastMs ?? createdMs
+          const nextDueMs = referenceMs + intervalMs
+          return { ...acc, referenceMs, nextDueMs }
+        })
+        .filter(acc => acc.nextDueMs <= nowMs)
 
+      // Oldest (or never-posted) accounts first
+      dueAccounts.sort((a, b) => a.referenceMs - b.referenceMs)
+
+      accountsToProcess = dueAccounts.slice(0, maxAccounts)
+
+      console.log(
+        `Interval rotation: interval_hours=${intervalHours}, max_accounts=${maxAccounts}, ` +
+        `due_accounts=${dueAccounts.length}, processing=${accountsToProcess.length}: ` +
+        accountsToProcess.map(a => `${a.type}:${a.identifier}`).join(', ')
+      )
+    }
+
+    if (accountsToProcess.length === 0) {
+      return new Response(JSON.stringify({ 
+        ok: true,
+        mode: 'rotation',
+        message: 'No accounts due for posting at this time',
+        total_accounts: activeAccounts.length,
+        processed_accounts: 0,
+        successful: 0,
+        failed: 0
+      }), { 
+        status: 200, 
+        headers: { 'Content-Type': 'application/json', 'Connection': 'keep-alive' } 
+      })
+    }
+
+    // Post for each selected account (no delays needed - cron schedule handles spacing)
     const successes: any[] = []
     const failures: any[] = []
 
-    results.forEach((result, index) => {
-      const artist = activeArtists[index]
-      if (result.status === 'fulfilled' && result.value.success) {
-        successes.push({ artist, ...result.value.details })
-      } else {
-        const error = result.status === 'fulfilled' 
-          ? result.value.error 
-          : String(result.reason)
-        failures.push({ artist, error })
+    for (const account of accountsToProcess) {
+      try {
+        const result = account.type === 'tag'
+          ? await postForTag(account.accountId)
+          : await postForArtist(account.identifier)
+        
+        if (result.success) {
+          successes.push({ 
+            type: account.type,
+            identifier: account.identifier,
+            ...result.details 
+          })
+        } else {
+          failures.push({ 
+            type: account.type,
+            identifier: account.identifier,
+            error: result.error 
+          })
+        }
+      } catch (err) {
+        failures.push({ 
+          type: account.type,
+          identifier: account.identifier,
+          error: String(err)
+        })
       }
-    })
+    }
 
     return new Response(JSON.stringify({ 
       ok: true,
-      mode: 'all',
-      total_artists: activeArtists.length,
+      mode: 'rotation',
+      total_accounts: activeAccounts.length,
+      processed_accounts: accountsToProcess.length,
       successful: successes.length,
       failed: failures.length,
       successes,
@@ -654,4 +1139,5 @@ Deno.serve(async (req: Request) => {
     })
   }
 })
+
 

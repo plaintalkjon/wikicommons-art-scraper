@@ -12,3 +12,4 @@ WHERE active = true;
 -- Optional: Set initial values for existing accounts to NULL (they'll be picked first)
 -- UPDATE mastodon_accounts SET last_posted_at = NULL WHERE last_posted_at IS NULL;
 
+

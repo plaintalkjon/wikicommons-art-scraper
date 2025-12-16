@@ -1,0 +1,26 @@
+[
+  {
+    "artist": "Eugène Delacroix",
+    "title": "File:Eugène Delacroix - Arabes escarmouches dans les montagnes (1863).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Eug%C3%A8ne_Delacroix_-_Arabes_escarmouches_dans_les_montagnes_%281863%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Eug%C3%A8ne_Delacroix_-_Arabes_escarmouches_dans_les_montagnes_%281863%29.jpg/3212px-Eug%C3%A8ne_Delacroix_-_Arabes_escarmouches_dans_les_montagnes_%281863%29.jpg: 503 Backend fetch failed",
+    "timestamp": "2025-12-14T14:18:13.579Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Eugène Delacroix",
+    "title": "File:Eugène Delacroix - Untitled (flowers) - 2003.70 - Minneapolis Institute of Arts.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Eug%C3%A8ne_Delacroix_-_Untitled_%28flowers%29_-_2003.70_-_Minneapolis_Institute_of_Arts.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Eug%C3%A8ne_Delacroix_-_Untitled_%28flowers%29_-_2003.70_-_Minneapolis_Institute_of_Arts.jpg/3075px-Eug%C3%A8ne_Delacroix_-_Untitled_%28flowers%29_-_2003.70_-_Minneapolis_Institute_of_Arts.jpg: 503 Backend fetch failed",
+    "timestamp": "2025-12-14T14:19:24.523Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Eugène Delacroix",
+    "title": "File:Eugène Delacroix - Portrait of Count Charles de Mornay - 1983.7.8 - Yale University Art Gallery.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Eug%C3%A8ne_Delacroix_-_Portrait_of_Count_Charles_de_Mornay_-_1983.7.8_-_Yale_University_Art_Gallery.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Eug%C3%A8ne_Delacroix_-_Portrait_of_Count_Charles_de_Mornay_-_1983.7.8_-_Yale_University_Art_Gallery.jpg/3250px-Eug%C3%A8ne_Delacroix_-_Portrait_of_Count_Charles_de_Mornay_-_1983.7.8_-_Yale_University_Art_Gallery.jpg: 503 Backend fetch failed",
+    "timestamp": "2025-12-14T14:22:41.118Z",
+    "retryCount": 0
+  }
+]

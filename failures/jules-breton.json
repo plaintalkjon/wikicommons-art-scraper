@@ -1,0 +1,18 @@
+[
+  {
+    "artist": "Jules Breton",
+    "title": "File:Jules Breton - Autoportrait (KMSKA).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/24/Jules_Breton_-_Autoportrait_%28KMSKA%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Jules_Breton_-_Autoportrait_%28KMSKA%29.jpg/3370px-Jules_Breton_-_Autoportrait_%28KMSKA%29.jpg: 503 Backend fetch failed",
+    "timestamp": "2025-12-14T21:29:02.170Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Jules Breton",
+    "title": "File:Jules Breton - La glaneuse lasse (1880).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/44/Jules_Breton_-_La_glaneuse_lasse_%281880%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Jules_Breton_-_La_glaneuse_lasse_%281880%29.jpg/2719px-Jules_Breton_-_La_glaneuse_lasse_%281880%29.jpg: 503 Backend fetch failed",
+    "timestamp": "2025-12-14T21:29:09.189Z",
+    "retryCount": 0
+  }
+]

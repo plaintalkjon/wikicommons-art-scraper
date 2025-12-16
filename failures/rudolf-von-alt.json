@@ -1,0 +1,10 @@
+[
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt - Der Stephansdom in Wien - 2081 - Österreichische Galerie Belvedere.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/77/Rudolf_von_Alt_-_Der_Stephansdom_in_Wien_-_2081_-_%C3%96sterreichische_Galerie_Belvedere.jpg",
+    "error": "Failed to insert art: duplicate key value violates unique constraint \"unique_art_title_artist\"",
+    "timestamp": "2025-12-14T20:31:49.849Z",
+    "retryCount": 0
+  }
+]

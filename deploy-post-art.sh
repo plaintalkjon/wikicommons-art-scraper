@@ -48,3 +48,4 @@ echo "3. Test manually:"
 echo "   curl \"https://$PROJECT_REF.supabase.co/functions/v1/post-art?artist=Vincent van Gogh\" \\"
 echo "     -H \"Authorization: Bearer YOUR_ANON_KEY\""
 
+

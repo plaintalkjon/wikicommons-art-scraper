@@ -58,3 +58,4 @@ CREATE POLICY "Deny all public access to mastodon_accounts"
 -- FROM artists
 -- WHERE name = 'Vincent van Gogh';
 
+

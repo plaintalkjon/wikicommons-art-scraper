@@ -88,3 +88,4 @@ SET active = false
 WHERE artist_id = (SELECT id FROM artists WHERE name = 'Vincent van Gogh');
 ```
 
+

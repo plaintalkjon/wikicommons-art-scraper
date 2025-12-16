@@ -1,0 +1,10 @@
+[
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Batoni - William Fermor - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/77/Pompeo_Batoni_-_William_Fermor_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Pompeo_Batoni_-_William_Fermor_-_Google_Art_Project.jpg/2955px-Pompeo_Batoni_-_William_Fermor_-_Google_Art_Project.jpg: 503 Backend fetch failed",
+    "timestamp": "2025-12-14T12:02:27.657Z",
+    "retryCount": 0
+  }
+]

@@ -120,3 +120,5 @@ WHERE art_id IN (
 ✅ **New artwork support** - New artworks are automatically prioritized  
 ✅ **Fair rotation** - All artworks get equal posting time  
 ✅ **Scalable** - Works with any number of artworks per artist  
+
+

@@ -1,0 +1,10 @@
+[
+  {
+    "artist": "James Tissot",
+    "title": "File:Inscheping in Calais, James Joseph Jacques Tissot, (1878-1882), Koninklijk Museum voor Schone Kunsten Antwerpen, 1406.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Inscheping_in_Calais%2C_James_Joseph_Jacques_Tissot%2C_%281878-1882%29%2C_Koninklijk_Museum_voor_Schone_Kunsten_Antwerpen%2C_1406.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Inscheping_in_Calais%2C_James_Joseph_Jacques_Tissot%2C_%281878-1882%29%2C_Koninklijk_Museum_voor_Schone_Kunsten_Antwerpen%2C_1406.jpg/2785px-Inscheping_in_Calais%2C_James_Joseph_Jacques_Tissot%2C_%281878-1882%29%2C_Koninklijk_Museum_voor_Schone_Kunsten_Antwerpen%2C_1406.jpg: 503 Backend fetch failed",
+    "timestamp": "2025-12-15T23:01:25.714Z",
+    "retryCount": 0
+  }
+]

@@ -89,3 +89,4 @@ If you prefer to do it manually:
 - **Use consistent naming** - `@CuratedArtistName` pattern makes it easy to find accounts
 - **Keep tokens secure** - Never commit tokens to git
 
+

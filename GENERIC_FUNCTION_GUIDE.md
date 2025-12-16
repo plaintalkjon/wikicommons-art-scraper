@@ -98,3 +98,4 @@ You can:
 - Total: **12 posts per day** (4 × 3 artists)
 - All using the same generic function!
 
+

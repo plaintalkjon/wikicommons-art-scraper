@@ -55,3 +55,4 @@ curl -X POST "https://lxtkpwsxupzkxuhhmvvz.supabase.co/functions/v1/post-art?art
   -H "Authorization: Bearer YOUR_ANON_KEY"
 ```
 
+

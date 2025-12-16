@@ -1,0 +1,10 @@
+[
+  {
+    "artist": "Pierre-Auguste Renoir",
+    "title": "File:Renoir - Summer Hats, 1893.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Renoir_-_Summer_Hats%2C_1893.jpg",
+    "error": "Failed to insert art: duplicate key value violates unique constraint \"unique_art_title_artist\"",
+    "timestamp": "2025-12-15T00:33:43.442Z",
+    "retryCount": 0
+  }
+]
