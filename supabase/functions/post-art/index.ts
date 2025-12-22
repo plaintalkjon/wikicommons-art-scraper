@@ -16,13 +16,28 @@ const MASTODON_BASE_URL_LEGACY = Deno.env.get('MASTODON_BASE_URL') ?? 'https://m
 const MASTODON_ACCESS_TOKEN_LEGACY = Deno.env.get('MASTODON_ACCESS_TOKEN')
 
 // Default to 'Art' (capitalized) to match the scraper's SUPABASE_BUCKET
-const BUCKET = Deno.env.get('BUCKET') ?? 'Art'
+const ART_BUCKET = Deno.env.get('BUCKET') ?? 'Art'
 
 if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) console.error('Missing Supabase env vars')
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
 
 const IMAGE_EXTS = new Set(['jpg','jpeg','png','webp','gif'])
+
+/**
+ * Check if a storage path is an image file
+ * Handles both normal extensions (.jpg) and malformed ones (jpgjpg)
+ */
+function isImagePath(path: string): boolean {
+  const lowerPath = path.toLowerCase()
+  // Check if path ends with any image extension (with or without dot)
+  for (const ext of IMAGE_EXTS) {
+    if (lowerPath.endsWith(`.${ext}`) || lowerPath.endsWith(ext)) {
+      return true
+    }
+  }
+  return false
+}
 
 /**
  * Slugify function to convert artist name to storage prefix
@@ -128,10 +143,7 @@ async function getNextArtworkPathByTag(accountId: string): Promise<{ path: strin
   }
   
   // Filter to image files only
-  const imageAssets = allAssets.filter(asset => {
-    const ext = asset.storage_path.split('.').pop()?.toLowerCase()
-    return ext && IMAGE_EXTS.has(ext)
-  })
+  const imageAssets = allAssets.filter(asset => isImagePath(asset.storage_path))
   
   if (imageAssets.length === 0) {
     return { path: null, allPosted: false }
@@ -208,10 +220,7 @@ async function getNextArtworkPath(artistName: string): Promise<{ path: string | 
   }
   
   // Filter to image files only
-  const imageAssets = allAssets.filter(asset => {
-    const ext = asset.storage_path.split('.').pop()?.toLowerCase()
-    return ext && IMAGE_EXTS.has(ext)
-  })
+  const imageAssets = allAssets.filter(asset => isImagePath(asset.storage_path))
   
   if (imageAssets.length === 0) {
     return { path: null, allPosted: false }
@@ -385,7 +394,8 @@ async function listAll(prefix: string): Promise<string[]> {
   
   async function walk(dir: string) {
     try {
-      const { data, error } = await supabase.storage.from(BUCKET).list(dir || undefined, { 
+      // List from Art bucket
+      const { data, error } = await supabase.storage.from(ART_BUCKET).list(dir || undefined, { 
         limit: 1000, 
         sortBy: { column: 'name', order: 'asc' } 
       })
@@ -420,13 +430,13 @@ async function listAll(prefix: string): Promise<string[]> {
 }
 
 async function getImageBytes(path: string): Promise<{ bytes: Uint8Array, contentType: string }> {
-  console.log(`Attempting to download from bucket: ${BUCKET}, path: ${path}`)
-  const { data, error } = await supabase.storage.from(BUCKET).download(path)
+  console.log(`Attempting to download from Art bucket, path: ${path}`)
+  const { data, error } = await supabase.storage.from(ART_BUCKET).download(path)
   if (error) {
-    console.error(`Error downloading ${path} from bucket ${BUCKET}:`, error)
+    console.error(`Error downloading ${path} from Art bucket:`, error)
     // Try to provide more helpful error message
     if (error.message?.includes('not found') || error.message?.includes('does not exist')) {
-      throw new Error(`File not found in storage: ${path} (bucket: ${BUCKET})`)
+      throw new Error(`File not found in storage: ${path} (bucket: Art)`)
     }
     throw new Error(`Storage error for ${path}: ${error.message || JSON.stringify(error)}`)
   }
@@ -583,14 +593,15 @@ async function createStatusWithTitle(mediaId: string, title: string | null, base
  * along with timing metadata used for interval-based scheduling.
  */
 async function getAllActiveAccounts(): Promise<Array<{
-  type: 'artist' | 'tag'
+  type: 'artist' | 'tag' | 'philosopher'
   identifier: string
   accountId: string
   lastPostedAt: string | null
   createdAt: string
 }>> {
   try {
-    // Get all active accounts (both artist and tag accounts)
+    // Get all active accounts (artist, tag, and philosopher accounts)
+    // Note: Don't select philosopher_id initially - it may not exist if schema hasn't been applied
     const { data: accounts, error } = await supabase
       .from('mastodon_accounts')
       .select('id, artist_id, tag_id, account_type, account_username, last_posted_at, created_at')
@@ -601,8 +612,29 @@ async function getAllActiveAccounts(): Promise<Array<{
       return []
     }
     
+    // Try to get philosopher_id for accounts that might be philosopher type
+    // Only if the column exists (schema applied)
+    const accountsWithPhilosopher = await Promise.all(accounts.map(async (acc: any) => {
+      if (acc.account_type === 'philosopher') {
+        try {
+          const { data: accountDetail } = await supabase
+            .from('mastodon_accounts')
+            .select('philosopher_id')
+            .eq('id', acc.id)
+            .single()
+          return { ...acc, philosopher_id: accountDetail?.philosopher_id || null }
+        } catch {
+          // Column doesn't exist yet - philosopher accounts won't work until schema is applied
+          return { ...acc, philosopher_id: null }
+        }
+      }
+      return { ...acc, philosopher_id: null }
+    }))
+    
+    const accountsToProcess = accountsWithPhilosopher
+    
     const result: Array<{
-      type: 'artist' | 'tag'
+      type: 'artist' | 'tag' | 'philosopher'
       identifier: string
       accountId: string
       lastPostedAt: string | null
@@ -610,7 +642,7 @@ async function getAllActiveAccounts(): Promise<Array<{
     }> = []
     
     // Process artist accounts
-    const artistAccounts = accounts.filter((a: any) => a.account_type === 'artist' || (!a.account_type && a.artist_id))
+    const artistAccounts = accountsToProcess.filter((a: any) => a.account_type === 'artist' || (!a.account_type && a.artist_id))
     if (artistAccounts.length > 0) {
       const artistIds = artistAccounts.map((a: any) => a.artist_id).filter(Boolean) as string[]
       const { data: artists, error: artistError } = await supabase
@@ -628,7 +660,7 @@ async function getAllActiveAccounts(): Promise<Array<{
               identifier: artistName,
               accountId: acc.id as string,
               lastPostedAt: (acc.last_posted_at as string | null) ?? null,
-              createdAt: acc.created_at as string,
+              createdAt: (acc.created_at as string) || new Date().toISOString(),
             })
           }
         })
@@ -636,7 +668,7 @@ async function getAllActiveAccounts(): Promise<Array<{
     }
     
     // Process tag accounts (using junction table)
-    const tagAccounts = accounts.filter((a: any) => a.account_type === 'tag')
+    const tagAccounts = accountsToProcess.filter((a: any) => a.account_type === 'tag')
     if (tagAccounts.length > 0) {
       const tagAccountIds = tagAccounts.map((a: any) => a.id as string)
       
@@ -684,7 +716,7 @@ async function getAllActiveAccounts(): Promise<Array<{
               identifier,
               accountId: acc.id as string,
               lastPostedAt: (acc.last_posted_at as string | null) ?? null,
-              createdAt: acc.created_at as string,
+              createdAt: (acc.created_at as string) || new Date().toISOString(),
             })
           })
         } else {
@@ -696,7 +728,7 @@ async function getAllActiveAccounts(): Promise<Array<{
               identifier,
               accountId: acc.id as string,
               lastPostedAt: (acc.last_posted_at as string | null) ?? null,
-              createdAt: acc.created_at as string,
+              createdAt: (acc.created_at as string) || new Date().toISOString(),
             })
           })
         }
@@ -711,6 +743,32 @@ async function getAllActiveAccounts(): Promise<Array<{
             lastPostedAt: (acc.last_posted_at as string | null) ?? null,
             createdAt: acc.created_at as string,
           })
+        })
+      }
+    }
+    
+    // Process philosopher accounts
+    const philosopherAccounts = accountsToProcess.filter((a: any) => a.account_type === 'philosopher' && a.philosopher_id)
+    if (philosopherAccounts.length > 0) {
+      const philosopherIds = philosopherAccounts.map((a: any) => a.philosopher_id).filter(Boolean) as string[]
+      const { data: philosophers, error: philosopherError } = await supabase
+        .from('philosophers')
+        .select('name, id')
+        .in('id', philosopherIds)
+      
+      if (!philosopherError && philosophers) {
+        const philosopherMap = new Map(philosophers.map(p => [p.id, p.name]))
+        philosopherAccounts.forEach((acc: any) => {
+          const philosopherName = philosopherMap.get(acc.philosopher_id as string)
+          if (philosopherName) {
+            result.push({
+              type: 'philosopher',
+              identifier: philosopherName,
+              accountId: acc.id as string,
+              lastPostedAt: (acc.last_posted_at as string | null) ?? null,
+              createdAt: (acc.created_at as string) || new Date().toISOString(),
+            })
+          }
         })
       }
     }
@@ -830,6 +888,263 @@ async function postForTag(accountId: string): Promise<{ success: boolean; error?
     return { success: false, error: lastError || `Failed after ${maxAttempts} attempts` }
   } catch (err) {
     console.error(`Error posting for tag account ${accountId}:`, err)
+    return { success: false, error: String(err) }
+  }
+}
+
+/**
+ * Get next quote for a philosopher account
+ * Prioritizes quotes that haven't been posted (NULL posted_at) or have oldest posted_at
+ */
+async function getNextQuote(philosopherName: string, accountId: string): Promise<{ quoteId: string | null; quoteText: string | null; allPosted: boolean }> {
+  try {
+    // Get philosopher ID
+    const { data: philosopher, error: philosopherError } = await supabase
+      .from('philosophers')
+      .select('id')
+      .eq('name', philosopherName)
+      .single()
+    
+    if (philosopherError || !philosopher) {
+      throw new Error(`Philosopher not found: ${philosopherName}`)
+    }
+    
+    // Get all quotes for this philosopher
+    const { data: quotes, error: quotesError } = await supabase
+      .from('quotes')
+      .select('id, text')
+      .eq('philosopher_id', philosopher.id)
+    
+    if (quotesError || !quotes || quotes.length === 0) {
+      return { quoteId: null, quoteText: null, allPosted: false }
+    }
+    
+    const quoteIds = quotes.map(q => q.id)
+    
+    // Get posting history for this account
+    const { data: posts, error: postsError } = await supabase
+      .from('quote_posts')
+      .select('quote_id, posted_at')
+      .eq('mastodon_account_id', accountId)
+      .in('quote_id', quoteIds)
+    
+    if (postsError) {
+      console.warn(`Error fetching quote posts: ${postsError.message}`)
+    }
+    
+    const postedQuoteIds = new Set((posts || []).map(p => p.quote_id))
+    
+    // Find unposted quotes first
+    const unpostedQuotes = quotes.filter(q => !postedQuoteIds.has(q.id))
+    
+    if (unpostedQuotes.length > 0) {
+      // Pick a random unposted quote
+      const selected = unpostedQuotes[Math.floor(Math.random() * unpostedQuotes.length)]
+      return {
+        quoteId: selected.id,
+        quoteText: selected.text,
+        allPosted: false
+      }
+    }
+    
+    // All quotes have been posted - find oldest posted quote
+    if (posts && posts.length > 0) {
+      posts.sort((a, b) => {
+        const aTime = a.posted_at ? new Date(a.posted_at).getTime() : 0
+        const bTime = b.posted_at ? new Date(b.posted_at).getTime() : 0
+        return aTime - bTime
+      })
+      
+      const oldestPost = posts[0]
+      const selectedQuote = quotes.find(q => q.id === oldestPost.quote_id)
+      
+      if (selectedQuote) {
+        return {
+          quoteId: selectedQuote.id,
+          quoteText: selectedQuote.text,
+          allPosted: true
+        }
+      }
+    }
+    
+    return { quoteId: null, quoteText: null, allPosted: false }
+  } catch (err) {
+    console.error('Exception in getNextQuote:', err)
+    return { quoteId: null, quoteText: null, allPosted: false }
+  }
+}
+
+/**
+ * Reset quote post history for a philosopher account
+ */
+async function resetPhilosopherPostHistory(accountId: string): Promise<void> {
+  try {
+    const { error } = await supabase
+      .from('quote_posts')
+      .delete()
+      .eq('mastodon_account_id', accountId)
+    
+    if (error) {
+      console.warn(`Error resetting quote post history: ${error.message}`)
+    } else {
+      console.log(`Reset quote post history for account ${accountId}`)
+    }
+  } catch (err) {
+    console.error('Exception resetting quote post history:', err)
+  }
+}
+
+/**
+ * Record that a quote was posted
+ */
+async function recordQuotePost(quoteId: string, accountId: string, statusId: string): Promise<void> {
+  try {
+    const { error } = await supabase
+      .from('quote_posts')
+      .upsert({
+        quote_id: quoteId,
+        mastodon_account_id: accountId,
+        mastodon_status_id: statusId,
+        posted_at: new Date().toISOString()
+      }, { onConflict: 'quote_id,mastodon_account_id' })
+    
+    if (error) {
+      console.warn(`Error recording quote post: ${error.message}`)
+    }
+  } catch (err) {
+    console.error('Exception recording quote post:', err)
+  }
+}
+
+/**
+ * Format quote for Mastodon posting
+ */
+function formatQuoteForMastodon(quoteText: string, philosopherName: string, source?: string): string {
+  let status = `"${quoteText}"`
+  
+  // Add attribution
+  if (source) {
+    status += `\n\n— ${philosopherName}, ${source}`
+  } else {
+    status += `\n\n— ${philosopherName}`
+  }
+  
+  // Ensure it fits in 500 characters (Mastodon limit)
+  if (status.length > 500) {
+    // Truncate quote if needed, keeping attribution
+    const attribution = source 
+      ? `\n\n— ${philosopherName}, ${source}`
+      : `\n\n— ${philosopherName}`
+    const maxQuoteLength = 500 - attribution.length - 4 // 4 for quotes and newlines
+    status = `"${quoteText.substring(0, maxQuoteLength)}..."${attribution}`
+  }
+  
+  return status
+}
+
+/**
+ * Post a status to Mastodon (text only, no media)
+ */
+async function postStatusToMastodon(status: string, baseUrl: string, accessToken: string): Promise<{ id: string }> {
+  const res = await fetch(`${baseUrl.replace(/\/$/, '')}/api/v1/statuses`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ status }),
+  })
+  
+  if (!res.ok) {
+    const text = await res.text()
+    throw new Error(`Status post failed ${res.status}: ${text}`)
+  }
+  
+  return await res.json()
+}
+
+/**
+ * Post quote for a philosopher account
+ */
+async function postForPhilosopher(philosopherName: string, accountId: string): Promise<{ success: boolean; error?: string; details?: any }> {
+  try {
+    console.log(`Processing post for philosopher: ${philosopherName}`)
+    
+    // Get account credentials
+    const { data: account, error: accountError } = await supabase
+      .from('mastodon_accounts')
+      .select('mastodon_base_url, mastodon_access_token, account_username')
+      .eq('id', accountId)
+      .eq('active', true)
+      .single()
+    
+    if (accountError || !account) {
+      throw new Error(`No Mastodon account found for philosopher: ${philosopherName}`)
+    }
+    
+    const credentials = {
+      baseUrl: account.mastodon_base_url,
+      accessToken: account.mastodon_access_token
+    }
+    
+    // Get next quote to post
+    const { quoteId, quoteText, allPosted } = await getNextQuote(philosopherName, accountId)
+    
+    if (!quoteId || !quoteText) {
+      return { success: false, error: `No quotes found for philosopher: ${philosopherName}` }
+    }
+    
+    // If all quotes have been posted, reset and get a fresh one
+    if (allPosted) {
+      console.log(`All quotes for ${philosopherName} have been posted. Resetting post history...`)
+      await resetPhilosopherPostHistory(accountId)
+      // Get a fresh quote after reset
+      const fresh = await getNextQuote(philosopherName, accountId)
+      if (!fresh.quoteId || !fresh.quoteText) {
+        return { success: false, error: `No quotes available after reset for: ${philosopherName}` }
+      }
+      // Use the fresh quote
+      const status = formatQuoteForMastodon(fresh.quoteText, philosopherName)
+      const result = await postStatusToMastodon(status, credentials.baseUrl, credentials.accessToken)
+      
+      // Record the post
+      await recordQuotePost(fresh.quoteId, accountId, result.id)
+      await updateLastPostedAtForAccount(accountId)
+      
+      return {
+        success: true,
+        details: {
+          quote_id: fresh.quoteId,
+          status_id: result.id,
+          quote: fresh.quoteText.substring(0, 50) + '...',
+          philosopher: philosopherName,
+          account_id: accountId,
+          all_posted_reset: true
+        }
+      }
+    }
+    
+    // Format and post the quote
+    const status = formatQuoteForMastodon(quoteText, philosopherName)
+    const result = await postStatusToMastodon(status, credentials.baseUrl, credentials.accessToken)
+    
+    // Record the post
+    await recordQuotePost(quoteId, accountId, result.id)
+    await updateLastPostedAtForAccount(accountId)
+    
+    return {
+      success: true,
+      details: {
+        quote_id: quoteId,
+        status_id: result.id,
+        quote: quoteText.substring(0, 50) + '...',
+        philosopher: philosopherName,
+        account_id: accountId,
+        all_posted_reset: false
+      }
+    }
+  } catch (err) {
+    console.error(`Error posting for philosopher ${philosopherName}:`, err)
     return { success: false, error: String(err) }
   }
 }
@@ -1026,7 +1341,7 @@ Deno.serve(async (req: Request) => {
     // Option 2: Interval-based scheduling: each account posts every N hours, independent of account count
     
     let accountsToProcess: Array<{
-      type: 'artist' | 'tag'
+      type: 'artist' | 'tag' | 'philosopher'
       identifier: string
       accountId: string
       lastPostedAt: string | null
@@ -1095,6 +1410,8 @@ Deno.serve(async (req: Request) => {
       try {
         const result = account.type === 'tag'
           ? await postForTag(account.accountId)
+          : account.type === 'philosopher'
+          ? await postForPhilosopher(account.identifier, account.accountId)
           : await postForArtist(account.identifier)
         
         if (result.success) {

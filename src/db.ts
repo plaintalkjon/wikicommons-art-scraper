@@ -126,3 +126,72 @@ export async function insertArtAsset(payload: {
   }
 }
 
+// ============================================
+// Philosopher and Quote Functions
+// ============================================
+
+export async function ensurePhilosopher(name: string, wikidataQid?: string): Promise<string> {
+  const existing = await supabase.from('philosophers').select('id').eq('name', name).maybeSingle();
+  if (existing.error && existing.error.code !== 'PGRST116') {
+    throw new Error(`Failed to lookup philosopher: ${existing.error.message}`);
+  }
+  if (existing.data?.id) {
+    // Update QID if provided and different
+    if (wikidataQid && existing.data.id) {
+      await supabase
+        .from('philosophers')
+        .update({ wikidata_qid: wikidataQid })
+        .eq('id', existing.data.id);
+    }
+    return existing.data.id;
+  }
+
+  const inserted = await supabase
+    .from('philosophers')
+    .insert({ name, wikidata_qid: wikidataQid ?? null })
+    .select('id')
+    .single();
+  if (inserted.error || !inserted.data?.id) {
+    throw new Error(`Failed to insert philosopher: ${inserted.error?.message ?? 'unknown error'}`);
+  }
+  return inserted.data.id;
+}
+
+export async function upsertQuote(payload: {
+  text: string;
+  philosopherId: string;
+  source?: string;
+  section?: string;
+  characterCount: number;
+}): Promise<string> {
+  // Check if quote already exists for this philosopher
+  const existing = await supabase
+    .from('quotes')
+    .select('id')
+    .eq('text', payload.text)
+    .eq('philosopher_id', payload.philosopherId)
+    .maybeSingle();
+  if (existing.error && existing.error.code !== 'PGRST116') {
+    throw new Error(`Failed to lookup quote: ${existing.error.message}`);
+  }
+  if (existing.data?.id) {
+    return existing.data.id;
+  }
+
+  const inserted = await supabase
+    .from('quotes')
+    .insert({
+      text: payload.text,
+      philosopher_id: payload.philosopherId,
+      source: payload.source ?? null,
+      section: payload.section ?? null,
+      character_count: payload.characterCount,
+    })
+    .select('id')
+    .single();
+  if (inserted.error || !inserted.data?.id) {
+    throw new Error(`Failed to insert quote: ${inserted.error?.message ?? 'unknown error'}`);
+  }
+  return inserted.data.id;
+}
+

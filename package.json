@@ -11,9 +11,14 @@
     "show-tags": "npm run build && node dist/show-tags.js",
     "tag-existing": "npm run build && node dist/cli-tag-existing.js",
     "clean-titles": "npm run build && node dist/cli-clean-titles.js",
+    "remove-numbers-from-titles": "npm run build && node dist/cli-remove-numbers-from-titles.js",
+    "clean-quotes": "npm run build && node dist/cli-clean-quotes.js",
     "add-artist-bot": "npm run build && node dist/cli-add-artist-bot.js",
     "add-tag-bot": "npm run build && node dist/cli-add-tag-bot.js",
-    "fetch-specific": "npm run build && node dist/cli-fetch-specific.js"
+    "fetch-specific": "npm run build && node dist/cli-fetch-specific.js",
+    "fetch-quotes": "npm run build && node dist/cli-fetch-quotes.js",
+    "add-philosopher-bot": "npm run build && node dist/cli-add-philosopher-bot.js",
+    "retry-all": "npm run build && node dist/cli-retry-all.js"
   },
   "repository": {
     "type": "git",

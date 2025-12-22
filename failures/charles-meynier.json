@@ -1,0 +1,10 @@
+[
+  {
+    "artist": "Charles Meynier",
+    "title": "File:Charles Meynier - Saint Vicent de Paul prêchant la charité aux dames de la cour de Louis XIII.JPG",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Charles_Meynier_-_Saint_Vicent_de_Paul_pr%C3%AAchant_la_charit%C3%A9_aux_dames_de_la_cour_de_Louis_XIII.JPG",
+    "error": "Failed to insert art: duplicate key value violates unique constraint \"unique_art_title_artist\"",
+    "timestamp": "2025-12-22T11:14:48.106Z",
+    "retryCount": 0
+  }
+]

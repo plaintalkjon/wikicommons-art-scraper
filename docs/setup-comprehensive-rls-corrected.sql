@@ -1,17 +1,25 @@
 -- ============================================
 -- Comprehensive Row Level Security (RLS) Setup
+-- CORRECTED VERSION - Proper Policy Syntax
 -- ============================================
 -- 
 -- Goal: 
--- - Public users can READ non-sensitive data (for contributions/feedback)
--- - Only service role (you) can WRITE/EDIT anything
+-- - Public users can READ non-sensitive data (artworks, artists, tags)
+-- - Only service role can WRITE/EDIT anything
 -- - Sensitive tables (mastodon_accounts, mastodon_account_tags) are fully protected
+--
+-- IMPORTANT: Service role key automatically bypasses RLS
+-- This means your CLI scripts and edge functions will work normally
 --
 -- ============================================
 -- 1. ARTISTS TABLE
 -- ============================================
 
 ALTER TABLE artists ENABLE ROW LEVEL SECURITY;
+
+-- Drop existing policies if they exist
+DROP POLICY IF EXISTS "Public can read artists" ON artists;
+DROP POLICY IF EXISTS "Public cannot modify artists" ON artists;
 
 -- Allow public to read artists
 CREATE POLICY "Public can read artists"
@@ -20,21 +28,35 @@ CREATE POLICY "Public can read artists"
   TO public
   USING (true);
 
--- Deny all write operations for public
-CREATE POLICY "Public cannot modify artists"
+-- Deny all write operations for public (INSERT, UPDATE, DELETE)
+CREATE POLICY "Public cannot insert artists"
   ON artists
-  FOR ALL
+  FOR INSERT
+  TO public
+  WITH CHECK (false);
+
+CREATE POLICY "Public cannot update artists"
+  ON artists
+  FOR UPDATE
   TO public
   USING (false)
   WITH CHECK (false);
 
--- Note: Service role (used by your scripts/edge functions) bypasses RLS automatically
+CREATE POLICY "Public cannot delete artists"
+  ON artists
+  FOR DELETE
+  TO public
+  USING (false);
 
 -- ============================================
 -- 2. ARTS TABLE (Artworks)
 -- ============================================
 
 ALTER TABLE arts ENABLE ROW LEVEL SECURITY;
+
+-- Drop existing policies if they exist
+DROP POLICY IF EXISTS "Public can read arts" ON arts;
+DROP POLICY IF EXISTS "Public cannot modify arts" ON arts;
 
 -- Allow public to read artworks
 CREATE POLICY "Public can read arts"
@@ -44,18 +66,34 @@ CREATE POLICY "Public can read arts"
   USING (true);
 
 -- Deny all write operations for public
-CREATE POLICY "Public cannot modify arts"
+CREATE POLICY "Public cannot insert arts"
   ON arts
-  FOR ALL
+  FOR INSERT
+  TO public
+  WITH CHECK (false);
+
+CREATE POLICY "Public cannot update arts"
+  ON arts
+  FOR UPDATE
   TO public
   USING (false)
   WITH CHECK (false);
+
+CREATE POLICY "Public cannot delete arts"
+  ON arts
+  FOR DELETE
+  TO public
+  USING (false);
 
 -- ============================================
 -- 3. TAGS TABLE
 -- ============================================
 
 ALTER TABLE tags ENABLE ROW LEVEL SECURITY;
+
+-- Drop existing policies if they exist
+DROP POLICY IF EXISTS "Public can read tags" ON tags;
+DROP POLICY IF EXISTS "Public cannot modify tags" ON tags;
 
 -- Allow public to read tags
 CREATE POLICY "Public can read tags"
@@ -65,18 +103,34 @@ CREATE POLICY "Public can read tags"
   USING (true);
 
 -- Deny all write operations for public
-CREATE POLICY "Public cannot modify tags"
+CREATE POLICY "Public cannot insert tags"
   ON tags
-  FOR ALL
+  FOR INSERT
+  TO public
+  WITH CHECK (false);
+
+CREATE POLICY "Public cannot update tags"
+  ON tags
+  FOR UPDATE
   TO public
   USING (false)
   WITH CHECK (false);
+
+CREATE POLICY "Public cannot delete tags"
+  ON tags
+  FOR DELETE
+  TO public
+  USING (false);
 
 -- ============================================
 -- 4. ART_TAGS TABLE (Junction: Artworks <-> Tags)
 -- ============================================
 
 ALTER TABLE art_tags ENABLE ROW LEVEL SECURITY;
+
+-- Drop existing policies if they exist
+DROP POLICY IF EXISTS "Public can read art_tags" ON art_tags;
+DROP POLICY IF EXISTS "Public cannot modify art_tags" ON art_tags;
 
 -- Allow public to read art-tag relationships
 CREATE POLICY "Public can read art_tags"
@@ -86,18 +140,34 @@ CREATE POLICY "Public can read art_tags"
   USING (true);
 
 -- Deny all write operations for public
-CREATE POLICY "Public cannot modify art_tags"
+CREATE POLICY "Public cannot insert art_tags"
   ON art_tags
-  FOR ALL
+  FOR INSERT
+  TO public
+  WITH CHECK (false);
+
+CREATE POLICY "Public cannot update art_tags"
+  ON art_tags
+  FOR UPDATE
   TO public
   USING (false)
   WITH CHECK (false);
+
+CREATE POLICY "Public cannot delete art_tags"
+  ON art_tags
+  FOR DELETE
+  TO public
+  USING (false);
 
 -- ============================================
 -- 5. ART_SOURCES TABLE
 -- ============================================
 
 ALTER TABLE art_sources ENABLE ROW LEVEL SECURITY;
+
+-- Drop existing policies if they exist
+DROP POLICY IF EXISTS "Public can read art_sources" ON art_sources;
+DROP POLICY IF EXISTS "Public cannot modify art_sources" ON art_sources;
 
 -- Allow public to read sources
 CREATE POLICY "Public can read art_sources"
@@ -107,18 +177,34 @@ CREATE POLICY "Public can read art_sources"
   USING (true);
 
 -- Deny all write operations for public
-CREATE POLICY "Public cannot modify art_sources"
+CREATE POLICY "Public cannot insert art_sources"
   ON art_sources
-  FOR ALL
+  FOR INSERT
+  TO public
+  WITH CHECK (false);
+
+CREATE POLICY "Public cannot update art_sources"
+  ON art_sources
+  FOR UPDATE
   TO public
   USING (false)
   WITH CHECK (false);
+
+CREATE POLICY "Public cannot delete art_sources"
+  ON art_sources
+  FOR DELETE
+  TO public
+  USING (false);
 
 -- ============================================
 -- 6. ART_ASSETS TABLE
 -- ============================================
 
 ALTER TABLE art_assets ENABLE ROW LEVEL SECURITY;
+
+-- Drop existing policies if they exist
+DROP POLICY IF EXISTS "Public can read art_assets" ON art_assets;
+DROP POLICY IF EXISTS "Public cannot modify art_assets" ON art_assets;
 
 -- Allow public to read assets (includes storage paths, but that's okay for public images)
 CREATE POLICY "Public can read art_assets"
@@ -128,24 +214,34 @@ CREATE POLICY "Public can read art_assets"
   USING (true);
 
 -- Deny all write operations for public
-CREATE POLICY "Public cannot modify art_assets"
+CREATE POLICY "Public cannot insert art_assets"
   ON art_assets
-  FOR ALL
+  FOR INSERT
+  TO public
+  WITH CHECK (false);
+
+CREATE POLICY "Public cannot update art_assets"
+  ON art_assets
+  FOR UPDATE
   TO public
   USING (false)
   WITH CHECK (false);
 
--- ============================================
--- 7. MASTODON_ACCOUNTS TABLE (SENSITIVE - Already Protected)
--- ============================================
+CREATE POLICY "Public cannot delete art_assets"
+  ON art_assets
+  FOR DELETE
+  TO public
+  USING (false);
 
--- This table should already have RLS enabled from previous setup
--- Verify and ensure it's fully protected
+-- ============================================
+-- 7. MASTODON_ACCOUNTS TABLE (SENSITIVE - Fully Protected)
+-- ============================================
 
 ALTER TABLE mastodon_accounts ENABLE ROW LEVEL SECURITY;
 
--- Drop existing policy if it exists and recreate to be explicit
+-- Drop existing policies if they exist
 DROP POLICY IF EXISTS "Deny all public access to mastodon_accounts" ON mastodon_accounts;
+DROP POLICY IF EXISTS "Deny all authenticated access to mastodon_accounts" ON mastodon_accounts;
 
 -- Deny ALL access (read and write) for public
 CREATE POLICY "Deny all public access to mastodon_accounts"
@@ -165,16 +261,14 @@ CREATE POLICY "Deny all authenticated access to mastodon_accounts"
   WITH CHECK (false);
 
 -- ============================================
--- 8. MASTODON_ACCOUNT_TAGS TABLE (SENSITIVE - Already Protected)
+-- 8. MASTODON_ACCOUNT_TAGS TABLE (SENSITIVE - Fully Protected)
 -- ============================================
-
--- This table should already have RLS enabled from tag account migration
--- Verify and ensure it's fully protected
 
 ALTER TABLE mastodon_account_tags ENABLE ROW LEVEL SECURITY;
 
--- Drop existing policy if it exists
+-- Drop existing policies if they exist
 DROP POLICY IF EXISTS "Deny all public access to mastodon_account_tags" ON mastodon_account_tags;
+DROP POLICY IF EXISTS "Deny all authenticated access to mastodon_account_tags" ON mastodon_account_tags;
 
 -- Deny ALL access (read and write) for public
 CREATE POLICY "Deny all public access to mastodon_account_tags"
@@ -251,5 +345,8 @@ ORDER BY tablename, policyname;
 -- To allow authenticated users to write in the future:
 -- - Create policies like: "Authenticated users can insert arts" with appropriate conditions
 -- - For now, only service role can write (which is what you want)
-
-
+--
+-- Testing:
+-- - Use the anon key to test public access (should work for reads on non-sensitive tables)
+-- - Use the service role key to test full access (should work for everything)
+-- - See docs/test-rls-policies.md for testing commands

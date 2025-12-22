@@ -1,6 +1,6 @@
 # Testing RLS Policies
 
-After running `setup-comprehensive-rls.sql`, you can test the policies to ensure they work correctly.
+After running `setup-comprehensive-rls-corrected.sql`, you can test the policies to ensure they work correctly.
 
 ## Test 1: Public Read Access (Should Work)
 

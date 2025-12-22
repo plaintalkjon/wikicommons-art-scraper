@@ -1,10 +1,1 @@
-[
-  {
-    "artist": "Leonardo da Vinci",
-    "title": "File:Ginevra de' Benci - National Gallery of Art.jpg",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Ginevra_de%27_Benci_-_National_Gallery_of_Art.jpg",
-    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Ginevra_de%27_Benci_-_National_Gallery_of_Art.jpg/3878px-Ginevra_de%27_Benci_-_National_Gallery_of_Art.jpg: 503 Backend fetch failed",
-    "timestamp": "2025-12-15T23:56:29.800Z",
-    "retryCount": 0
-  }
-]
+[]

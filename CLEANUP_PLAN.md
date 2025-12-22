@@ -25,10 +25,15 @@ These were one-time migrations that are already done:
 
 ### Obsolete SQL Scripts (Replaced by v2)
 - `docs/add-tag-account-support.sql` ❌ (replaced by add-tag-account-support-v2.sql)
+- `docs/setup-comprehensive-rls.sql` ❌ (has syntax errors, replaced by setup-comprehensive-rls-corrected.sql)
+- `docs/create-mastodon-accounts-table.sql` ❌ (duplicate of mastodon-accounts-schema.sql)
 
 ### Obsolete Edge Functions (Replaced by Generic post-art)
 - `supabase/functions/vincent-van-gogh/` ❌ (entire directory)
 - `supabase/functions/mastodon-post/` ❌ (entire directory - replaced by post-art)
+
+### Obsolete Documentation
+- `docs/ADD_BAROQUE_TAG_ACCOUNT.md` ❌ (replaced by ADD_BAROQUE_TAG_ACCOUNT_V2.md)
 
 ### Obsolete Deploy Scripts
 - `deploy-vincent-van-gogh.sh` ❌
@@ -39,14 +44,15 @@ These were one-time migrations that are already done:
 
 ### Obsolete CLI Scripts
 - `src/cli-update-titles.ts` ❌ (deprecated, replaced by cli-clean-titles.ts)
+- `src/cli-apply-rls.ts` ❌ (removed - just prints SQL, user can read file directly)
 
 ## Files to Keep
 
 ### Active SQL Scripts
 - `docs/schedule-hourly-rotation.sql` ✅ (CURRENT system)
 - `docs/add-tag-account-support-v2.sql` ✅ (current migration)
-- `docs/setup-comprehensive-rls.sql` ✅ (current RLS setup)
-- `docs/create-mastodon-accounts-table.sql` ✅ (base table creation - might be useful reference)
+- `docs/setup-comprehensive-rls-corrected.sql` ✅ (current RLS setup - corrected version)
+- `docs/mastodon-accounts-schema.sql` ✅ (base table creation - reference)
 - `docs/check-cron-status.sql` ✅ (useful diagnostic)
 - `docs/check-http-responses.sql` ✅ (useful diagnostic)
 - `docs/schema.sql` ✅ (database schema reference)

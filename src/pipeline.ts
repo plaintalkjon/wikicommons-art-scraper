@@ -1,5 +1,5 @@
 import { config } from './config';
-import { fetchImageInfoByTitle, pickBestVariant } from './wikimedia';
+import { fetchImageInfoByTitle, pickBestVariant, fetchImagesForArtist } from './wikimedia';
 import { slugify } from './utils';
 import { downloadImage } from './downloader';
 import { uploadToStorage } from './storage';
@@ -136,8 +136,9 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
       'Goya': 'Q6640', // Shortened name
       'Mihály Zichy': 'Q742959',
       'Mihaly Zichy': 'Q742959', // Without accent
-      'Paul Émile Chabas': 'Q338995',
-      'Paul Emile Chabas': 'Q338995', // Without accent
+      'Paul Émile Chabas': 'Q3299143',
+      'Paul Emile Chabas': 'Q3299143', // Without accent
+      'Paul Chabas': 'Q3299143',
       'Salvador Dali': 'Q5575',
       'Salvador Dalí': 'Q5575', // With accent
       'Sylvester Shchedrin': 'Q1861382',
@@ -181,58 +182,116 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
       'Edmund Blair Leighton': 'Q142420', // Full name
       'Jacques Raymond Brascassat': 'Q390581',
       'Jacques-Raymond Brascassat': 'Q390581', // With hyphen
+      'Gustaf Fjæstad': 'Q3378634',
+      'Gustaf Fjaestad': 'Q3378634', // Without special character
+      'Victor Gabriel Gilbert': 'Q3557325',
+      'Victor Gilbert': 'Q3557325', // Shortened name
+      'Pompeo Girolamo Batoni': 'Q505613',
+      'Pompeo Batoni': 'Q505613', // Common short name
+      'Maximilián Pirner': 'Q1648193',
+      'Maximilian Pirner': 'Q1648193', // Without accent
+      'Ivan Konstantinovich Aivazovsky': 'Q133916',
+      'Ivan Aivazovsky': 'Q133916', // Shortened name
+      'Léon Bonnat': 'Q170259',
+      'Leon Bonnat': 'Q170259', // Without accent
     };
     artistQid = knownArtists[options.artist] || null;
   }
   
-  if (!artistQid) {
-    throw new Error(`Could not find Wikidata QID for artist: ${options.artist}`);
-  }
-  console.log(`Found artist QID: ${artistQid}`);
+  // If no QID found, skip Wikidata and go straight to Commons category search
+  let items: Array<{ title: string; museum?: string; itemId?: string }> = [];
+  let images: WikimediaImage[] = [];
   
-  // Always use Wikidata for discovery (museum-filtered paintings)
-  const items = await fetchWikidataPaintings({ limit, artistQid: `wd:${artistQid}`, paintingsOnly: options.paintingsOnly });
-  console.log(`Found ${items.length} paintings from Wikidata, fetching image info...`);
-  
-  // Fetch image info in batches to avoid rate limiting
-  const validItems = items.filter((item) => item.title).slice(0, limit);
-  
-  const fetchWithMetadata = async (item: { title: string; museum?: string; itemId?: string }) => {
-    const info = await fetchImageInfoByTitle(item.title);
-    if (!info) return null;
-    info.museum = item.museum;
-    info.sourceItem = item.itemId;
-    return info;
-  };
+  if (artistQid) {
+    console.log(`Found artist QID: ${artistQid}`);
+    // Use Wikidata for discovery (collection-filtered paintings - any collection/museum, not just specific museums)
+    items = await fetchWikidataPaintings({ limit, artistQid: `wd:${artistQid}`, paintingsOnly: options.paintingsOnly });
+    console.log(`Found ${items.length} paintings from Wikidata, fetching image info...`);
+    
+    if (items.length > 0) {
+    // Fetch image info in batches to avoid rate limiting
+    const validItems = items.filter((item) => item.title).slice(0, limit);
+    
+    const fetchWithMetadata = async (item: { title: string; museum?: string; itemId?: string }) => {
+      const info = await fetchImageInfoByTitle(item.title);
+      if (!info) return null;
+      info.museum = item.museum;
+      info.sourceItem = item.itemId;
+      return info;
+    };
 
-  // Process in smaller batches with delays - simple and reliable
-  const imageResults: (WikimediaImage | null)[] = [];
-  const BATCH_SIZE = 3;
-  const DELAY_MS = 1000; // 1 second between batches
-  
-  for (let i = 0; i < validItems.length; i += BATCH_SIZE) {
-    const batch = validItems.slice(i, i + BATCH_SIZE);
-    const batchResults = await Promise.allSettled(batch.map(fetchWithMetadata));
+    // Process in smaller batches with delays - simple and reliable
+    const imageResults: (WikimediaImage | null)[] = [];
+    const BATCH_SIZE = 3;
+    const DELAY_MS = 1000; // 1 second between batches
     
-    batchResults.forEach((result) => {
-      if (result.status === 'fulfilled') {
-        imageResults.push(result.value);
-      } else {
-        console.warn(`Failed to fetch: ${result.reason?.message || 'Unknown error'}`);
-        imageResults.push(null);
-      }
-    });
-    
-    // Delay between batches (except after the last one)
-    if (i + BATCH_SIZE < validItems.length) {
-      await new Promise((resolve) => setTimeout(resolve, DELAY_MS));
-      if ((i / BATCH_SIZE) % 20 === 0 && i > 0) {
-        console.log(`Fetched info for ${Math.min(i + BATCH_SIZE, validItems.length)}/${validItems.length} items...`);
+    for (let i = 0; i < validItems.length; i += BATCH_SIZE) {
+      const batch = validItems.slice(i, i + BATCH_SIZE);
+      const batchResults = await Promise.allSettled(batch.map(fetchWithMetadata));
+      
+      batchResults.forEach((result) => {
+        if (result.status === 'fulfilled') {
+          imageResults.push(result.value);
+        } else {
+          console.warn(`Failed to fetch: ${result.reason?.message || 'Unknown error'}`);
+          imageResults.push(null);
+        }
+      });
+      
+      // Delay between batches (except after the last one)
+      if (i + BATCH_SIZE < validItems.length) {
+        await new Promise((resolve) => setTimeout(resolve, DELAY_MS));
+        if ((i / BATCH_SIZE) % 20 === 0 && i > 0) {
+          console.log(`Fetched info for ${Math.min(i + BATCH_SIZE, validItems.length)}/${validItems.length} items...`);
+        }
       }
     }
-  }
 
-  const images = imageResults.filter((img): img is WikimediaImage => img !== null);
+      images = imageResults.filter((img): img is WikimediaImage => img !== null);
+    } else {
+      // Fallback to Commons category search if no Wikidata results
+      console.log('No Wikidata results found, falling back to Wikimedia Commons category search...');
+      let commonsImages = await fetchImagesForArtist({
+        artist: options.artist,
+        categoryTitle: `Category:Paintings by ${options.artist}`,
+        limit,
+      });
+      
+      // If no results, try the simpler category format
+      if (commonsImages.length === 0) {
+        console.log(`Trying alternative category format: Category:${options.artist}`);
+        commonsImages = await fetchImagesForArtist({
+          artist: options.artist,
+          categoryTitle: `Category:${options.artist}`,
+          limit,
+        });
+      }
+      
+      images = commonsImages;
+    }
+  } else {
+    // No Wikidata QID found, try Commons category search directly
+    console.log('No Wikidata QID found, trying Wikimedia Commons category search...');
+    // Try both "Category:Paintings by [Artist]" and "Category:[Artist]" formats
+    let commonsImages = await fetchImagesForArtist({
+      artist: options.artist,
+      categoryTitle: `Category:Paintings by ${options.artist}`,
+      limit,
+    });
+    
+    // If no results, try the simpler category format
+    if (commonsImages.length === 0) {
+      console.log(`Trying alternative category format: Category:${options.artist}`);
+      commonsImages = await fetchImagesForArtist({
+        artist: options.artist,
+        categoryTitle: `Category:${options.artist}`,
+        limit,
+      });
+    }
+    
+    images = commonsImages;
+  }
+  
   console.log(`Fetched info for ${images.length} images, processing...`);
   
   const artistId = await ensureArtist(options.artist);
@@ -254,8 +313,9 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
 
       // When paintingsOnly is set, we already filtered at Wikidata level (P31 wd:Q3305213)
       // So we can skip the Commons category check - trust Wikidata's classification
-      // Only apply the filter if NOT using paintingsOnly (for backward compatibility)
-      if (!options.paintingsOnly && !isLikelyColorPainting(image)) {
+      // When fetching from Commons categories directly (no Wikidata QID), trust the category
+      // Only apply the filter if we have a Wikidata QID and NOT using paintingsOnly (for backward compatibility)
+      if (artistQid && !options.paintingsOnly && !isLikelyColorPainting(image)) {
         skipped += 1;
         processed += 1;
         if (processed % 10 === 0) {
@@ -299,7 +359,7 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
         const upload = await uploadToStorage(path, downloaded);
         // Clean the title before storing
         const rawTitle = normalizeTitle(image.title);
-        const cleanedTitle = cleanTitle(rawTitle);
+        const cleanedTitle = cleanTitle(rawTitle, options.artist);
         const artId = await upsertArt({
           title: cleanedTitle,
           description: image.description ?? null,
@@ -343,7 +403,11 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
           mimeType: downloaded.mime,
           sha256: downloaded.sha256,
         });
-        // Slot was already reserved above, so uploaded counter is correct
+        // Increment uploaded counter (slot was already reserved if maxUploads is set)
+        if (!options.maxUploads) {
+          uploaded += 1;
+        }
+        // Slot was already reserved above if maxUploads is set, so uploaded counter is correct
       } else {
         // In dry-run mode, release the reserved slot since we didn't actually upload
         if (reservedSlot) {
@@ -429,11 +493,11 @@ export function normalizeTitle(title: string): string {
 }
 
 /**
- * Clean up artwork titles by removing filename artifacts
- * This is the same logic as cli-clean-titles.ts
+ * Clean up artwork titles by removing filename artifacts, artist names, museum names, and IDs
+ * This uses the same comprehensive logic as cli-clean-titles.ts
  */
-export function cleanTitle(title: string): string {
-  let cleaned = title;
+export function cleanTitle(title: string, artistName?: string): string {
+  let cleaned = title.trim();
   
   // Remove "File:" prefix
   cleaned = cleaned.replace(/^File:\s*/i, '');
@@ -441,20 +505,55 @@ export function cleanTitle(title: string): string {
   // Remove file extensions
   cleaned = cleaned.replace(/\.(jpg|jpeg|png|gif|tiff|tif|webp|svg)$/i, '');
   
-  // Remove common museum codes and identifiers
-  cleaned = cleaned.replace(/\s*-\s*(s\d+[VvMmAa]\d+|Google Art Project|Art Project)/gi, '');
-  cleaned = cleaned.replace(/\s*-\s*\d{4}\.\d+\s*-\s*[^-]+$/i, ''); // Museum accession numbers
-  cleaned = cleaned.replace(/\s*\(\d{4}\)\s*$/i, ''); // Years in parentheses at end
+  // Remove leading numbers and dashes (like "001", "0 Title")
+  cleaned = cleaned.replace(/^\d+\s*[-.]?\s*/, '');
   
-  // Remove artist name if it appears at the start (common pattern)
-  cleaned = cleaned.replace(/^(Vincent\s+van\s+Gogh|Van\s+Gogh|Rembrandt|Peter\s+Paul\s+Rubens|John\s+Singer\s+Sargent)[\s\-:]+/i, '');
+  // Remove parenthetical location info at start (like "(Albi)")
+  cleaned = cleaned.replace(/^\([^)]+\)\s*[-.]?\s*/i, '');
   
-  // Clean up multiple spaces/hyphens
+  // Remove artist birth/death years in parentheses
+  cleaned = cleaned.replace(/\s*\(\d{4}\s*-\s*\d{4}\)\s*[-.]?\s*/g, '');
+  
+  // Remove quotes around title
+  cleaned = cleaned.replace(/^['"]\s*([^'"]+)\s*['"]\s*/, '$1');
+  
+  // Remove "by Artist Name" patterns
+  if (artistName) {
+    const escapedName = artistName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    cleaned = cleaned.replace(new RegExp(`\\s*by\\s+${escapedName}[,\\s-]*`, 'gi'), '');
+    cleaned = cleaned.replace(new RegExp(`^${escapedName}\\s*[-:,\\s]+`, 'i'), '');
+    cleaned = cleaned.replace(new RegExp(`\\s*,\\s*${escapedName}\\s*$`, 'i'), '');
+    cleaned = cleaned.replace(new RegExp(`\\s*-\\s*${escapedName}\\s*$`, 'i'), '');
+  }
+  
+  // Remove "workshop of", "follower", etc.
+  cleaned = cleaned.replace(/\s*,\s*(workshop of|follower|studio of|attrib\.?|attributed to)\s+[^,]+/gi, '');
+  
+  // Remove common museum patterns (simplified for pipeline use)
+  cleaned = cleaned.replace(/\s*[,;]?\s*(Cincinnati Art Museum|Norton Simon Museum|Pushkin Museum|The Hermitage|LACMA|Mauritshuis|Musée d'Orsay|National Gallery|Metropolitan Museum|Museum of Fine Arts|Kunsthistorisches Museum|Belvedere|Wallace Collection|Google Art Project|Art Project)[^,]*/gi, '');
+  
+  // Remove IDs and accession numbers
+  cleaned = cleaned.replace(/\s*-\s*\d{1,6}\s*-\s*/g, ' ');
+  cleaned = cleaned.replace(/\s*-\s*[A-Z]{1,4}\d{1,6}\s*-\s*/gi, ' ');
+  cleaned = cleaned.replace(/\s*-\s*[A-Z]{1,4}\.\d+\s*-\s*/gi, ' ');
+  cleaned = cleaned.replace(/\s*\(\d+\)\s*$/g, '');
+  cleaned = cleaned.replace(/\s*\(\d{4}\)\s*/g, ' ');
+  
+  // Remove years
+  cleaned = cleaned.replace(/\s*,\s*\d{4}\s*[,\-]?/g, ' ');
+  cleaned = cleaned.replace(/\s*-\s*\d{4}\s*[,\-]?/g, ' ');
+  
+  // Remove material/medium info
+  cleaned = cleaned.replace(/\s*,\s*(oil on (panel|canvas|wood)|watercolor|tempera|fresco)[^,]*/gi, '');
+  
+  // Clean up multiple spaces and dashes
   cleaned = cleaned.replace(/\s+/g, ' ');
-  cleaned = cleaned.replace(/\s*-\s*/g, ' - ');
-  cleaned = cleaned.replace(/^\s+|\s+$/g, '');
+  cleaned = cleaned.replace(/\s*-\s*-\s*/g, ' - ');
+  cleaned = cleaned.replace(/^\s*[-,\s]+|\s*[-,\s]+$/g, '');
+  cleaned = cleaned.replace(/^['"]+|['"]+$/g, '');
   
-  // Capitalize first letter
+  // Trim and capitalize first letter
+  cleaned = cleaned.trim();
   if (cleaned.length > 0) {
     cleaned = cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
   }

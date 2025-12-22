@@ -1,18 +1,1 @@
-[
-  {
-    "artist": "Raphael",
-    "title": "File:Raffaello Sanzio - The Procession to Calvary.jpg",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Raffaello_Sanzio_-_The_Procession_to_Calvary.jpg",
-    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Raffaello_Sanzio_-_The_Procession_to_Calvary.jpg/4000px-Raffaello_Sanzio_-_The_Procession_to_Calvary.jpg: 429 Too Many Requests",
-    "timestamp": "2025-12-14T21:25:00.324Z",
-    "retryCount": 0
-  },
-  {
-    "artist": "Raphael",
-    "title": "File:Raffaello Sanzio - Ritratto di Bindo Altoviti.jpg",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Raffaello_Sanzio_-_Ritratto_di_Bindo_Altoviti.jpg",
-    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Raffaello_Sanzio_-_Ritratto_di_Bindo_Altoviti.jpg/2911px-Raffaello_Sanzio_-_Ritratto_di_Bindo_Altoviti.jpg: 503 Backend fetch failed",
-    "timestamp": "2025-12-14T21:25:50.199Z",
-    "retryCount": 0
-  }
-]
+[]

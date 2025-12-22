@@ -1,18 +1,1 @@
-[
-  {
-    "artist": "Frederic Leighton",
-    "title": "File:Lord Leighton Frederic - And the Sea Gave Up the Dead Which Were in It - Google Art Project.jpg",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/53/Lord_Leighton_Frederic_-_And_the_Sea_Gave_Up_the_Dead_Which_Were_in_It_-_Google_Art_Project.jpg",
-    "error": "Failed to insert art: duplicate key value violates unique constraint \"unique_art_title_artist\"",
-    "timestamp": "2025-12-15T22:53:31.332Z",
-    "retryCount": 0
-  },
-  {
-    "artist": "Frederic Leighton",
-    "title": "File:Leighton of Stretton, Frederick Leighton, Baron - Cimabue's Madonna Carried in Procession - Google Art Project.jpg",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Leighton_of_Stretton%2C_Frederick_Leighton%2C_Baron_-_Cimabue%27s_Madonna_Carried_in_Procession_-_Google_Art_Project.jpg",
-    "error": "Failed to insert art: duplicate key value violates unique constraint \"unique_art_title_artist\"",
-    "timestamp": "2025-12-15T22:53:34.114Z",
-    "retryCount": 0
-  }
-]
+[]

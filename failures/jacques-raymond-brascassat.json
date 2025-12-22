@@ -1,10 +1,1 @@
-[
-  {
-    "artist": "Jacques Raymond Brascassat",
-    "title": "File:Jacques-Raymond Brascassat - Spaniel with a Still Life of Dead Game - 2006.529 - Museum of Fine Arts.jpg",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Jacques-Raymond_Brascassat_-_Spaniel_with_a_Still_Life_of_Dead_Game_-_2006.529_-_Museum_of_Fine_Arts.jpg",
-    "error": "Failed to insert art: duplicate key value violates unique constraint \"unique_art_title_artist\"",
-    "timestamp": "2025-12-16T10:27:22.004Z",
-    "retryCount": 0
-  }
-]
+[]

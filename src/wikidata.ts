@@ -166,6 +166,8 @@ const DEFAULT_MUSEUMS = [
   'wd:Q3331230', // Musée des Ursulines (Mâcon)
   'wd:Q3329368', // Musée Thomas-Henry (Cherbourg)
   'wd:Q1286709', // Musée national de la Marine (Paris)
+  'wd:Q2946', // Palace of Versailles
+  'wd:Q12418', // Château de Versailles (alternative QID)
   
   // United States - East Coast
   'wd:Q160236', // Metropolitan Museum of Art
@@ -334,6 +336,7 @@ const DEFAULT_MUSEUMS = [
   
   // United States
   'wd:Q16989403', // Vanderbilt Museum of Art (Nashville)
+  'wd:Q713204', // Norman Rockwell Museum
   
   // Germany
   'wd:Q154568', // Alte Pinakothek
@@ -452,10 +455,10 @@ export async function fetchWikidataPaintings(options: {
     `
     : '';
 
-  const museumValues = museums.join(' ');
   const paintingsOnly = options.paintingsOnly ?? false;
 
-  // First, get artworks from museum collections (standard query)
+  // Get artworks that are in any collection/museum (P195 property)
+  // This ensures quality by requiring the artwork to be in an institutional collection
   const artworkTypeFilter = paintingsOnly
     ? '?item wdt:P31 wd:Q3305213 .'  // paintings only
     : `
@@ -474,8 +477,7 @@ export async function fetchWikidataPaintings(options: {
       ${artworkTypeFilter}
       ?item wdt:P170 ${artistQid} ;          # creator = artist
             wdt:P18 ?image ;                  # has an image
-            wdt:P195 ?museum .                # collection (museum)
-      VALUES ?museum { ${museumValues} }
+            wdt:P195 ?museum .                # collection (museum) - any collection, not restricted to specific museums
       ${licenseFilter}
       OPTIONAL { ?item rdfs:label ?title FILTER (LANG(?title) = "en") }
       SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
