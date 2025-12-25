@@ -131,7 +131,75 @@ async function fetchImagesFromCategory(gcmtitle: string, limit: number): Promise
   return results;
 }
 
+/**
+ * Fetch image info using the modern Core REST API
+ * Falls back to old API if Core REST API fails
+ */
+async function fetchImageInfoByTitleCoreREST(title: string): Promise<WikimediaImage | null> {
+  try {
+    const accessToken = await getWikimediaAccessToken();
+    const encodedTitle = encodeURIComponent(title);
+    const url = `https://api.wikimedia.org/core/v1/commons/file/${encodedTitle}`;
+    
+    const headers: HeadersInit = {
+      'User-Agent': config.wikimediaClientId 
+        ? `wikicommons-art-scraper/1.0 (OAuth client: ${config.wikimediaClientId})`
+        : 'wikicommons-art-scraper/1.0 (contact: developer@example.com)',
+    };
+    
+    if (accessToken) {
+      headers['Authorization'] = `Bearer ${accessToken}`;
+    }
+    
+    const res = await fetch(url, { headers });
+    
+    if (!res.ok) {
+      // If Core REST API fails, fall back to old API
+      return null;
+    }
+    
+    const data = await res.json();
+    
+    // Convert Core REST API response to our format
+    const original = data.original ? {
+      url: data.original.url,
+      width: data.original.width ?? 0,
+      height: data.original.height ?? 0,
+      mime: data.original.mediatype === 'BITMAP' ? 'image/jpeg' : 'image/png',
+    } : null;
+    
+    const thumb = data.thumbnail ? {
+      url: data.thumbnail.url,
+      width: data.thumbnail.width ?? 0,
+      height: data.thumbnail.height ?? 0,
+      mime: data.thumbnail.mediatype === 'BITMAP' ? 'image/jpeg' : 'image/png',
+    } : null;
+    
+    return {
+      pageid: 0, // Core REST API doesn't provide pageid
+      title: data.title,
+      pageUrl: `https://commons.wikimedia.org/wiki/${encodeURIComponent(data.title)}`,
+      original,
+      thumb,
+      categories: [], // Core REST API doesn't provide categories in this endpoint
+      description: undefined,
+      license: undefined,
+      dateCreated: data.latest?.timestamp,
+    };
+  } catch (err) {
+    // Fall back to old API on any error
+    return null;
+  }
+}
+
 export async function fetchImageInfoByTitle(title: string): Promise<WikimediaImage | null> {
+  // Try Core REST API first (modern, better OAuth support)
+  const coreRESTResult = await fetchImageInfoByTitleCoreREST(title);
+  if (coreRESTResult) {
+    return coreRESTResult;
+  }
+  
+  // Fall back to old Commons API
   const params = new URLSearchParams({
     action: 'query',
     format: 'json',

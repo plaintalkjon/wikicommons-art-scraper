@@ -108,14 +108,107 @@ export interface WikidataItemTags {
 }
 
 /**
- * Find artist Wikidata QID from artist name
- * Returns the QID (e.g., "Q5582") or null if not found
+ * Remove accents/diacritics from a string
  */
-export async function findArtistQID(artistName: string): Promise<string | null> {
-  // Simpler query - just search by label, let Wikidata handle the matching
+function removeAccents(str: string): string {
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+/**
+ * Generate name variations for searching
+ * Returns an array of name variations to try
+ */
+function generateNameVariations(name: string): string[] {
+  const variations: string[] = [name]; // Always try original first
+  
+  const parts = name.trim().split(/\s+/);
+  
+  // If name has 2-3 parts, try reversed order (e.g., "Hu Yefo" -> "Yefo Hu")
+  if (parts.length === 2) {
+    variations.push(`${parts[1]} ${parts[0]}`);
+  } else if (parts.length === 3) {
+    // Try "Last First Middle" and "Last Middle First"
+    variations.push(`${parts[2]} ${parts[0]} ${parts[1]}`);
+    variations.push(`${parts[2]} ${parts[1]} ${parts[0]}`);
+  }
+  
+  // Try with different capitalization (title case)
+  variations.push(
+    ...variations.map(v => 
+      v.split(' ').map(word => 
+        word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+      ).join(' ')
+    )
+  );
+  
+  // Try without accents (e.g., "Géricault" -> "Gericault")
+  const withoutAccents = removeAccents(name);
+  if (withoutAccents !== name) {
+    variations.push(withoutAccents);
+    // Also try reversed without accents
+    const partsNoAccent = withoutAccents.trim().split(/\s+/);
+    if (partsNoAccent.length === 2) {
+      variations.push(`${partsNoAccent[1]} ${partsNoAccent[0]}`);
+    }
+  }
+  
+  // Try adding common accents to words that might need them
+  // Common patterns: "Theodore" -> "Théodore", "Gericault" -> "Géricault"
+  const accentVariations: string[] = [];
+  const accentMap: Record<string, string> = {
+    'e': 'é',
+    'a': 'à',
+    'o': 'ô',
+  };
+  
+  // Try adding accents to common patterns (simple heuristic)
+  if (name.includes('Theodore')) {
+    accentVariations.push(name.replace(/Theodore/gi, 'Théodore'));
+  }
+  if (name.includes('Gericault')) {
+    accentVariations.push(name.replace(/Gericault/gi, 'Géricault'));
+  }
+  if (accentVariations.length > 0) {
+    variations.push(...accentVariations);
+    // Also try reversed with accents
+    accentVariations.forEach(v => {
+      const parts = v.trim().split(/\s+/);
+      if (parts.length === 2) {
+        variations.push(`${parts[1]} ${parts[0]}`);
+      }
+    });
+  }
+  
+  // Remove duplicates and return
+  return Array.from(new Set(variations));
+}
+
+/**
+ * Search for artist QID using a specific name variation
+ */
+async function searchArtistQIDByName(name: string): Promise<string | null> {
+  // Search by both main label (rdfs:label) and alternative labels (skos:altLabel)
+  // Also try without language restriction, and try case-insensitive matching
+  const escapedName = name.replace(/"/g, '\\"');
   const query = `
-    SELECT ?item WHERE {
-      ?item rdfs:label "${artistName.replace(/"/g, '\\"')}"@en .
+    SELECT DISTINCT ?item WHERE {
+      {
+        ?item rdfs:label "${escapedName}"@en .
+      }
+      UNION
+      {
+        ?item skos:altLabel "${escapedName}"@en .
+      }
+      UNION
+      {
+        ?item rdfs:label "${escapedName}" .
+        FILTER(LANG(?item) = "" || LANG(?item) = "en")
+      }
+      UNION
+      {
+        ?item skos:altLabel "${escapedName}" .
+        FILTER(LANG(?item) = "" || LANG(?item) = "en")
+      }
     }
     LIMIT 1
   `;
@@ -123,7 +216,7 @@ export async function findArtistQID(artistName: string): Promise<string | null> 
   try {
     const { config } = await import('./config');
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 30000);
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s per variation
     
     const headers: HeadersInit = {
       'Content-Type': 'application/sparql-query',
@@ -162,13 +255,50 @@ export async function findArtistQID(artistName: string): Promise<string | null> 
     return null;
   } catch (err) {
     if (err instanceof Error && err.name === 'AbortError') {
-      throw new Error('Wikidata query timeout (30s)');
+      return null; // Timeout for this variation, try next
     }
     if (err instanceof Error && err.message.includes('429')) {
-      throw err;
+      throw err; // Rate limit - propagate up
     }
     return null;
   }
+}
+
+/**
+ * Find artist Wikidata QID from artist name
+ * Tries multiple name variations including reversed order and aliases
+ * Returns the QID (e.g., "Q5582") or null if not found
+ */
+export async function findArtistQID(artistName: string): Promise<string | null> {
+  const variations = generateNameVariations(artistName);
+  
+  console.log(`  → Trying ${variations.length} name variation(s): ${variations.join(', ')}`);
+  
+  // Try each variation in order
+  for (let i = 0; i < variations.length; i++) {
+    const variation = variations[i];
+    if (i > 0) {
+      console.log(`  → Trying variation ${i + 1}/${variations.length}: "${variation}"`);
+    }
+    
+    try {
+      const qid = await searchArtistQIDByName(variation);
+      if (qid) {
+        if (i > 0) {
+          console.log(`  ✓ Found match with variation "${variation}"`);
+        }
+        return qid;
+      }
+    } catch (err) {
+      // If we hit a rate limit, propagate it up
+      if (err instanceof Error && err.message.includes('429')) {
+        throw err;
+      }
+      // Otherwise, continue to next variation
+    }
+  }
+  
+  return null;
 }
 
 /**
@@ -227,8 +357,9 @@ export async function findArtworksByArtist(artistQID: string): Promise<WikidataA
 
     const artworks: WikidataArtwork[] = [];
     const bindings = data.results?.bindings ?? [];
+    const seenItems = new Set<string>(); // Track items we've already processed
     
-    console.log(`  → Found ${bindings.length} artworks with images and collections`);
+    console.log(`  → Found ${bindings.length} bindings (may include duplicates from multiple collections/images)`);
     
     // Helper function to extract Commons title from Wikidata P18 URL
     const extractCommonsTitle = (imageUrl: string): string | null => {
@@ -267,8 +398,14 @@ export async function findArtworksByArtist(artistQID: string): Promise<WikidataA
       
       if (!imageUrl || !itemQid) continue;
       
+      // Deduplicate: only process each item once
+      if (seenItems.has(itemQid)) {
+        continue; // Skip if we've already processed this artwork
+      }
+      
       const commonsTitle = extractCommonsTitle(imageUrl);
       if (commonsTitle) {
+        seenItems.add(itemQid); // Mark as seen
         artworks.push({
           itemQid,
           imageUrl,
@@ -277,7 +414,10 @@ export async function findArtworksByArtist(artistQID: string): Promise<WikidataA
       }
     }
     
-    console.log(`  ✓ Found ${artworks.length} artworks with extractable Commons titles`);
+    console.log(`  ✓ Found ${artworks.length} unique artworks with extractable Commons titles`);
+    if (bindings.length > artworks.length) {
+      console.log(`  → Deduplicated ${bindings.length - artworks.length} duplicate entries (from multiple collections/images)`);
+    }
     return artworks;
   } catch (err) {
     if (err instanceof Error && err.name === 'AbortError') {

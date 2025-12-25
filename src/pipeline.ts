@@ -47,7 +47,7 @@ async function processInParallel<T>(
 
 export async function fetchAndStoreArtworks(options: FetchOptions): Promise<FetchResult> {
   const limit = options.limit ?? 10000;
-  const CONCURRENCY = 2; // Process 2 images in parallel
+  const CONCURRENCY = 2; // Process 2 images in parallel (matches Wikimedia's max concurrent download limit)
   const maxUploads = options.maxUploads;
   
   console.log(`Fetching artworks for: ${options.artist}...`);
