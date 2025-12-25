@@ -1,0 +1,11 @@
+[
+  {
+    "artist": "Jean Auguste Dominique Ingres",
+    "title": "File:Michelangelo Buonarroti - The Torment of Saint Anthony - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Michelangelo_Buonarroti_-_The_Torment_of_Saint_Anthony_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Michelangelo_Buonarroti_-_The_Torment_of_Saint_Anthony_-_Google_Art_Project.jpg/2925px-Michelangelo_Buonarroti_-_The_Torment_of_Saint_Anthony_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:30:24.073Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:30:24.074Z"
+  }
+]

@@ -1,1 +1,47 @@
-[]
+[
+  {
+    "artist": "James Tissot",
+    "title": "File:James Tissot - Portrait of Mrs Catherine Smith Gill and Two of her Children - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/32/James_Tissot_-_Portrait_of_Mrs_Catherine_Smith_Gill_and_Two_of_her_Children_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/James_Tissot_-_Portrait_of_Mrs_Catherine_Smith_Gill_and_Two_of_her_Children_-_Google_Art_Project.jpg/2663px-James_Tissot_-_Portrait_of_Mrs_Catherine_Smith_Gill_and_Two_of_her_Children_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:27:10.899Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:27:10.900Z"
+  },
+  {
+    "artist": "James Tissot",
+    "title": "File:James Tissot - L'Ambitieuse (Political Woman) - 1909-10 - Albright–Knox Art Gallery.tiff",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0e/James_Tissot_-_L%27Ambitieuse_%28Political_Woman%29_-_1909-10_-_Albright%E2%80%93Knox_Art_Gallery.tiff",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/James_Tissot_-_L%27Ambitieuse_%28Political_Woman%29_-_1909-10_-_Albright%E2%80%93Knox_Art_Gallery.tiff/lossy-page1-2763px-James_Tissot_-_L%27Ambitieuse_%28Political_Woman%29_-_1909-10_-_Albright%E2%80%93Knox_Art_Gallery.tiff.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:27:16.042Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:27:16.043Z"
+  },
+  {
+    "artist": "James Tissot",
+    "title": "File:James Jacques Joseph Tissot - Le départ de l'enfant prodigue - PDUT1453 - Musée des Beaux-Arts de la ville de Paris.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/94/James_Jacques_Joseph_Tissot_-_Le_d%C3%A9part_de_l%27enfant_prodigue_-_PDUT1453_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/James_Jacques_Joseph_Tissot_-_Le_d%C3%A9part_de_l%27enfant_prodigue_-_PDUT1453_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg/4000px-James_Jacques_Joseph_Tissot_-_Le_d%C3%A9part_de_l%27enfant_prodigue_-_PDUT1453_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:27:22.144Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:27:22.144Z"
+  },
+  {
+    "artist": "James Tissot",
+    "title": "File:James Tissot - Study of Kathleen Newton 91 tissot 6585.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c1/James_Tissot_-_Study_of_Kathleen_Newton_91_tissot_6585.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/James_Tissot_-_Study_of_Kathleen_Newton_91_tissot_6585.jpg/2722px-James_Tissot_-_Study_of_Kathleen_Newton_91_tissot_6585.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:27:28.236Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:27:28.237Z"
+  },
+  {
+    "artist": "James Tissot",
+    "title": "File:NantesMATissotMmeSenonnes.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/20/NantesMATissotMmeSenonnes.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/NantesMATissotMmeSenonnes.jpg/3207px-NantesMATissotMmeSenonnes.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:27:33.420Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:27:33.420Z"
+  }
+]

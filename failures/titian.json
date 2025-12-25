@@ -1,1 +1,455 @@
-[]
+[
+  {
+    "artist": "Titian",
+    "title": "File:Ultima Cena (1542-1544) - Tiziano Vecellio.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/88/Ultima_Cena_%281542-1544%29_-_Tiziano_Vecellio.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Ultima_Cena_%281542-1544%29_-_Tiziano_Vecellio.jpg/2386px-Ultima_Cena_%281542-1544%29_-_Tiziano_Vecellio.jpg: 429 Use thumbnail steps listed on https://w.wiki/GHai. Please contact noc@wikimedia.org for further information (a765913)",
+    "timestamp": "2025-12-25T00:07:11.928Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:(Treviso) Portrait of Sperone Speroni by Tiziano Vecellio.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fd/%28Treviso%29_Portrait_of_Sperone_Speroni_by_Tiziano_Vecellio.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/%28Treviso%29_Portrait_of_Sperone_Speroni_by_Tiziano_Vecellio.jpg/3155px-%28Treviso%29_Portrait_of_Sperone_Speroni_by_Tiziano_Vecellio.jpg: 429 Use thumbnail steps listed on https://w.wiki/GHai. Please contact noc@wikimedia.org for further information (a765913)",
+    "timestamp": "2025-12-25T00:07:11.929Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Double portrait of Guidobaldo II della Rovere, Duke of Urbino, and his son, Francesco Maria II (by Tiziano Vecellio, called Titian) – Klesch Collection, London.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/62/Double_portrait_of_Guidobaldo_II_della_Rovere%2C_Duke_of_Urbino%2C_and_his_son%2C_Francesco_Maria_II_%28by_Tiziano_Vecellio%2C_called_Titian%29_%E2%80%93_Klesch_Collection%2C_London.jpg",
+    "error": "Failed to insert art: duplicate key value violates unique constraint \"unique_art_title_artist\"",
+    "timestamp": "2025-12-25T00:07:13.665Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T00:07:13.665Z"
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Tiziano Vecellio (attributed) – Penitent St. Jerome – Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/88/Tiziano_Vecellio_%28attributed%29_%E2%80%93_Penitent_St._Jerome_%E2%80%93_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Tiziano_Vecellio_%28attributed%29_%E2%80%93_Penitent_St._Jerome_%E2%80%93_Google_Art_Project.jpg/2890px-Tiziano_Vecellio_%28attributed%29_%E2%80%93_Penitent_St._Jerome_%E2%80%93_Google_Art_Project.jpg: 429 Use thumbnail steps listed on https://w.wiki/GHai. Please contact noc@wikimedia.org for further information (a765913)",
+    "timestamp": "2025-12-25T00:07:13.675Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Titian - Penitent Magdalene N08404-117-lr-1.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Titian_-_Penitent_Magdalene_N08404-117-lr-1.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/d/d6/Titian_-_Penitent_Magdalene_N08404-117-lr-1.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.349Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Scuola Grande di San Rocco (Venice) - Collection - Annunciazione del Tiziano.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Scuola_Grande_di_San_Rocco_%28Venice%29_-_Collection_-_Annunciazione_del_Tiziano.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Scuola_Grande_di_San_Rocco_%28Venice%29_-_Collection_-_Annunciazione_del_Tiziano.jpg/4000px-Scuola_Grande_di_San_Rocco_%28Venice%29_-_Collection_-_Annunciazione_del_Tiziano.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.357Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:(Venice) Biblioteca Nazionale Marciana - Interior - Wisdom by Titien.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/92/%28Venice%29_Biblioteca_Nazionale_Marciana_-_Interior_-_Wisdom_by_Titien.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/%28Venice%29_Biblioteca_Nazionale_Marciana_-_Interior_-_Wisdom_by_Titien.jpg/4000px-%28Venice%29_Biblioteca_Nazionale_Marciana_-_Interior_-_Wisdom_by_Titien.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.369Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Titian (Tiziano Vecellio), Portrait of a Lady and her Daughter.png",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Titian_%28Tiziano_Vecellio%29%2C_Portrait_of_a_Lady_and_her_Daughter.png",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/e/e2/Titian_%28Tiziano_Vecellio%29%2C_Portrait_of_a_Lady_and_her_Daughter.png: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.376Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Bemberg Fondation Toulouse - Portrait d'Alphonse dEste - Titien Inv.1053.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/14/Bemberg_Fondation_Toulouse_-_Portrait_d%27Alphonse_dEste_-_Titien_Inv.1053.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Bemberg_Fondation_Toulouse_-_Portrait_d%27Alphonse_dEste_-_Titien_Inv.1053.jpg/3313px-Bemberg_Fondation_Toulouse_-_Portrait_d%27Alphonse_dEste_-_Titien_Inv.1053.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.383Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Titian – Portrait of Charles V – Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/51/Titian_%E2%80%93_Portrait_of_Charles_V_%E2%80%93_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Titian_%E2%80%93_Portrait_of_Charles_V_%E2%80%93_Google_Art_Project.jpg/2819px-Titian_%E2%80%93_Portrait_of_Charles_V_%E2%80%93_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.386Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Titian - An Idyll (Harvard Art Museums).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/30/Titian_-_An_Idyll_%28Harvard_Art_Museums%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Titian_-_An_Idyll_%28Harvard_Art_Museums%29.jpg/3883px-Titian_-_An_Idyll_%28Harvard_Art_Museums%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.401Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T00:07:14.401Z"
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Madonna dell'Orto (Venice) - Chapel Vendramin - Arcangel Raphael and Tobias by Titien.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Madonna_dell%27Orto_%28Venice%29_-_Chapel_Vendramin_-_Arcangel_Raphael_and_Tobias_by_Titien.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Madonna_dell%27Orto_%28Venice%29_-_Chapel_Vendramin_-_Arcangel_Raphael_and_Tobias_by_Titien.jpg/2646px-Madonna_dell%27Orto_%28Venice%29_-_Chapel_Vendramin_-_Arcangel_Raphael_and_Tobias_by_Titien.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.404Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Titian - Martyrdom of St Lawrence - WGA22837.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Titian_-_Martyrdom_of_St_Lawrence_-_WGA22837.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/1/1c/Titian_-_Martyrdom_of_St_Lawrence_-_WGA22837.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.408Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Titian, Pope Paul III, 16th century, Toledo Cathedral – unframed.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Titian%2C_Pope_Paul_III%2C_16th_century%2C_Toledo_Cathedral_%E2%80%93_unframed.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/3/3d/Titian%2C_Pope_Paul_III%2C_16th_century%2C_Toledo_Cathedral_%E2%80%93_unframed.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.416Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Titian and his workshop - Last Supper, 1557-64.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Titian_and_his_workshop_-_Last_Supper%2C_1557-64.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Titian_and_his_workshop_-_Last_Supper%2C_1557-64.jpg/4000px-Titian_and_his_workshop_-_Last_Supper%2C_1557-64.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.420Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Le Titien (attribué à) – Portrait de Nicolas Perrenot de Granvelle – Musée du Temps, Besançon.jpeg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Le_Titien_%28attribu%C3%A9_%C3%A0%29_%E2%80%93_Portrait_de_Nicolas_Perrenot_de_Granvelle_%E2%80%93_Mus%C3%A9e_du_Temps%2C_Besan%C3%A7on.jpeg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Le_Titien_%28attribu%C3%A9_%C3%A0%29_%E2%80%93_Portrait_de_Nicolas_Perrenot_de_Granvelle_%E2%80%93_Mus%C3%A9e_du_Temps%2C_Besan%C3%A7on.jpeg/3378px-Le_Titien_%28attribu%C3%A9_%C3%A0%29_%E2%80%93_Portrait_de_Nicolas_Perrenot_de_Granvelle_%E2%80%93_Mus%C3%A9e_du_Temps%2C_Besan%C3%A7on.jpeg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.425Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Titian and his workshop - Last Supper - 1560-1580.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Titian_and_his_workshop_-_Last_Supper_-_1560-1580.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/c/cc/Titian_and_his_workshop_-_Last_Supper_-_1560-1580.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.430Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Tiziano, cristo e l'adultera, glasgow, figura tagliata via.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Tiziano%2C_cristo_e_l%27adultera%2C_glasgow%2C_figura_tagliata_via.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/f/fb/Tiziano%2C_cristo_e_l%27adultera%2C_glasgow%2C_figura_tagliata_via.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.433Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Titian - The Triumph of Love, c. 1543 - 1546.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Titian_-_The_Triumph_of_Love%2C_c._1543_-_1546.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Titian_-_The_Triumph_of_Love%2C_c._1543_-_1546.jpg/4000px-Titian_-_The_Triumph_of_Love%2C_c._1543_-_1546.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.444Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Titiaan - Portret van een Venetiaanse admiraal, vermoedelijk Francesco Duodo - RH.LBI.2020.002 - Rubenshuis.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Titiaan_-_Portret_van_een_Venetiaanse_admiraal%2C_vermoedelijk_Francesco_Duodo_-_RH.LBI.2020.002_-_Rubenshuis.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Titiaan_-_Portret_van_een_Venetiaanse_admiraal%2C_vermoedelijk_Francesco_Duodo_-_RH.LBI.2020.002_-_Rubenshuis.jpg/3425px-Titiaan_-_Portret_van_een_Venetiaanse_admiraal%2C_vermoedelijk_Francesco_Duodo_-_RH.LBI.2020.002_-_Rubenshuis.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.452Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T00:07:14.452Z"
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Tiziano Vecellio – Adorazione dei Magi – Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/46/Tiziano_Vecellio_%E2%80%93_Adorazione_dei_Magi_%E2%80%93_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Tiziano_Vecellio_%E2%80%93_Adorazione_dei_Magi_%E2%80%93_Google_Art_Project.jpg/4000px-Tiziano_Vecellio_%E2%80%93_Adorazione_dei_Magi_%E2%80%93_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.463Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Tiziano Vecellio - Posible retrato de Jan van Haanen - 3424 - Museo Soumaya.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Tiziano_Vecellio_-_Posible_retrato_de_Jan_van_Haanen_-_3424_-_Museo_Soumaya.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/8/8e/Tiziano_Vecellio_-_Posible_retrato_de_Jan_van_Haanen_-_3424_-_Museo_Soumaya.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.464Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Attribuito a Tiziano Vecellio - Ritratto di Ippolito Riminaldi - 694 - Accademia di San Luca.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Attribuito_a_Tiziano_Vecellio_-_Ritratto_di_Ippolito_Riminaldi_-_694_-_Accademia_di_San_Luca.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/b/b4/Attribuito_a_Tiziano_Vecellio_-_Ritratto_di_Ippolito_Riminaldi_-_694_-_Accademia_di_San_Luca.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.470Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Tiziano Vecellio - The Adoration of the Child - GL.60.17.41 - North Carolina Museum of Art.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Tiziano_Vecellio_-_The_Adoration_of_the_Child_-_GL.60.17.41_-_North_Carolina_Museum_of_Art.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/3/3a/Tiziano_Vecellio_-_The_Adoration_of_the_Child_-_GL.60.17.41_-_North_Carolina_Museum_of_Art.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.482Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T00:07:14.482Z"
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Gabriele Giolito de' Ferrari, by Titian.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/16/Gabriele_Giolito_de%27_Ferrari%2C_by_Titian.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/1/16/Gabriele_Giolito_de%27_Ferrari%2C_by_Titian.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.487Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Cristo en la cruz con tres ángeles, pintura de Tiziano.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Cristo_en_la_cruz_con_tres_%C3%A1ngeles%2C_pintura_de_Tiziano.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/e/e7/Cristo_en_la_cruz_con_tres_%C3%A1ngeles%2C_pintura_de_Tiziano.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.497Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Titian – Portrait of Pope Paul III with his Grandsons – Google Art Project – edited.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Titian_%E2%80%93_Portrait_of_Pope_Paul_III_with_his_Grandsons_%E2%80%93_Google_Art_Project_%E2%80%93_edited.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Titian_%E2%80%93_Portrait_of_Pope_Paul_III_with_his_Grandsons_%E2%80%93_Google_Art_Project_%E2%80%93_edited.jpg/3477px-Titian_%E2%80%93_Portrait_of_Pope_Paul_III_with_his_Grandsons_%E2%80%93_Google_Art_Project_%E2%80%93_edited.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.498Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Frari (Venice) nave left - Altar of Madona di Ca'Pesaro.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Frari_%28Venice%29_nave_left_-_Altar_of_Madona_di_Ca%27Pesaro.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Frari_%28Venice%29_nave_left_-_Altar_of_Madona_di_Ca%27Pesaro.jpg/2559px-Frari_%28Venice%29_nave_left_-_Altar_of_Madona_di_Ca%27Pesaro.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.499Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Tizian 079.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/96/Tizian_079.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/9/96/Tizian_079.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.512Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Duomo (Verona) - Cartolari-Nichesola Chapel - L'assunzione del Tiziano.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/19/Duomo_%28Verona%29_-_Cartolari-Nichesola_Chapel_-_L%27assunzione_del_Tiziano.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Duomo_%28Verona%29_-_Cartolari-Nichesola_Chapel_-_L%27assunzione_del_Tiziano.jpg/2698px-Duomo_%28Verona%29_-_Cartolari-Nichesola_Chapel_-_L%27assunzione_del_Tiziano.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.516Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Accademia - Pietà by Titian.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/59/Accademia_-_Piet%C3%A0_by_Titian.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Accademia_-_Piet%C3%A0_by_Titian.jpg/3953px-Accademia_-_Piet%C3%A0_by_Titian.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.519Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Tiziano, cristo e l'adultera, glasgow.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/10/Tiziano%2C_cristo_e_l%27adultera%2C_glasgow.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/1/10/Tiziano%2C_cristo_e_l%27adultera%2C_glasgow.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.530Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Tiziano Vecellio, gen. Tizian (und Werkstatt) - Maria mit Kind, Johannes dem Täufer und einem Stifter - 977 - Bavarian State Painting Collections.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/da/Tiziano_Vecellio%2C_gen._Tizian_%28und_Werkstatt%29_-_Maria_mit_Kind%2C_Johannes_dem_T%C3%A4ufer_und_einem_Stifter_-_977_-_Bavarian_State_Painting_Collections.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/d/da/Tiziano_Vecellio%2C_gen._Tizian_%28und_Werkstatt%29_-_Maria_mit_Kind%2C_Johannes_dem_T%C3%A4ufer_und_einem_Stifter_-_977_-_Bavarian_State_Painting_Collections.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.531Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Tiziano, nascita di adone 01.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Tiziano%2C_nascita_di_adone_01.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/2/2d/Tiziano%2C_nascita_di_adone_01.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.534Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Titian - Portrait of Baldassare Castiglione, c.1536-1538.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Titian_-_Portrait_of_Baldassare_Castiglione%2C_c.1536-1538.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/c/c1/Titian_-_Portrait_of_Baldassare_Castiglione%2C_c.1536-1538.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.550Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Tiziano, ritratto indianapolis.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/99/Tiziano%2C_ritratto_indianapolis.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Tiziano%2C_ritratto_indianapolis.jpg/3081px-Tiziano%2C_ritratto_indianapolis.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.551Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Titian - The Legend of Polydorus - 1505-1510.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/da/Titian_-_The_Legend_of_Polydorus_-_1505-1510.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/d/da/Titian_-_The_Legend_of_Polydorus_-_1505-1510.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.566Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Tizian 058.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Tizian_058.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/c/cf/Tizian_058.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.568Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Titian – Portrait of a Young Woman – Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Titian_%E2%80%93_Portrait_of_a_Young_Woman_%E2%80%93_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Titian_%E2%80%93_Portrait_of_a_Young_Woman_%E2%80%93_Google_Art_Project.jpg/3493px-Titian_%E2%80%93_Portrait_of_a_Young_Woman_%E2%80%93_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.592Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Accademia - St John the Baptist by Titian Cat314.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/88/Accademia_-_St_John_the_Baptist_by_Titian_Cat314.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Accademia_-_St_John_the_Baptist_by_Titian_Cat314.jpg/2694px-Accademia_-_St_John_the_Baptist_by_Titian_Cat314.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.593Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Tiziano Vecellio, gen. Tizian (und Werkstatt) - Bildnis des Don Pedro Álvarez de Toledo - WAF 1085 - Bavarian State Painting Collections.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/84/Tiziano_Vecellio%2C_gen._Tizian_%28und_Werkstatt%29_-_Bildnis_des_Don_Pedro_%C3%81lvarez_de_Toledo_-_WAF_1085_-_Bavarian_State_Painting_Collections.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/8/84/Tiziano_Vecellio%2C_gen._Tizian_%28und_Werkstatt%29_-_Bildnis_des_Don_Pedro_%C3%81lvarez_de_Toledo_-_WAF_1085_-_Bavarian_State_Painting_Collections.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.613Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Tiziano Vecellio - Doge Antonio Grimani inginocchiato davanti alla fede - Palazzo ducale.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Tiziano_Vecellio_-_Doge_Antonio_Grimani_inginocchiato_davanti_alla_fede_-_Palazzo_ducale.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Tiziano_Vecellio_-_Doge_Antonio_Grimani_inginocchiato_davanti_alla_fede_-_Palazzo_ducale.jpg/4000px-Tiziano_Vecellio_-_Doge_Antonio_Grimani_inginocchiato_davanti_alla_fede_-_Palazzo_ducale.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.616Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Tiziano Vecellio, gen. Tizian - Ecce homo - 5189 - Bavarian State Painting Collections.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Tiziano_Vecellio%2C_gen._Tizian_-_Ecce_homo_-_5189_-_Bavarian_State_Painting_Collections.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/b/bb/Tiziano_Vecellio%2C_gen._Tizian_-_Ecce_homo_-_5189_-_Bavarian_State_Painting_Collections.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.629Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Tiziano Vecellio, gen. Tizian - Himmelfahrt der Maria - 5059 - Bavarian State Painting Collections.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/14/Tiziano_Vecellio%2C_gen._Tizian_-_Himmelfahrt_der_Maria_-_5059_-_Bavarian_State_Painting_Collections.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/1/14/Tiziano_Vecellio%2C_gen._Tizian_-_Himmelfahrt_der_Maria_-_5059_-_Bavarian_State_Painting_Collections.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.633Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Tiziano Vecellio, gen. Tizian - Venus und Cupido mit Spiegel - 5238 - Bavarian State Painting Collections.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/30/Tiziano_Vecellio%2C_gen._Tizian_-_Venus_und_Cupido_mit_Spiegel_-_5238_-_Bavarian_State_Painting_Collections.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/3/30/Tiziano_Vecellio%2C_gen._Tizian_-_Venus_und_Cupido_mit_Spiegel_-_5238_-_Bavarian_State_Painting_Collections.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.667Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Tiziano Vecellio, gen. Tizian - König Franz I. von Frankreich - 2524 - Bavarian State Painting Collections.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/69/Tiziano_Vecellio%2C_gen._Tizian_-_K%C3%B6nig_Franz_I._von_Frankreich_-_2524_-_Bavarian_State_Painting_Collections.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/6/69/Tiziano_Vecellio%2C_gen._Tizian_-_K%C3%B6nig_Franz_I._von_Frankreich_-_2524_-_Bavarian_State_Painting_Collections.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.676Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Titian - Man in Military Costume - WGA22972.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Titian_-_Man_in_Military_Costume_-_WGA22972.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Titian_-_Man_in_Military_Costume_-_WGA22972.jpg/2738px-Titian_-_Man_in_Military_Costume_-_WGA22972.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.689Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Titian – Portrait of Marcantonio Trevisan, Doge of Venice – Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/24/Titian_%E2%80%93_Portrait_of_Marcantonio_Trevisan%2C_Doge_of_Venice_%E2%80%93_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Titian_%E2%80%93_Portrait_of_Marcantonio_Trevisan%2C_Doge_of_Venice_%E2%80%93_Google_Art_Project.jpg/3455px-Titian_%E2%80%93_Portrait_of_Marcantonio_Trevisan%2C_Doge_of_Venice_%E2%80%93_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.697Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Tiziano Vecellio – Uomo con Armatura – Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Tiziano_Vecellio_%E2%80%93_Uomo_con_Armatura_%E2%80%93_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Tiziano_Vecellio_%E2%80%93_Uomo_con_Armatura_%E2%80%93_Google_Art_Project.jpg/3586px-Tiziano_Vecellio_%E2%80%93_Uomo_con_Armatura_%E2%80%93_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.712Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Tizian 011.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/78/Tizian_011.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/7/78/Tizian_011.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.735Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T00:07:14.735Z"
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Pier Luigi Farnese di Tiziano.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Pier_Luigi_Farnese_di_Tiziano.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/b/b5/Pier_Luigi_Farnese_di_Tiziano.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.751Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Titian and workshop - Girl Before the Mirror - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Titian_and_workshop_-_Girl_Before_the_Mirror_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Titian_and_workshop_-_Girl_Before_the_Mirror_-_Google_Art_Project.jpg/3135px-Titian_and_workshop_-_Girl_Before_the_Mirror_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.755Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Tiziano Vecellio (1480-1576) e bottega - La Maddalena - 208 - Pinacoteca Ambrosiana.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Tiziano_Vecellio_%281480-1576%29_e_bottega_-_La_Maddalena_-_208_-_Pinacoteca_Ambrosiana.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Tiziano_Vecellio_%281480-1576%29_e_bottega_-_La_Maddalena_-_208_-_Pinacoteca_Ambrosiana.jpg/3240px-Tiziano_Vecellio_%281480-1576%29_e_bottega_-_La_Maddalena_-_208_-_Pinacoteca_Ambrosiana.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.770Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Secretario - Tiziano.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/16/Secretario_-_Tiziano.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/1/16/Secretario_-_Tiziano.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.773Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:La Madone et l'Enfant dans un paysage du soir Titien.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6e/La_Madone_et_l%27Enfant_dans_un_paysage_du_soir_Titien.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/6/6e/La_Madone_et_l%27Enfant_dans_un_paysage_du_soir_Titien.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:07:14.788Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Titian",
+    "title": "File:Portrait of Pope Paul III Farnese (by Titian and studio) - Cobbe Collection.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Portrait_of_Pope_Paul_III_Farnese_%28by_Titian_and_studio%29_-_Cobbe_Collection.jpg",
+    "error": "Failed to insert art: duplicate key value violates unique constraint \"unique_art_title_artist\"",
+    "timestamp": "2025-12-25T00:07:15.095Z",
+    "retryCount": 0
+  }
+]

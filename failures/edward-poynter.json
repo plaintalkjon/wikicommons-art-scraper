@@ -1,0 +1,11 @@
+[
+  {
+    "artist": "Edward Poynter",
+    "title": "File:Edward john poynter, la grotta delle ninge della tempesta, 1902 (norfolk, hermitage museum and gardens) 01.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/18/Edward_john_poynter%2C_la_grotta_delle_ninge_della_tempesta%2C_1902_%28norfolk%2C_hermitage_museum_and_gardens%29_01.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Edward_john_poynter%2C_la_grotta_delle_ninge_della_tempesta%2C_1902_%28norfolk%2C_hermitage_museum_and_gardens%29_01.jpg/3287px-Edward_john_poynter%2C_la_grotta_delle_ninge_della_tempesta%2C_1902_%28norfolk%2C_hermitage_museum_and_gardens%29_01.jpg: 429 Use thumbnail steps listed on https://w.wiki/GHai. Please contact noc@wikimedia.org for further information (a765913)",
+    "timestamp": "2025-12-25T10:56:03.811Z",
+    "retryCount": 3,
+    "lastRetry": "2025-12-25T10:56:03.812Z"
+  }
+]

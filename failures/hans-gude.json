@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "artist": "Hans Gude",
+    "title": "File:Hans Gude - Air Study - NG.M.04248 - National Museum of Art, Architecture and Design.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Hans_Gude_-_Air_Study_-_NG.M.04248_-_National_Museum_of_Art%2C_Architecture_and_Design.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Hans_Gude_-_Air_Study_-_NG.M.04248_-_National_Museum_of_Art%2C_Architecture_and_Design.jpg/2548px-Hans_Gude_-_Air_Study_-_NG.M.04248_-_National_Museum_of_Art%2C_Architecture_and_Design.jpg: 429 Use thumbnail steps listed on https://w.wiki/GHai. Please contact noc@wikimedia.org for further information (a765913)",
+    "timestamp": "2025-12-25T10:18:47.931Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:18:47.932Z"
+  }
+]

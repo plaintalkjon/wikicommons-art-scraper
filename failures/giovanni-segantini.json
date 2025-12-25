@@ -1,0 +1,20 @@
+[
+  {
+    "artist": "Giovanni Segantini",
+    "title": "File:Giovanni Segantini - High Noon in the Alps - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Giovanni_Segantini_-_High_Noon_in_the_Alps_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Giovanni_Segantini_-_High_Noon_in_the_Alps_-_Google_Art_Project.jpg/3728px-Giovanni_Segantini_-_High_Noon_in_the_Alps_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:14:57.582Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:14:57.582Z"
+  },
+  {
+    "artist": "Giovanni Segantini",
+    "title": "File:Giovanni Segantini - The Angel of Life - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Giovanni_Segantini_-_The_Angel_of_Life_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Giovanni_Segantini_-_The_Angel_of_Life_-_Google_Art_Project.jpg/3237px-Giovanni_Segantini_-_The_Angel_of_Life_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:15:02.727Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:15:02.727Z"
+  }
+]

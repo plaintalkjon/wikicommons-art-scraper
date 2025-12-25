@@ -1,0 +1,380 @@
+[
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Goya, il sogno, 1800 ca.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Goya%2C_il_sogno%2C_1800_ca.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Goya%2C_il_sogno%2C_1800_ca.jpg/4000px-Goya%2C_il_sogno%2C_1800_ca.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:03:50.583Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:03:50.584Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Procesión en Valencia por Francisco de Goya.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/db/Procesi%C3%B3n_en_Valencia_por_Francisco_de_Goya.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/d/db/Procesi%C3%B3n_en_Valencia_por_Francisco_de_Goya.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:03:55.784Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:03:55.784Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Incendio de un hospital - Francisco de Goya.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/af/Incendio_de_un_hospital_-_Francisco_de_Goya.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/a/af/Incendio_de_un_hospital_-_Francisco_de_Goya.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:04:00.951Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:04:00.952Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Students from the Pestalozzian Academy (fragment), by Francisco José de Goya y Lucientes, Spanish, c. 1806-1807, oil on canvas - Meadows Museum - Southern Methodist University - DSC05331.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Students_from_the_Pestalozzian_Academy_%28fragment%29%2C_by_Francisco_Jos%C3%A9_de_Goya_y_Lucientes%2C_Spanish%2C_c._1806-1807%2C_oil_on_canvas_-_Meadows_Museum_-_Southern_Methodist_University_-_DSC05331.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Students_from_the_Pestalozzian_Academy_%28fragment%29%2C_by_Francisco_Jos%C3%A9_de_Goya_y_Lucientes%2C_Spanish%2C_c._1806-1807%2C_oil_on_canvas_-_Meadows_Museum_-_Southern_Methodist_University_-_DSC05331.jpg/4000px-thumbnail.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:04:06.121Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:04:06.121Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Museo Estevez Rosario - Goya.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Museo_Estevez_Rosario_-_Goya.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/3/3d/Museo_Estevez_Rosario_-_Goya.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:04:11.269Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:04:11.269Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Oso hormiguero Goya.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/25/Oso_hormiguero_Goya.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/2/25/Oso_hormiguero_Goya.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:04:16.645Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:04:16.646Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Confesiones en la cárcel, Francisco de Goya.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Confesiones_en_la_c%C3%A1rcel%2C_Francisco_de_Goya.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/3/3c/Confesiones_en_la_c%C3%A1rcel%2C_Francisco_de_Goya.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:04:21.802Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:04:21.802Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Francisco José de Goya y Lucientes - Portrait of Félix Colón de Larriátegui - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/27/Francisco_Jos%C3%A9_de_Goya_y_Lucientes_-_Portrait_of_F%C3%A9lix_Col%C3%B3n_de_Larri%C3%A1tegui_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Francisco_Jos%C3%A9_de_Goya_y_Lucientes_-_Portrait_of_F%C3%A9lix_Col%C3%B3n_de_Larri%C3%A1tegui_-_Google_Art_Project.jpg/2995px-Francisco_Jos%C3%A9_de_Goya_y_Lucientes_-_Portrait_of_F%C3%A9lix_Col%C3%B3n_de_Larri%C3%A1tegui_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:04:27.707Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:04:27.707Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Francisco de Goya - Manuel Quijano - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/Francisco_de_Goya_-_Manuel_Quijano_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Francisco_de_Goya_-_Manuel_Quijano_-_Google_Art_Project.jpg/2590px-Francisco_de_Goya_-_Manuel_Quijano_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:04:32.867Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:04:32.867Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Francisco de Goya - Don Vicente Isabel Osorio de Moscoso y Álvarez de Toledo, Conde de Trastámara - 2016.78 - Museum of Fine Arts, Houston.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/75/Francisco_de_Goya_-_Don_Vicente_Isabel_Osorio_de_Moscoso_y_%C3%81lvarez_de_Toledo%2C_Conde_de_Trast%C3%A1mara_-_2016.78_-_Museum_of_Fine_Arts%2C_Houston.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/7/75/Francisco_de_Goya_-_Don_Vicente_Isabel_Osorio_de_Moscoso_y_%C3%81lvarez_de_Toledo%2C_Conde_de_Trast%C3%A1mara_-_2016.78_-_Museum_of_Fine_Arts%2C_Houston.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:04:38.029Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:04:38.029Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Carlos III de España, de Francisco de Goya (Banco de España).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/af/Carlos_III_de_Espa%C3%B1a%2C_de_Francisco_de_Goya_%28Banco_de_Espa%C3%B1a%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Carlos_III_de_Espa%C3%B1a%2C_de_Francisco_de_Goya_%28Banco_de_Espa%C3%B1a%29.jpg/2259px-Carlos_III_de_Espa%C3%B1a%2C_de_Francisco_de_Goya_%28Banco_de_Espa%C3%B1a%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:04:43.225Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:04:43.225Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Vicente Joaquín Osorio de Moscoso, conde de Altamira by Goya.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Vicente_Joaqu%C3%ADn_Osorio_de_Moscoso%2C_conde_de_Altamira_by_Goya.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Vicente_Joaqu%C3%ADn_Osorio_de_Moscoso%2C_conde_de_Altamira_by_Goya.jpg/2408px-Vicente_Joaqu%C3%ADn_Osorio_de_Moscoso%2C_conde_de_Altamira_by_Goya.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:04:48.372Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:04:48.373Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:José de Toro y Zambrano (Banco de España).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Jos%C3%A9_de_Toro_y_Zambrano_%28Banco_de_Espa%C3%B1a%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Jos%C3%A9_de_Toro_y_Zambrano_%28Banco_de_Espa%C3%B1a%29.jpg/2684px-Jos%C3%A9_de_Toro_y_Zambrano_%28Banco_de_Espa%C3%B1a%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:04:53.572Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:04:53.575Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Goya - Miguel Fernández Durán, marqués de Tolosa.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Goya_-_Miguel_Fern%C3%A1ndez_Dur%C3%A1n%2C_marqu%C3%A9s_de_Tolosa.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Goya_-_Miguel_Fern%C3%A1ndez_Dur%C3%A1n%2C_marqu%C3%A9s_de_Tolosa.jpg/2748px-Goya_-_Miguel_Fern%C3%A1ndez_Dur%C3%A1n%2C_marqu%C3%A9s_de_Tolosa.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:04:58.718Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:04:58.718Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Goya - Francisco Javier de Larumbe.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/df/Goya_-_Francisco_Javier_de_Larumbe.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Goya_-_Francisco_Javier_de_Larumbe.jpg/2701px-Goya_-_Francisco_Javier_de_Larumbe.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:05:03.887Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:05:03.887Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Miguel de Múzquiz y Goyeneche, I conde de Gausa y I marqués de Villar de Ladrón.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/07/Miguel_de_M%C3%BAzquiz_y_Goyeneche%2C_I_conde_de_Gausa_y_I_marqu%C3%A9s_de_Villar_de_Ladr%C3%B3n.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Miguel_de_M%C3%BAzquiz_y_Goyeneche%2C_I_conde_de_Gausa_y_I_marqu%C3%A9s_de_Villar_de_Ladr%C3%B3n.jpg/2327px-Miguel_de_M%C3%BAzquiz_y_Goyeneche%2C_I_conde_de_Gausa_y_I_marqu%C3%A9s_de_Villar_de_Ladr%C3%B3n.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:05:09.052Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:05:09.052Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Francisco Goya - Portrait of the Duke of Wellington.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Francisco_Goya_-_Portrait_of_the_Duke_of_Wellington.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Francisco_Goya_-_Portrait_of_the_Duke_of_Wellington.jpg/3224px-Francisco_Goya_-_Portrait_of_the_Duke_of_Wellington.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:05:14.196Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:05:14.196Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:(Agen) Autorretrato de Goya (1783) - Musée des Beaux-Arts d'Agen.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/71/%28Agen%29_Autorretrato_de_Goya_%281783%29_-_Mus%C3%A9e_des_Beaux-Arts_d%27Agen.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/%28Agen%29_Autorretrato_de_Goya_%281783%29_-_Mus%C3%A9e_des_Beaux-Arts_d%27Agen.jpg/2779px-%28Agen%29_Autorretrato_de_Goya_%281783%29_-_Mus%C3%A9e_des_Beaux-Arts_d%27Agen.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:05:19.341Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:05:19.341Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:(Castres) Autoportrait aux lunettes, Francisco de Goya y Lucientes, Musée Goya.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0f/%28Castres%29_Autoportrait_aux_lunettes%2C_Francisco_de_Goya_y_Lucientes%2C_Mus%C3%A9e_Goya.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/%28Castres%29_Autoportrait_aux_lunettes%2C_Francisco_de_Goya_y_Lucientes%2C_Mus%C3%A9e_Goya.jpg/3071px-%28Castres%29_Autoportrait_aux_lunettes%2C_Francisco_de_Goya_y_Lucientes%2C_Mus%C3%A9e_Goya.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:05:24.487Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:05:24.487Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Goya - María Teresa de Borbón y Vallabriga, later Condesa de Chinchón.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Goya_-_Mar%C3%ADa_Teresa_de_Borb%C3%B3n_y_Vallabriga%2C_later_Condesa_de_Chinch%C3%B3n.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Goya_-_Mar%C3%ADa_Teresa_de_Borb%C3%B3n_y_Vallabriga%2C_later_Condesa_de_Chinch%C3%B3n.jpg/3458px-Goya_-_Mar%C3%ADa_Teresa_de_Borb%C3%B3n_y_Vallabriga%2C_later_Condesa_de_Chinch%C3%B3n.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:05:29.637Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:05:29.637Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Francisco de Goya y Lucientes - Portrait of Senora Ceán Bermudez - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/70/Francisco_de_Goya_y_Lucientes_-_Portrait_of_Senora_Ce%C3%A1n_Bermudez_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Francisco_de_Goya_y_Lucientes_-_Portrait_of_Senora_Ce%C3%A1n_Bermudez_-_Google_Art_Project.jpg/2760px-Francisco_de_Goya_y_Lucientes_-_Portrait_of_Senora_Ce%C3%A1n_Bermudez_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:05:34.827Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:05:34.827Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Francisco de Goya - Portrait of Martín Zapater - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Francisco_de_Goya_-_Portrait_of_Mart%C3%ADn_Zapater_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Francisco_de_Goya_-_Portrait_of_Mart%C3%ADn_Zapater_-_Google_Art_Project.jpg/3123px-Francisco_de_Goya_-_Portrait_of_Mart%C3%ADn_Zapater_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:05:40.013Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:05:40.014Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Francisco de Goya - Portrait of Jacques Galos - BF5 - Barnes Foundation.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Francisco_de_Goya_-_Portrait_of_Jacques_Galos_-_BF5_-_Barnes_Foundation.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Francisco_de_Goya_-_Portrait_of_Jacques_Galos_-_BF5_-_Barnes_Foundation.jpg/3342px-Francisco_de_Goya_-_Portrait_of_Jacques_Galos_-_BF5_-_Barnes_Foundation.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:05:45.160Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:05:45.160Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Goya - José Moñino y Redondo, I conde de Floridablanca.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Goya_-_Jos%C3%A9_Mo%C3%B1ino_y_Redondo%2C_I_conde_de_Floridablanca.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Goya_-_Jos%C3%A9_Mo%C3%B1ino_y_Redondo%2C_I_conde_de_Floridablanca.jpg/2512px-Goya_-_Jos%C3%A9_Mo%C3%B1ino_y_Redondo%2C_I_conde_de_Floridablanca.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:05:50.319Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:05:50.319Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:D. Jose Duaso y Latre.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/D._Jose_Duaso_y_Latre.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/D._Jose_Duaso_y_Latre.jpg/3172px-D._Jose_Duaso_y_Latre.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:05:55.465Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:05:55.465Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Maria Martinez de Puga Goya 1824.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Maria_Martinez_de_Puga_Goya_1824.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Maria_Martinez_de_Puga_Goya_1824.jpg/2934px-Maria_Martinez_de_Puga_Goya_1824.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:06:00.647Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:06:00.648Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Portret van Don Ramón Satué Rijksmuseum SK-A-2963.jpeg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/48/Portret_van_Don_Ram%C3%B3n_Satu%C3%A9_Rijksmuseum_SK-A-2963.jpeg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Portret_van_Don_Ram%C3%B3n_Satu%C3%A9_Rijksmuseum_SK-A-2963.jpeg/3147px-Portret_van_Don_Ram%C3%B3n_Satu%C3%A9_Rijksmuseum_SK-A-2963.jpeg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:06:05.797Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:06:05.798Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Goya - Bartolomé Sureda y Miserol.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/af/Goya_-_Bartolom%C3%A9_Sureda_y_Miserol.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Goya_-_Bartolom%C3%A9_Sureda_y_Miserol.jpg/2664px-Goya_-_Bartolom%C3%A9_Sureda_y_Miserol.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:06:10.976Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:06:10.977Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Francisco José de Goya y Lucientes (Francisco de Goya) (Spanish - Portrait of the Marquesa de Santiago - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Francisco_Jos%C3%A9_de_Goya_y_Lucientes_%28Francisco_de_Goya%29_%28Spanish_-_Portrait_of_the_Marquesa_de_Santiago_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Francisco_Jos%C3%A9_de_Goya_y_Lucientes_%28Francisco_de_Goya%29_%28Spanish_-_Portrait_of_the_Marquesa_de_Santiago_-_Google_Art_Project.jpg/2403px-Francisco_Jos%C3%A9_de_Goya_y_Lucientes_%28Francisco_de_Goya%29_%28Spanish_-_Portrait_of_the_Marquesa_de_Santiago_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:06:16.130Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:06:16.130Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Francisco de Goya - Un Oficial, c.1804 (Frick Collection).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/10/Francisco_de_Goya_-_Un_Oficial%2C_c.1804_%28Frick_Collection%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Francisco_de_Goya_-_Un_Oficial%2C_c.1804_%28Frick_Collection%29.jpg/3024px-Francisco_de_Goya_-_Un_Oficial%2C_c.1804_%28Frick_Collection%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:06:21.322Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:06:21.322Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Augustin Estève (copia da Francisco Goya) - Ritratto di Maria Luisa di Parma.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Augustin_Est%C3%A8ve_%28copia_da_Francisco_Goya%29_-_Ritratto_di_Maria_Luisa_di_Parma.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Augustin_Est%C3%A8ve_%28copia_da_Francisco_Goya%29_-_Ritratto_di_Maria_Luisa_di_Parma.jpg/2429px-Augustin_Est%C3%A8ve_%28copia_da_Francisco_Goya%29_-_Ritratto_di_Maria_Luisa_di_Parma.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:06:26.469Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:06:26.469Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:El paseo de Andalucía.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6f/El_paseo_de_Andaluc%C3%ADa.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/6/6f/El_paseo_de_Andaluc%C3%ADa.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:06:31.618Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:06:31.618Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Portrait of Doña Isabel de Porcel by Francisco Goya.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/64/Portrait_of_Do%C3%B1a_Isabel_de_Porcel_by_Francisco_Goya.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Portrait_of_Do%C3%B1a_Isabel_de_Porcel_by_Francisco_Goya.jpg/2644px-Portrait_of_Do%C3%B1a_Isabel_de_Porcel_by_Francisco_Goya.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:06:36.762Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:06:36.763Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Don Manuel Osorio Manrique de Zúñiga.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/83/Don_Manuel_Osorio_Manrique_de_Z%C3%BA%C3%B1iga.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Don_Manuel_Osorio_Manrique_de_Z%C3%BA%C3%B1iga.jpg/2951px-Don_Manuel_Osorio_Manrique_de_Z%C3%BA%C3%B1iga.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:06:41.910Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:06:41.910Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Luis de Etruria.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Luis_de_Etruria.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Luis_de_Etruria.jpg/3217px-Luis_de_Etruria.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:06:47.069Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:06:47.069Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Francisco de Goya - Portrait of Don Juan Antonio Cuervo - 1943.90 - Cleveland Museum of Art.tiff",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Francisco_de_Goya_-_Portrait_of_Don_Juan_Antonio_Cuervo_-_1943.90_-_Cleveland_Museum_of_Art.tiff",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Francisco_de_Goya_-_Portrait_of_Don_Juan_Antonio_Cuervo_-_1943.90_-_Cleveland_Museum_of_Art.tiff/lossy-page1-2877px-Francisco_de_Goya_-_Portrait_of_Don_Juan_Antonio_Cuervo_-_1943.90_-_Cleveland_Museum_of_Art.tiff.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:06:53.472Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:06:53.472Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:(Castres) Portrait de Francisco del Mazo, Francisco de Goya y Lucientes, Musée Goya.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/10/%28Castres%29_Portrait_de_Francisco_del_Mazo%2C_Francisco_de_Goya_y_Lucientes%2C_Mus%C3%A9e_Goya.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/%28Castres%29_Portrait_de_Francisco_del_Mazo%2C_Francisco_de_Goya_y_Lucientes%2C_Mus%C3%A9e_Goya.jpg/3102px-%28Castres%29_Portrait_de_Francisco_del_Mazo%2C_Francisco_de_Goya_y_Lucientes%2C_Mus%C3%A9e_Goya.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:06:58.610Z",
+    "retryCount": 3,
+    "lastRetry": "2025-12-25T10:06:58.611Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:María Luisa de Parma, reina de España.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Mar%C3%ADa_Luisa_de_Parma%2C_reina_de_Espa%C3%B1a.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/4/4c/Mar%C3%ADa_Luisa_de_Parma%2C_reina_de_Espa%C3%B1a.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:07:03.765Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:07:03.766Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Antonio Aniceto de Porlier, marqués de Bajamar por Francisco Goya.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Antonio_Aniceto_de_Porlier%2C_marqu%C3%A9s_de_Bajamar_por_Francisco_Goya.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Antonio_Aniceto_de_Porlier%2C_marqu%C3%A9s_de_Bajamar_por_Francisco_Goya.jpg/3100px-Antonio_Aniceto_de_Porlier%2C_marqu%C3%A9s_de_Bajamar_por_Francisco_Goya.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:07:08.930Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:07:08.930Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Francisco de Goya - Saint Gregory the Great, Pope - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/60/Francisco_de_Goya_-_Saint_Gregory_the_Great%2C_Pope_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Francisco_de_Goya_-_Saint_Gregory_the_Great%2C_Pope_-_Google_Art_Project.jpg/2272px-Francisco_de_Goya_-_Saint_Gregory_the_Great%2C_Pope_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:07:14.074Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:07:14.074Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:(Agen) Le Ballon - Francisco de Goya - Musée des Beaux-Arts d'Agen.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9a/%28Agen%29_Le_Ballon_-_Francisco_de_Goya_-_Mus%C3%A9e_des_Beaux-Arts_d%27Agen.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/%28Agen%29_Le_Ballon_-_Francisco_de_Goya_-_Mus%C3%A9e_des_Beaux-Arts_d%27Agen.jpg/3192px-%28Agen%29_Le_Ballon_-_Francisco_de_Goya_-_Mus%C3%A9e_des_Beaux-Arts_d%27Agen.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:07:19.263Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:07:19.263Z"
+  },
+  {
+    "artist": "Francisco de Goya",
+    "title": "File:Duke of Roca by Goya.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Duke_of_Roca_by_Goya.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Duke_of_Roca_by_Goya.jpg/2997px-Duke_of_Roca_by_Goya.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:07:24.420Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:07:24.421Z"
+  }
+]

@@ -5,8 +5,7 @@ const API_ENDPOINT = 'https://commons.wikimedia.org/w/api.php';
 const MAX_RETRIES = 3;
 const RETRY_DELAY_MS = 1500;
 const MIN_VARIANT_WIDTH = 1280;
-const MIN_ORIGINAL_DIMENSION = 1800; // Minimum width OR height for original image
-const MAX_VARIANT_WIDTH = 4000;
+const MIN_ORIGINAL_WIDTH = 1800;
 
 interface CategoryOptions {
   artist: string;
@@ -194,9 +193,8 @@ function delay(ms: number) {
 }
 
 export function pickBestVariant(image: WikimediaImage): ImageVariant | null {
-  // Require an original that has at least MIN_ORIGINAL_DIMENSION in either width OR height
-  // This ensures tall paintings (portrait orientation) with good quality are included
-  if (!image.original || (image.original.width < MIN_ORIGINAL_DIMENSION && image.original.height < MIN_ORIGINAL_DIMENSION)) {
+  // Require an original that is at least MIN_ORIGINAL_WIDTH (width or height) to ensure a high-quality source exists.
+  if (!image.original || (image.original.width < MIN_ORIGINAL_WIDTH && image.original.height < MIN_ORIGINAL_WIDTH)) {
     return null;
   }
 
@@ -204,11 +202,13 @@ export function pickBestVariant(image: WikimediaImage): ImageVariant | null {
   const candidates: ImageVariant[] = [];
   if (image.thumb) candidates.push(image.thumb);
   if (image.original) candidates.push(image.original);
+  // Filter: must be at least MIN_VARIANT_WIDTH and not bad mime type
   const filtered = candidates.filter(
-    (c) => c.width >= MIN_VARIANT_WIDTH && c.width <= MAX_VARIANT_WIDTH && !isBadMime(c.mime),
+    (c) => c.width >= MIN_VARIANT_WIDTH && !isBadMime(c.mime),
   );
   if (!filtered.length) return null;
 
+  // Pick the variant closest to target (1280px) but not smaller than MIN_VARIANT_WIDTH
   let best = filtered[0];
   let bestScore = Math.abs(best.width - target);
   for (const candidate of filtered.slice(1)) {

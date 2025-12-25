@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "artist": "Édouard Manet",
+    "title": "File:Édouard Manet - Le bassin d’Arcachon (Bühlre).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c3/%C3%89douard_Manet_-_Le_bassin_d%E2%80%99Arcachon_%28B%C3%BChlre%29.jpg",
+    "error": "Failed to insert art: duplicate key value violates unique constraint \"unique_art_title_artist\"",
+    "timestamp": "2025-12-23T01:24:05.627Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Édouard Manet",
+    "title": "File:Édouard Manet - Madame Manet in the Conservatory - NG.M.01286 - National Museum of Art, Architecture and Design.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6d/%C3%89douard_Manet_-_Madame_Manet_in_the_Conservatory_-_NG.M.01286_-_National_Museum_of_Art%2C_Architecture_and_Design.jpg",
+    "error": "Failed to insert art: duplicate key value violates unique constraint \"unique_art_title_artist\"",
+    "timestamp": "2025-12-23T01:24:25.935Z",
+    "retryCount": 0
+  }
+]

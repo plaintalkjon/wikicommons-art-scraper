@@ -1,1 +1,92 @@
-[]
+[
+  {
+    "artist": "Raphael",
+    "title": "File:Rafael - ressureicaocristo01.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Rafael_-_ressureicaocristo01.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Rafael_-_ressureicaocristo01.jpg/3284px-Rafael_-_ressureicaocristo01.jpg: 429 Use thumbnail steps listed on https://w.wiki/GHai. Please contact noc@wikimedia.org for further information (a765913)",
+    "timestamp": "2025-12-24T20:27:01.069Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Raphael",
+    "title": "File:CristoRaffaello.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a8/CristoRaffaello.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/CristoRaffaello.jpg/3096px-CristoRaffaello.jpg: 429 Use thumbnail steps listed on https://w.wiki/GHai. Please contact noc@wikimedia.org for further information (a765913)",
+    "timestamp": "2025-12-24T20:27:02.537Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Raphael",
+    "title": "File:Sainte Marguerite, by Raffaello Sanzio, from C2RMF retouched.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Sainte_Marguerite%2C_by_Raffaello_Sanzio%2C_from_C2RMF_retouched.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Sainte_Marguerite%2C_by_Raffaello_Sanzio%2C_from_C2RMF_retouched.jpg/2523px-Sainte_Marguerite%2C_by_Raffaello_Sanzio%2C_from_C2RMF_retouched.jpg: 429 Use thumbnail steps listed on https://w.wiki/GHai. Please contact noc@wikimedia.org for further information (a765913)",
+    "timestamp": "2025-12-24T20:27:02.557Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Raphael",
+    "title": "File:Raphaël - La Madone de Lorette - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/30/Rapha%C3%ABl_-_La_Madone_de_Lorette_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Rapha%C3%ABl_-_La_Madone_de_Lorette_-_Google_Art_Project.jpg/2936px-Rapha%C3%ABl_-_La_Madone_de_Lorette_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:27:04.461Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-24T20:27:04.462Z"
+  },
+  {
+    "artist": "Raphael",
+    "title": "File:Raffaello Santi - Portrait of Pietro Bembo - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Raffaello_Santi_-_Portrait_of_Pietro_Bembo_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Raffaello_Santi_-_Portrait_of_Pietro_Bembo_-_Google_Art_Project.jpg/2877px-Raffaello_Santi_-_Portrait_of_Pietro_Bembo_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:27:04.483Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Raphael",
+    "title": "File:Agnolo Doni's portrait paintings by Raffaello Sanzio.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Agnolo_Doni%27s_portrait_paintings_by_Raffaello_Sanzio.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Agnolo_Doni%27s_portrait_paintings_by_Raffaello_Sanzio.jpg/2797px-Agnolo_Doni%27s_portrait_paintings_by_Raffaello_Sanzio.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:27:04.495Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Raphael",
+    "title": "File:Raffaello Sanzio - St. Jerome Punishing the Heretic Sabinian.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Raffaello_Sanzio_-_St._Jerome_Punishing_the_Heretic_Sabinian.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Raffaello_Sanzio_-_St._Jerome_Punishing_the_Heretic_Sabinian.jpg/4000px-Raffaello_Sanzio_-_St._Jerome_Punishing_the_Heretic_Sabinian.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:27:04.546Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-24T20:27:04.547Z"
+  },
+  {
+    "artist": "Raphael",
+    "title": "File:The Healing of the Lame Man P1804.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/37/The_Healing_of_the_Lame_Man_P1804.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/3/37/The_Healing_of_the_Lame_Man_P1804.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:27:04.566Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Raphael",
+    "title": "File:The Blinding of Elymas P1805.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/77/The_Blinding_of_Elymas_P1805.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/7/77/The_Blinding_of_Elymas_P1805.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:27:04.581Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Raphael",
+    "title": "File:Portrait of a Young Man, attributed to Raphael Sanzio, c. 1510, oil on canvas transferred from panel - Hyde Collection - Glens Falls, NY - 20180224 122528.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/70/Portrait_of_a_Young_Man%2C_attributed_to_Raphael_Sanzio%2C_c._1510%2C_oil_on_canvas_transferred_from_panel_-_Hyde_Collection_-_Glens_Falls%2C_NY_-_20180224_122528.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/7/70/Portrait_of_a_Young_Man%2C_attributed_to_Raphael_Sanzio%2C_c._1510%2C_oil_on_canvas_transferred_from_panel_-_Hyde_Collection_-_Glens_Falls%2C_NY_-_20180224_122528.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:27:04.598Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Raphael",
+    "title": "File:(Narbonne) Le martyre de Sainte-Cécile - Raffaello Sanzio - Musée des Beaux-Arts de Narbonne.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d0/%28Narbonne%29_Le_martyre_de_Sainte-C%C3%A9cile_-_Raffaello_Sanzio_-_Mus%C3%A9e_des_Beaux-Arts_de_Narbonne.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/%28Narbonne%29_Le_martyre_de_Sainte-C%C3%A9cile_-_Raffaello_Sanzio_-_Mus%C3%A9e_des_Beaux-Arts_de_Narbonne.jpg/4000px-%28Narbonne%29_Le_martyre_de_Sainte-C%C3%A9cile_-_Raffaello_Sanzio_-_Mus%C3%A9e_des_Beaux-Arts_de_Narbonne.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:27:04.614Z",
+    "retryCount": 0
+  }
+]

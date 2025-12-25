@@ -1,1 +1,695 @@
-[]
+[
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Eastern Point.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Winslow_Homer_-_Eastern_Point.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Winslow_Homer_-_Eastern_Point.jpg/4000px-Winslow_Homer_-_Eastern_Point.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.313Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer West Point, Prouts Neck.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Winslow_Homer_West_Point%2C_Prouts_Neck.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Winslow_Homer_West_Point%2C_Prouts_Neck.jpg/4000px-Winslow_Homer_West_Point%2C_Prouts_Neck.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.330Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Sleigh Ride.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/Winslow_Homer_-_Sleigh_Ride.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/7/74/Winslow_Homer_-_Sleigh_Ride.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.347Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Saco Bay.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/84/Winslow_Homer_-_Saco_Bay.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/8/84/Winslow_Homer_-_Saco_Bay.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.361Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer Summer Squall.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/15/Winslow_Homer_Summer_Squall.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Winslow_Homer_Summer_Squall.jpg/4000px-Winslow_Homer_Summer_Squall.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.378Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Farmyard Scene.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/de/Winslow_Homer_-_Farmyard_Scene.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/d/de/Winslow_Homer_-_Farmyard_Scene.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.395Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Playing a Fish (1875).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Winslow_Homer_-_Playing_a_Fish_%281875%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Winslow_Homer_-_Playing_a_Fish_%281875%29.jpg/4000px-Winslow_Homer_-_Playing_a_Fish_%281875%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.412Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Charles Prentice Howland (1878).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Winslow_Homer_-_Charles_Prentice_Howland_%281878%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Winslow_Homer_-_Charles_Prentice_Howland_%281878%29.jpg/2483px-Winslow_Homer_-_Charles_Prentice_Howland_%281878%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.431Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Pitching Quoits (1865).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Winslow_Homer_-_Pitching_Quoits_%281865%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Winslow_Homer_-_Pitching_Quoits_%281865%29.jpg/4000px-Winslow_Homer_-_Pitching_Quoits_%281865%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.462Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T00:59:34.462Z"
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Hunter in the Adirondacks (1892).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/35/Winslow_Homer_-_Hunter_in_the_Adirondacks_%281892%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Winslow_Homer_-_Hunter_in_the_Adirondacks_%281892%29.jpg/4000px-Winslow_Homer_-_Hunter_in_the_Adirondacks_%281892%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.481Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - The Shepherdess (1879).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/71/Winslow_Homer_-_The_Shepherdess_%281879%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/7/71/Winslow_Homer_-_The_Shepherdess_%281879%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.501Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - In the Wheatfield (1873).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Winslow_Homer_-_In_the_Wheatfield_%281873%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/d/d5/Winslow_Homer_-_In_the_Wheatfield_%281873%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.518Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Enchanted (1874).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Winslow_Homer_-_Enchanted_%281874%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/c/c7/Winslow_Homer_-_Enchanted_%281874%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.535Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - The Fountains at Night, World's Columbian Exposition (1893).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/27/Winslow_Homer_-_The_Fountains_at_Night%2C_World%27s_Columbian_Exposition_%281893%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/2/27/Winslow_Homer_-_The_Fountains_at_Night%2C_World%27s_Columbian_Exposition_%281893%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.549Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer An October Day.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Winslow_Homer_An_October_Day.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Winslow_Homer_An_October_Day.jpg/4000px-Winslow_Homer_An_October_Day.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.563Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Perils of the Sea Winslow Homer 1881.jpeg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Perils_of_the_Sea_Winslow_Homer_1881.jpeg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Perils_of_the_Sea_Winslow_Homer_1881.jpeg/4000px-Perils_of_the_Sea_Winslow_Homer_1881.jpeg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.577Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Beach scene, cullercoats.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Winslow_Homer_-_Beach_scene%2C_cullercoats.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Winslow_Homer_-_Beach_scene%2C_cullercoats.jpg/4000px-Winslow_Homer_-_Beach_scene%2C_cullercoats.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.597Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Osprey's Nest.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Winslow_Homer_-_Osprey%27s_Nest.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Winslow_Homer_-_Osprey%27s_Nest.jpg/2523px-Winslow_Homer_-_Osprey%27s_Nest.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.613Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Fish and Butterflies.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Winslow_Homer_-_Fish_and_Butterflies.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Winslow_Homer_-_Fish_and_Butterflies.jpg/4000px-Winslow_Homer_-_Fish_and_Butterflies.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.628Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - A good pool, Saguenay River.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Winslow_Homer_-_A_good_pool%2C_Saguenay_River.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Winslow_Homer_-_A_good_pool%2C_Saguenay_River.jpg/4000px-Winslow_Homer_-_A_good_pool%2C_Saguenay_River.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.643Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - The painter Eliphalet Terry fishing from a boat (1874).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Winslow_Homer_-_The_painter_Eliphalet_Terry_fishing_from_a_boat_%281874%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/c/c9/Winslow_Homer_-_The_painter_Eliphalet_Terry_fishing_from_a_boat_%281874%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.658Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Near Andersonville (1866).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Winslow_Homer_-_Near_Andersonville_%281866%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Winslow_Homer_-_Near_Andersonville_%281866%29.jpg/3151px-Winslow_Homer_-_Near_Andersonville_%281866%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.705Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Shark fishing.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Winslow_Homer_-_Shark_fishing.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/d/dd/Winslow_Homer_-_Shark_fishing.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.726Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Skirmish in the Wilderness, 1864.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/22/Winslow_Homer_-_Skirmish_in_the_Wilderness%2C_1864.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/2/22/Winslow_Homer_-_Skirmish_in_the_Wilderness%2C_1864.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.745Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - The Trapper.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Winslow_Homer_-_The_Trapper.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/f/f4/Winslow_Homer_-_The_Trapper.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.779Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T00:59:34.779Z"
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Milking Time.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Winslow_Homer_-_Milking_Time.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/d/d9/Winslow_Homer_-_Milking_Time.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.798Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Crossing the Pasture.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Winslow_Homer_-_Crossing_the_Pasture.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Winslow_Homer_-_Crossing_the_Pasture.jpg/4000px-Winslow_Homer_-_Crossing_the_Pasture.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.814Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Army Boots.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Winslow_Homer_-_Army_Boots.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/c/c3/Winslow_Homer_-_Army_Boots.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.831Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - The Country Store.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/13/Winslow_Homer_-_The_Country_Store.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/1/13/Winslow_Homer_-_The_Country_Store.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.847Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Girls in a Landscape.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/22/Winslow_Homer_-_Girls_in_a_Landscape.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Winslow_Homer_-_Girls_in_a_Landscape.jpg/4000px-Winslow_Homer_-_Girls_in_a_Landscape.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.862Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Homer Croquet 2.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Homer_Croquet_2.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Homer_Croquet_2.jpg/4000px-Homer_Croquet_2.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.876Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - The whittling boy.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/75/Winslow_Homer_-_The_whittling_boy.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Winslow_Homer_-_The_whittling_boy.jpg/4000px-Winslow_Homer_-_The_whittling_boy.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.894Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - On Guard.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Winslow_Homer_-_On_Guard.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Winslow_Homer_-_On_Guard.jpg/3010px-Winslow_Homer_-_On_Guard.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.911Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - The Nurse.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/71/Winslow_Homer_-_The_Nurse.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Winslow_Homer_-_The_Nurse.jpg/2274px-Winslow_Homer_-_The_Nurse.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.930Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Haymakers.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/03/Winslow_Homer_-_Haymakers.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Winslow_Homer_-_Haymakers.jpg/4000px-Winslow_Homer_-_Haymakers.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.944Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Early Evening (1881).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Winslow_Homer_-_Early_Evening_%281881%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/9/9d/Winslow_Homer_-_Early_Evening_%281881%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.962Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Haymaking, 1864.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Winslow_Homer_-_Haymaking%2C_1864.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Winslow_Homer_-_Haymaking%2C_1864.jpg/2754px-Winslow_Homer_-_Haymaking%2C_1864.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.977Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Girl in the Orchard, 1874.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Winslow_Homer_-_Girl_in_the_Orchard%2C_1874.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/5/5f/Winslow_Homer_-_Girl_in_the_Orchard%2C_1874.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:34.993Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:WinslowHomer-Eight Bells 1886.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/30/WinslowHomer-Eight_Bells_1886.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/WinslowHomer-Eight_Bells_1886.jpg/4000px-WinslowHomer-Eight_Bells_1886.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.010Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Homer, Winslow - The Boat Builders - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Homer%2C_Winslow_-_The_Boat_Builders_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Homer%2C_Winslow_-_The_Boat_Builders_-_Google_Art_Project.jpg/4000px-Homer%2C_Winslow_-_The_Boat_Builders_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.027Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Fox Hunt.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Winslow_Homer_-_Fox_Hunt.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/6/68/Winslow_Homer_-_Fox_Hunt.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.042Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer’s Peach Blossoms.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Winslow_Homer%E2%80%99s_Peach_Blossoms.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/d/d2/Winslow_Homer%E2%80%99s_Peach_Blossoms.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.057Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Snap the Whip (Butler Institute of American Art).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Winslow_Homer_-_Snap_the_Whip_%28Butler_Institute_of_American_Art%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/f/fb/Winslow_Homer_-_Snap_the_Whip_%28Butler_Institute_of_American_Art%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.074Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Fishermen at Sundown by Winslow Homer.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/83/Fishermen_at_Sundown_by_Winslow_Homer.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/8/83/Fishermen_at_Sundown_by_Winslow_Homer.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.090Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Two Girls with Sunbonnets in a Field by Winslow Homer.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/89/Two_Girls_with_Sunbonnets_in_a_Field_by_Winslow_Homer.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/8/89/Two_Girls_with_Sunbonnets_in_a_Field_by_Winslow_Homer.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.106Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Sandy Beach with Breakers (ca.1869).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/53/Winslow_Homer_-_Sandy_Beach_with_Breakers_%28ca.1869%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/5/53/Winslow_Homer_-_Sandy_Beach_with_Breakers_%28ca.1869%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.121Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - In the Hammock.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Winslow_Homer_-_In_the_Hammock.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Winslow_Homer_-_In_the_Hammock.jpg/4000px-Winslow_Homer_-_In_the_Hammock.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.139Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:The Butterfly by Winslow Homer.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/62/The_Butterfly_by_Winslow_Homer.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/The_Butterfly_by_Winslow_Homer.jpg/4000px-The_Butterfly_by_Winslow_Homer.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.154Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - The Watermelon Boys.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/82/Winslow_Homer_-_The_Watermelon_Boys.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/8/82/Winslow_Homer_-_The_Watermelon_Boys.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.169Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Man with a Knapsack by Winslow Homer.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/33/Man_with_a_Knapsack_by_Winslow_Homer.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/3/33/Man_with_a_Knapsack_by_Winslow_Homer.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.188Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Robert Junkins' Garrison House York Maine by Winslow Homer.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/23/Robert_Junkins%27_Garrison_House_York_Maine_by_Winslow_Homer.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Robert_Junkins%27_Garrison_House_York_Maine_by_Winslow_Homer.jpg/4000px-Robert_Junkins%27_Garrison_House_York_Maine_by_Winslow_Homer.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.206Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Autumn Tree Tops by Winslow Homer.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/48/Autumn_Tree_Tops_by_Winslow_Homer.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/4/48/Autumn_Tree_Tops_by_Winslow_Homer.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.222Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - A Country Lad (1873).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Winslow_Homer_-_A_Country_Lad_%281873%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Winslow_Homer_-_A_Country_Lad_%281873%29.jpg/2720px-Winslow_Homer_-_A_Country_Lad_%281873%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.237Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Summer Afternoon by Winslow Homer.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Summer_Afternoon_by_Winslow_Homer.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Summer_Afternoon_by_Winslow_Homer.jpg/4000px-Summer_Afternoon_by_Winslow_Homer.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.252Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - The French Farmyard (c. 1867).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Winslow_Homer_-_The_French_Farmyard_%28c._1867%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Winslow_Homer_-_The_French_Farmyard_%28c._1867%29.jpg/3214px-Winslow_Homer_-_The_French_Farmyard_%28c._1867%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.267Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Haystacks and Children (1874).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Winslow_Homer_-_Haystacks_and_Children_%281874%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/1/1d/Winslow_Homer_-_Haystacks_and_Children_%281874%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.282Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Girl Picking Apple Blossoms by Winslow Homer.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/04/Girl_Picking_Apple_Blossoms_by_Winslow_Homer.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Girl_Picking_Apple_Blossoms_by_Winslow_Homer.jpg/4000px-Girl_Picking_Apple_Blossoms_by_Winslow_Homer.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.303Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Winter Coast.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Winslow_Homer_-_Winter_Coast.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Winslow_Homer_-_Winter_Coast.jpg/3498px-Winslow_Homer_-_Winter_Coast.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.321Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - A huntsman and dogs.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Winslow_Homer_-_A_huntsman_and_dogs.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Winslow_Homer_-_A_huntsman_and_dogs.jpg/4000px-Winslow_Homer_-_A_huntsman_and_dogs.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.352Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T00:59:35.352Z"
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - A temperance meeting.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Winslow_Homer_-_A_temperance_meeting.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/b/b2/Winslow_Homer_-_A_temperance_meeting.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.369Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - West Wind.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Winslow_Homer_-_West_Wind.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Winslow_Homer_-_West_Wind.jpg/4000px-Winslow_Homer_-_West_Wind.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.385Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Children on the beach (1873).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Winslow_Homer_-_Children_on_the_beach_%281873%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/f/fd/Winslow_Homer_-_Children_on_the_beach_%281873%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.401Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Halibut Fishing.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Winslow_Homer_-_Halibut_Fishing.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/1/1a/Winslow_Homer_-_Halibut_Fishing.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.421Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - The Gleaners (1867).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/09/Winslow_Homer_-_The_Gleaners_%281867%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Winslow_Homer_-_The_Gleaners_%281867%29.jpg/4000px-Winslow_Homer_-_The_Gleaners_%281867%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.437Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Girl with Pitchfork - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Winslow_Homer_-_Girl_with_Pitchfork_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/2/2a/Winslow_Homer_-_Girl_with_Pitchfork_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.453Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - To the Rescue - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Winslow_Homer_-_To_the_Rescue_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/9/9a/Winslow_Homer_-_To_the_Rescue_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.469Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - The Wreck (1896).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Winslow_Homer_-_The_Wreck_%281896%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Winslow_Homer_-_The_Wreck_%281896%29.jpg/4000px-Winslow_Homer_-_The_Wreck_%281896%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.485Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - At the Window - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Winslow_Homer_-_At_the_Window_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Winslow_Homer_-_At_the_Window_-_Google_Art_Project.jpg/2700px-Winslow_Homer_-_At_the_Window_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.501Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - In the Mountains - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Winslow_Homer_-_In_the_Mountains_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Winslow_Homer_-_In_the_Mountains_-_Google_Art_Project.jpg/4000px-Winslow_Homer_-_In_the_Mountains_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.518Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - The Gale.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/24/Winslow_Homer_-_The_Gale.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/2/24/Winslow_Homer_-_The_Gale.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.537Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Wild Geese in Flight (1897).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Winslow_Homer_-_Wild_Geese_in_Flight_%281897%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/f/fc/Winslow_Homer_-_Wild_Geese_in_Flight_%281897%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.556Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - The North Woods (1884).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Winslow_Homer_-_The_North_Woods_%281884%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Winslow_Homer_-_The_North_Woods_%281884%29.jpg/4000px-Winslow_Homer_-_The_North_Woods_%281884%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.573Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Flower Garden and Bungalow, Bermuda.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/48/Winslow_Homer_-_Flower_Garden_and_Bungalow%2C_Bermuda.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/4/48/Winslow_Homer_-_Flower_Garden_and_Bungalow%2C_Bermuda.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.587Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - On a Lee Shore.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/02/Winslow_Homer_-_On_a_Lee_Shore.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/0/02/Winslow_Homer_-_On_a_Lee_Shore.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.602Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Fishing (1879).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Winslow_Homer_-_Fishing_%281879%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/d/d9/Winslow_Homer_-_Fishing_%281879%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.617Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - The Rise (1900).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Winslow_Homer_-_The_Rise_%281900%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Winslow_Homer_-_The_Rise_%281900%29.jpg/4000px-Winslow_Homer_-_The_Rise_%281900%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.649Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T00:59:35.650Z"
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - On the Stile.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/56/Winslow_Homer_-_On_the_Stile.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Winslow_Homer_-_On_the_Stile.jpg/4000px-Winslow_Homer_-_On_the_Stile.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.679Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T00:59:35.679Z"
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:'An Open Window' by Winslow Homer, 1872, Portland Museum of Art.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1f/%27An_Open_Window%27_by_Winslow_Homer%2C_1872%2C_Portland_Museum_of_Art.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/1/1f/%27An_Open_Window%27_by_Winslow_Homer%2C_1872%2C_Portland_Museum_of_Art.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.695Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Winding Line.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/50/Winslow_Homer_-_Winding_Line.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/5/50/Winslow_Homer_-_Winding_Line.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.711Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Cloud Shadows.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Winslow_Homer_-_Cloud_Shadows.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/a/a4/Winslow_Homer_-_Cloud_Shadows.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.726Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Croquet Player (c.1865).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Winslow_Homer_-_Croquet_Player_%28c.1865%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Winslow_Homer_-_Croquet_Player_%28c.1865%29.jpg/4000px-Winslow_Homer_-_Croquet_Player_%28c.1865%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.741Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - The Nooning.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/59/Winslow_Homer_-_The_Nooning.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/5/59/Winslow_Homer_-_The_Nooning.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.759Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Coursing the Hare (c. 1882-83).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/94/Winslow_Homer_-_Coursing_the_Hare_%28c._1882-83%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/9/94/Winslow_Homer_-_Coursing_the_Hare_%28c._1882-83%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.779Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Army Teamsters (1866) - Virginia Museum of Fine Arts.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Winslow_Homer_-_Army_Teamsters_%281866%29_-_Virginia_Museum_of_Fine_Arts.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/9/9d/Winslow_Homer_-_Army_Teamsters_%281866%29_-_Virginia_Museum_of_Fine_Arts.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.795Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Winslow Homer - Kissing the Moon.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/75/Winslow_Homer_-_Kissing_the_Moon.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Winslow_Homer_-_Kissing_the_Moon.jpg/4000px-Winslow_Homer_-_Kissing_the_Moon.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.812Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Winslow Homer",
+    "title": "File:Homer, Three boys in a boat.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/43/Homer%2C_Three_boys_in_a_boat.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/4/43/Homer%2C_Three_boys_in_a_boat.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T00:59:35.831Z",
+    "retryCount": 0
+  }
+]

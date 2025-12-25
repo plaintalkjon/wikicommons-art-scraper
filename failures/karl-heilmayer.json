@@ -1,0 +1,47 @@
+[
+  {
+    "artist": "Karl Heilmayer",
+    "title": "File:Karl Heilmayer Ein Morgen in Florenz 1856.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/92/Karl_Heilmayer_Ein_Morgen_in_Florenz_1856.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Karl_Heilmayer_Ein_Morgen_in_Florenz_1856.jpg/4000px-Karl_Heilmayer_Ein_Morgen_in_Florenz_1856.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:43:27.759Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:43:27.759Z"
+  },
+  {
+    "artist": "Karl Heilmayer",
+    "title": "File:Karl Heilmayer Blick übers Innthal auf Wendelstein 1892.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Karl_Heilmayer_Blick_%C3%BCbers_Innthal_auf_Wendelstein_1892.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Karl_Heilmayer_Blick_%C3%BCbers_Innthal_auf_Wendelstein_1892.jpg/4000px-Karl_Heilmayer_Blick_%C3%BCbers_Innthal_auf_Wendelstein_1892.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:43:33.227Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:43:33.227Z"
+  },
+  {
+    "artist": "Karl Heilmayer",
+    "title": "File:Karl Heilmayer - Roman Scene.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/99/Karl_Heilmayer_-_Roman_Scene.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/9/99/Karl_Heilmayer_-_Roman_Scene.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:43:38.424Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:43:38.424Z"
+  },
+  {
+    "artist": "Karl Heilmayer",
+    "title": "File:Karl Heilmayer - Scene with gondola and fishing boats - 1877.png",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Karl_Heilmayer_-_Scene_with_gondola_and_fishing_boats_-_1877.png",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Karl_Heilmayer_-_Scene_with_gondola_and_fishing_boats_-_1877.png/4000px-Karl_Heilmayer_-_Scene_with_gondola_and_fishing_boats_-_1877.png: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:43:43.583Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:43:43.583Z"
+  },
+  {
+    "artist": "Karl Heilmayer",
+    "title": "File:Karl Heilmayer - Gathering Mussels in the Venetian Lagoon.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/49/Karl_Heilmayer_-_Gathering_Mussels_in_the_Venetian_Lagoon.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Karl_Heilmayer_-_Gathering_Mussels_in_the_Venetian_Lagoon.jpg/4000px-Karl_Heilmayer_-_Gathering_Mussels_in_the_Venetian_Lagoon.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:43:48.759Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:43:48.760Z"
+  }
+]

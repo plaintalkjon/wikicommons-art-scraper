@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "artist": "Edwin Landseer",
+    "title": "File:Sir Edwin Henry Landseer - Donald McIntyre - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Sir_Edwin_Henry_Landseer_-_Donald_McIntyre_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Sir_Edwin_Henry_Landseer_-_Donald_McIntyre_-_Google_Art_Project.jpg/2983px-Sir_Edwin_Henry_Landseer_-_Donald_McIntyre_-_Google_Art_Project.jpg: 429 Use thumbnail steps listed on https://w.wiki/GHai. Please contact noc@wikimedia.org for further information (a765913)",
+    "timestamp": "2025-12-25T10:56:19.488Z",
+    "retryCount": 4,
+    "lastRetry": "2025-12-25T10:56:19.489Z"
+  }
+]

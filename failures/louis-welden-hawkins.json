@@ -1,0 +1,20 @@
+[
+  {
+    "artist": "Louis Welden Hawkins",
+    "title": "File:Louis Welden Hawkins - Ma patronne - PPP3682 - Musée des Beaux-Arts de la ville de Paris.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/75/Louis_Welden_Hawkins_-_Ma_patronne_-_PPP3682_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Louis_Welden_Hawkins_-_Ma_patronne_-_PPP3682_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg/3270px-Louis_Welden_Hawkins_-_Ma_patronne_-_PPP3682_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:45:20.204Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:45:20.205Z"
+  },
+  {
+    "artist": "Louis Welden Hawkins",
+    "title": "File:Le Foyer.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/31/Le_Foyer.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Le_Foyer.jpg/1868px-Le_Foyer.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:45:25.358Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:45:25.358Z"
+  }
+]

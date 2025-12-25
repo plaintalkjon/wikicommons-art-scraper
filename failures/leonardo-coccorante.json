@@ -1,0 +1,20 @@
+[
+  {
+    "artist": "Leonardo Coccorante",
+    "title": "File:Leonardo Coccorante - Exterior View of Buildings - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Leonardo_Coccorante_-_Exterior_View_of_Buildings_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Leonardo_Coccorante_-_Exterior_View_of_Buildings_-_Google_Art_Project.jpg/2897px-Leonardo_Coccorante_-_Exterior_View_of_Buildings_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:44:29.998Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:44:29.998Z"
+  },
+  {
+    "artist": "Leonardo Coccorante",
+    "title": "File:Leonardo Coccorante - View of the Interior of a Building - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/86/Leonardo_Coccorante_-_View_of_the_Interior_of_a_Building_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Leonardo_Coccorante_-_View_of_the_Interior_of_a_Building_-_Google_Art_Project.jpg/2986px-Leonardo_Coccorante_-_View_of_the_Interior_of_a_Building_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:44:35.922Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:44:35.923Z"
+  }
+]

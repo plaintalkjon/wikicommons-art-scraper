@@ -1,0 +1,128 @@
+[
+  {
+    "artist": "Henri Matisse",
+    "title": "File:Henri matisse, nudo in piedi, 1907 (tate modern) 01.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Henri_matisse%2C_nudo_in_piedi%2C_1907_%28tate_modern%29_01.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Henri_matisse%2C_nudo_in_piedi%2C_1907_%28tate_modern%29_01.jpg/3065px-Henri_matisse%2C_nudo_in_piedi%2C_1907_%28tate_modern%29_01.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:19:07.294Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:19:07.295Z"
+  },
+  {
+    "artist": "Henri Matisse",
+    "title": "File:Draped nude.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/43/Draped_nude.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Draped_nude.jpg/3000px-Draped_nude.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:19:12.498Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:19:12.498Z"
+  },
+  {
+    "artist": "Henri Matisse",
+    "title": "File:Deux femmes dans un paysage by Henri Matisse.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/86/Deux_femmes_dans_un_paysage_by_Henri_Matisse.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Deux_femmes_dans_un_paysage_by_Henri_Matisse.jpg/3000px-Deux_femmes_dans_un_paysage_by_Henri_Matisse.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:19:17.693Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:19:17.693Z"
+  },
+  {
+    "artist": "Henri Matisse",
+    "title": "File:Marguerite au chapeau bleu.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/55/Marguerite_au_chapeau_bleu.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Marguerite_au_chapeau_bleu.jpg/3000px-Marguerite_au_chapeau_bleu.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:19:22.852Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:19:22.852Z"
+  },
+  {
+    "artist": "Henri Matisse",
+    "title": "File:Henri matisse, natura morta con schiaccianoci, 1916 ca.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Henri_matisse%2C_natura_morta_con_schiaccianoci%2C_1916_ca.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Henri_matisse%2C_natura_morta_con_schiaccianoci%2C_1916_ca.jpg/3479px-Henri_matisse%2C_natura_morta_con_schiaccianoci%2C_1916_ca.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:19:28.057Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:19:28.057Z"
+  },
+  {
+    "artist": "Henri Matisse",
+    "title": "File:Henri matisse, la camicetta verde, 1936.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Henri_matisse%2C_la_camicetta_verde%2C_1936.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Henri_matisse%2C_la_camicetta_verde%2C_1936.jpg/3345px-Henri_matisse%2C_la_camicetta_verde%2C_1936.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:19:33.261Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:19:33.261Z"
+  },
+  {
+    "artist": "Henri Matisse",
+    "title": "File:Henri matisse, odalisca, 1923.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/71/Henri_matisse%2C_odalisca%2C_1923.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Henri_matisse%2C_odalisca%2C_1923.jpg/2901px-Henri_matisse%2C_odalisca%2C_1923.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:19:38.447Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:19:38.447Z"
+  },
+  {
+    "artist": "Henri Matisse",
+    "title": "File:Henri matisse, odalisca con paravento, 1923.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/13/Henri_matisse%2C_odalisca_con_paravento%2C_1923.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Henri_matisse%2C_odalisca_con_paravento%2C_1923.jpg/3390px-Henri_matisse%2C_odalisca_con_paravento%2C_1923.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:19:43.643Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:19:43.643Z"
+  },
+  {
+    "artist": "Henri Matisse",
+    "title": "File:L'Atelier aux poissons rouges, par Henri Matisse.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4f/L%27Atelier_aux_poissons_rouges%2C_par_Henri_Matisse.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/L%27Atelier_aux_poissons_rouges%2C_par_Henri_Matisse.jpg/3427px-L%27Atelier_aux_poissons_rouges%2C_par_Henri_Matisse.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:19:48.817Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:19:48.817Z"
+  },
+  {
+    "artist": "Henri Matisse",
+    "title": "File:Henri Matisse in Belgrade 03.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Henri_Matisse_in_Belgrade_03.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Henri_Matisse_in_Belgrade_03.jpg/2666px-Henri_Matisse_in_Belgrade_03.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:19:53.998Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:19:53.998Z"
+  },
+  {
+    "artist": "Henri Matisse",
+    "title": "File:Henri Matisse in Belgrade 01.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/34/Henri_Matisse_in_Belgrade_01.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Henri_Matisse_in_Belgrade_01.jpg/2666px-Henri_Matisse_in_Belgrade_01.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:19:59.177Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:19:59.177Z"
+  },
+  {
+    "artist": "Henri Matisse",
+    "title": "File:Henri Matisse - Portrait de Bevilacqua 02.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Henri_Matisse_-_Portrait_de_Bevilacqua_02.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Henri_Matisse_-_Portrait_de_Bevilacqua_02.jpg/3025px-Henri_Matisse_-_Portrait_de_Bevilacqua_02.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:20:04.332Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:20:04.333Z"
+  },
+  {
+    "artist": "Henri Matisse",
+    "title": "File:Henri Matisse, Parrot Tulips, 1905; the Albertina, Vienna (1).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/18/Henri_Matisse%2C_Parrot_Tulips%2C_1905%3B_the_Albertina%2C_Vienna_%281%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Henri_Matisse%2C_Parrot_Tulips%2C_1905%3B_the_Albertina%2C_Vienna_%281%29.jpg/4000px-Henri_Matisse%2C_Parrot_Tulips%2C_1905%3B_the_Albertina%2C_Vienna_%281%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:20:09.475Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:20:09.475Z"
+  },
+  {
+    "artist": "Henri Matisse",
+    "title": "File:Le chapeau de rose by Henri Matisse.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/00/Le_chapeau_de_rose_by_Henri_Matisse.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Le_chapeau_de_rose_by_Henri_Matisse.jpg/1223px-Le_chapeau_de_rose_by_Henri_Matisse.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:20:14.614Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:20:14.614Z"
+  }
+]

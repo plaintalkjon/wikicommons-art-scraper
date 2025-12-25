@@ -1,0 +1,20 @@
+[
+  {
+    "artist": "Frederic Remington",
+    "title": "File:Frederic Remington - The Transgressor - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Frederic_Remington_-_The_Transgressor_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Frederic_Remington_-_The_Transgressor_-_Google_Art_Project.jpg/2793px-Frederic_Remington_-_The_Transgressor_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:10:11.619Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:10:11.620Z"
+  },
+  {
+    "artist": "Frederic Remington",
+    "title": "File:Frederic Sackrider Remington - The Outlier - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/79/Frederic_Sackrider_Remington_-_The_Outlier_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Frederic_Sackrider_Remington_-_The_Outlier_-_Google_Art_Project.jpg/2730px-Frederic_Sackrider_Remington_-_The_Outlier_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:10:16.778Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:10:16.778Z"
+  }
+]

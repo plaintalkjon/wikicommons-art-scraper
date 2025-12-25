@@ -1,0 +1,18 @@
+[
+  {
+    "artist": "Sylvester Shchedrin",
+    "title": "File:The Italian Landscape (Shchedrin).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/44/The_Italian_Landscape_%28Shchedrin%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/4/44/The_Italian_Landscape_%28Shchedrin%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:17:27.960Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Sylvester Shchedrin",
+    "title": "File:Silvestr Feodosievitš Štšedrin (1791–1830)- A View from St. Petersburg - Näkymä Pietarista - Vy från Petersburg (29433021226).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Silvestr_Feodosievit%C5%A1_%C5%A0t%C5%A1edrin_%281791%E2%80%931830%29-_A_View_from_St._Petersburg_-_N%C3%A4kym%C3%A4_Pietarista_-_Vy_fr%C3%A5n_Petersburg_%2829433021226%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Silvestr_Feodosievit%C5%A1_%C5%A0t%C5%A1edrin_%281791%E2%80%931830%29-_A_View_from_St._Petersburg_-_N%C3%A4kym%C3%A4_Pietarista_-_Vy_fr%C3%A5n_Petersburg_%2829433021226%29.jpg/4000px-Silvestr_Feodosievit%C5%A1_%C5%A0t%C5%A1edrin_%281791%E2%80%931830%29-_A_View_from_St._Petersburg_-_N%C3%A4kym%C3%A4_Pietarista_-_Vy_fr%C3%A5n_Petersburg_%2829433021226%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:17:27.967Z",
+    "retryCount": 0
+  }
+]

@@ -1,0 +1,65 @@
+[
+  {
+    "artist": "Jacques-Louis David",
+    "title": "File:Jacques-Louis David 015.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Jacques-Louis_David_015.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Jacques-Louis_David_015.jpg/2777px-Jacques-Louis_David_015.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:26:29.939Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:26:29.940Z"
+  },
+  {
+    "artist": "Jacques-Louis David",
+    "title": "File:Jacques-Louis David - Portrait of Jacques-François Desmaisons - 1944-1 - Albright–Knox Art Gallery.tiff",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/05/Jacques-Louis_David_-_Portrait_of_Jacques-Fran%C3%A7ois_Desmaisons_-_1944-1_-_Albright%E2%80%93Knox_Art_Gallery.tiff",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Jacques-Louis_David_-_Portrait_of_Jacques-Fran%C3%A7ois_Desmaisons_-_1944-1_-_Albright%E2%80%93Knox_Art_Gallery.tiff/lossy-page1-3168px-Jacques-Louis_David_-_Portrait_of_Jacques-Fran%C3%A7ois_Desmaisons_-_1944-1_-_Albright%E2%80%93Knox_Art_Gallery.tiff.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:26:35.172Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:26:35.172Z"
+  },
+  {
+    "artist": "Jacques-Louis David",
+    "title": "File:Jacques-Louis David - Jean-Sylvain Bailly (1736-1793), maire de Paris - P688 - Musée Carnavalet.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Jacques-Louis_David_-_Jean-Sylvain_Bailly_%281736-1793%29%2C_maire_de_Paris_-_P688_-_Mus%C3%A9e_Carnavalet.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Jacques-Louis_David_-_Jean-Sylvain_Bailly_%281736-1793%29%2C_maire_de_Paris_-_P688_-_Mus%C3%A9e_Carnavalet.jpg/3284px-Jacques-Louis_David_-_Jean-Sylvain_Bailly_%281736-1793%29%2C_maire_de_Paris_-_P688_-_Mus%C3%A9e_Carnavalet.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:26:40.324Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:26:40.324Z"
+  },
+  {
+    "artist": "Jacques-Louis David",
+    "title": "File:Jacques-Louis David - Marat assassiné - P66 - Musée Carnavalet.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/30/Jacques-Louis_David_-_Marat_assassin%C3%A9_-_P66_-_Mus%C3%A9e_Carnavalet.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Jacques-Louis_David_-_Marat_assassin%C3%A9_-_P66_-_Mus%C3%A9e_Carnavalet.jpg/3278px-Jacques-Louis_David_-_Marat_assassin%C3%A9_-_P66_-_Mus%C3%A9e_Carnavalet.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:26:45.518Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:26:45.518Z"
+  },
+  {
+    "artist": "Jacques-Louis David",
+    "title": "File:Jacques-Louis David - Portrait de Louis-Michel Le Peletier de Saint-Fargeau (1760-1793), sur son lit de mort - P1752 - Musée Carnavalet.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Jacques-Louis_David_-_Portrait_de_Louis-Michel_Le_Peletier_de_Saint-Fargeau_%281760-1793%29%2C_sur_son_lit_de_mort_-_P1752_-_Mus%C3%A9e_Carnavalet.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Jacques-Louis_David_-_Portrait_de_Louis-Michel_Le_Peletier_de_Saint-Fargeau_%281760-1793%29%2C_sur_son_lit_de_mort_-_P1752_-_Mus%C3%A9e_Carnavalet.jpg/3237px-Jacques-Louis_David_-_Portrait_de_Louis-Michel_Le_Peletier_de_Saint-Fargeau_%281760-1793%29%2C_sur_son_lit_de_mort_-_P1752_-_Mus%C3%A9e_Carnavalet.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:26:50.719Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:26:50.719Z"
+  },
+  {
+    "artist": "Jacques-Louis David",
+    "title": "File:Jacques-Louis David - Portrait de Pierre Sériziat (1757-1847), beau-frère de David - P733 - Musée Carnavalet.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/35/Jacques-Louis_David_-_Portrait_de_Pierre_S%C3%A9riziat_%281757-1847%29%2C_beau-fr%C3%A8re_de_David_-_P733_-_Mus%C3%A9e_Carnavalet.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Jacques-Louis_David_-_Portrait_de_Pierre_S%C3%A9riziat_%281757-1847%29%2C_beau-fr%C3%A8re_de_David_-_P733_-_Mus%C3%A9e_Carnavalet.jpg/3335px-Jacques-Louis_David_-_Portrait_de_Pierre_S%C3%A9riziat_%281757-1847%29%2C_beau-fr%C3%A8re_de_David_-_P733_-_Mus%C3%A9e_Carnavalet.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:26:55.863Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:26:55.863Z"
+  },
+  {
+    "artist": "Jacques-Louis David",
+    "title": "File:Jacques-Louis David - Comte Henri-Amédée-Mercure de Turenne-d'Aynac - 1999.2 - Clark Art Institute.tiff",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Jacques-Louis_David_-_Comte_Henri-Am%C3%A9d%C3%A9e-Mercure_de_Turenne-d%27Aynac_-_1999.2_-_Clark_Art_Institute.tiff",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Jacques-Louis_David_-_Comte_Henri-Am%C3%A9d%C3%A9e-Mercure_de_Turenne-d%27Aynac_-_1999.2_-_Clark_Art_Institute.tiff/lossy-page1-2958px-Jacques-Louis_David_-_Comte_Henri-Am%C3%A9d%C3%A9e-Mercure_de_Turenne-d%27Aynac_-_1999.2_-_Clark_Art_Institute.tiff.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:27:01.067Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:27:01.067Z"
+  }
+]

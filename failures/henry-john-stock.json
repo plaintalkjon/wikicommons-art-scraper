@@ -1,0 +1,20 @@
+[
+  {
+    "artist": "Henry John Stock",
+    "title": "File:Henry John Stock - Influences.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Henry_John_Stock_-_Influences.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/b/b9/Henry_John_Stock_-_Influences.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:20:23.961Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:20:23.962Z"
+  },
+  {
+    "artist": "Henry John Stock",
+    "title": "File:Henry John Stock - A pale and glimmering light appeared before him.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/20/Henry_John_Stock_-_A_pale_and_glimmering_light_appeared_before_him.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/2/20/Henry_John_Stock_-_A_pale_and_glimmering_light_appeared_before_him.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:20:29.161Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:20:29.161Z"
+  }
+]

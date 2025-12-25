@@ -1,0 +1,11 @@
+[
+  {
+    "artist": "Alexander Louis Leloir",
+    "title": "File:Alexandre Louis Leloir - Le Guet-apens - PPP4992 - Musée des Beaux-Arts de la ville de Paris.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Alexandre_Louis_Leloir_-_Le_Guet-apens_-_PPP4992_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Alexandre_Louis_Leloir_-_Le_Guet-apens_-_PPP4992_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg/2617px-Alexandre_Louis_Leloir_-_Le_Guet-apens_-_PPP4992_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg: 429 Use thumbnail steps listed on https://w.wiki/GHai. Please contact noc@wikimedia.org for further information (a765913)",
+    "timestamp": "2025-12-25T10:55:33.987Z",
+    "retryCount": 4,
+    "lastRetry": "2025-12-25T10:55:33.988Z"
+  }
+]

@@ -1,0 +1,75 @@
+{
+  "completed": [
+    "Abbott Fuller Graves",
+    "Adelsteen Normann",
+    "Adolf Hirschl",
+    "Adolf Mosengel",
+    "Adolf Werner",
+    "Adolphe Valette",
+    "Albert Bierstadt",
+    "Alberto Zardo",
+    "Alex Alemany",
+    "Alexander Louis Leloir",
+    "Alexander Nasmyth",
+    "Alexander Rothaug",
+    "Alexandre Cabanel",
+    "Andoine Calbet",
+    "André Castaigne",
+    "Andrew Wyeth",
+    "Angelo Josef Graf von Courten",
+    "Anselm Feuerbach",
+    "Antonie Sminck Pitloo",
+    "Antonio Canova",
+    "Arnold Böcklin",
+    "Artemisia Gentileschi",
+    "Arthur Hopkins",
+    "Arthur Hughes",
+    "Astounding Stories",
+    "Briton Riviere",
+    "Caesar Van Everdingen",
+    "Canaletto",
+    "Carel Willink",
+    "Carlo Maratti",
+    "Caspar David Friedrich",
+    "Cesare Mariani",
+    "Charles Christian Nahl",
+    "Charles Holloway",
+    "Charles Meynier",
+    "Charles-François Jalabert",
+    "Charles-Joseph Panckoucke",
+    "Claude Monet",
+    "Delphin Enjolras",
+    "Edmund Leighton",
+    "Edouard Bernard Debat-Ponsan",
+    "Edouard Manet",
+    "Édouard Manet",
+    "Édouard-Marie-Guillaume Dubufe"
+  ],
+  "failed": [
+    {
+      "artist": "Eduard Kasparides",
+      "error": "Wikimedia request failed: 429 Too many requests (620f469)"
+    },
+    {
+      "artist": "Edvard Munch",
+      "error": "Rate limit issues - too many artworks (2060 paintings)"
+    },
+    {
+      "artist": "Edward Hopper",
+      "error": "Batch processing failed - rate limit issues"
+    },
+    {
+      "artist": "Peter Paul Rubens",
+      "error": "Rate limit issues - too many artworks (2123 paintings)"
+    },
+    {
+      "artist": "Eugène Delacroix",
+      "error": "Batch processing failed - rate limit issues"
+    },
+    {
+      "artist": "Diego Velázquez",
+      "error": "Batch processing failed - rate limit issues"
+    }
+  ],
+  "lastRun": "2025-12-22T12:24:37.966Z"
+}

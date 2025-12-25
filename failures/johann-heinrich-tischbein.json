@@ -1,0 +1,74 @@
+[
+  {
+    "artist": "Johann Heinrich Tischbein",
+    "title": "File:Tischbein Self-Portrait 177?.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Tischbein_Self-Portrait_177%3F.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Tischbein_Self-Portrait_177%3F.jpg/3318px-Tischbein_Self-Portrait_177%3F.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:36:04.616Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:36:04.616Z"
+  },
+  {
+    "artist": "Johann Heinrich Tischbein",
+    "title": "File:Juliane, Fürstin zu Schaumburg-Lippe.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Juliane%2C_F%C3%BCrstin_zu_Schaumburg-Lippe.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Juliane%2C_F%C3%BCrstin_zu_Schaumburg-Lippe.jpg/2122px-Juliane%2C_F%C3%BCrstin_zu_Schaumburg-Lippe.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:36:09.774Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:36:09.775Z"
+  },
+  {
+    "artist": "Johann Heinrich Tischbein",
+    "title": "File:Tischbein Landgraf Wilhelm VIII von Hessen.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/53/Tischbein_Landgraf_Wilhelm_VIII_von_Hessen.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Tischbein_Landgraf_Wilhelm_VIII_von_Hessen.jpg/3368px-Tischbein_Landgraf_Wilhelm_VIII_von_Hessen.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:36:14.950Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:36:14.951Z"
+  },
+  {
+    "artist": "Johann Heinrich Tischbein",
+    "title": "File:Johann Heinrich Tischbein - Selbstbildnis in mittleren Jahren (ca. 1760).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/18/Johann_Heinrich_Tischbein_-_Selbstbildnis_in_mittleren_Jahren_%28ca._1760%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Johann_Heinrich_Tischbein_-_Selbstbildnis_in_mittleren_Jahren_%28ca._1760%29.jpg/3070px-Johann_Heinrich_Tischbein_-_Selbstbildnis_in_mittleren_Jahren_%28ca._1760%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:36:20.173Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:36:20.173Z"
+  },
+  {
+    "artist": "Johann Heinrich Tischbein",
+    "title": "File:Johann Heinrich Tischbein - Selbstbildnis (vor 1754).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Johann_Heinrich_Tischbein_-_Selbstbildnis_%28vor_1754%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Johann_Heinrich_Tischbein_-_Selbstbildnis_%28vor_1754%29.jpg/3246px-Johann_Heinrich_Tischbein_-_Selbstbildnis_%28vor_1754%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:36:25.350Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:36:25.350Z"
+  },
+  {
+    "artist": "Johann Heinrich Tischbein",
+    "title": "File:Wilhelmine Caroline Amalie Tischbein by Johann Heinrich Tischbein the Elder, MHK, LM 1940-481.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Wilhelmine_Caroline_Amalie_Tischbein_by_Johann_Heinrich_Tischbein_the_Elder%2C_MHK%2C_LM_1940-481.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Wilhelmine_Caroline_Amalie_Tischbein_by_Johann_Heinrich_Tischbein_the_Elder%2C_MHK%2C_LM_1940-481.jpg/3102px-Wilhelmine_Caroline_Amalie_Tischbein_by_Johann_Heinrich_Tischbein_the_Elder%2C_MHK%2C_LM_1940-481.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:36:31.406Z",
+    "retryCount": 4,
+    "lastRetry": "2025-12-25T10:36:31.406Z"
+  },
+  {
+    "artist": "Johann Heinrich Tischbein",
+    "title": "File:Wilhelmine Caroline Amalie Tischbein by Johann Heinrich Tischbein the Elder, MHK, LM 1938-62.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/19/Wilhelmine_Caroline_Amalie_Tischbein_by_Johann_Heinrich_Tischbein_the_Elder%2C_MHK%2C_LM_1938-62.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Wilhelmine_Caroline_Amalie_Tischbein_by_Johann_Heinrich_Tischbein_the_Elder%2C_MHK%2C_LM_1938-62.jpg/3064px-Wilhelmine_Caroline_Amalie_Tischbein_by_Johann_Heinrich_Tischbein_the_Elder%2C_MHK%2C_LM_1938-62.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:36:36.567Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:36:36.567Z"
+  },
+  {
+    "artist": "Johann Heinrich Tischbein",
+    "title": "File:1755 Tischbein d.Ä. Portrait der Maria Anna Treu Historisches Museum Bamberg anagoria.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d0/1755_Tischbein_d.%C3%84._Portrait_der_Maria_Anna_Treu_Historisches_Museum_Bamberg_anagoria.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/1755_Tischbein_d.%C3%84._Portrait_der_Maria_Anna_Treu_Historisches_Museum_Bamberg_anagoria.jpg/3054px-1755_Tischbein_d.%C3%84._Portrait_der_Maria_Anna_Treu_Historisches_Museum_Bamberg_anagoria.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:36:41.738Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:36:41.738Z"
+  }
+]

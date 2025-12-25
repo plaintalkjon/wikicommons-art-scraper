@@ -1,0 +1,38 @@
+[
+  {
+    "artist": "John Collier",
+    "title": "File:John Collier - Pharaoh's Handmaidens - c 1883.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/55/John_Collier_-_Pharaoh%27s_Handmaidens_-_c_1883.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/John_Collier_-_Pharaoh%27s_Handmaidens_-_c_1883.jpg/2656px-John_Collier_-_Pharaoh%27s_Handmaidens_-_c_1883.jpg: 429 Use thumbnail steps listed on https://w.wiki/GHai. Please contact noc@wikimedia.org for further information (a765913)",
+    "timestamp": "2025-12-25T10:36:52.033Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:36:52.034Z"
+  },
+  {
+    "artist": "John Collier",
+    "title": "File:John Collier - Priestess of Delphi - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4f/John_Collier_-_Priestess_of_Delphi_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/John_Collier_-_Priestess_of_Delphi_-_Google_Art_Project.jpg/1892px-John_Collier_-_Priestess_of_Delphi_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:36:57.182Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:36:57.182Z"
+  },
+  {
+    "artist": "John Collier",
+    "title": "File:Sir George Biddell Airy, 1801-1892 RMG BHC2507.tiff",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/da/Sir_George_Biddell_Airy%2C_1801-1892_RMG_BHC2507.tiff",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Sir_George_Biddell_Airy%2C_1801-1892_RMG_BHC2507.tiff/lossy-page1-3123px-Sir_George_Biddell_Airy%2C_1801-1892_RMG_BHC2507.tiff.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:37:02.347Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:37:02.347Z"
+  },
+  {
+    "artist": "John Collier",
+    "title": "File:John Collier - In the Venusberg Tannhauser - c 1901.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cc/John_Collier_-_In_the_Venusberg_Tannhauser_-_c_1901.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/John_Collier_-_In_the_Venusberg_Tannhauser_-_c_1901.jpg/2715px-John_Collier_-_In_the_Venusberg_Tannhauser_-_c_1901.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:37:07.557Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:37:07.557Z"
+  }
+]

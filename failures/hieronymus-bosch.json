@@ -1,1 +1,56 @@
-[]
+[
+  {
+    "artist": "Hieronymus Bosch",
+    "title": "File:Hieronymus Bosch 096.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/33/Hieronymus_Bosch_096.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/3/33/Hieronymus_Bosch_096.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:20:38.698Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:20:38.699Z"
+  },
+  {
+    "artist": "Hieronymus Bosch",
+    "title": "File:Accademia - Visioni dell'Aldilà - L'inferno - Bosch.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Accademia_-_Visioni_dell%27Aldil%C3%A0_-_L%27inferno_-_Bosch.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Accademia_-_Visioni_dell%27Aldil%C3%A0_-_L%27inferno_-_Bosch.jpg/1801px-Accademia_-_Visioni_dell%27Aldil%C3%A0_-_L%27inferno_-_Bosch.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:20:43.859Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:20:43.859Z"
+  },
+  {
+    "artist": "Hieronymus Bosch",
+    "title": "File:Jheronimus Bosch Terrestrial Paradise.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Jheronimus_Bosch_Terrestrial_Paradise.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Jheronimus_Bosch_Terrestrial_Paradise.jpg/1735px-Jheronimus_Bosch_Terrestrial_Paradise.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:20:49.056Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:20:49.056Z"
+  },
+  {
+    "artist": "Hieronymus Bosch",
+    "title": "File:Bosch follower Christ and the Woman Taken in Adultery.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Bosch_follower_Christ_and_the_Woman_Taken_in_Adultery.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Bosch_follower_Christ_and_the_Woman_Taken_in_Adultery.jpg/2927px-Bosch_follower_Christ_and_the_Woman_Taken_in_Adultery.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:20:54.268Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:20:54.269Z"
+  },
+  {
+    "artist": "Hieronymus Bosch",
+    "title": "File:Bosch copyist The adoration of the Magi PMA.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/db/Bosch_copyist_The_adoration_of_the_Magi_PMA.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Bosch_copyist_The_adoration_of_the_Magi_PMA.jpg/3145px-Bosch_copyist_The_adoration_of_the_Magi_PMA.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:20:59.463Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:20:59.463Z"
+  },
+  {
+    "artist": "Hieronymus Bosch",
+    "title": "File:Jheronimus Bosch - Twee medaillons met symbolisch-religieuze voorstellingen - St 28 verso - Museum Boijmans Van Beuningen.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Jheronimus_Bosch_-_Twee_medaillons_met_symbolisch-religieuze_voorstellingen_-_St_28_verso_-_Museum_Boijmans_Van_Beuningen.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Jheronimus_Bosch_-_Twee_medaillons_met_symbolisch-religieuze_voorstellingen_-_St_28_verso_-_Museum_Boijmans_Van_Beuningen.jpg/2270px-Jheronimus_Bosch_-_Twee_medaillons_met_symbolisch-religieuze_voorstellingen_-_St_28_verso_-_Museum_Boijmans_Van_Beuningen.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:21:05.553Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:21:05.554Z"
+  }
+]

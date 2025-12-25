@@ -1,0 +1,282 @@
+[
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Thomas Cowperthwait Eakins - Miss Alice Kurtz - 1969.1 - Fogg Museum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/35/Thomas_Cowperthwait_Eakins_-_Miss_Alice_Kurtz_-_1969.1_-_Fogg_Museum.jpg",
+    "error": "Failed to insert art: duplicate key value violates unique constraint \"unique_art_title_artist\"",
+    "timestamp": "2025-12-24T21:42:14.295Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Eakins Nude woman standing.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Eakins_Nude_woman_standing.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Eakins_Nude_woman_standing.jpg/2329px-Eakins_Nude_woman_standing.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:14.795Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Eakins G163.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Eakins_G163.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/e/eb/Eakins_G163.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:14.845Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Thomas Eakins - Portrait of Ruth W. Harding (1903).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Thomas_Eakins_-_Portrait_of_Ruth_W._Harding_%281903%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/d/d3/Thomas_Eakins_-_Portrait_of_Ruth_W._Harding_%281903%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:14.865Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Becalmed.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Becalmed.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Becalmed.jpg/4000px-Becalmed.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:14.887Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:A Bryan Wall.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f5/A_Bryan_Wall.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/f/f5/A_Bryan_Wall.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:14.910Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:A street scene in sevilla thomas eakins.jpeg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c5/A_street_scene_in_sevilla_thomas_eakins.jpeg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/c/c5/A_street_scene_in_sevilla_thomas_eakins.jpeg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:14.942Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Landscape G169 recto.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/36/Landscape_G169_recto.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/3/36/Landscape_G169_recto.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:14.977Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Thomas Eakins - The Crucifixion (1880).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Thomas_Eakins_-_The_Crucifixion_%281880%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Thomas_Eakins_-_The_Crucifixion_%281880%29.jpg/2237px-Thomas_Eakins_-_The_Crucifixion_%281880%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.021Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:The pair-oared shell thomas eakins.jpeg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8f/The_pair-oared_shell_thomas_eakins.jpeg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/8/8f/The_pair-oared_shell_thomas_eakins.jpeg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.046Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Marsh Landscape Study G172.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/28/Marsh_Landscape_Study_G172.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/2/28/Marsh_Landscape_Study_G172.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.065Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Delaware River Scene.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/96/Delaware_River_Scene.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/9/96/Delaware_River_Scene.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.084Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Delaware Riverscape from Gloucester.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/07/Delaware_Riverscape_from_Gloucester.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Delaware_Riverscape_from_Gloucester.jpg/4000px-Delaware_Riverscape_from_Gloucester.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.103Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Landscape sketch for the Fairman Rogers Four-in-Hand G135.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/50/Landscape_sketch_for_the_Fairman_Rogers_Four-in-Hand_G135.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/5/50/Landscape_sketch_for_the_Fairman_Rogers_Four-in-Hand_G135.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.124Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Sketch for Young Girl Meditating G117.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Sketch_for_Young_Girl_Meditating_G117.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Sketch_for_Young_Girl_Meditating_G117.jpg/2331px-Sketch_for_Young_Girl_Meditating_G117.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.140Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Portrait-of-Harrison-S.-Morris-large.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/90/Portrait-of-Harrison-S.-Morris-large.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/9/90/Portrait-of-Harrison-S.-Morris-large.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.158Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Landscape G170 F236.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/90/Landscape_G170_F236.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/9/90/Landscape_G170_F236.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.174Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Landscape G170 F235.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Landscape_G170_F235.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/e/ee/Landscape_G170_F235.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.194Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Eakins attr G170.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Eakins_attr_G170.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/e/e4/Eakins_attr_G170.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.213Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Eakins On The Delaware G81.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Eakins_On_The_Delaware_G81.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/5/5b/Eakins_On_The_Delaware_G81.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.236Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Sketch for Spinning G145.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Sketch_for_Spinning_G145.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Sketch_for_Spinning_G145.jpg/2871px-Sketch_for_Spinning_G145.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.258Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:§Whitman, Walt (1819-1892) - 1887 - ritr. da Eakins, Thomas - da Internet.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6b/%C2%A7Whitman%2C_Walt_%281819-1892%29_-_1887_-_ritr._da_Eakins%2C_Thomas_-_da_Internet.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/6/6b/%C2%A7Whitman%2C_Walt_%281819-1892%29_-_1887_-_ritr._da_Eakins%2C_Thomas_-_da_Internet.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.276Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:William rush and his model thomas eakins.jpeg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f7/William_rush_and_his_model_thomas_eakins.jpeg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/f/f7/William_rush_and_his_model_thomas_eakins.jpeg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.299Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Thomas Eakins - Letitia Wilson Jordan - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Thomas_Eakins_-_Letitia_Wilson_Jordan_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Thomas_Eakins_-_Letitia_Wilson_Jordan_-_Google_Art_Project.jpg/2703px-Thomas_Eakins_-_Letitia_Wilson_Jordan_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.317Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Thomas Eakins - William Rush Carving His Allegorical Figure of the Schuylkill River - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/50/Thomas_Eakins_-_William_Rush_Carving_His_Allegorical_Figure_of_the_Schuylkill_River_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Thomas_Eakins_-_William_Rush_Carving_His_Allegorical_Figure_of_the_Schuylkill_River_-_Google_Art_Project.jpg/4000px-Thomas_Eakins_-_William_Rush_Carving_His_Allegorical_Figure_of_the_Schuylkill_River_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.381Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Thomas Cowperthwaite Eakins - Talcott Williams - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/71/Thomas_Cowperthwaite_Eakins_-_Talcott_Williams_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Thomas_Cowperthwaite_Eakins_-_Talcott_Williams_-_Google_Art_Project.jpg/3364px-Thomas_Cowperthwaite_Eakins_-_Talcott_Williams_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.399Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Thomas Eakins - Swimming (1895).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/16/Thomas_Eakins_-_Swimming_%281895%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Thomas_Eakins_-_Swimming_%281895%29.jpg/4000px-Thomas_Eakins_-_Swimming_%281895%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.421Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Thomas Eakins, American - Portrait of Dr. Samuel D. Gross (The Gross Clinic) - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/Thomas_Eakins%2C_American_-_Portrait_of_Dr._Samuel_D._Gross_%28The_Gross_Clinic%29_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Thomas_Eakins%2C_American_-_Portrait_of_Dr._Samuel_D._Gross_%28The_Gross_Clinic%29_-_Google_Art_Project.jpg/3225px-Thomas_Eakins%2C_American_-_Portrait_of_Dr._Samuel_D._Gross_%28The_Gross_Clinic%29_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.439Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Thomas Eakins, American - The Concert Singer - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/db/Thomas_Eakins%2C_American_-_The_Concert_Singer_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Thomas_Eakins%2C_American_-_The_Concert_Singer_-_Google_Art_Project.jpg/2878px-Thomas_Eakins%2C_American_-_The_Concert_Singer_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.457Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Thomas Eakins 005.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Thomas_Eakins_005.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/b/b9/Thomas_Eakins_005.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.473Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Salutat.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/62/Salutat.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Salutat.jpg/3166px-Salutat.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.491Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:A may morning in the park thomas eakins.jpeg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1f/A_may_morning_in_the_park_thomas_eakins.jpeg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/1/1f/A_may_morning_in_the_park_thomas_eakins.jpeg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.510Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Thomas Eakins - Portrait of Douglass Morgan Hall.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/96/Thomas_Eakins_-_Portrait_of_Douglass_Morgan_Hall.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/9/96/Thomas_Eakins_-_Portrait_of_Douglass_Morgan_Hall.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.529Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Thomas Eakins, American - William Rush Carving His Allegorical Figure of the Schuylkill River - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/be/Thomas_Eakins%2C_American_-_William_Rush_Carving_His_Allegorical_Figure_of_the_Schuylkill_River_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Thomas_Eakins%2C_American_-_William_Rush_Carving_His_Allegorical_Figure_of_the_Schuylkill_River_-_Google_Art_Project.jpg/4000px-Thomas_Eakins%2C_American_-_William_Rush_Carving_His_Allegorical_Figure_of_the_Schuylkill_River_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.548Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Thomas Eakins",
+    "title": "File:Thomas Eakins - Between Rounds (1890s).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Thomas_Eakins_-_Between_Rounds_%281890s%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Thomas_Eakins_-_Between_Rounds_%281890s%29.jpg/3159px-Thomas_Eakins_-_Between_Rounds_%281890s%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:42:15.564Z",
+    "retryCount": 0
+  }
+]

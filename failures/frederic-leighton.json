@@ -1,1 +1,29 @@
-[]
+[
+  {
+    "artist": "Frederic Leighton",
+    "title": "File:Frederic Leighton - Mrs. James Guthrie - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Frederic_Leighton_-_Mrs._James_Guthrie_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Frederic_Leighton_-_Mrs._James_Guthrie_-_Google_Art_Project.jpg/2627px-Frederic_Leighton_-_Mrs._James_Guthrie_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:09:52.000Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:09:52.001Z"
+  },
+  {
+    "artist": "Frederic Leighton",
+    "title": "File:La Nanna Philadelphia.JPG",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/df/La_Nanna_Philadelphia.JPG",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/La_Nanna_Philadelphia.JPG/2666px-La_Nanna_Philadelphia.JPG: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:09:57.160Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:09:57.160Z"
+  },
+  {
+    "artist": "Frederic Leighton",
+    "title": "File:Frederic Leighton - Portrait of May Sartoris - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/db/Frederic_Leighton_-_Portrait_of_May_Sartoris_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Frederic_Leighton_-_Portrait_of_May_Sartoris_-_Google_Art_Project.jpg/2355px-Frederic_Leighton_-_Portrait_of_May_Sartoris_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:10:02.352Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:10:02.352Z"
+  }
+]

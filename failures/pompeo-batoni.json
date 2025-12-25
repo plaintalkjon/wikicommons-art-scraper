@@ -1,1 +1,404 @@
-[]
+[
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Girolamo Batoni (1708 - 1787) - Brustbildnis des Papstes Clemens XIII. - GK 1041 - Museumslandschaft Hessen Kassel.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Pompeo_Girolamo_Batoni_%281708_-_1787%29_-_Brustbildnis_des_Papstes_Clemens_XIII._-_GK_1041_-_Museumslandschaft_Hessen_Kassel.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Pompeo_Girolamo_Batoni_%281708_-_1787%29_-_Brustbildnis_des_Papstes_Clemens_XIII._-_GK_1041_-_Museumslandschaft_Hessen_Kassel.jpg/3333px-Pompeo_Girolamo_Batoni_%281708_-_1787%29_-_Brustbildnis_des_Papstes_Clemens_XIII._-_GK_1041_-_Museumslandschaft_Hessen_Kassel.jpg: 429 Use thumbnail steps listed on https://w.wiki/GHai. Please contact noc@wikimedia.org for further information (a765913)",
+    "timestamp": "2025-12-24T20:13:30.379Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:18a-Batoni Ritratto del principe Abbondio Rezzonico.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9d/18a-Batoni_Ritratto_del_principe_Abbondio_Rezzonico.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/9/9d/18a-Batoni_Ritratto_del_principe_Abbondio_Rezzonico.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:33.541Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Girolamo Batoni - Portrait of Aleksandra née Lubomirska, Wife of Stanisław Potocki (1758–1831) - MNK XII-396 - National Museum in Kraków.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/32/Pompeo_Girolamo_Batoni_-_Portrait_of_Aleksandra_n%C3%A9e_Lubomirska%2C_Wife_of_Stanis%C5%82aw_Potocki_%281758%E2%80%931831%29_-_MNK_XII-396_-_National_Museum_in_Krak%C3%B3w.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/3/32/Pompeo_Girolamo_Batoni_-_Portrait_of_Aleksandra_n%C3%A9e_Lubomirska%2C_Wife_of_Stanis%C5%82aw_Potocki_%281758%E2%80%931831%29_-_MNK_XII-396_-_National_Museum_in_Krak%C3%B3w.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:33.567Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Batoni - Vierge en buste les mains croisées sur la poitrine.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Pompeo_Batoni_-_Vierge_en_buste_les_mains_crois%C3%A9es_sur_la_poitrine.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/9/9a/Pompeo_Batoni_-_Vierge_en_buste_les_mains_crois%C3%A9es_sur_la_poitrine.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:33.793Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-24T20:13:33.793Z"
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Girolamo Batoni (1708-1787) - Porträt eines Kardinals - 3025 - Führermuseum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/55/Pompeo_Girolamo_Batoni_%281708-1787%29_-_Portr%C3%A4t_eines_Kardinals_-_3025_-_F%C3%BChrermuseum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/5/55/Pompeo_Girolamo_Batoni_%281708-1787%29_-_Portr%C3%A4t_eines_Kardinals_-_3025_-_F%C3%BChrermuseum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:33.874Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-24T20:13:33.874Z"
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Batoni 001.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Pompeo_Batoni_001.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/c/c5/Pompeo_Batoni_001.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:34.064Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Batoni - Portrait of Thomas Fortescue (1767).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/75/Pompeo_Batoni_-_Portrait_of_Thomas_Fortescue_%281767%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/7/75/Pompeo_Batoni_-_Portrait_of_Thomas_Fortescue_%281767%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:34.092Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Batoni, Pompeo Girolamo (1708–1787) - Portrait of George Oakley Aldrich (1721–1797) - LP 275 - Bodleian Libraries.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Batoni%2C_Pompeo_Girolamo_%281708%E2%80%931787%29_-_Portrait_of_George_Oakley_Aldrich_%281721%E2%80%931797%29_-_LP_275_-_Bodleian_Libraries.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/f/f9/Batoni%2C_Pompeo_Girolamo_%281708%E2%80%931787%29_-_Portrait_of_George_Oakley_Aldrich_%281721%E2%80%931797%29_-_LP_275_-_Bodleian_Libraries.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:34.124Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Retrato de William Capell, desconhecido, Watford Museum 01.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Retrato_de_William_Capell%2C_desconhecido%2C_Watford_Museum_01.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/a/ad/Retrato_de_William_Capell%2C_desconhecido%2C_Watford_Museum_01.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:34.378Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:The Triumph of Venice - Pompeo Girolamo Batoni — Google Arts & Culture.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/32/The_Triumph_of_Venice_-_Pompeo_Girolamo_Batoni_%E2%80%94_Google_Arts_%26_Culture.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/The_Triumph_of_Venice_-_Pompeo_Girolamo_Batoni_%E2%80%94_Google_Arts_%26_Culture.jpg/4000px-The_Triumph_of_Venice_-_Pompeo_Girolamo_Batoni_%E2%80%94_Google_Arts_%26_Culture.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:34.406Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Batoni - Cardinal Etienne-René Potier de Gesvres, 1758.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Batoni_-_Cardinal_Etienne-Ren%C3%A9_Potier_de_Gesvres%2C_1758.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/a/a8/Batoni_-_Cardinal_Etienne-Ren%C3%A9_Potier_de_Gesvres%2C_1758.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:34.595Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Batoni - Retrato de Dama como Diana Caçadora.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Pompeo_Batoni_-_Retrato_de_Dama_como_Diana_Ca%C3%A7adora.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/f/ff/Pompeo_Batoni_-_Retrato_de_Dama_como_Diana_Ca%C3%A7adora.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:34.628Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Batoni (Lucca 1708 - Roma 1787) - Ritratto di papa Clemente XIII Rezzonico benedicente - 1925 - Galleria Nazionale d'Arte Antica.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/df/Pompeo_Batoni_%28Lucca_1708_-_Roma_1787%29_-_Ritratto_di_papa_Clemente_XIII_Rezzonico_benedicente_-_1925_-_Galleria_Nazionale_d%27Arte_Antica.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/d/df/Pompeo_Batoni_%28Lucca_1708_-_Roma_1787%29_-_Ritratto_di_papa_Clemente_XIII_Rezzonico_benedicente_-_1925_-_Galleria_Nazionale_d%27Arte_Antica.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:34.651Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Accademia - Madonna in trono e santi di Pompeo Batoni.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/60/Accademia_-_Madonna_in_trono_e_santi_di_Pompeo_Batoni.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Accademia_-_Madonna_in_trono_e_santi_di_Pompeo_Batoni.jpg/2666px-Accademia_-_Madonna_in_trono_e_santi_di_Pompeo_Batoni.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:34.676Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Batoni 003.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Pompeo_Batoni_003.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/c/c0/Pompeo_Batoni_003.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:34.857Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo batoni, charles john crowle, 1761-62 ca..JPG",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Pompeo_batoni%2C_charles_john_crowle%2C_1761-62_ca..JPG",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/e/eb/Pompeo_batoni%2C_charles_john_crowle%2C_1761-62_ca..JPG: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:34.906Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo batoni, apollo, lamusica e la metrica, 1741 ca..JPG",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Pompeo_batoni%2C_apollo%2C_lamusica_e_la_metrica%2C_1741_ca..JPG",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/7/7f/Pompeo_batoni%2C_apollo%2C_lamusica_e_la_metrica%2C_1741_ca..JPG: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:35.109Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo batoni, madonna annunciata, 1741-42 ca..JPG",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Pompeo_batoni%2C_madonna_annunciata%2C_1741-42_ca..JPG",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/5/5f/Pompeo_batoni%2C_madonna_annunciata%2C_1741-42_ca..JPG: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:35.133Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Atis and Galathea (Pompeo Batoni) - Nationalmuseum - 23711.tif",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Atis_and_Galathea_%28Pompeo_Batoni%29_-_Nationalmuseum_-_23711.tif",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/6/68/Atis_and_Galathea_%28Pompeo_Batoni%29_-_Nationalmuseum_-_23711.tif: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:35.170Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Girolamo Batoni - Portrait of Joseph Henry of Straffan - Walters 371932.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/17/Pompeo_Girolamo_Batoni_-_Portrait_of_Joseph_Henry_of_Straffan_-_Walters_371932.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/1/17/Pompeo_Girolamo_Batoni_-_Portrait_of_Joseph_Henry_of_Straffan_-_Walters_371932.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:35.201Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Portrait of a Gentleman A13838.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Portrait_of_a_Gentleman_A13838.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/d/d8/Portrait_of_a_Gentleman_A13838.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:35.382Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Portrait of John Talbot, Later First Earl Talbot by Pompeo Batoni, 1773, J. Paul Getty Museum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/88/Portrait_of_John_Talbot%2C_Later_First_Earl_Talbot_by_Pompeo_Batoni%2C_1773%2C_J._Paul_Getty_Museum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Portrait_of_John_Talbot%2C_Later_First_Earl_Talbot_by_Pompeo_Batoni%2C_1773%2C_J._Paul_Getty_Museum.jpg/2632px-Portrait_of_John_Talbot%2C_Later_First_Earl_Talbot_by_Pompeo_Batoni%2C_1773%2C_J._Paul_Getty_Museum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:35.427Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Batoni - Christ in Glory with Saints Celsus, Julian, Marcionilla and Basilissa - 69.PA.3 - J. Paul Getty Museum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/47/Pompeo_Batoni_-_Christ_in_Glory_with_Saints_Celsus%2C_Julian%2C_Marcionilla_and_Basilissa_-_69.PA.3_-_J._Paul_Getty_Museum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pompeo_Batoni_-_Christ_in_Glory_with_Saints_Celsus%2C_Julian%2C_Marcionilla_and_Basilissa_-_69.PA.3_-_J._Paul_Getty_Museum.jpg/2164px-Pompeo_Batoni_-_Christ_in_Glory_with_Saints_Celsus%2C_Julian%2C_Marcionilla_and_Basilissa_-_69.PA.3_-_J._Paul_Getty_Museum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:35.460Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Girolamo Batoni - Time Unveiling Truth - 1976.291 - Art Institute of Chicago.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Pompeo_Girolamo_Batoni_-_Time_Unveiling_Truth_-_1976.291_-_Art_Institute_of_Chicago.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/9/9b/Pompeo_Girolamo_Batoni_-_Time_Unveiling_Truth_-_1976.291_-_Art_Institute_of_Chicago.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:35.634Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Girolamo Batoni - Saint Andrew - 1960.50 - Art Institute of Chicago.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Pompeo_Girolamo_Batoni_-_Saint_Andrew_-_1960.50_-_Art_Institute_of_Chicago.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/4/45/Pompeo_Girolamo_Batoni_-_Saint_Andrew_-_1960.50_-_Art_Institute_of_Chicago.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:35.655Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Girolamo Batoni - Don José Moñino y Redondo, Conde de Floridablanca - 1974.386 - Art Institute of Chicago.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/25/Pompeo_Girolamo_Batoni_-_Don_Jos%C3%A9_Mo%C3%B1ino_y_Redondo%2C_Conde_de_Floridablanca_-_1974.386_-_Art_Institute_of_Chicago.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/2/25/Pompeo_Girolamo_Batoni_-_Don_Jos%C3%A9_Mo%C3%B1ino_y_Redondo%2C_Conde_de_Floridablanca_-_1974.386_-_Art_Institute_of_Chicago.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:35.674Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Girolamo Batoni - Allegory of Peace and War - 1998.152 - Art Institute of Chicago.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Pompeo_Girolamo_Batoni_-_Allegory_of_Peace_and_War_-_1998.152_-_Art_Institute_of_Chicago.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/7/7f/Pompeo_Girolamo_Batoni_-_Allegory_of_Peace_and_War_-_1998.152_-_Art_Institute_of_Chicago.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:35.694Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo batoni, sir sampson gideon e un compagno ignoto, 1767.JPG",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Pompeo_batoni%2C_sir_sampson_gideon_e_un_compagno_ignoto%2C_1767.JPG",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/d/d7/Pompeo_batoni%2C_sir_sampson_gideon_e_un_compagno_ignoto%2C_1767.JPG: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:35.714Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo batoni, gaetano II sforza cesarini, duca di segni, 1763.JPG",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/af/Pompeo_batoni%2C_gaetano_II_sforza_cesarini%2C_duca_di_segni%2C_1763.JPG",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/a/af/Pompeo_batoni%2C_gaetano_II_sforza_cesarini%2C_duca_di_segni%2C_1763.JPG: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:35.736Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Girolamo Batoni - The Marriage of Cupid and Psyche - 504 - Gemäldegalerie.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/Pompeo_Girolamo_Batoni_-_The_Marriage_of_Cupid_and_Psyche_-_504_-_Gem%C3%A4ldegalerie.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/8/87/Pompeo_Girolamo_Batoni_-_The_Marriage_of_Cupid_and_Psyche_-_504_-_Gem%C3%A4ldegalerie.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:35.901Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Batoni (workshop replica) - Apollo and two Muses - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Pompeo_Batoni_%28workshop_replica%29_-_Apollo_and_two_Muses_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/4/45/Pompeo_Batoni_%28workshop_replica%29_-_Apollo_and_two_Muses_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:35.918Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Batoni - Teti richiama Achille dal Centauro Chirone (1770).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/35/Pompeo_Batoni_-_Teti_richiama_Achille_dal_Centauro_Chirone_%281770%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/3/35/Pompeo_Batoni_-_Teti_richiama_Achille_dal_Centauro_Chirone_%281770%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:35.935Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Girolamo Batoni - Pope Benedict XIV presenting the Encyclical 'Ex Omnibus' to the Comte de Stainville, later Duc de Choiseul - 61.62 - Minneapolis Institute of Arts.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Pompeo_Girolamo_Batoni_-_Pope_Benedict_XIV_presenting_the_Encyclical_%27Ex_Omnibus%27_to_the_Comte_de_Stainville%2C_later_Duc_de_Choiseul_-_61.62_-_Minneapolis_Institute_of_Arts.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Pompeo_Girolamo_Batoni_-_Pope_Benedict_XIV_presenting_the_Encyclical_%27Ex_Omnibus%27_to_the_Comte_de_Stainville%2C_later_Duc_de_Choiseul_-_61.62_-_Minneapolis_Institute_of_Arts.jpg/4000px-thumbnail.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:35.956Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Girolamo Batoni - Portrait of John Woodyeare - 78.24 - Minneapolis Institute of Arts.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/54/Pompeo_Girolamo_Batoni_-_Portrait_of_John_Woodyeare_-_78.24_-_Minneapolis_Institute_of_Arts.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Pompeo_Girolamo_Batoni_-_Portrait_of_John_Woodyeare_-_78.24_-_Minneapolis_Institute_of_Arts.jpg/2963px-Pompeo_Girolamo_Batoni_-_Portrait_of_John_Woodyeare_-_78.24_-_Minneapolis_Institute_of_Arts.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:35.974Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Girolamo Batoni - Time orders Old Age to destroy Beauty.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/79/Pompeo_Girolamo_Batoni_-_Time_orders_Old_Age_to_destroy_Beauty.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/7/79/Pompeo_Girolamo_Batoni_-_Time_orders_Old_Age_to_destroy_Beauty.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:35.995Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Batoni - Portrait of Richard Milles - 1758.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Pompeo_Batoni_-_Portrait_of_Richard_Milles_-_1758.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/9/9e/Pompeo_Batoni_-_Portrait_of_Richard_Milles_-_1758.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:36.172Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Batoni - Ritratto della contessa Maria Benedetta di San Martino.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/01/Pompeo_Batoni_-_Ritratto_della_contessa_Maria_Benedetta_di_San_Martino.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/0/01/Pompeo_Batoni_-_Ritratto_della_contessa_Maria_Benedetta_di_San_Martino.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:36.189Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Hermitagebatoniholyfamily.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/43/Hermitagebatoniholyfamily.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/4/43/Hermitagebatoniholyfamily.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:36.206Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Batoni - Portrait of a Woman, traditionally identified as Margaret Stuart, Lady Hippisley - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Pompeo_Batoni_-_Portrait_of_a_Woman%2C_traditionally_identified_as_Margaret_Stuart%2C_Lady_Hippisley_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/f/f4/Pompeo_Batoni_-_Portrait_of_a_Woman%2C_traditionally_identified_as_Margaret_Stuart%2C_Lady_Hippisley_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:36.228Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Batoni - William Weddell - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Pompeo_Batoni_-_William_Weddell_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Pompeo_Batoni_-_William_Weddell_-_Google_Art_Project.jpg/2903px-Pompeo_Batoni_-_William_Weddell_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:36.249Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Batoni - James Caulfeild, 4th Viscount Charlemont (Later 1st Earl of Charlemont) - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/37/Pompeo_Batoni_-_James_Caulfeild%2C_4th_Viscount_Charlemont_%28Later_1st_Earl_of_Charlemont%29_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Pompeo_Batoni_-_James_Caulfeild%2C_4th_Viscount_Charlemont_%28Later_1st_Earl_of_Charlemont%29_-_Google_Art_Project.jpg/2969px-Pompeo_Batoni_-_James_Caulfeild%2C_4th_Viscount_Charlemont_%28Later_1st_Earl_of_Charlemont%29_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:36.268Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Carl Eugen von Pompeo Batoni.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/61/Carl_Eugen_von_Pompeo_Batoni.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/6/61/Carl_Eugen_von_Pompeo_Batoni.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:36.431Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Batoni - Francis Basset, 1st Baron de Dunstanville.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Batoni_-_Francis_Basset%2C_1st_Baron_de_Dunstanville.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/e/e7/Batoni_-_Francis_Basset%2C_1st_Baron_de_Dunstanville.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:36.453Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Batoni - John Ker, 3rd Duke of Roxburghe.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Batoni_-_John_Ker%2C_3rd_Duke_of_Roxburghe.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/8/8f/Batoni_-_John_Ker%2C_3rd_Duke_of_Roxburghe.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:36.470Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Batoni - Emperor Joseph II with Grand Duke Pietro Leopoldo of Tuscany - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Pompeo_Batoni_-_Emperor_Joseph_II_with_Grand_Duke_Pietro_Leopoldo_of_Tuscany_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Pompeo_Batoni_-_Emperor_Joseph_II_with_Grand_Duke_Pietro_Leopoldo_of_Tuscany_-_Google_Art_Project.jpg/2803px-Pompeo_Batoni_-_Emperor_Joseph_II_with_Grand_Duke_Pietro_Leopoldo_of_Tuscany_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:36.489Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Philip Metcalfe by Pompeo Batoni.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Philip_Metcalfe_by_Pompeo_Batoni.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/4/4d/Philip_Metcalfe_by_Pompeo_Batoni.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:36.511Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo G. Batoni - Edward Weld - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/10/Pompeo_G._Batoni_-_Edward_Weld_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/1/10/Pompeo_G._Batoni_-_Edward_Weld_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:36.529Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Batoni - Selbstbildnis - 1057 - Bavarian State Painting Collections.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/06/Pompeo_Batoni_-_Selbstbildnis_-_1057_-_Bavarian_State_Painting_Collections.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/0/06/Pompeo_Batoni_-_Selbstbildnis_-_1057_-_Bavarian_State_Painting_Collections.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:36.756Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Portrait of John Corbet of Sundorne Castle, Shrewsbury, 1773, by Pompeo Girolamo Batoni (1708-1787) - IMG 7316.JPG",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Portrait_of_John_Corbet_of_Sundorne_Castle%2C_Shrewsbury%2C_1773%2C_by_Pompeo_Girolamo_Batoni_%281708-1787%29_-_IMG_7316.JPG",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/e/e4/Portrait_of_John_Corbet_of_Sundorne_Castle%2C_Shrewsbury%2C_1773%2C_by_Pompeo_Girolamo_Batoni_%281708-1787%29_-_IMG_7316.JPG: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:36.775Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Pompeo Batoni",
+    "title": "File:Pompeo Batoni - Study for the Portrait of Emperor Joseph II. - O 260 - Slovak National Gallery.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/44/Pompeo_Batoni_-_Study_for_the_Portrait_of_Emperor_Joseph_II._-_O_260_-_Slovak_National_Gallery.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Pompeo_Batoni_-_Study_for_the_Portrait_of_Emperor_Joseph_II._-_O_260_-_Slovak_National_Gallery.jpg/2787px-Pompeo_Batoni_-_Study_for_the_Portrait_of_Emperor_Joseph_II._-_O_260_-_Slovak_National_Gallery.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T20:13:36.795Z",
+    "retryCount": 0
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "artist": "Maxime Maufra",
+    "title": "File:Maxime Maufra - Émile Dehelly (1871-1969), sociétaire de la Comédie-Française, en costume de scène - P2316 - Musée Carnavalet.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Maxime_Maufra_-_%C3%89mile_Dehelly_%281871-1969%29%2C_soci%C3%A9taire_de_la_Com%C3%A9die-Fran%C3%A7aise%2C_en_costume_de_sc%C3%A8ne_-_P2316_-_Mus%C3%A9e_Carnavalet.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Maxime_Maufra_-_%C3%89mile_Dehelly_%281871-1969%29%2C_soci%C3%A9taire_de_la_Com%C3%A9die-Fran%C3%A7aise%2C_en_costume_de_sc%C3%A8ne_-_P2316_-_Mus%C3%A9e_Carnavalet.jpg/3219px-Maxime_Maufra_-_%C3%89mile_Dehelly_%281871-1969%29%2C_soci%C3%A9taire_de_la_Com%C3%A9die-Fran%C3%A7aise%2C_en_costume_de_sc%C3%A8ne_-_P2316_-_Mus%C3%A9e_Carnavalet.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:47:08.436Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:47:08.436Z"
+  },
+  {
+    "artist": "Maxime Maufra",
+    "title": "File:Maxime Maufra - Portrait du colonel La Villette - PPP2314 - Musée des Beaux-Arts de la ville de Paris.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Maxime_Maufra_-_Portrait_du_colonel_La_Villette_-_PPP2314_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Maxime_Maufra_-_Portrait_du_colonel_La_Villette_-_PPP2314_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg/3216px-Maxime_Maufra_-_Portrait_du_colonel_La_Villette_-_PPP2314_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:47:13.601Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:47:13.601Z"
+  }
+]

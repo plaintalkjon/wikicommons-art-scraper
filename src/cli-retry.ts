@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-import { loadFailures, removeFailure } from './failureTracker';
-import { fetchImageInfoByTitle } from './wikimedia';
-import { ensureArtist, insertArtAsset, linkArtTags, upsertArt, upsertArtSource, upsertTags } from './db';
+import { loadFailures, removeFailure, getArtistsWithFailures } from './failureTracker';
+import { fetchImageInfoByTitle, pickBestVariant } from './wikimedia';
+import { ensureArtist, upsertArt, upsertTags, linkArtTags, upsertArtSource, insertArtAsset } from './db';
 import { fetchWikidataItemTags } from './wikidata';
-import { downloadImage } from './downloader';
 import { uploadToStorage } from './storage';
-import { buildStoragePath, normalizeTitle, normalizeWikidataTags } from './pipeline';
-import { notifyCompletion } from './notify';
+import { downloadImage } from './downloader';
+import { normalizeTitle, normalizeWikidataTags } from './pipeline';
+import { buildStoragePath } from './pipeline';
 
 function parseArgs() {
   const args = process.argv.slice(2);
@@ -27,85 +27,61 @@ function parseArgs() {
   return parsed;
 }
 
-async function main() {
-  const args = parseArgs();
-  const artist = (args.artist as string);
+async function retryFailures(artist: string): Promise<void> {
+  const failures = await loadFailures(artist);
   
-  if (!artist) {
-    console.error('Error: --artist is required');
-    console.error('Usage: npm run retry -- --artist "Artist Name"');
-    process.exit(1);
-  }
-  
-  console.log(`Retrying failed uploads for: ${artist}`);
-  
-  const failures = loadFailures(artist);
   if (failures.length === 0) {
-    console.log('No failures found for this artist.');
+    console.log(`No failures found for ${artist}`);
     return;
   }
   
-  console.log(`Found ${failures.length} failed uploads to retry...\n`);
+  console.log(`Found ${failures.length} failures for ${artist}. Retrying...`);
   
   const artistId = await ensureArtist(artist);
-  let successCount = 0;
-  let stillFailed: Array<{ title: string; message: string }> = [];
+  let succeeded = 0;
+  let failed = 0;
   
-  // Process failures one at a time to avoid rate limits
-  for (let i = 0; i < failures.length; i++) {
-    const failure = failures[i];
-    console.log(`[${i + 1}/${failures.length}] Retrying: ${failure.title}`);
-    
+  for (const failure of failures) {
     try {
+      console.log(`Retrying: ${failure.title}`);
+      
       // Fetch image info
       const image = await fetchImageInfoByTitle(failure.title);
       if (!image) {
-        console.log(`  ⚠️  Image not found, skipping...`);
-        stillFailed.push({ title: failure.title, message: 'Image not found' });
+        console.log(`  ⚠ Could not fetch image info, skipping`);
+        failed++;
         continue;
       }
       
-      // Pick best variant (using the same logic as pipeline)
-      const { pickBestVariant } = require('./wikimedia');
+      // Pick best variant
       const variant = pickBestVariant(image);
       if (!variant) {
-        console.log(`  ⚠️  No suitable variant found, skipping...`);
-        stillFailed.push({ title: failure.title, message: 'No suitable variant' });
+        console.log(`  ⚠ No suitable variant found, skipping`);
+        failed++;
         continue;
       }
       
-      // Download image
+      // Download and upload
       const downloaded = await downloadImage(variant);
-      const storagePath = buildStoragePath(artist, image, downloaded.ext);
+      const path = buildStoragePath(artist, image, downloaded.ext);
       
-      // Upload to storage
-      const upload = await uploadToStorage(storagePath, downloaded);
-      
-      // Upsert art record (with title cleaning)
-      const { cleanTitle } = require('./pipeline');
-      const rawTitle = normalizeTitle(image.title);
-      const cleanedTitle = cleanTitle(rawTitle);
+      const upload = await uploadToStorage(path, downloaded);
       const artId = await upsertArt({
-        title: cleanedTitle,
+        title: normalizeTitle(image.title),
         description: image.description ?? null,
         imageUrl: upload.publicUrl,
         artistId,
       });
       
-      // Get Wikidata tags if available
-      let normalizedTags: string[];
+      // Add tags if we have source item
       if (image.sourceItem) {
         const wikidataTags = await fetchWikidataItemTags(image.sourceItem);
-        normalizedTags = normalizeWikidataTags(wikidataTags, image.museum);
-      } else {
-        normalizedTags = [];
+        const normalizedTags = normalizeWikidataTags(wikidataTags, image.museum);
+        const tagIds = await upsertTags(normalizedTags).then((rows) => rows.map((r) => r.id));
+        await linkArtTags(artId, tagIds);
       }
       
-      // Upsert tags
-      const tagIds = await upsertTags(normalizedTags).then((rows) => rows.map((r) => r.id));
-      await linkArtTags(artId, tagIds);
-      
-      // Upsert source
+      // Add source
       await upsertArtSource({
         artId,
         source: 'wikidata',
@@ -114,7 +90,7 @@ async function main() {
         sourceUrl: image.pageUrl,
       });
       
-      // Insert asset
+      // Add asset
       await insertArtAsset({
         artId,
         storagePath: upload.path,
@@ -127,70 +103,49 @@ async function main() {
       });
       
       // Remove from failures list
-      removeFailure(artist, failure.title);
-      successCount++;
-      console.log(`  ✅ Successfully uploaded!`);
+      await removeFailure(artist, failure.title);
+      console.log(`  ✓ Successfully uploaded`);
+      succeeded++;
       
-      // Small delay between retries to avoid rate limits
-      if (i < failures.length - 1) {
-        await new Promise(resolve => setTimeout(resolve, 2000));
-      }
+      // Small delay to avoid rate limits
+      await new Promise(resolve => setTimeout(resolve, 2000));
       
     } catch (err) {
-      const errorMessage = (err as Error).message;
-      console.log(`  ❌ Failed: ${errorMessage}`);
-      stillFailed.push({ title: failure.title, message: errorMessage });
-      
-      // Update failure record
-      const { saveFailure } = require('./failureTracker');
-      await saveFailure({
-        artist: failure.artist,
-        title: failure.title,
-        imageUrl: failure.imageUrl,
-        error: errorMessage,
-        timestamp: new Date().toISOString(),
-        retryCount: failure.retryCount + 1,
-        lastRetry: new Date().toISOString(),
-      });
-      
-      // Longer delay on error to respect rate limits
-      await new Promise(resolve => setTimeout(resolve, 5000));
+      console.log(`  ✗ Failed: ${(err as Error).message}`);
+      failed++;
+      // Don't remove from failures list, will retry again later
     }
+
   }
   
-  console.log(`\nCompleted retry.`);
-  console.log(`  ✅ Successfully retried: ${successCount}`);
-  console.log(`  ❌ Still failed: ${stillFailed.length}`);
-  
-  if (stillFailed.length > 0) {
-    console.log('\nRemaining failures:');
-    for (const failure of stillFailed) {
-      console.log(`  - ${failure.title}: ${failure.message}`);
-    }
-  }
-  
-  // Send notification
-  await notifyCompletion(artist, {
-    attempted: failures.length,
-    uploaded: successCount,
-    skipped: 0,
-    errors: stillFailed.length,
-  });
+  console.log(`\nRetry complete: ${succeeded} succeeded, ${failed} still failed`);
 }
 
-main().catch(async (err) => {
-  console.error(err);
-  try {
-    const args = parseArgs();
-    const artist = (args.artist as string) || 'Unknown';
-    await notifyCompletion(artist, {
-      attempted: 0,
-      uploaded: 0,
-      skipped: 0,
-      errors: 1,
-    });
-  } catch {
-    // Ignore notification errors
+async function main() {
+  const args = parseArgs();
+  const artist = args.artist as string | undefined;
+  
+  if (artist) {
+    // Retry specific artist
+    await retryFailures(artist);
+  } else {
+    // List all artists with failures
+    const artists = await getArtistsWithFailures();
+    if (artists.length === 0) {
+      console.log('No failures found for any artist');
+      return;
+    }
+    
+    console.log('Artists with failures:');
+    for (const artistName of artists) {
+      const failures = await loadFailures(artistName);
+      console.log(`  ${artistName}: ${failures.length} failures`);
+    }
+    console.log('\nTo retry, use: npm run retry -- --artist "Artist Name"');
   }
+}
+
+main().catch((err) => {
+  console.error(err);
   process.exit(1);
 });

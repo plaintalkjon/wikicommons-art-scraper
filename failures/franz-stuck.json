@@ -1,1 +1,47 @@
-[]
+[
+  {
+    "artist": "Franz Stuck",
+    "title": "File:Franz von Stuck - The Kiss of the Sphinx - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Franz_von_Stuck_-_The_Kiss_of_the_Sphinx_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Franz_von_Stuck_-_The_Kiss_of_the_Sphinx_-_Google_Art_Project.jpg/3575px-Franz_von_Stuck_-_The_Kiss_of_the_Sphinx_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:07:42.919Z",
+    "retryCount": 3,
+    "lastRetry": "2025-12-25T10:07:42.920Z"
+  },
+  {
+    "artist": "Franz Stuck",
+    "title": "File:Luzifer (Lucifer) painting by Franz von Stuck 1890 National Gallery in Sofia.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Luzifer_%28Lucifer%29_painting_by_Franz_von_Stuck_1890_National_Gallery_in_Sofia.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Luzifer_%28Lucifer%29_painting_by_Franz_von_Stuck_1890_National_Gallery_in_Sofia.jpg/3790px-Luzifer_%28Lucifer%29_painting_by_Franz_von_Stuck_1890_National_Gallery_in_Sofia.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:07:48.068Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:07:48.068Z"
+  },
+  {
+    "artist": "Franz Stuck",
+    "title": "File:Adam and Eve (SM sg1156).png",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/32/Adam_and_Eve_%28SM_sg1156%29.png",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Adam_and_Eve_%28SM_sg1156%29.png/3794px-Adam_and_Eve_%28SM_sg1156%29.png: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:07:53.255Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:07:53.255Z"
+  },
+  {
+    "artist": "Franz Stuck",
+    "title": "File:Franz von Stuck - Wounded Amazon - 2002.96 - Busch–Reisinger Museum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/89/Franz_von_Stuck_-_Wounded_Amazon_-_2002.96_-_Busch%E2%80%93Reisinger_Museum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/8/89/Franz_von_Stuck_-_Wounded_Amazon_-_2002.96_-_Busch%E2%80%93Reisinger_Museum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:07:58.568Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:07:58.568Z"
+  },
+  {
+    "artist": "Franz Stuck",
+    "title": "File:Stuck Susanna 2.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Stuck_Susanna_2.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Stuck_Susanna_2.jpg/1309px-Stuck_Susanna_2.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:08:03.709Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:08:03.709Z"
+  }
+]

@@ -1,1 +1,56 @@
-[]
+[
+  {
+    "artist": "Nicolaes Pieterszoon Berchem",
+    "title": "File:Allegory on the expansion of Amsterdam, by Nicolaes Pietersz.Berchem.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/70/Allegory_on_the_expansion_of_Amsterdam%2C_by_Nicolaes_Pietersz.Berchem.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/7/70/Allegory_on_the_expansion_of_Amsterdam%2C_by_Nicolaes_Pietersz.Berchem.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:47:42.888Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:47:42.889Z"
+  },
+  {
+    "artist": "Nicolaes Pieterszoon Berchem",
+    "title": "File:Italianate Landscape with Animals, a Shepherd, and a Peasant Woman Holding a Distaff, workshop of Nicolaes Pietersz Berchem, undated, oil on canvas - Blanton Museum of Art - Austin, Texas - DSC07814.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Italianate_Landscape_with_Animals%2C_a_Shepherd%2C_and_a_Peasant_Woman_Holding_a_Distaff%2C_workshop_of_Nicolaes_Pietersz_Berchem%2C_undated%2C_oil_on_canvas_-_Blanton_Museum_of_Art_-_Austin%2C_Texas_-_DSC07814.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Italianate_Landscape_with_Animals%2C_a_Shepherd%2C_and_a_Peasant_Woman_Holding_a_Distaff%2C_workshop_of_Nicolaes_Pietersz_Berchem%2C_undated%2C_oil_on_canvas_-_Blanton_Museum_of_Art_-_Austin%2C_Texas_-_DSC07814.jpg/2835px-thumbnail.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:47:48.058Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:47:48.058Z"
+  },
+  {
+    "artist": "Nicolaes Pieterszoon Berchem",
+    "title": "File:(Venice) Landscape with farmers and cattle by Nicolaes Berchem - Gallerie Accademia.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d4/%28Venice%29_Landscape_with_farmers_and_cattle_by_Nicolaes_Berchem_-_Gallerie_Accademia.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/%28Venice%29_Landscape_with_farmers_and_cattle_by_Nicolaes_Berchem_-_Gallerie_Accademia.jpg/2923px-%28Venice%29_Landscape_with_farmers_and_cattle_by_Nicolaes_Berchem_-_Gallerie_Accademia.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:47:54.272Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:47:54.272Z"
+  },
+  {
+    "artist": "Nicolaes Pieterszoon Berchem",
+    "title": "File:Douai chartreuse van ruisdael foret.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Douai_chartreuse_van_ruisdael_foret.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/d/d3/Douai_chartreuse_van_ruisdael_foret.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:47:59.469Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:47:59.469Z"
+  },
+  {
+    "artist": "Nicolaes Pieterszoon Berchem",
+    "title": "File:Nicolaes Berchem - Retour de Tobie.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Nicolaes_Berchem_-_Retour_de_Tobie.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/2/2f/Nicolaes_Berchem_-_Retour_de_Tobie.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:48:04.645Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:48:04.645Z"
+  },
+  {
+    "artist": "Nicolaes Pieterszoon Berchem",
+    "title": "File:Nicolaes Berchem - Landscape with a waterfall and the Temple of the Sibyl at Tivoli 59 berchem 7670.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Nicolaes_Berchem_-_Landscape_with_a_waterfall_and_the_Temple_of_the_Sibyl_at_Tivoli_59_berchem_7670.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Nicolaes_Berchem_-_Landscape_with_a_waterfall_and_the_Temple_of_the_Sibyl_at_Tivoli_59_berchem_7670.jpg/3560px-Nicolaes_Berchem_-_Landscape_with_a_waterfall_and_the_Temple_of_the_Sibyl_at_Tivoli_59_berchem_7670.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:48:10.753Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:48:10.754Z"
+  }
+]

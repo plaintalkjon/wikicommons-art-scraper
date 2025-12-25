@@ -1,0 +1,29 @@
+[
+  {
+    "artist": "Jules Joseph Lefebvre",
+    "title": "File:Jules Joseph Lefebvre - Female Slave with a Plate of Fruit - 1874-C - Museum of Fine Arts Ghent (MSK).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Jules_Joseph_Lefebvre_-_Female_Slave_with_a_Plate_of_Fruit_-_1874-C_-_Museum_of_Fine_Arts_Ghent_%28MSK%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Jules_Joseph_Lefebvre_-_Female_Slave_with_a_Plate_of_Fruit_-_1874-C_-_Museum_of_Fine_Arts_Ghent_%28MSK%29.jpg/2594px-Jules_Joseph_Lefebvre_-_Female_Slave_with_a_Plate_of_Fruit_-_1874-C_-_Museum_of_Fine_Arts_Ghent_%28MSK%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:43:07.167Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:43:07.168Z"
+  },
+  {
+    "artist": "Jules Joseph Lefebvre",
+    "title": "File:Vestale endormie by Jules-Joseph Lefebvre.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/99/Vestale_endormie_by_Jules-Joseph_Lefebvre.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Vestale_endormie_by_Jules-Joseph_Lefebvre.jpg/2801px-Vestale_endormie_by_Jules-Joseph_Lefebvre.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:43:13.077Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:43:13.077Z"
+  },
+  {
+    "artist": "Jules Joseph Lefebvre",
+    "title": "File:Chloé - Musée Boucher-de-Perthes 36.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Chlo%C3%A9_-_Mus%C3%A9e_Boucher-de-Perthes_36.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Chlo%C3%A9_-_Mus%C3%A9e_Boucher-de-Perthes_36.jpg/2666px-Chlo%C3%A9_-_Mus%C3%A9e_Boucher-de-Perthes_36.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:43:18.233Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:43:18.233Z"
+  }
+]

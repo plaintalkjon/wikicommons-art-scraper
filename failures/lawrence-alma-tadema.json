@@ -1,0 +1,47 @@
+[
+  {
+    "artist": "Lawrence Alma-Tadema",
+    "title": "File:Sir Lawrence Alma-Tadema - Portrait of Mrs. Ralph Sneyd (Mary Ellis Sneyd) - 1996.12 - Clark Art Institute.tiff",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/02/Sir_Lawrence_Alma-Tadema_-_Portrait_of_Mrs._Ralph_Sneyd_%28Mary_Ellis_Sneyd%29_-_1996.12_-_Clark_Art_Institute.tiff",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Sir_Lawrence_Alma-Tadema_-_Portrait_of_Mrs._Ralph_Sneyd_%28Mary_Ellis_Sneyd%29_-_1996.12_-_Clark_Art_Institute.tiff/lossy-page1-2969px-Sir_Lawrence_Alma-Tadema_-_Portrait_of_Mrs._Ralph_Sneyd_%28Mary_Ellis_Sneyd%29_-_1996.12_-_Clark_Art_Institute.tiff.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:43:58.437Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:43:58.438Z"
+  },
+  {
+    "artist": "Lawrence Alma-Tadema",
+    "title": "File:Lourens Alma Tadema (1836 - 1912), Brussel - Spelevaren (Opus nr. LVI) - hwm0003 - The Mesdag Collection.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/17/Lourens_Alma_Tadema_%281836_-_1912%29%2C_Brussel_-_Spelevaren_%28Opus_nr._LVI%29_-_hwm0003_-_The_Mesdag_Collection.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/1/17/Lourens_Alma_Tadema_%281836_-_1912%29%2C_Brussel_-_Spelevaren_%28Opus_nr._LVI%29_-_hwm0003_-_The_Mesdag_Collection.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:44:04.660Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:44:04.661Z"
+  },
+  {
+    "artist": "Lawrence Alma-Tadema",
+    "title": "File:Past and present generations (1894), by Lawrence Alma-Tadema.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Past_and_present_generations_%281894%29%2C_by_Lawrence_Alma-Tadema.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Past_and_present_generations_%281894%29%2C_by_Lawrence_Alma-Tadema.jpg/2492px-Past_and_present_generations_%281894%29%2C_by_Lawrence_Alma-Tadema.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:44:09.844Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:44:09.844Z"
+  },
+  {
+    "artist": "Lawrence Alma-Tadema",
+    "title": "File:Sir Lawrence Alma-Tadema, English (born Netherlands) - A Reading from Homer - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Sir_Lawrence_Alma-Tadema%2C_English_%28born_Netherlands%29_-_A_Reading_from_Homer_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Sir_Lawrence_Alma-Tadema%2C_English_%28born_Netherlands%29_-_A_Reading_from_Homer_-_Google_Art_Project.jpg/4000px-Sir_Lawrence_Alma-Tadema%2C_English_%28born_Netherlands%29_-_A_Reading_from_Homer_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:44:15.031Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:44:15.032Z"
+  },
+  {
+    "artist": "Lawrence Alma-Tadema",
+    "title": "File:Sir Lawrence Alma-Tadema - Hopeful - 1955.873 - Clark Art Institute.tiff",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Sir_Lawrence_Alma-Tadema_-_Hopeful_-_1955.873_-_Clark_Art_Institute.tiff",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Sir_Lawrence_Alma-Tadema_-_Hopeful_-_1955.873_-_Clark_Art_Institute.tiff/lossy-page1-1921px-Sir_Lawrence_Alma-Tadema_-_Hopeful_-_1955.873_-_Clark_Art_Institute.tiff.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:44:20.182Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:44:20.182Z"
+  }
+]

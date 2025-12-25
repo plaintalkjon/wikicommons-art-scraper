@@ -1,0 +1,20 @@
+[
+  {
+    "artist": "Jan van Eyck",
+    "title": "File:14th-century painters - Les Très Belles Heures de Notre Dame de Jean de Berry - WGA16014.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/59/14th-century_painters_-_Les_Tr%C3%A8s_Belles_Heures_de_Notre_Dame_de_Jean_de_Berry_-_WGA16014.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/14th-century_painters_-_Les_Tr%C3%A8s_Belles_Heures_de_Notre_Dame_de_Jean_de_Berry_-_WGA16014.jpg/2859px-14th-century_painters_-_Les_Tr%C3%A8s_Belles_Heures_de_Notre_Dame_de_Jean_de_Berry_-_WGA16014.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:30:09.635Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:30:09.635Z"
+  },
+  {
+    "artist": "Jan van Eyck",
+    "title": "File:Annunciation - Jan van Eyck - 1434 - NG Wash DC.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Annunciation_-_Jan_van_Eyck_-_1434_-_NG_Wash_DC.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Annunciation_-_Jan_van_Eyck_-_1434_-_NG_Wash_DC.jpg/1517px-Annunciation_-_Jan_van_Eyck_-_1434_-_NG_Wash_DC.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:30:14.804Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:30:14.804Z"
+  }
+]

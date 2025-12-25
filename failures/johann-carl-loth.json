@@ -1,0 +1,47 @@
+[
+  {
+    "artist": "Johann Carl Loth",
+    "title": "File:Johann Carl Loth - The Crowning with thorns - A II 1533 - Finnish National Gallery.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Johann_Carl_Loth_-_The_Crowning_with_thorns_-_A_II_1533_-_Finnish_National_Gallery.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Johann_Carl_Loth_-_The_Crowning_with_thorns_-_A_II_1533_-_Finnish_National_Gallery.jpg/3380px-Johann_Carl_Loth_-_The_Crowning_with_thorns_-_A_II_1533_-_Finnish_National_Gallery.jpg: 429 Use thumbnail steps listed on https://w.wiki/GHai. Please contact noc@wikimedia.org for further information (a765913)",
+    "timestamp": "2025-12-25T10:35:34.309Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:35:34.309Z"
+  },
+  {
+    "artist": "Johann Carl Loth",
+    "title": "File:Johan Carl Loth - Saint John the Baptist - O 3927 - Slovak National Gallery.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/00/Johan_Carl_Loth_-_Saint_John_the_Baptist_-_O_3927_-_Slovak_National_Gallery.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Johan_Carl_Loth_-_Saint_John_the_Baptist_-_O_3927_-_Slovak_National_Gallery.jpg/3227px-Johan_Carl_Loth_-_Saint_John_the_Baptist_-_O_3927_-_Slovak_National_Gallery.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:35:39.510Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:35:39.511Z"
+  },
+  {
+    "artist": "Johann Carl Loth",
+    "title": "File:Accademia - Carl Johann Loth - San Romualdo.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Accademia_-_Carl_Johann_Loth_-_San_Romualdo.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Accademia_-_Carl_Johann_Loth_-_San_Romualdo.jpg/3326px-Accademia_-_Carl_Johann_Loth_-_San_Romualdo.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:35:44.752Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:35:44.752Z"
+  },
+  {
+    "artist": "Johann Carl Loth",
+    "title": "File:Interior of Santi Giovanni e Paolo (Venice) - Copy per, Johann Carl Loth of the martyrdom of St. Peter after Titian.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Interior_of_Santi_Giovanni_e_Paolo_%28Venice%29_-_Copy_per%2C_Johann_Carl_Loth_of_the_martyrdom_of_St._Peter_after_Titian.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Interior_of_Santi_Giovanni_e_Paolo_%28Venice%29_-_Copy_per%2C_Johann_Carl_Loth_of_the_martyrdom_of_St._Peter_after_Titian.jpg/2455px-Interior_of_Santi_Giovanni_e_Paolo_%28Venice%29_-_Copy_per%2C_Johann_Carl_Loth_of_the_martyrdom_of_St._Peter_after_Titian.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:35:49.900Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:35:49.901Z"
+  },
+  {
+    "artist": "Johann Carl Loth",
+    "title": "File:Ca' Rezzonico - Vulcano (Inv.085) - Carlo Loth.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Ca%27_Rezzonico_-_Vulcano_%28Inv.085%29_-_Carlo_Loth.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Ca%27_Rezzonico_-_Vulcano_%28Inv.085%29_-_Carlo_Loth.jpg/3333px-Ca%27_Rezzonico_-_Vulcano_%28Inv.085%29_-_Carlo_Loth.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:35:55.057Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:35:55.058Z"
+  }
+]

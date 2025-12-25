@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 import { fetchAndStoreArtworks } from './pipeline';
-import { notifyCompletion } from './notify';
 
 function parseArgs() {
   const args = process.argv.slice(2);
@@ -26,15 +25,14 @@ async function main() {
   const artist = (args.artist as string) ?? 'Vincent van Gogh';
   const limit = args.limit ? Number(args.limit) : undefined;
   const dryRun = Boolean(args['dry-run'] ?? args.dryRun);
-  const paintingsOnly = Boolean(args['paintings-only'] ?? args.paintingsOnly);
   const maxUploads = args['max-uploads'] ? Number(args['max-uploads']) : undefined;
 
   console.log(
-    `Fetching artworks for: ${artist} (${dryRun ? 'dry run' : 'uploading'})${paintingsOnly ? ' [paintings only]' : ''}${
+    `Fetching artworks for: ${artist} (${dryRun ? 'dry run' : 'uploading'})${
       maxUploads ? ` [max uploads: ${maxUploads}]` : ''
     }`,
   );
-  const result = await fetchAndStoreArtworks({ artist, limit, dryRun, paintingsOnly, maxUploads });
+  const result = await fetchAndStoreArtworks({ artist, limit, dryRun, maxUploads });
 
   console.log(
     `Completed. attempted=${result.attempted} uploaded=${result.uploaded} skipped=${result.skipped} errors=${result.errors.length}`,
@@ -45,29 +43,10 @@ async function main() {
       console.error(`- ${err.title}: ${err.message}`);
     }
   }
-  
-  // Send notification when complete
-  await notifyCompletion(artist, {
-    attempted: result.attempted,
-    uploaded: result.uploaded,
-    skipped: result.skipped,
-    errors: result.errors.length,
-  });
 }
 
-main().catch(async (err) => {
+main().catch((err) => {
   console.error(err);
-  // Send error notification
-  try {
-    await notifyCompletion('Unknown', {
-      attempted: 0,
-      uploaded: 0,
-      skipped: 0,
-      errors: 1,
-    });
-  } catch {
-    // Ignore notification errors
-  }
   process.exit(1);
 });
 

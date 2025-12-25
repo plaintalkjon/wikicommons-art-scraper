@@ -1,0 +1,47 @@
+[
+  {
+    "artist": "Gustav Klimt",
+    "title": "File:Gustav Klimt - Approaching Thunderstorm (The Large Poplar II) - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Gustav_Klimt_-_Approaching_Thunderstorm_%28The_Large_Poplar_II%29_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Gustav_Klimt_-_Approaching_Thunderstorm_%28The_Large_Poplar_II%29_-_Google_Art_Project.jpg/3991px-Gustav_Klimt_-_Approaching_Thunderstorm_%28The_Large_Poplar_II%29_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:15:31.772Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:15:31.773Z"
+  },
+  {
+    "artist": "Gustav Klimt",
+    "title": "File:Gustav Klimt - Attersee - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Gustav_Klimt_-_Attersee_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Gustav_Klimt_-_Attersee_-_Google_Art_Project.jpg/3992px-Gustav_Klimt_-_Attersee_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:15:36.926Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:15:36.926Z"
+  },
+  {
+    "artist": "Gustav Klimt",
+    "title": "File:Gustav Klimt - Seated Young Girl - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Gustav_Klimt_-_Seated_Young_Girl_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Gustav_Klimt_-_Seated_Young_Girl_-_Google_Art_Project.jpg/2670px-Gustav_Klimt_-_Seated_Young_Girl_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:15:42.082Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:15:42.082Z"
+  },
+  {
+    "artist": "Gustav Klimt",
+    "title": "File:Klimt - Porträt Emilie Flöge - 1902.jpeg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Klimt_-_Portr%C3%A4t_Emilie_Fl%C3%B6ge_-_1902.jpeg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Klimt_-_Portr%C3%A4t_Emilie_Fl%C3%B6ge_-_1902.jpeg/1756px-Klimt_-_Portr%C3%A4t_Emilie_Fl%C3%B6ge_-_1902.jpeg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:15:47.236Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:15:47.236Z"
+  },
+  {
+    "artist": "Gustav Klimt",
+    "title": "File:Klimt - Goldfische - 1901-02.jpeg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Klimt_-_Goldfische_-_1901-02.jpeg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Klimt_-_Goldfische_-_1901-02.jpeg/1463px-Klimt_-_Goldfische_-_1901-02.jpeg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:15:52.380Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:15:52.381Z"
+  }
+]

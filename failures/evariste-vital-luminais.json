@@ -1,0 +1,11 @@
+[
+  {
+    "artist": "Evariste-Vital Luminais",
+    "title": "File:Beaux-Arts de Carcassonne - Le dernier des Mérovingiens - Evariste-Vital Luminais -Joconde 04400000403.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Beaux-Arts_de_Carcassonne_-_Le_dernier_des_M%C3%A9rovingiens_-_Evariste-Vital_Luminais_-Joconde_04400000403.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Beaux-Arts_de_Carcassonne_-_Le_dernier_des_M%C3%A9rovingiens_-_Evariste-Vital_Luminais_-Joconde_04400000403.jpg/3295px-Beaux-Arts_de_Carcassonne_-_Le_dernier_des_M%C3%A9rovingiens_-_Evariste-Vital_Luminais_-Joconde_04400000403.jpg: 429 Use thumbnail steps listed on https://w.wiki/GHai. Please contact noc@wikimedia.org for further information (a765913)",
+    "timestamp": "2025-12-25T10:56:29.206Z",
+    "retryCount": 4,
+    "lastRetry": "2025-12-25T10:56:29.207Z"
+  }
+]

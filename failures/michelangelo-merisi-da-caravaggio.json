@@ -1,1 +1,29 @@
-[]
+[
+  {
+    "artist": "Michelangelo Merisi da Caravaggio",
+    "title": "File:Caravaggio - Cupid as Victor - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Caravaggio_-_Cupid_as_Victor_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Caravaggio_-_Cupid_as_Victor_-_Google_Art_Project.jpg/2893px-Caravaggio_-_Cupid_as_Victor_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:47:23.068Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:47:23.069Z"
+  },
+  {
+    "artist": "Michelangelo Merisi da Caravaggio",
+    "title": "File:Caravaggio (Michelangelo Merisi) (1571 - 1610) - The Evangelist Matthew - 365 - Gemäldegalerie.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/75/Caravaggio_%28Michelangelo_Merisi%29_%281571_-_1610%29_-_The_Evangelist_Matthew_-_365_-_Gem%C3%A4ldegalerie.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/7/75/Caravaggio_%28Michelangelo_Merisi%29_%281571_-_1610%29_-_The_Evangelist_Matthew_-_365_-_Gem%C3%A4ldegalerie.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:47:28.231Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:47:28.231Z"
+  },
+  {
+    "artist": "Michelangelo Merisi da Caravaggio",
+    "title": "File:Caravaggio (Michelangelo Merisi) - Ecce Homo - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Caravaggio_%28Michelangelo_Merisi%29_-_Ecce_Homo_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Caravaggio_%28Michelangelo_Merisi%29_-_Ecce_Homo_-_Google_Art_Project.jpg/3195px-Caravaggio_%28Michelangelo_Merisi%29_-_Ecce_Homo_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:47:33.385Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:47:33.385Z"
+  }
+]

@@ -1,1 +1,173 @@
-[]
+[
+  {
+    "artist": "Eugène Delacroix",
+    "title": "File:Ferdinand-Victor-Eugène Delacroix - Paganini - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/30/Ferdinand-Victor-Eug%C3%A8ne_Delacroix_-_Paganini_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Ferdinand-Victor-Eug%C3%A8ne_Delacroix_-_Paganini_-_Google_Art_Project.jpg/2746px-Ferdinand-Victor-Eug%C3%A8ne_Delacroix_-_Paganini_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:01:16.636Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:01:16.637Z"
+  },
+  {
+    "artist": "Eugène Delacroix",
+    "title": "File:Eugène Delacroix, \"Appartement du comte de Mornay rue de Verneuil\".jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Eug%C3%A8ne_Delacroix%2C_%22Appartement_du_comte_de_Mornay_rue_de_Verneuil%22.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/0/0d/Eug%C3%A8ne_Delacroix%2C_%22Appartement_du_comte_de_Mornay_rue_de_Verneuil%22.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:01:21.803Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:01:21.803Z"
+  },
+  {
+    "artist": "Eugène Delacroix",
+    "title": "File:Le Turc à la selle - Eugène Delacroix - Musée du Louvre Peintures RF 1654.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/11/Le_Turc_%C3%A0_la_selle_-_Eug%C3%A8ne_Delacroix_-_Mus%C3%A9e_du_Louvre_Peintures_RF_1654.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Le_Turc_%C3%A0_la_selle_-_Eug%C3%A8ne_Delacroix_-_Mus%C3%A9e_du_Louvre_Peintures_RF_1654.jpg/3200px-Le_Turc_%C3%A0_la_selle_-_Eug%C3%A8ne_Delacroix_-_Mus%C3%A9e_du_Louvre_Peintures_RF_1654.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:01:26.968Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:01:26.969Z"
+  },
+  {
+    "artist": "Eugène Delacroix",
+    "title": "File:Lionne prête à s'élancer - Eugène Delacroix - Q29857777.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Lionne_pr%C3%AAte_%C3%A0_s%27%C3%A9lancer_-_Eug%C3%A8ne_Delacroix_-_Q29857777.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/a/ad/Lionne_pr%C3%AAte_%C3%A0_s%27%C3%A9lancer_-_Eug%C3%A8ne_Delacroix_-_Q29857777.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:01:32.134Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:01:32.134Z"
+  },
+  {
+    "artist": "Eugène Delacroix",
+    "title": "File:Portrait Leon Riesener.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/49/Portrait_Leon_Riesener.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Portrait_Leon_Riesener.jpg/3186px-Portrait_Leon_Riesener.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:01:37.303Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:01:37.304Z"
+  },
+  {
+    "artist": "Eugène Delacroix",
+    "title": "File:Ferdinand-Victor-Eugène Delacroix - A Turk Surrenders to a Greek Horseman - 1943.233 - Fogg Museum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Ferdinand-Victor-Eug%C3%A8ne_Delacroix_-_A_Turk_Surrenders_to_a_Greek_Horseman_-_1943.233_-_Fogg_Museum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/9/9c/Ferdinand-Victor-Eug%C3%A8ne_Delacroix_-_A_Turk_Surrenders_to_a_Greek_Horseman_-_1943.233_-_Fogg_Museum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:01:42.498Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:01:42.498Z"
+  },
+  {
+    "artist": "Eugène Delacroix",
+    "title": "File:Eugène Delacroix - The night after the battle of Waterloo - Mesdag Collection.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Eug%C3%A8ne_Delacroix_-_The_night_after_the_battle_of_Waterloo_-_Mesdag_Collection.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/6/6e/Eug%C3%A8ne_Delacroix_-_The_night_after_the_battle_of_Waterloo_-_Mesdag_Collection.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:01:47.646Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:01:47.646Z"
+  },
+  {
+    "artist": "Eugène Delacroix",
+    "title": "File:Musée Ingres-Bourdelle - Vase de fleurs à la console 1849-1850 - Eugène Delacroix MID 51.3.2.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/07/Mus%C3%A9e_Ingres-Bourdelle_-_Vase_de_fleurs_%C3%A0_la_console_1849-1850_-_Eug%C3%A8ne_Delacroix_MID_51.3.2.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Mus%C3%A9e_Ingres-Bourdelle_-_Vase_de_fleurs_%C3%A0_la_console_1849-1850_-_Eug%C3%A8ne_Delacroix_MID_51.3.2.jpg/2883px-Mus%C3%A9e_Ingres-Bourdelle_-_Vase_de_fleurs_%C3%A0_la_console_1849-1850_-_Eug%C3%A8ne_Delacroix_MID_51.3.2.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:01:52.800Z",
+    "retryCount": 4,
+    "lastRetry": "2025-12-25T10:01:52.801Z"
+  },
+  {
+    "artist": "Eugène Delacroix",
+    "title": "File:Eugène Delacroix (1798 - 1863) - Avond na een veldslag - hwm0112 - The Mesdag Collection.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Eug%C3%A8ne_Delacroix_%281798_-_1863%29_-_Avond_na_een_veldslag_-_hwm0112_-_The_Mesdag_Collection.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/2/2a/Eug%C3%A8ne_Delacroix_%281798_-_1863%29_-_Avond_na_een_veldslag_-_hwm0112_-_The_Mesdag_Collection.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:01:58.820Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:01:58.820Z"
+  },
+  {
+    "artist": "Eugène Delacroix",
+    "title": "File:Delacroix - Portrait of Jeanne-Marie, known as Jenny Le Guillou (36118128994).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Delacroix_-_Portrait_of_Jeanne-Marie%2C_known_as_Jenny_Le_Guillou_%2836118128994%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Delacroix_-_Portrait_of_Jeanne-Marie%2C_known_as_Jenny_Le_Guillou_%2836118128994%29.jpg/3249px-Delacroix_-_Portrait_of_Jeanne-Marie%2C_known_as_Jenny_Le_Guillou_%2836118128994%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:02:04.023Z",
+    "retryCount": 3,
+    "lastRetry": "2025-12-25T10:02:04.024Z"
+  },
+  {
+    "artist": "Eugène Delacroix",
+    "title": "File:Delacroix - Inderin, von einem Tiger zerrissen.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Delacroix_-_Inderin%2C_von_einem_Tiger_zerrissen.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/6/63/Delacroix_-_Inderin%2C_von_einem_Tiger_zerrissen.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:02:09.176Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:02:09.176Z"
+  },
+  {
+    "artist": "Eugène Delacroix",
+    "title": "File:Le Christ sur la croix ou Le Calvaire - Vannes - Delacroix (cropped).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Le_Christ_sur_la_croix_ou_Le_Calvaire_-_Vannes_-_Delacroix_%28cropped%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/e/ea/Le_Christ_sur_la_croix_ou_Le_Calvaire_-_Vannes_-_Delacroix_%28cropped%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:02:14.334Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:02:14.334Z"
+  },
+  {
+    "artist": "Eugène Delacroix",
+    "title": "File:Eugène Delacroix - Le corps de garde à Meknès - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Eug%C3%A8ne_Delacroix_-_Le_corps_de_garde_%C3%A0_Mekn%C3%A8s_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Eug%C3%A8ne_Delacroix_-_Le_corps_de_garde_%C3%A0_Mekn%C3%A8s_-_Google_Art_Project.jpg/3289px-Eug%C3%A8ne_Delacroix_-_Le_corps_de_garde_%C3%A0_Mekn%C3%A8s_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:02:19.495Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:02:19.495Z"
+  },
+  {
+    "artist": "Eugène Delacroix",
+    "title": "File:DELACROIX Eugène Suzanne et les vieillards Huile sur carton.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2a/DELACROIX_Eug%C3%A8ne_Suzanne_et_les_vieillards_Huile_sur_carton.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/DELACROIX_Eug%C3%A8ne_Suzanne_et_les_vieillards_Huile_sur_carton.jpg/3021px-DELACROIX_Eug%C3%A8ne_Suzanne_et_les_vieillards_Huile_sur_carton.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:02:24.647Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:02:24.647Z"
+  },
+  {
+    "artist": "Eugène Delacroix",
+    "title": "File:Aix-en-Provence - Église Saint-Jean-de-Malte 21.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Aix-en-Provence_-_%C3%89glise_Saint-Jean-de-Malte_21.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Aix-en-Provence_-_%C3%89glise_Saint-Jean-de-Malte_21.jpg/3235px-Aix-en-Provence_-_%C3%89glise_Saint-Jean-de-Malte_21.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:02:29.799Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:02:29.800Z"
+  },
+  {
+    "artist": "Eugène Delacroix",
+    "title": "File:Delacroix - Néréide (copie d’après Rubens), um 1822.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/16/Delacroix_-_N%C3%A9r%C3%A9ide_%28copie_d%E2%80%99apr%C3%A8s_Rubens%29%2C_um_1822.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Delacroix_-_N%C3%A9r%C3%A9ide_%28copie_d%E2%80%99apr%C3%A8s_Rubens%29%2C_um_1822.jpg/3256px-Delacroix_-_N%C3%A9r%C3%A9ide_%28copie_d%E2%80%99apr%C3%A8s_Rubens%29%2C_um_1822.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:02:34.947Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:02:34.947Z"
+  },
+  {
+    "artist": "Eugène Delacroix",
+    "title": "File:Delacroix - La résurrection de Lazare, 1850.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Delacroix_-_La_r%C3%A9surrection_de_Lazare%2C_1850.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Delacroix_-_La_r%C3%A9surrection_de_Lazare%2C_1850.jpg/3283px-Delacroix_-_La_r%C3%A9surrection_de_Lazare%2C_1850.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:02:41.470Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:02:41.471Z"
+  },
+  {
+    "artist": "Eugène Delacroix",
+    "title": "File:Delacroix - Marguerite à l'église (Goethe Faust, 1ère partie, scène dans la cathédrale), nach 1850.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Delacroix_-_Marguerite_%C3%A0_l%27%C3%A9glise_%28Goethe_Faust%2C_1%C3%A8re_partie%2C_sc%C3%A8ne_dans_la_cath%C3%A9drale%29%2C_nach_1850.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Delacroix_-_Marguerite_%C3%A0_l%27%C3%A9glise_%28Goethe_Faust%2C_1%C3%A8re_partie%2C_sc%C3%A8ne_dans_la_cath%C3%A9drale%29%2C_nach_1850.jpg/3290px-Delacroix_-_Marguerite_%C3%A0_l%27%C3%A9glise_%28Goethe_Faust%2C_1%C3%A8re_partie%2C_sc%C3%A8ne_dans_la_cath%C3%A9drale%29%2C_nach_1850.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:02:46.847Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:02:46.848Z"
+  },
+  {
+    "artist": "Eugène Delacroix",
+    "title": "File:Eugène Delacroix - Portrait d'Eugène Laval (1818-1896), architecte - P72 - Musée Carnavalet.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Eug%C3%A8ne_Delacroix_-_Portrait_d%27Eug%C3%A8ne_Laval_%281818-1896%29%2C_architecte_-_P72_-_Mus%C3%A9e_Carnavalet.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Eug%C3%A8ne_Delacroix_-_Portrait_d%27Eug%C3%A8ne_Laval_%281818-1896%29%2C_architecte_-_P72_-_Mus%C3%A9e_Carnavalet.jpg/2991px-Eug%C3%A8ne_Delacroix_-_Portrait_d%27Eug%C3%A8ne_Laval_%281818-1896%29%2C_architecte_-_P72_-_Mus%C3%A9e_Carnavalet.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:02:52.110Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:02:52.110Z"
+  }
+]

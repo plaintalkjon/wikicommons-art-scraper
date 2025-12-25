@@ -1,1 +1,29 @@
-[]
+[
+  {
+    "artist": "François Lemoyne",
+    "title": "File:François Lemoyne, Louis XV offrant la Paix à l'Europe.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Fran%C3%A7ois_Lemoyne%2C_Louis_XV_offrant_la_Paix_%C3%A0_l%27Europe.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Fran%C3%A7ois_Lemoyne%2C_Louis_XV_offrant_la_Paix_%C3%A0_l%27Europe.jpg/3000px-Fran%C3%A7ois_Lemoyne%2C_Louis_XV_offrant_la_Paix_%C3%A0_l%27Europe.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:08:13.283Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:08:13.283Z"
+  },
+  {
+    "artist": "François Lemoyne",
+    "title": "File:Hercule et Omphale - Musée Boucher-de-Perthes 30.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Hercule_et_Omphale_-_Mus%C3%A9e_Boucher-de-Perthes_30.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Hercule_et_Omphale_-_Mus%C3%A9e_Boucher-de-Perthes_30.jpg/2666px-Hercule_et_Omphale_-_Mus%C3%A9e_Boucher-de-Perthes_30.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:08:18.437Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:08:18.437Z"
+  },
+  {
+    "artist": "François Lemoyne",
+    "title": "File:Diane au bain- Musée Boucher-de-Perthes 29.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Diane_au_bain-_Mus%C3%A9e_Boucher-de-Perthes_29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Diane_au_bain-_Mus%C3%A9e_Boucher-de-Perthes_29.jpg/2666px-Diane_au_bain-_Mus%C3%A9e_Boucher-de-Perthes_29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:08:23.572Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:08:23.572Z"
+  }
+]

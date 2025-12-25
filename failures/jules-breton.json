@@ -1,1 +1,56 @@
-[]
+[
+  {
+    "artist": "Jules Breton",
+    "title": "File:Jules Breton - Les communiantes à Courrières - PPP644 - Musée des Beaux-Arts de la ville de Paris.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/36/Jules_Breton_-_Les_communiantes_%C3%A0_Courri%C3%A8res_-_PPP644_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Jules_Breton_-_Les_communiantes_%C3%A0_Courri%C3%A8res_-_PPP644_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg/3187px-Jules_Breton_-_Les_communiantes_%C3%A0_Courri%C3%A8res_-_PPP644_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:42:30.935Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:42:30.936Z"
+  },
+  {
+    "artist": "Jules Breton",
+    "title": "File:Jules Breton - L'homme à la pipe - PPP643 - Musée des Beaux-Arts de la ville de Paris.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Jules_Breton_-_L%27homme_%C3%A0_la_pipe_-_PPP643_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Jules_Breton_-_L%27homme_%C3%A0_la_pipe_-_PPP643_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg/3029px-Jules_Breton_-_L%27homme_%C3%A0_la_pipe_-_PPP643_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:42:36.121Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:42:36.121Z"
+  },
+  {
+    "artist": "Jules Breton",
+    "title": "File:Jules Breton - Tête de Breton, étude pour le Pardon - PPP649 - Musée des Beaux-Arts de la ville de Paris.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Jules_Breton_-_T%C3%AAte_de_Breton%2C_%C3%A9tude_pour_le_Pardon_-_PPP649_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Jules_Breton_-_T%C3%AAte_de_Breton%2C_%C3%A9tude_pour_le_Pardon_-_PPP649_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg/3114px-Jules_Breton_-_T%C3%AAte_de_Breton%2C_%C3%A9tude_pour_le_Pardon_-_PPP649_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:42:41.289Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:42:41.290Z"
+  },
+  {
+    "artist": "Jules Breton",
+    "title": "File:Jules Breton - Tête de jeune Bretonne, étude pour le Pardon - PPP650 - Musée des Beaux-Arts de la ville de Paris.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Jules_Breton_-_T%C3%AAte_de_jeune_Bretonne%2C_%C3%A9tude_pour_le_Pardon_-_PPP650_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Jules_Breton_-_T%C3%AAte_de_jeune_Bretonne%2C_%C3%A9tude_pour_le_Pardon_-_PPP650_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg/3119px-Jules_Breton_-_T%C3%AAte_de_jeune_Bretonne%2C_%C3%A9tude_pour_le_Pardon_-_PPP650_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:42:46.464Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:42:46.464Z"
+  },
+  {
+    "artist": "Jules Breton",
+    "title": "File:Jules Breton - Jeanne Calvet - 1955.661 - Clark Art Institute.tiff",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Jules_Breton_-_Jeanne_Calvet_-_1955.661_-_Clark_Art_Institute.tiff",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Jules_Breton_-_Jeanne_Calvet_-_1955.661_-_Clark_Art_Institute.tiff/lossy-page1-3238px-Jules_Breton_-_Jeanne_Calvet_-_1955.661_-_Clark_Art_Institute.tiff.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:42:52.230Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:42:52.230Z"
+  },
+  {
+    "artist": "Jules Breton",
+    "title": "File:'Gatherer of Logs with her Son in the Snow' (ca. 1875) by Jules Breton - Museo Soumaya - Mexico 2024.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/%27Gatherer_of_Logs_with_her_Son_in_the_Snow%27_%28ca._1875%29_by_Jules_Breton_-_Museo_Soumaya_-_Mexico_2024.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/%27Gatherer_of_Logs_with_her_Son_in_the_Snow%27_%28ca._1875%29_by_Jules_Breton_-_Museo_Soumaya_-_Mexico_2024.jpg/2882px-%27Gatherer_of_Logs_with_her_Son_in_the_Snow%27_%28ca._1875%29_by_Jules_Breton_-_Museo_Soumaya_-_Mexico_2024.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:42:57.821Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:42:57.821Z"
+  }
+]

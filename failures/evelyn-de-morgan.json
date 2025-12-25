@@ -1,0 +1,47 @@
+[
+  {
+    "artist": "Evelyn De Morgan",
+    "title": "File:The Love Potion.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5c/The_Love_Potion.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/The_Love_Potion.jpg/2546px-The_Love_Potion.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:03:11.052Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:03:11.053Z"
+  },
+  {
+    "artist": "Evelyn De Morgan",
+    "title": "File:Helen of Troy.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/94/Helen_of_Troy.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Helen_of_Troy.jpg/1951px-Helen_of_Troy.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:03:16.199Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:03:16.199Z"
+  },
+  {
+    "artist": "Evelyn De Morgan",
+    "title": "File:EvelyndeMorgan.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e5/EvelyndeMorgan.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/EvelyndeMorgan.jpg/1749px-EvelyndeMorgan.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:03:21.349Z",
+    "retryCount": 3,
+    "lastRetry": "2025-12-25T10:03:21.349Z"
+  },
+  {
+    "artist": "Evelyn De Morgan",
+    "title": "File:Evelyn de Morgan - Moonbeams Dipping Into The Sea, 1918.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Evelyn_de_Morgan_-_Moonbeams_Dipping_Into_The_Sea%2C_1918.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Evelyn_de_Morgan_-_Moonbeams_Dipping_Into_The_Sea%2C_1918.jpg/2555px-Evelyn_de_Morgan_-_Moonbeams_Dipping_Into_The_Sea%2C_1918.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:03:26.565Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:03:26.566Z"
+  },
+  {
+    "artist": "Evelyn De Morgan",
+    "title": "File:CadmusHarmoniaEvelynMorgan.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7f/CadmusHarmoniaEvelynMorgan.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/CadmusHarmoniaEvelynMorgan.jpg/1760px-CadmusHarmoniaEvelynMorgan.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:03:31.729Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:03:31.729Z"
+  }
+]

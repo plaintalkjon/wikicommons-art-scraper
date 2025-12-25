@@ -1,0 +1,29 @@
+[
+  {
+    "artist": "Marcus Larson",
+    "title": "File:Marcus Larson - Vuoristoa ja vesiputous - A I 603 - Finnish National Gallery.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Marcus_Larson_-_Vuoristoa_ja_vesiputous_-_A_I_603_-_Finnish_National_Gallery.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Marcus_Larson_-_Vuoristoa_ja_vesiputous_-_A_I_603_-_Finnish_National_Gallery.jpg/3414px-Marcus_Larson_-_Vuoristoa_ja_vesiputous_-_A_I_603_-_Finnish_National_Gallery.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:46:47.200Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:46:47.200Z"
+  },
+  {
+    "artist": "Marcus Larson",
+    "title": "File:Waterfall (Marcus Larson) - Gothenburg Museum of Art - F 81.tif",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Waterfall_%28Marcus_Larson%29_-_Gothenburg_Museum_of_Art_-_F_81.tif",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Waterfall_%28Marcus_Larson%29_-_Gothenburg_Museum_of_Art_-_F_81.tif/lossy-page1-3284px-Waterfall_%28Marcus_Larson%29_-_Gothenburg_Museum_of_Art_-_F_81.tif.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:46:53.093Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:46:53.093Z"
+  },
+  {
+    "artist": "Marcus Larson",
+    "title": "File:Waterfall (Marcus Larson) - Gothenburg Museum of Art - GKM 0028.tif",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Waterfall_%28Marcus_Larson%29_-_Gothenburg_Museum_of_Art_-_GKM_0028.tif",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Waterfall_%28Marcus_Larson%29_-_Gothenburg_Museum_of_Art_-_GKM_0028.tif/lossy-page1-3282px-Waterfall_%28Marcus_Larson%29_-_Gothenburg_Museum_of_Art_-_GKM_0028.tif.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:46:58.967Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:46:58.968Z"
+  }
+]

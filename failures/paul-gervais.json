@@ -1,0 +1,47 @@
+[
+  {
+    "artist": "Paul Gervais",
+    "title": "File:Paul Jean Gervais - Esquisse pour la mairie de Saint-Ouen , Vue de Saint-Ouen - PPP4780 - Musée des Beaux-Arts de la ville de Paris.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/13/Paul_Jean_Gervais_-_Esquisse_pour_la_mairie_de_Saint-Ouen_%2C_Vue_de_Saint-Ouen_-_PPP4780_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Paul_Jean_Gervais_-_Esquisse_pour_la_mairie_de_Saint-Ouen_%2C_Vue_de_Saint-Ouen_-_PPP4780_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg/2131px-Paul_Jean_Gervais_-_Esquisse_pour_la_mairie_de_Saint-Ouen_%2C_Vue_de_Saint-Ouen_-_PPP4780_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:48:20.008Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:48:20.009Z"
+  },
+  {
+    "artist": "Paul Gervais",
+    "title": "File:Paul Gervais - Mademoiselle R. 02.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/90/Paul_Gervais_-_Mademoiselle_R._02.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Paul_Gervais_-_Mademoiselle_R._02.jpg/2675px-Paul_Gervais_-_Mademoiselle_R._02.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:48:25.176Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:48:25.176Z"
+  },
+  {
+    "artist": "Paul Gervais",
+    "title": "File:Paul Jean Gervais - Esquisse pour la mairie de Saint-Ouen , L'hippodrome de Saint-Ouen - PPP4782 - Musée des Beaux-Arts de la ville de Paris.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Paul_Jean_Gervais_-_Esquisse_pour_la_mairie_de_Saint-Ouen_%2C_L%27hippodrome_de_Saint-Ouen_-_PPP4782_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Paul_Jean_Gervais_-_Esquisse_pour_la_mairie_de_Saint-Ouen_%2C_L%27hippodrome_de_Saint-Ouen_-_PPP4782_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg/4000px-Paul_Jean_Gervais_-_Esquisse_pour_la_mairie_de_Saint-Ouen_%2C_L%27hippodrome_de_Saint-Ouen_-_PPP4782_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:48:30.332Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:48:30.332Z"
+  },
+  {
+    "artist": "Paul Gervais",
+    "title": "File:Paul Jean Gervais - Esquisse pour la mairie de Saint-Ouen , Vue de Saint-Ouen - PPP4781 - Musée des Beaux-Arts de la ville de Paris.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Paul_Jean_Gervais_-_Esquisse_pour_la_mairie_de_Saint-Ouen_%2C_Vue_de_Saint-Ouen_-_PPP4781_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Paul_Jean_Gervais_-_Esquisse_pour_la_mairie_de_Saint-Ouen_%2C_Vue_de_Saint-Ouen_-_PPP4781_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg/3489px-Paul_Jean_Gervais_-_Esquisse_pour_la_mairie_de_Saint-Ouen_%2C_Vue_de_Saint-Ouen_-_PPP4781_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:48:35.497Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:48:35.497Z"
+  },
+  {
+    "artist": "Paul Gervais",
+    "title": "File:Rigaud33,Femme Gervais.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Rigaud33%2CFemme_Gervais.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/e/e7/Rigaud33%2CFemme_Gervais.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:48:40.696Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:48:40.696Z"
+  }
+]

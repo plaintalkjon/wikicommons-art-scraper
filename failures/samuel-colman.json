@@ -1,0 +1,37 @@
+[
+  {
+    "artist": "Samuel Colman",
+    "title": "File:Samuel Colman - On the Viga, Outskirts of the City of Mexico - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/92/Samuel_Colman_-_On_the_Viga%2C_Outskirts_of_the_City_of_Mexico_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Samuel_Colman_-_On_the_Viga%2C_Outskirts_of_the_City_of_Mexico_-_Google_Art_Project.jpg/4000px-Samuel_Colman_-_On_the_Viga%2C_Outskirts_of_the_City_of_Mexico_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:09:12.624Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Samuel Colman",
+    "title": "File:Samuel Colman - Storm King on the Hudson - 1895.703 - Fogg Museum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Samuel_Colman_-_Storm_King_on_the_Hudson_-_1895.703_-_Fogg_Museum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/8/8e/Samuel_Colman_-_Storm_King_on_the_Hudson_-_1895.703_-_Fogg_Museum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:09:12.723Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-24T21:09:12.724Z"
+  },
+  {
+    "artist": "Samuel Colman",
+    "title": "File:Samuel Colman - Moroccan Courtyard - 2006.27 - Fogg Museum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Samuel_Colman_-_Moroccan_Courtyard_-_2006.27_-_Fogg_Museum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/a/a9/Samuel_Colman_-_Moroccan_Courtyard_-_2006.27_-_Fogg_Museum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:09:12.762Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-24T21:09:12.762Z"
+  },
+  {
+    "artist": "Samuel Colman",
+    "title": "File:Samuel Colman - Summer, Hastings on Hudson - 1895.704 - Fogg Museum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Samuel_Colman_-_Summer%2C_Hastings_on_Hudson_-_1895.704_-_Fogg_Museum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/8/8d/Samuel_Colman_-_Summer%2C_Hastings_on_Hudson_-_1895.704_-_Fogg_Museum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:09:12.804Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-24T21:09:12.804Z"
+  }
+]

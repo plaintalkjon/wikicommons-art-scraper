@@ -1,84 +1,44 @@
-import * as fs from 'fs';
-import * as path from 'path';
+import { promises as fs } from 'fs';
+import path from 'path';
 
-export interface FailureRecord {
+export interface FailedUpload {
   artist: string;
   title: string;
   imageUrl?: string;
   error: string;
   timestamp: string;
   retryCount: number;
-  lastRetry?: string;
 }
 
-const FAILURES_DIR = path.join(process.cwd(), 'failures');
+const FAILURES_DIR = path.join(process.cwd(), '.failures');
 
 /**
- * Ensure the failures directory exists
+ * Get the path to the failure file for an artist
  */
-function ensureFailuresDir(): void {
-  if (!fs.existsSync(FAILURES_DIR)) {
-    fs.mkdirSync(FAILURES_DIR, { recursive: true });
-  }
-}
-
-/**
- * Get the failures file path for an artist
- */
-function getFailuresFilePath(artist: string): string {
-  ensureFailuresDir();
-  const artistSlug = artist.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+function getFailureFile(artist: string): string {
+  const artistSlug = artist.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
   return path.join(FAILURES_DIR, `${artistSlug}.json`);
 }
 
 /**
- * Save a failure record for later retry
+ * Ensure the failures directory exists
  */
-export async function saveFailure(failure: FailureRecord): Promise<void> {
-  const filePath = getFailuresFilePath(failure.artist);
-  let failures: FailureRecord[] = [];
-  
-  // Load existing failures
-  if (fs.existsSync(filePath)) {
-    try {
-      const content = fs.readFileSync(filePath, 'utf-8');
-      failures = JSON.parse(content);
-    } catch {
-      failures = [];
-    }
+async function ensureFailuresDir(): Promise<void> {
+  try {
+    await fs.mkdir(FAILURES_DIR, { recursive: true });
+  } catch {
+    // Directory already exists or creation failed
   }
-  
-  // Check if this failure already exists (by title)
-  const existingIndex = failures.findIndex(f => f.title === failure.title);
-  if (existingIndex >= 0) {
-    // Update existing failure with new error and increment retry count
-    failures[existingIndex] = {
-      ...failures[existingIndex],
-      error: failure.error,
-      timestamp: failure.timestamp,
-      retryCount: failures[existingIndex].retryCount + 1,
-      lastRetry: new Date().toISOString(),
-    };
-  } else {
-    // Add new failure
-    failures.push(failure);
-  }
-  
-  // Save back to file
-  fs.writeFileSync(filePath, JSON.stringify(failures, null, 2));
 }
 
 /**
  * Load failures for an artist
  */
-export function loadFailures(artist: string): FailureRecord[] {
-  const filePath = getFailuresFilePath(artist);
-  if (!fs.existsSync(filePath)) {
-    return [];
-  }
-  
+export async function loadFailures(artist: string): Promise<FailedUpload[]> {
+  await ensureFailuresDir();
+  const filePath = getFailureFile(artist);
   try {
-    const content = fs.readFileSync(filePath, 'utf-8');
+    const content = await fs.readFile(filePath, 'utf-8');
     return JSON.parse(content);
   } catch {
     return [];
@@ -86,30 +46,60 @@ export function loadFailures(artist: string): FailureRecord[] {
 }
 
 /**
- * Remove a failure (when it succeeds)
+ * Save a failure
  */
-export function removeFailure(artist: string, title: string): void {
-  const filePath = getFailuresFilePath(artist);
-  if (!fs.existsSync(filePath)) {
-    return;
+export async function saveFailure(failure: FailedUpload): Promise<void> {
+  await ensureFailuresDir();
+  const failures = await loadFailures(failure.artist);
+  
+  // Check if this failure already exists (by title)
+  const existingIndex = failures.findIndex(f => f.title === failure.title);
+  if (existingIndex >= 0) {
+    // Update existing failure with new error and increment retry count
+    failures[existingIndex] = {
+      ...failure,
+      retryCount: failures[existingIndex].retryCount + 1,
+    };
+  } else {
+    // Add new failure
+    failures.push(failure);
   }
   
-  try {
-    const content = fs.readFileSync(filePath, 'utf-8');
-    const failures: FailureRecord[] = JSON.parse(content);
-    const filtered = failures.filter(f => f.title !== title);
-    fs.writeFileSync(filePath, JSON.stringify(filtered, null, 2));
-  } catch {
-    // Ignore errors
+  const filePath = getFailureFile(failure.artist);
+  await fs.writeFile(filePath, JSON.stringify(failures, null, 2), 'utf-8');
+}
+
+/**
+ * Remove a failure (when it succeeds)
+ */
+export async function removeFailure(artist: string, title: string): Promise<void> {
+  const failures = await loadFailures(artist);
+  const filtered = failures.filter(f => f.title !== title);
+  
+  const filePath = getFailureFile(artist);
+  if (filtered.length === 0) {
+    // Delete file if no failures left
+    try {
+      await fs.unlink(filePath);
+    } catch {
+      // File doesn't exist, that's fine
+    }
+  } else {
+    await fs.writeFile(filePath, JSON.stringify(filtered, null, 2), 'utf-8');
   }
 }
 
 /**
- * Clear all failures for an artist
+ * Get all artists with failures
  */
-export function clearFailures(artist: string): void {
-  const filePath = getFailuresFilePath(artist);
-  if (fs.existsSync(filePath)) {
-    fs.unlinkSync(filePath);
+export async function getArtistsWithFailures(): Promise<string[]> {
+  await ensureFailuresDir();
+  try {
+    const files = await fs.readdir(FAILURES_DIR);
+    return files
+      .filter(f => f.endsWith('.json'))
+      .map(f => f.replace(/\.json$/, ''));
+  } catch {
+    return [];
   }
 }

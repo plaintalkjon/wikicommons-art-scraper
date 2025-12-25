@@ -1,0 +1,110 @@
+[
+  {
+    "artist": "Gustave Moreau",
+    "title": "File:Moreau - Saint-Sébastien et l'ange, c1876.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Moreau_-_Saint-S%C3%A9bastien_et_l%27ange%2C_c1876.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Moreau_-_Saint-S%C3%A9bastien_et_l%27ange%2C_c1876.jpg/2235px-Moreau_-_Saint-S%C3%A9bastien_et_l%27ange%2C_c1876.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:17:39.328Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:17:39.328Z"
+  },
+  {
+    "artist": "Gustave Moreau",
+    "title": "File:Gustave Moreau - The Young Man and Death - 1942.186 - Fogg Museum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/31/Gustave_Moreau_-_The_Young_Man_and_Death_-_1942.186_-_Fogg_Museum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/3/31/Gustave_Moreau_-_The_Young_Man_and_Death_-_1942.186_-_Fogg_Museum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:17:44.484Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:17:44.484Z"
+  },
+  {
+    "artist": "Gustave Moreau",
+    "title": "File:Gustave Moreau - Venus Rising from the Sea - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Gustave_Moreau_-_Venus_Rising_from_the_Sea_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Gustave_Moreau_-_Venus_Rising_from_the_Sea_-_Google_Art_Project.jpg/3235px-Gustave_Moreau_-_Venus_Rising_from_the_Sea_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:17:49.676Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:17:49.676Z"
+  },
+  {
+    "artist": "Gustave Moreau",
+    "title": "File:Gustave Moreau - Le Poète et la Sirène, 1893.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/32/Gustave_Moreau_-_Le_Po%C3%A8te_et_la_Sir%C3%A8ne%2C_1893.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Gustave_Moreau_-_Le_Po%C3%A8te_et_la_Sir%C3%A8ne%2C_1893.jpg/2763px-Gustave_Moreau_-_Le_Po%C3%A8te_et_la_Sir%C3%A8ne%2C_1893.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:17:55.537Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:17:55.537Z"
+  },
+  {
+    "artist": "Gustave Moreau",
+    "title": "File:Gustave Moreau - La chimère.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Gustave_Moreau_-_La_chim%C3%A8re.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Gustave_Moreau_-_La_chim%C3%A8re.jpg/3320px-Gustave_Moreau_-_La_chim%C3%A8re.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:18:00.704Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:18:00.704Z"
+  },
+  {
+    "artist": "Gustave Moreau",
+    "title": "File:Gustave Moreau - Le nourrisson Moïse.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Gustave_Moreau_-_Le_nourrisson_Mo%C3%AFse.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Gustave_Moreau_-_Le_nourrisson_Mo%C3%AFse.jpg/2956px-Gustave_Moreau_-_Le_nourrisson_Mo%C3%AFse.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:18:05.856Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:18:05.856Z"
+  },
+  {
+    "artist": "Gustave Moreau",
+    "title": "File:Gustave Moreau - The Apparition - 1943.268 - Fogg Museum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Gustave_Moreau_-_The_Apparition_-_1943.268_-_Fogg_Museum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/c/cf/Gustave_Moreau_-_The_Apparition_-_1943.268_-_Fogg_Museum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:18:11.000Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:18:11.001Z"
+  },
+  {
+    "artist": "Gustave Moreau",
+    "title": "File:Françoise Foliot - Gustave Moreau - Danaé.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/82/Fran%C3%A7oise_Foliot_-_Gustave_Moreau_-_Dana%C3%A9.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Fran%C3%A7oise_Foliot_-_Gustave_Moreau_-_Dana%C3%A9.jpg/2936px-Fran%C3%A7oise_Foliot_-_Gustave_Moreau_-_Dana%C3%A9.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:18:16.299Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:18:16.299Z"
+  },
+  {
+    "artist": "Gustave Moreau",
+    "title": "File:Françoise Foliot - Gustave Moreau - Noces d'Alexandre et de Roxane.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Fran%C3%A7oise_Foliot_-_Gustave_Moreau_-_Noces_d%27Alexandre_et_de_Roxane.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Fran%C3%A7oise_Foliot_-_Gustave_Moreau_-_Noces_d%27Alexandre_et_de_Roxane.jpg/2810px-Fran%C3%A7oise_Foliot_-_Gustave_Moreau_-_Noces_d%27Alexandre_et_de_Roxane.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:18:21.485Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:18:21.485Z"
+  },
+  {
+    "artist": "Gustave Moreau",
+    "title": "File:Gustave Moreau - Dalila.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Gustave_Moreau_-_Dalila.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Gustave_Moreau_-_Dalila.jpg/3187px-Gustave_Moreau_-_Dalila.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:18:26.671Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:18:26.672Z"
+  },
+  {
+    "artist": "Gustave Moreau",
+    "title": "File:Moreau - Un Saint au désert, Vers 1879.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Moreau_-_Un_Saint_au_d%C3%A9sert%2C_Vers_1879.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Moreau_-_Un_Saint_au_d%C3%A9sert%2C_Vers_1879.jpg/2273px-Moreau_-_Un_Saint_au_d%C3%A9sert%2C_Vers_1879.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:18:31.814Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:18:31.815Z"
+  },
+  {
+    "artist": "Gustave Moreau",
+    "title": "File:Gustave Moreau - King David - Hammer museum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/84/Gustave_Moreau_-_King_David_-_Hammer_museum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Gustave_Moreau_-_King_David_-_Hammer_museum.jpg/2374px-Gustave_Moreau_-_King_David_-_Hammer_museum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:18:37.028Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:18:37.029Z"
+  }
+]

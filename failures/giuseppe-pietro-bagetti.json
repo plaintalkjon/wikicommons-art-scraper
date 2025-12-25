@@ -1,0 +1,29 @@
+[
+  {
+    "artist": "Giuseppe Pietro Bagetti",
+    "title": "File:Fort de Ceva.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/35/Fort_de_Ceva.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Fort_de_Ceva.jpg/4000px-Fort_de_Ceva.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:15:12.035Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:15:12.035Z"
+  },
+  {
+    "artist": "Giuseppe Pietro Bagetti",
+    "title": "File:Napoleone entra a Milano Bagetti.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Napoleone_entra_a_Milano_Bagetti.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Napoleone_entra_a_Milano_Bagetti.jpg/4000px-Napoleone_entra_a_Milano_Bagetti.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:15:17.183Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:15:17.183Z"
+  },
+  {
+    "artist": "Giuseppe Pietro Bagetti",
+    "title": "File:I Francesi passano il Po a Piacenza Bagetti.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/36/I_Francesi_passano_il_Po_a_Piacenza_Bagetti.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/3/36/I_Francesi_passano_il_Po_a_Piacenza_Bagetti.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:15:22.334Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:15:22.334Z"
+  }
+]

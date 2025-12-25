@@ -1,1 +1,234 @@
-[]
+[
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt (1812-1905) - Straße mit Verkaufsständen und Staffage (Gmunden) - 0309 - Führermuseum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Rudolf_von_Alt_%281812-1905%29_-_Stra%C3%9Fe_mit_Verkaufsst%C3%A4nden_und_Staffage_%28Gmunden%29_-_0309_-_F%C3%BChrermuseum.jpg",
+    "error": "Failed to insert art: duplicate key value violates unique constraint \"unique_art_title_artist\"",
+    "timestamp": "2025-12-24T21:08:21.735Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-24T21:08:21.735Z"
+  },
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt (1812-1905) - Inneres der Markuskirche in Venedig - 0312 - Führermuseum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/29/Rudolf_von_Alt_%281812-1905%29_-_Inneres_der_Markuskirche_in_Venedig_-_0312_-_F%C3%BChrermuseum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/2/29/Rudolf_von_Alt_%281812-1905%29_-_Inneres_der_Markuskirche_in_Venedig_-_0312_-_F%C3%BChrermuseum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:08:23.563Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-24T21:08:23.563Z"
+  },
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt (1812-1905) - Winterlandschaft mit Rehen - 0312a - Führermuseum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Rudolf_von_Alt_%281812-1905%29_-_Winterlandschaft_mit_Rehen_-_0312a_-_F%C3%BChrermuseum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/1/1d/Rudolf_von_Alt_%281812-1905%29_-_Winterlandschaft_mit_Rehen_-_0312a_-_F%C3%BChrermuseum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:08:23.614Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-24T21:08:23.614Z"
+  },
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt (1812-1905) - Römische Kirche (Ansicht der Certosa bei Pavia von Westen) - 0313 - Führermuseum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/90/Rudolf_von_Alt_%281812-1905%29_-_R%C3%B6mische_Kirche_%28Ansicht_der_Certosa_bei_Pavia_von_Westen%29_-_0313_-_F%C3%BChrermuseum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/9/90/Rudolf_von_Alt_%281812-1905%29_-_R%C3%B6mische_Kirche_%28Ansicht_der_Certosa_bei_Pavia_von_Westen%29_-_0313_-_F%C3%BChrermuseum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:08:23.677Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-24T21:08:23.677Z"
+  },
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt (1812-1905) - Baden bei Wien (Ruine Rauhenstein) (Landschaft mit Ruine Rauhenstein in Niederösterreich) - 0314 - Führermuseum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Rudolf_von_Alt_%281812-1905%29_-_Baden_bei_Wien_%28Ruine_Rauhenstein%29_%28Landschaft_mit_Ruine_Rauhenstein_in_Nieder%C3%B6sterreich%29_-_0314_-_F%C3%BChrermuseum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/6/63/Rudolf_von_Alt_%281812-1905%29_-_Baden_bei_Wien_%28Ruine_Rauhenstein%29_%28Landschaft_mit_Ruine_Rauhenstein_in_Nieder%C3%B6sterreich%29_-_0314_-_F%C3%BChrermuseum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:08:23.739Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-24T21:08:23.739Z"
+  },
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt (1812-1905) - Selbstporträt - 0315 - Führermuseum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/43/Rudolf_von_Alt_%281812-1905%29_-_Selbstportr%C3%A4t_-_0315_-_F%C3%BChrermuseum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/4/43/Rudolf_von_Alt_%281812-1905%29_-_Selbstportr%C3%A4t_-_0315_-_F%C3%BChrermuseum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:08:23.783Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-24T21:08:23.783Z"
+  },
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt (1812-1905) - Portal am Regensburger Dom - 0318 - Führermuseum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/77/Rudolf_von_Alt_%281812-1905%29_-_Portal_am_Regensburger_Dom_-_0318_-_F%C3%BChrermuseum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/7/77/Rudolf_von_Alt_%281812-1905%29_-_Portal_am_Regensburger_Dom_-_0318_-_F%C3%BChrermuseum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:08:23.814Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-24T21:08:23.814Z"
+  },
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt (1812-1905) - Pavia - 0319 - Führermuseum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Rudolf_von_Alt_%281812-1905%29_-_Pavia_-_0319_-_F%C3%BChrermuseum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/e/e5/Rudolf_von_Alt_%281812-1905%29_-_Pavia_-_0319_-_F%C3%BChrermuseum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:08:23.842Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-24T21:08:23.842Z"
+  },
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt (1812-1905) - Landschaft mit Ruinen (Sebastopol ^) - 0783 - Führermuseum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Rudolf_von_Alt_%281812-1905%29_-_Landschaft_mit_Ruinen_%28Sebastopol_%5E%29_-_0783_-_F%C3%BChrermuseum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/a/a2/Rudolf_von_Alt_%281812-1905%29_-_Landschaft_mit_Ruinen_%28Sebastopol_%5E%29_-_0783_-_F%C3%BChrermuseum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:08:23.871Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-24T21:08:23.872Z"
+  },
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt (1812-1905) - Traunsee mit Schloss Orth - 0806 - Führermuseum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/28/Rudolf_von_Alt_%281812-1905%29_-_Traunsee_mit_Schloss_Orth_-_0806_-_F%C3%BChrermuseum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/2/28/Rudolf_von_Alt_%281812-1905%29_-_Traunsee_mit_Schloss_Orth_-_0806_-_F%C3%BChrermuseum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:08:23.900Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-24T21:08:23.901Z"
+  },
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt (1812-1905) - Michaeler Platz mit altem Burgtheater - 0807 - Führermuseum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/99/Rudolf_von_Alt_%281812-1905%29_-_Michaeler_Platz_mit_altem_Burgtheater_-_0807_-_F%C3%BChrermuseum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/9/99/Rudolf_von_Alt_%281812-1905%29_-_Michaeler_Platz_mit_altem_Burgtheater_-_0807_-_F%C3%BChrermuseum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:08:23.923Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-24T21:08:23.923Z"
+  },
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt (1812-1905) - Durchblick durch den Titusbogen in Rom - 0966 - Führermuseum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/Rudolf_von_Alt_%281812-1905%29_-_Durchblick_durch_den_Titusbogen_in_Rom_-_0966_-_F%C3%BChrermuseum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/8/87/Rudolf_von_Alt_%281812-1905%29_-_Durchblick_durch_den_Titusbogen_in_Rom_-_0966_-_F%C3%BChrermuseum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:08:23.948Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-24T21:08:23.948Z"
+  },
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt (1812-1905) - Kapelle auf dem alten Friedhof bei Ischl - 1563 - Führermuseum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Rudolf_von_Alt_%281812-1905%29_-_Kapelle_auf_dem_alten_Friedhof_bei_Ischl_-_1563_-_F%C3%BChrermuseum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/0/0d/Rudolf_von_Alt_%281812-1905%29_-_Kapelle_auf_dem_alten_Friedhof_bei_Ischl_-_1563_-_F%C3%BChrermuseum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:08:23.959Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-24T21:08:23.959Z"
+  },
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt (1812-1905) - Alt-Lerchenfelder Kirche bei Wien - 1564 - Führermuseum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Rudolf_von_Alt_%281812-1905%29_-_Alt-Lerchenfelder_Kirche_bei_Wien_-_1564_-_F%C3%BChrermuseum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/9/9d/Rudolf_von_Alt_%281812-1905%29_-_Alt-Lerchenfelder_Kirche_bei_Wien_-_1564_-_F%C3%BChrermuseum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:08:23.976Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-24T21:08:23.976Z"
+  },
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt (1812-1905) - Salzburg - 1970 - Führermuseum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/44/Rudolf_von_Alt_%281812-1905%29_-_Salzburg_-_1970_-_F%C3%BChrermuseum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/4/44/Rudolf_von_Alt_%281812-1905%29_-_Salzburg_-_1970_-_F%C3%BChrermuseum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:08:23.983Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-24T21:08:23.983Z"
+  },
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt (1812-1905) - Venedig, Canale Grande - 2885 - Führermuseum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Rudolf_von_Alt_%281812-1905%29_-_Venedig%2C_Canale_Grande_-_2885_-_F%C3%BChrermuseum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/a/a4/Rudolf_von_Alt_%281812-1905%29_-_Venedig%2C_Canale_Grande_-_2885_-_F%C3%BChrermuseum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:08:24.003Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-24T21:08:24.004Z"
+  },
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt A flower and vegetable market.png",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Rudolf_von_Alt_A_flower_and_vegetable_market.png",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/e/ed/Rudolf_von_Alt_A_flower_and_vegetable_market.png: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:08:24.001Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt - Das Palais Trautson in Wien - 1845.jpeg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/59/Rudolf_von_Alt_-_Das_Palais_Trautson_in_Wien_-_1845.jpeg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/5/59/Rudolf_von_Alt_-_Das_Palais_Trautson_in_Wien_-_1845.jpeg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:08:24.016Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt 010.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Rudolf_von_Alt_010.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/1/1a/Rudolf_von_Alt_010.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:08:24.019Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt - Kolosseum in Rom.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Rudolf_von_Alt_-_Kolosseum_in_Rom.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/a/ab/Rudolf_von_Alt_-_Kolosseum_in_Rom.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:08:24.023Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt - Riva am Gardsee - 1834.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/24/Rudolf_von_Alt_-_Riva_am_Gardsee_-_1834.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Rudolf_von_Alt_-_Riva_am_Gardsee_-_1834.jpg/4000px-Rudolf_von_Alt_-_Riva_am_Gardsee_-_1834.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:08:24.035Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt 011.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Rudolf_von_Alt_011.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/e/e7/Rudolf_von_Alt_011.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:08:24.036Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt - Hallstatt - 1845.jpeg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Rudolf_von_Alt_-_Hallstatt_-_1845.jpeg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Rudolf_von_Alt_-_Hallstatt_-_1845.jpeg/4000px-Rudolf_von_Alt_-_Hallstatt_-_1845.jpeg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:08:24.041Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt - Der Friedhof in Gastein - 1898.jpeg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/43/Rudolf_von_Alt_-_Der_Friedhof_in_Gastein_-_1898.jpeg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Rudolf_von_Alt_-_Der_Friedhof_in_Gastein_-_1898.jpeg/3885px-Rudolf_von_Alt_-_Der_Friedhof_in_Gastein_-_1898.jpeg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:08:24.050Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt - Blick auf den Dogenpalast in Venedig - 1874.jpeg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Rudolf_von_Alt_-_Blick_auf_den_Dogenpalast_in_Venedig_-_1874.jpeg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Rudolf_von_Alt_-_Blick_auf_den_Dogenpalast_in_Venedig_-_1874.jpeg/4000px-Rudolf_von_Alt_-_Blick_auf_den_Dogenpalast_in_Venedig_-_1874.jpeg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:08:24.058Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Rudolf von Alt - Ansicht des Altstädter Rings mit der Theynkirche in Prag - 1843.jpeg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/55/Rudolf_von_Alt_-_Ansicht_des_Altst%C3%A4dter_Rings_mit_der_Theynkirche_in_Prag_-_1843.jpeg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/5/55/Rudolf_von_Alt_-_Ansicht_des_Altst%C3%A4dter_Rings_mit_der_Theynkirche_in_Prag_-_1843.jpeg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:08:24.059Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Rudolf von Alt",
+    "title": "File:Alt, Rudolf, von-Interior of Basilica di Santa Maria Gloriosa dei Frari.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Alt%2C_Rudolf%2C_von-Interior_of_Basilica_di_Santa_Maria_Gloriosa_dei_Frari.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/b/b9/Alt%2C_Rudolf%2C_von-Interior_of_Basilica_di_Santa_Maria_Gloriosa_dei_Frari.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T21:08:24.069Z",
+    "retryCount": 0
+  }
+]

@@ -1,0 +1,106 @@
+[
+  {
+    "artist": "Paul Émile Chabas",
+    "title": "File:Paul Chabas Premier Bain.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Paul_Chabas_Premier_Bain.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Paul_Chabas_Premier_Bain.jpg/1600px-Paul_Chabas_Premier_Bain.jpg: 429 Use thumbnail steps listed on https://w.wiki/GHai. Please contact noc@wikimedia.org for further information (a765913)",
+    "timestamp": "2025-12-24T19:27:45.042Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Paul Émile Chabas",
+    "title": "File:Two Bathers by Paul Émile Chabas.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Two_Bathers_by_Paul_%C3%89mile_Chabas.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Two_Bathers_by_Paul_%C3%89mile_Chabas.jpg/1600px-Two_Bathers_by_Paul_%C3%89mile_Chabas.jpg: 429 Use thumbnail steps listed on https://w.wiki/GHai. Please contact noc@wikimedia.org for further information (a765913)",
+    "timestamp": "2025-12-24T19:27:45.048Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Paul Émile Chabas",
+    "title": "File:Paul Chabas Derniers rayons.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Paul_Chabas_Derniers_rayons.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Paul_Chabas_Derniers_rayons.jpg/1600px-Paul_Chabas_Derniers_rayons.jpg: 429 Use thumbnail steps listed on https://w.wiki/GHai. Please contact noc@wikimedia.org for further information (a765913)",
+    "timestamp": "2025-12-24T19:27:45.055Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Paul Émile Chabas",
+    "title": "File:Paul Émile Chabas - Portrait d'une dame avec un foulard rouge.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/44/Paul_%C3%89mile_Chabas_-_Portrait_d%27une_dame_avec_un_foulard_rouge.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Paul_%C3%89mile_Chabas_-_Portrait_d%27une_dame_avec_un_foulard_rouge.jpg/1600px-Paul_%C3%89mile_Chabas_-_Portrait_d%27une_dame_avec_un_foulard_rouge.jpg: 429 Use thumbnail steps listed on https://w.wiki/GHai. Please contact noc@wikimedia.org for further information (a765913)",
+    "timestamp": "2025-12-24T19:27:45.066Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Paul Émile Chabas",
+    "title": "File:Paul Émile Chabas - Deux jeunes Filles à l'Étoile de Mer.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/50/Paul_%C3%89mile_Chabas_-_Deux_jeunes_Filles_%C3%A0_l%27%C3%89toile_de_Mer.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Paul_%C3%89mile_Chabas_-_Deux_jeunes_Filles_%C3%A0_l%27%C3%89toile_de_Mer.jpg/1600px-Paul_%C3%89mile_Chabas_-_Deux_jeunes_Filles_%C3%A0_l%27%C3%89toile_de_Mer.jpg: 429 Use thumbnail steps listed on https://w.wiki/GHai. Please contact noc@wikimedia.org for further information (a765913)",
+    "timestamp": "2025-12-24T19:27:45.069Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Paul Émile Chabas",
+    "title": "File:Paul Émile Chabas - Les nymphes de danse.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Paul_%C3%89mile_Chabas_-_Les_nymphes_de_danse.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Paul_%C3%89mile_Chabas_-_Les_nymphes_de_danse.jpg/1600px-Paul_%C3%89mile_Chabas_-_Les_nymphes_de_danse.jpg: 429 Use thumbnail steps listed on https://w.wiki/GHai. Please contact noc@wikimedia.org for further information (a765913)",
+    "timestamp": "2025-12-24T19:27:45.079Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Paul Émile Chabas",
+    "title": "File:Paul Chabas - Premier Bain.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Paul_Chabas_-_Premier_Bain.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Paul_Chabas_-_Premier_Bain.jpg/1600px-Paul_Chabas_-_Premier_Bain.jpg: 429 Use thumbnail steps listed on https://w.wiki/GHai. Please contact noc@wikimedia.org for further information (a765913)",
+    "timestamp": "2025-12-24T19:27:45.082Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Paul Émile Chabas",
+    "title": "File:Chabas (Dolores de Pedroso y Sturdza en la playa de Biarritz).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/db/Chabas_%28Dolores_de_Pedroso_y_Sturdza_en_la_playa_de_Biarritz%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/d/db/Chabas_%28Dolores_de_Pedroso_y_Sturdza_en_la_playa_de_Biarritz%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T19:27:45.091Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Paul Émile Chabas",
+    "title": "File:L'Illustration - Noël 1907 p 30.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c1/L%27Illustration_-_No%C3%ABl_1907_p_30.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/L%27Illustration_-_No%C3%ABl_1907_p_30.jpg/1600px-L%27Illustration_-_No%C3%ABl_1907_p_30.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T19:27:45.093Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Paul Émile Chabas",
+    "title": "File:Paul-Émile Chabas - Premier bain - PPP460 - Musée des Beaux-Arts de la ville de Paris.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Paul-%C3%89mile_Chabas_-_Premier_bain_-_PPP460_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Paul-%C3%89mile_Chabas_-_Premier_bain_-_PPP460_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg/1600px-Paul-%C3%89mile_Chabas_-_Premier_bain_-_PPP460_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T19:27:45.103Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Paul Émile Chabas",
+    "title": "File:Paul-Émile Chabas - Portrait de Daniel Lesueur (Jeanne Loiseau, 1860-1921, dite), femme de lettres - P2660 - Musée Carnavalet.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/12/Paul-%C3%89mile_Chabas_-_Portrait_de_Daniel_Lesueur_%28Jeanne_Loiseau%2C_1860-1921%2C_dite%29%2C_femme_de_lettres_-_P2660_-_Mus%C3%A9e_Carnavalet.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/1/12/Paul-%C3%89mile_Chabas_-_Portrait_de_Daniel_Lesueur_%28Jeanne_Loiseau%2C_1860-1921%2C_dite%29%2C_femme_de_lettres_-_P2660_-_Mus%C3%A9e_Carnavalet.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T19:27:45.108Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Paul Émile Chabas",
+    "title": "File:Paul-Émile Chabas - Portrait de Daniel Lesueur (Jeanne Loiseau,1860-1921, dite), femme de lettres - P1384 - Musée Carnavalet.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Paul-%C3%89mile_Chabas_-_Portrait_de_Daniel_Lesueur_%28Jeanne_Loiseau%2C1860-1921%2C_dite%29%2C_femme_de_lettres_-_P1384_-_Mus%C3%A9e_Carnavalet.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Paul-%C3%89mile_Chabas_-_Portrait_de_Daniel_Lesueur_%28Jeanne_Loiseau%2C1860-1921%2C_dite%29%2C_femme_de_lettres_-_P1384_-_Mus%C3%A9e_Carnavalet.jpg/1338px-Paul-%C3%89mile_Chabas_-_Portrait_de_Daniel_Lesueur_%28Jeanne_Loiseau%2C1860-1921%2C_dite%29%2C_femme_de_lettres_-_P1384_-_Mus%C3%A9e_Carnavalet.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T19:27:45.116Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Paul Émile Chabas",
+    "title": "File:Young Girl at the Harbor.webp",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Young_Girl_at_the_Harbor.webp",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/e/ef/Young_Girl_at_the_Harbor.webp: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-24T19:27:45.119Z",
+    "retryCount": 0
+  }
+]

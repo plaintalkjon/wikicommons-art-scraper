@@ -1,0 +1,74 @@
+[
+  {
+    "artist": "Jean-Léon Gérôme",
+    "title": "File:GÉRÔME Jean-Léon Le Forum, la nuit Huile sur bois.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fc/G%C3%89R%C3%94ME_Jean-L%C3%A9on_Le_Forum%2C_la_nuit_Huile_sur_bois.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/G%C3%89R%C3%94ME_Jean-L%C3%A9on_Le_Forum%2C_la_nuit_Huile_sur_bois.jpg/3324px-G%C3%89R%C3%94ME_Jean-L%C3%A9on_Le_Forum%2C_la_nuit_Huile_sur_bois.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:30:49.026Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:30:49.027Z"
+  },
+  {
+    "artist": "Jean-Léon Gérôme",
+    "title": "File:Head of a Peasant from the Roman Countryside (1844), by Jean-Léon Gérôme.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Head_of_a_Peasant_from_the_Roman_Countryside_%281844%29%2C_by_Jean-L%C3%A9on_G%C3%A9r%C3%B4me.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Head_of_a_Peasant_from_the_Roman_Countryside_%281844%29%2C_by_Jean-L%C3%A9on_G%C3%A9r%C3%B4me.jpg/3088px-Head_of_a_Peasant_from_the_Roman_Countryside_%281844%29%2C_by_Jean-L%C3%A9on_G%C3%A9r%C3%B4me.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:30:55.244Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:30:55.244Z"
+  },
+  {
+    "artist": "Jean-Léon Gérôme",
+    "title": "File:A Chat by the Fireside, Gérôme, 1881.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/96/A_Chat_by_the_Fireside%2C_G%C3%A9r%C3%B4me%2C_1881.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/A_Chat_by_the_Fireside%2C_G%C3%A9r%C3%B4me%2C_1881.jpg/3281px-A_Chat_by_the_Fireside%2C_G%C3%A9r%C3%B4me%2C_1881.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:31:00.437Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:31:00.437Z"
+  },
+  {
+    "artist": "Jean-Léon Gérôme",
+    "title": "File:Musée Ingres-Bourdelle - Portrait de femme, 1849 - Jean-Léon Gérome - Joconde06070001776.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Mus%C3%A9e_Ingres-Bourdelle_-_Portrait_de_femme%2C_1849_-_Jean-L%C3%A9on_G%C3%A9rome_-_Joconde06070001776.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Mus%C3%A9e_Ingres-Bourdelle_-_Portrait_de_femme%2C_1849_-_Jean-L%C3%A9on_G%C3%A9rome_-_Joconde06070001776.jpg/3019px-Mus%C3%A9e_Ingres-Bourdelle_-_Portrait_de_femme%2C_1849_-_Jean-L%C3%A9on_G%C3%A9rome_-_Joconde06070001776.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:31:05.610Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:31:05.610Z"
+  },
+  {
+    "artist": "Jean-Léon Gérôme",
+    "title": "File:'Le Barde Noir' by Jean-Léon Gérôme, c. 1888.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/37/%27Le_Barde_Noir%27_by_Jean-L%C3%A9on_G%C3%A9r%C3%B4me%2C_c._1888.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/3/37/%27Le_Barde_Noir%27_by_Jean-L%C3%A9on_G%C3%A9r%C3%B4me%2C_c._1888.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:31:10.773Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:31:10.773Z"
+  },
+  {
+    "artist": "Jean-Léon Gérôme",
+    "title": "File:The Guard, Jean-Leon Gerome - Indianapolis Museum of Art - DSC00663.JPG",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5f/The_Guard%2C_Jean-Leon_Gerome_-_Indianapolis_Museum_of_Art_-_DSC00663.JPG",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/The_Guard%2C_Jean-Leon_Gerome_-_Indianapolis_Museum_of_Art_-_DSC00663.JPG/3000px-The_Guard%2C_Jean-Leon_Gerome_-_Indianapolis_Museum_of_Art_-_DSC00663.JPG: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:31:16.888Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:31:16.888Z"
+  },
+  {
+    "artist": "Jean-Léon Gérôme",
+    "title": "File:J.L. Gerome - The Wailing Wall - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/62/J.L._Gerome_-_The_Wailing_Wall_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/J.L._Gerome_-_The_Wailing_Wall_-_Google_Art_Project.jpg/3285px-J.L._Gerome_-_The_Wailing_Wall_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:31:22.043Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:31:22.043Z"
+  },
+  {
+    "artist": "Jean-Léon Gérôme",
+    "title": "File:Gérôme--Femme circassienne voilée--Veiled Circassian Beauty--1876.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9c/G%C3%A9r%C3%B4me--Femme_circassienne_voil%C3%A9e--Veiled_Circassian_Beauty--1876.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/9/9c/G%C3%A9r%C3%B4me--Femme_circassienne_voil%C3%A9e--Veiled_Circassian_Beauty--1876.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:31:28.078Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:31:28.078Z"
+  }
+]

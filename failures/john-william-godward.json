@@ -1,0 +1,29 @@
+[
+  {
+    "artist": "John William Godward",
+    "title": "File:Un bain pompeien.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/27/Un_bain_pompeien.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Un_bain_pompeien.jpg/1788px-Un_bain_pompeien.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:40:03.050Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:40:03.051Z"
+  },
+  {
+    "artist": "John William Godward",
+    "title": "File:Godward-The Mirror-1899.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Godward-The_Mirror-1899.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Godward-The_Mirror-1899.jpg/1769px-Godward-The_Mirror-1899.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:40:08.253Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:40:08.253Z"
+  },
+  {
+    "artist": "John William Godward",
+    "title": "File:Godward A Priestess2 1893.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/27/Godward_A_Priestess2_1893.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Godward_A_Priestess2_1893.jpg/1711px-Godward_A_Priestess2_1893.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:40:13.424Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:40:13.424Z"
+  }
+]

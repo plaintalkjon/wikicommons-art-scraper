@@ -1,0 +1,26 @@
+[
+  {
+    "artist": "Émile Friant",
+    "title": "File:Catalogue des tableaux modernes pastels, aquarelles, dessins collection C. Coquelin (1906) (14785264013).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Catalogue_des_tableaux_modernes_pastels%2C_aquarelles%2C_dessins_collection_C._Coquelin_%281906%29_%2814785264013%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Catalogue_des_tableaux_modernes_pastels%2C_aquarelles%2C_dessins_collection_C._Coquelin_%281906%29_%2814785264013%29.jpg/1600px-Catalogue_des_tableaux_modernes_pastels%2C_aquarelles%2C_dessins_collection_C._Coquelin_%281906%29_%2814785264013%29.jpg: 429 Use thumbnail steps listed on https://w.wiki/GHai. Please contact noc@wikimedia.org for further information (a765913)",
+    "timestamp": "2025-12-23T10:30:37.696Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Émile Friant",
+    "title": "File:Emile Friant - Les souvenirs - PPP56 - Musée des Beaux-Arts de la ville de Paris.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/be/Emile_Friant_-_Les_souvenirs_-_PPP56_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Emile_Friant_-_Les_souvenirs_-_PPP56_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg/1600px-Emile_Friant_-_Les_souvenirs_-_PPP56_-_Mus%C3%A9e_des_Beaux-Arts_de_la_ville_de_Paris.jpg: 429 Use thumbnail steps listed on https://w.wiki/GHai. Please contact noc@wikimedia.org for further information (a765913)",
+    "timestamp": "2025-12-23T10:30:37.738Z",
+    "retryCount": 0
+  },
+  {
+    "artist": "Émile Friant",
+    "title": "File:Friant Emile, Devant la psyché, 1912.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/73/Friant_Emile%2C_Devant_la_psych%C3%A9%2C_1912.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Friant_Emile%2C_Devant_la_psych%C3%A9%2C_1912.jpg/1348px-Friant_Emile%2C_Devant_la_psych%C3%A9%2C_1912.jpg: 429 Use thumbnail steps listed on https://w.wiki/GHai. Please contact noc@wikimedia.org for further information (a765913)",
+    "timestamp": "2025-12-23T10:30:37.754Z",
+    "retryCount": 0
+  }
+]

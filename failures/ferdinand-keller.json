@@ -1,0 +1,11 @@
+[
+  {
+    "artist": "Ferdinand Keller",
+    "title": "File:Ferdinand Keller (1842-1922) - Weiblicher Akt mit Pfau und Spiegel - 2359 - Führermuseum.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Ferdinand_Keller_%281842-1922%29_-_Weiblicher_Akt_mit_Pfau_und_Spiegel_-_2359_-_F%C3%BChrermuseum.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/c/cf/Ferdinand_Keller_%281842-1922%29_-_Weiblicher_Akt_mit_Pfau_und_Spiegel_-_2359_-_F%C3%BChrermuseum.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:03:41.163Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:03:41.163Z"
+  }
+]

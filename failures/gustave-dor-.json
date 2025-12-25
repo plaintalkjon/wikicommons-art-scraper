@@ -1,0 +1,29 @@
+[
+  {
+    "artist": "Gustave Doré",
+    "title": "File:Gustave Doré - Flower Sellers of London - Google Art Project.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Gustave_Dor%C3%A9_-_Flower_Sellers_of_London_-_Google_Art_Project.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Gustave_Dor%C3%A9_-_Flower_Sellers_of_London_-_Google_Art_Project.jpg/2424px-Gustave_Dor%C3%A9_-_Flower_Sellers_of_London_-_Google_Art_Project.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:17:18.605Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:17:18.605Z"
+  },
+  {
+    "artist": "Gustave Doré",
+    "title": "File:Alpine Landscape with Beck (SM 1553).png",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Alpine_Landscape_with_Beck_%28SM_1553%29.png",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Alpine_Landscape_with_Beck_%28SM_1553%29.png/2957px-Alpine_Landscape_with_Beck_%28SM_1553%29.png: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:17:23.779Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:17:23.779Z"
+  },
+  {
+    "artist": "Gustave Doré",
+    "title": "File:Gustave Doré - Portrait de Charles Philipon (1800-1862), dessinateur et journaliste - P1514 - Musée Carnavalet.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/22/Gustave_Dor%C3%A9_-_Portrait_de_Charles_Philipon_%281800-1862%29%2C_dessinateur_et_journaliste_-_P1514_-_Mus%C3%A9e_Carnavalet.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Gustave_Dor%C3%A9_-_Portrait_de_Charles_Philipon_%281800-1862%29%2C_dessinateur_et_journaliste_-_P1514_-_Mus%C3%A9e_Carnavalet.jpg/2740px-Gustave_Dor%C3%A9_-_Portrait_de_Charles_Philipon_%281800-1862%29%2C_dessinateur_et_journaliste_-_P1514_-_Mus%C3%A9e_Carnavalet.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:17:29.745Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:17:29.745Z"
+  }
+]

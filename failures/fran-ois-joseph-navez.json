@@ -1,0 +1,47 @@
+[
+  {
+    "artist": "François-Joseph Navez",
+    "title": "File:François-Joseph Navez - Saint Veronica of Binasco - 2003-K - Museum of Fine Arts Ghent (MSK).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/96/Fran%C3%A7ois-Joseph_Navez_-_Saint_Veronica_of_Binasco_-_2003-K_-_Museum_of_Fine_Arts_Ghent_%28MSK%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Fran%C3%A7ois-Joseph_Navez_-_Saint_Veronica_of_Binasco_-_2003-K_-_Museum_of_Fine_Arts_Ghent_%28MSK%29.jpg/3271px-Fran%C3%A7ois-Joseph_Navez_-_Saint_Veronica_of_Binasco_-_2003-K_-_Museum_of_Fine_Arts_Ghent_%28MSK%29.jpg: 429 Use thumbnail steps listed on https://w.wiki/GHai. Please contact noc@wikimedia.org for further information (a765913)",
+    "timestamp": "2025-12-25T10:09:20.775Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:09:20.775Z"
+  },
+  {
+    "artist": "François-Joseph Navez",
+    "title": "File:François-Joseph Navez - The Nymph Salmacis and Hermaphrodite - 1829-A - Museum of Fine Arts Ghent (MSK).jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Fran%C3%A7ois-Joseph_Navez_-_The_Nymph_Salmacis_and_Hermaphrodite_-_1829-A_-_Museum_of_Fine_Arts_Ghent_%28MSK%29.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Fran%C3%A7ois-Joseph_Navez_-_The_Nymph_Salmacis_and_Hermaphrodite_-_1829-A_-_Museum_of_Fine_Arts_Ghent_%28MSK%29.jpg/3012px-Fran%C3%A7ois-Joseph_Navez_-_The_Nymph_Salmacis_and_Hermaphrodite_-_1829-A_-_Museum_of_Fine_Arts_Ghent_%28MSK%29.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:09:26.710Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:09:26.710Z"
+  },
+  {
+    "artist": "François-Joseph Navez",
+    "title": "File:François-Joseph Navez - Saint Cecilia of Rome, 1824.jpeg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Fran%C3%A7ois-Joseph_Navez_-_Saint_Cecilia_of_Rome%2C_1824.jpeg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Fran%C3%A7ois-Joseph_Navez_-_Saint_Cecilia_of_Rome%2C_1824.jpeg/3402px-Fran%C3%A7ois-Joseph_Navez_-_Saint_Cecilia_of_Rome%2C_1824.jpeg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:09:31.881Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:09:31.882Z"
+  },
+  {
+    "artist": "François-Joseph Navez",
+    "title": "File:Portret van mevrouw Huart-Chapel, François-Joseph Navez, Museum voor Schone Kunsten Gent, v.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Portret_van_mevrouw_Huart-Chapel%2C_Fran%C3%A7ois-Joseph_Navez%2C_Museum_voor_Schone_Kunsten_Gent%2C_v.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Portret_van_mevrouw_Huart-Chapel%2C_Fran%C3%A7ois-Joseph_Navez%2C_Museum_voor_Schone_Kunsten_Gent%2C_v.jpg/3113px-Portret_van_mevrouw_Huart-Chapel%2C_Fran%C3%A7ois-Joseph_Navez%2C_Museum_voor_Schone_Kunsten_Gent%2C_v.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:09:37.034Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:09:37.034Z"
+  },
+  {
+    "artist": "François-Joseph Navez",
+    "title": "File:Navez, Portrait of Engelspach-Larivière, 1830.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Navez%2C_Portrait_of_Engelspach-Larivi%C3%A8re%2C_1830.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Navez%2C_Portrait_of_Engelspach-Larivi%C3%A8re%2C_1830.jpg/3353px-Navez%2C_Portrait_of_Engelspach-Larivi%C3%A8re%2C_1830.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:09:42.279Z",
+    "retryCount": 2,
+    "lastRetry": "2025-12-25T10:09:42.279Z"
+  }
+]

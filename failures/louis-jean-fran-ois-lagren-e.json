@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "artist": "Louis Jean François Lagrenée",
+    "title": "File:Louis Jean Francois Lagrenée - Self-portrait.jpg",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/22/Louis_Jean_Francois_Lagren%C3%A9e_-_Self-portrait.jpg",
+    "error": "Failed to download image https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Louis_Jean_Francois_Lagren%C3%A9e_-_Self-portrait.jpg/3009px-Louis_Jean_Francois_Lagren%C3%A9e_-_Self-portrait.jpg: 429 Your request is invalid. Please contact noc@wikimedia.org for further information (0fa5166)",
+    "timestamp": "2025-12-25T10:45:10.888Z",
+    "retryCount": 1,
+    "lastRetry": "2025-12-25T10:45:10.888Z"
+  }
+]
