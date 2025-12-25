@@ -83,3 +83,4 @@ class BandwidthThrottler {
 
 // Singleton instance
 export const bandwidthThrottler = new BandwidthThrottler();
+
