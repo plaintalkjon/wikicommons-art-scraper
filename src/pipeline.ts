@@ -5,7 +5,7 @@ import { downloadImage } from './downloader';
 import { uploadToStorage } from './storage';
 import { WikimediaImage } from './types';
 import { ensureArtist, insertArtAsset, linkArtTags, upsertArt, upsertArtSource, upsertTags } from './db';
-import { fetchWikidataPaintings, fetchWikidataItemTags, hasCollection, findItemFromCommonsFile } from './wikidata';
+import { fetchWikidataPaintings, fetchWikidataItemTags, hasCollection, findItemFromCommonsFile, batchFindItemsWithCollections } from './wikidata';
 import { saveFailure } from './failureTracker';
 
 export interface FetchOptions {
@@ -63,6 +63,25 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
   
   console.log(`Found ${images.length} images to process`);
   
+  // Step 1: Batch query Wikidata for all items with collections (or load from cache)
+  console.log(`\n→ Loading Wikidata items with images and collections...`);
+  let wikidataMap: Map<string, string>;
+  try {
+    wikidataMap = await batchFindItemsWithCollections();
+    console.log(`✓ Loaded ${wikidataMap.size} Wikidata items with collections`);
+  } catch (err) {
+    const errorMessage = (err as Error).message;
+    const isRateLimit = errorMessage.includes('429') || errorMessage.includes('rate limit');
+    if (isRateLimit) {
+      console.error(`✗ Batch Wikidata query rate limited: ${errorMessage}`);
+      console.log(`  Will use per-image queries (may be slower)...`);
+    } else {
+      console.error(`✗ Batch Wikidata query failed: ${errorMessage}`);
+      console.log(`  Falling back to per-image queries...`);
+    }
+    wikidataMap = new Map(); // Empty map, will fall back to individual queries
+  }
+  
   const artistId = await ensureArtist(options.artist);
   const errors: Array<{ title: string; message: string }> = [];
   let uploaded = 0;
@@ -85,91 +104,133 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
     console.log(`[${attempted}/${images.length}] Processing: ${image.title}`);
     
     // Filter: must have a collection/museum (P195 property in Wikidata)
-    // Find the Wikidata item for this Commons file and verify it has a collection
+    // Try to find Wikidata item from batch query first, fall back to individual query if needed
     let itemId: string | null = image.sourceItem || null;
-    let itemFoundViaLookup = false;
     
     if (!itemId) {
-      console.log(`  → Looking up Wikidata item for: ${image.title}`);
-      try {
-        itemId = await findItemFromCommonsFile(image.title);
+      // Extract filename from Commons title (remove "File:" prefix)
+      const filename = image.title.replace(/^File:/i, '').trim();
+      
+      // Try batch map first - try multiple variations for matching
+      if (wikidataMap.size > 0) {
+        // Try exact matches first
+        itemId = wikidataMap.get(image.title) || 
+                 wikidataMap.get(filename) ||
+                 // Try URL-encoded versions
+                 wikidataMap.get(encodeURIComponent(filename)) ||
+                 wikidataMap.get(`File:${encodeURIComponent(filename)}`) ||
+                 null;
+        
+        // If still not found, try case-insensitive and normalized matching
+        if (!itemId) {
+          const normalizedTitle = image.title.toLowerCase().trim();
+          const normalizedFilename = filename.toLowerCase().trim();
+          for (const [key, value] of wikidataMap.entries()) {
+            const normalizedKey = key.toLowerCase().trim();
+            if (normalizedKey === normalizedTitle || normalizedKey === normalizedFilename) {
+              itemId = value;
+              console.log(`  ✓ Found Wikidata item via case-insensitive match: ${itemId}`);
+              break;
+            }
+          }
+        }
+        
         if (itemId) {
-          console.log(`  ✓ Found Wikidata item with collection: ${itemId}`);
-          // findItemFromCommonsFile() already requires P195, so we know it has a collection
-          itemFoundViaLookup = true;
-          // Update the image with the found sourceItem for later use
+          console.log(`  ✓ Found Wikidata item with collection (from batch): ${itemId}`);
           image.sourceItem = itemId;
         } else {
-          console.log(`  ⚠ No Wikidata item found, skipping`);
+          console.log(`  → Not found in batch map (${wikidataMap.size} items), trying individual query...`);
+        }
+        if (itemId) {
+          console.log(`  ✓ Found Wikidata item with collection (from batch): ${itemId}`);
+          image.sourceItem = itemId;
+        }
+      }
+      
+      // Fall back to individual query if batch didn't find it
+      if (!itemId) {
+        console.log(`  → Looking up Wikidata item individually (not in batch): ${image.title}`);
+        try {
+          itemId = await findItemFromCommonsFile(image.title);
+          if (itemId) {
+            console.log(`  ✓ Found Wikidata item with collection: ${itemId}`);
+            image.sourceItem = itemId;
+          } else {
+            console.log(`  ⚠ No Wikidata item found, skipping`);
+            skipped++;
+            await saveFailure({
+              artist: options.artist,
+              title: image.title,
+              imageUrl: image.original?.url || image.thumb?.url || '',
+              error: 'No Wikidata item found for Commons file',
+              timestamp: new Date().toISOString(),
+              retryCount: 0,
+            });
+            logStats();
+            return;
+          }
+        } catch (err) {
+          const errorMessage = (err as Error).message;
+          const isRateLimit = errorMessage.includes('429') || errorMessage.includes('rate limit');
+          if (isRateLimit) rateLimitErrors++;
+          
+          console.log(`  ✗ Error finding Wikidata item: ${errorMessage}${isRateLimit ? ' [RATE LIMIT - skipping]' : ''}`);
           skipped++;
+          errors.push({ title: image.title, message: errorMessage });
           await saveFailure({
             artist: options.artist,
             title: image.title,
             imageUrl: image.original?.url || image.thumb?.url || '',
-            error: 'No Wikidata item found for Commons file',
+            error: `Wikidata lookup failed: ${errorMessage}`,
             timestamp: new Date().toISOString(),
             retryCount: 0,
           });
           logStats();
-          return;
+          return; // Move on immediately, don't wait
         }
-      } catch (err) {
-        const errorMessage = (err as Error).message;
-        const isRateLimit = errorMessage.includes('429') || errorMessage.includes('rate limit') || errorMessage.includes('timeout');
-        if (isRateLimit) rateLimitErrors++;
-        
-        console.log(`  ✗ Error finding Wikidata item: ${errorMessage}${isRateLimit ? ' [RATE LIMIT]' : ''}`);
-        skipped++;
-        errors.push({ title: image.title, message: errorMessage });
-        await saveFailure({
-          artist: options.artist,
-          title: image.title,
-          imageUrl: image.original?.url || image.thumb?.url || '',
-          error: `Wikidata lookup failed: ${errorMessage}`,
-          timestamp: new Date().toISOString(),
-          retryCount: 0,
-        });
-        logStats();
-        return;
       }
     } else {
-      // If itemId was pre-set, we need to verify it has a collection
-      console.log(`  → Verifying pre-set Wikidata item ${itemId} has a collection/museum`);
-      try {
-        const hasMuseum = await hasCollection(itemId);
-        if (!hasMuseum) {
-          console.log(`  ⚠ No collection/museum found, skipping`);
+      // If itemId was pre-set, verify it has a collection (only if not in batch map)
+      if (wikidataMap.size === 0 || !wikidataMap.has(image.title)) {
+        console.log(`  → Verifying pre-set Wikidata item ${itemId} has a collection/museum`);
+        try {
+          const hasMuseum = await hasCollection(itemId);
+          if (!hasMuseum) {
+            console.log(`  ⚠ No collection/museum found, skipping`);
+            skipped++;
+            await saveFailure({
+              artist: options.artist,
+              title: image.title,
+              imageUrl: image.original?.url || image.thumb?.url || '',
+              error: 'Wikidata item does not have a collection/museum (P195)',
+              timestamp: new Date().toISOString(),
+              retryCount: 0,
+            });
+            logStats();
+            return;
+          }
+          console.log(`  ✓ Collection/museum verified`);
+        } catch (err) {
+          const errorMessage = (err as Error).message;
+          const isRateLimit = errorMessage.includes('429') || errorMessage.includes('rate limit');
+          if (isRateLimit) rateLimitErrors++;
+          
+          console.log(`  ✗ Error checking collection: ${errorMessage}${isRateLimit ? ' [RATE LIMIT - skipping]' : ''}`);
           skipped++;
+          errors.push({ title: image.title, message: errorMessage });
           await saveFailure({
             artist: options.artist,
             title: image.title,
             imageUrl: image.original?.url || image.thumb?.url || '',
-            error: 'Wikidata item does not have a collection/museum (P195)',
+            error: `Collection check failed: ${errorMessage}`,
             timestamp: new Date().toISOString(),
             retryCount: 0,
           });
           logStats();
-          return;
+          return; // Move on immediately, don't wait
         }
-        console.log(`  ✓ Collection/museum verified`);
-      } catch (err) {
-        const errorMessage = (err as Error).message;
-        const isRateLimit = errorMessage.includes('429') || errorMessage.includes('rate limit') || errorMessage.includes('timeout');
-        if (isRateLimit) rateLimitErrors++;
-        
-        console.log(`  ✗ Error checking collection: ${errorMessage}${isRateLimit ? ' [RATE LIMIT]' : ''}`);
-        skipped++;
-        errors.push({ title: image.title, message: errorMessage });
-        await saveFailure({
-          artist: options.artist,
-          title: image.title,
-          imageUrl: image.original?.url || image.thumb?.url || '',
-          error: `Collection check failed: ${errorMessage}`,
-          timestamp: new Date().toISOString(),
-          retryCount: 0,
-        });
-        logStats();
-        return;
+      } else {
+        console.log(`  ✓ Pre-set Wikidata item verified (in batch map): ${itemId}`);
       }
     }
     
