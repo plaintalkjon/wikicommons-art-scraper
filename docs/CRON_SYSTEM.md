@@ -140,3 +140,4 @@ Based on the code:
 - Multiple accounts can post in the same cron run if they're all due
 - The system scales automatically as more accounts are added
 - **Note**: The deployed version in Supabase may have additional features not present in the local git history (e.g., enhanced tag account text with artist bot links)
+

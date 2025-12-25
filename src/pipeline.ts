@@ -1,11 +1,11 @@
 import { config } from './config';
-import { fetchImageInfoByTitle, pickBestVariant, fetchImagesForArtist } from './wikimedia';
+import { fetchImageInfoByTitle, pickBestVariant } from './wikimedia';
 import { slugify } from './utils';
 import { downloadImage } from './downloader';
 import { uploadToStorage } from './storage';
 import { WikimediaImage } from './types';
 import { ensureArtist, insertArtAsset, linkArtTags, upsertArt, upsertArtSource, upsertTags } from './db';
-import { fetchWikidataPaintings, fetchWikidataItemTags, hasCollection, findItemFromCommonsFile, batchFindItemsWithCollections } from './wikidata';
+import { fetchWikidataItemTags } from './wikidata';
 import { saveFailure } from './failureTracker';
 
 export interface FetchOptions {

@@ -8,12 +8,6 @@ const RETRY_DELAY_MS = 1500;
 const MIN_VARIANT_WIDTH = 1280;
 const MIN_ORIGINAL_WIDTH = 1800;
 
-interface CategoryOptions {
-  artist: string;
-  categoryTitle?: string;
-  limit?: number;
-}
-
 interface ImageInfo {
   url?: string;
   descriptionurl?: string;
@@ -55,81 +49,6 @@ function toVariant(info: ImageInfo | undefined, preferThumb: boolean): ImageVari
   return null;
 }
 
-export async function fetchImagesForArtist(options: CategoryOptions): Promise<WikimediaImage[]> {
-  const limit = options.limit ?? 10000;
-  
-  // If a specific category is provided, use it; otherwise use the most general category
-  // The artist name category is recursive and includes all subcategories (Paintings by, Sculptures by, etc.)
-  const gcmtitle = options.categoryTitle ?? `Category:${options.artist}`;
-  
-  return fetchImagesFromCategory(gcmtitle, limit);
-}
-
-async function fetchImagesFromCategory(gcmtitle: string, limit: number): Promise<WikimediaImage[]> {
-  let gcmcontinue: string | undefined;
-  const results: WikimediaImage[] = [];
-
-  while (results.length < limit) {
-    const params = new URLSearchParams({
-      action: 'query',
-      format: 'json',
-      formatversion: '2',
-      generator: 'categorymembers',
-      gcmtitle,
-      gcmtype: 'file',
-      gcmlimit: '50',
-      prop: 'imageinfo|categories|info',
-      inprop: 'url',
-      cllimit: 'max',
-      iiprop: 'url|size|mime|extmetadata',
-      iiurlwidth: '1600',
-      iiurlheight: '1600',
-      origin: '*',
-    });
-
-    if (gcmcontinue) {
-      params.set('gcmcontinue', gcmcontinue);
-    }
-
-    const url = `${API_ENDPOINT}?${params.toString()}`;
-    const res = await fetchWithRetry(url);
-    const data = (await res.json()) as QueryResponse;
-
-    const pages = data.query?.pages ?? [];
-    for (const page of pages) {
-      if (results.length >= limit) break;
-      const info = page.imageinfo?.[0];
-
-      const thumb = toVariant(info, true);
-      const original = toVariant(info, false);
-      const categories = (page.categories ?? [])
-        .filter((cat) => !cat.hidden)
-        .map((cat) => cat.title.replace(/^Category:/, ''));
-
-      const extmeta = info?.extmetadata ?? {};
-      const license = extmeta.LicenseShortName?.value ?? extmeta.License?.value;
-      const description = extmeta.ImageDescription?.value;
-      const dateCreated = extmeta.DateTimeOriginal?.value ?? extmeta.DateTime?.value;
-
-      results.push({
-        pageid: page.pageid,
-        title: page.title,
-        pageUrl: page.fullurl ?? page.canonicalurl ?? '',
-        original,
-        thumb,
-        categories,
-        description,
-        license,
-        dateCreated,
-      });
-    }
-
-    if (!data.continue?.gcmcontinue) break;
-    gcmcontinue = data.continue.gcmcontinue;
-  }
-
-  return results;
-}
 
 /**
  * Fetch image info using the modern Core REST API

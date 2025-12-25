@@ -88,9 +88,3 @@ export async function getWikimediaAccessToken(): Promise<string | null> {
   }
 }
 
-/**
- * Clear the token cache (useful for testing or forced refresh)
- */
-export function clearTokenCache(): void {
-  tokenCache = null;
-}
