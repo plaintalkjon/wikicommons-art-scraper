@@ -26,13 +26,14 @@ async function main() {
   const limit = args.limit ? Number(args.limit) : undefined;
   const dryRun = Boolean(args['dry-run'] ?? args.dryRun);
   const maxUploads = args['max-uploads'] ? Number(args['max-uploads']) : undefined;
+  const source = (args.source as 'wikimedia' | 'metmuseum' | 'both') || 'wikimedia';
 
   console.log(
     `Fetching artworks for: ${artist} (${dryRun ? 'dry run' : 'uploading'})${
       maxUploads ? ` [max uploads: ${maxUploads}]` : ''
-    }`,
+    } [source: ${source}]`,
   );
-  const result = await fetchAndStoreArtworks({ artist, limit, dryRun, maxUploads });
+  const result = await fetchAndStoreArtworks({ artist, limit, dryRun, maxUploads, source });
 
   console.log(
     `Completed. attempted=${result.attempted} uploaded=${result.uploaded} skipped=${result.skipped} errors=${result.errors.length}`,

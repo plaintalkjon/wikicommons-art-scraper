@@ -1,4 +1,5 @@
 import crypto from 'crypto';
+import sizeOf from 'image-size';
 import { bytesFromArrayBuffer } from './utils';
 import { DownloadedImage, ImageVariant } from './types';
 import { getWikimediaAccessToken } from './wikimediaAuth';
@@ -63,6 +64,26 @@ export async function downloadImage(variant: ImageVariant): Promise<DownloadedIm
       const sha256 = crypto.createHash('sha256').update(buffer).digest('hex');
       const ext = extensionFromMime(variant.mime);
 
+      // Extract dimensions from image buffer
+      // If variant already has dimensions (from Wikimedia API), use those
+      // Otherwise, extract from the downloaded image
+      let width = variant.width;
+      let height = variant.height;
+      
+      if (width === 0 || height === 0) {
+        try {
+          const dimensions = sizeOf(buffer);
+          if (dimensions.width && dimensions.height) {
+            width = dimensions.width;
+            height = dimensions.height;
+          }
+        } catch (err) {
+          // If we can't extract dimensions, keep the original (0x0)
+          // This will be caught by size validation later
+          console.log(`  ⚠ Could not extract image dimensions: ${(err as Error).message}`);
+        }
+      }
+
       // Record download for bandwidth throttling (25 Mbps limit)
       await bandwidthThrottler.recordDownload(buffer.byteLength);
       
@@ -71,6 +92,8 @@ export async function downloadImage(variant: ImageVariant): Promise<DownloadedIm
 
       return {
         ...variant,
+        width,
+        height,
         buffer,
         sha256,
         ext,

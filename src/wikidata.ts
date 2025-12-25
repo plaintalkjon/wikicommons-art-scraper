@@ -90,25 +90,30 @@ function generateNameVariations(name: string): string[] {
  */
 async function searchArtistQIDByName(name: string): Promise<string | null> {
   // Search by both main label (rdfs:label) and alternative labels (skos:altLabel)
+  // Filter for humans (P31=Q5) to avoid matching non-person entities
   // Also try without language restriction, and try case-insensitive matching
   const escapedName = name.replace(/"/g, '\\"');
   const query = `
     SELECT DISTINCT ?item WHERE {
       {
         ?item rdfs:label "${escapedName}"@en .
+        ?item wdt:P31 wd:Q5 .  # instance of human
       }
       UNION
       {
         ?item skos:altLabel "${escapedName}"@en .
+        ?item wdt:P31 wd:Q5 .  # instance of human
       }
       UNION
       {
         ?item rdfs:label "${escapedName}" .
+        ?item wdt:P31 wd:Q5 .  # instance of human
         FILTER(LANG(?item) = "" || LANG(?item) = "en")
       }
       UNION
       {
         ?item skos:altLabel "${escapedName}" .
+        ?item wdt:P31 wd:Q5 .  # instance of human
         FILTER(LANG(?item) = "" || LANG(?item) = "en")
       }
     }
