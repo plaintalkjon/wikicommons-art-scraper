@@ -334,7 +334,7 @@ export async function findArtworksByArtist(artistQID: string): Promise<WikidataA
 
 /**
  * @deprecated This function is no longer used. We now use artist-specific queries via findArtworksByArtist()
- * This function is kept for backwards compatibility but should not be called.
+ * This is a stub that returns an empty Map. It may be removed in a future version.
  */
 export async function batchFindItemsWithCollections(): Promise<Map<string, string>> {
   console.warn('batchFindItemsWithCollections() is deprecated. Use findArtworksByArtist() instead.');

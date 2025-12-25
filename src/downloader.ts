@@ -3,6 +3,7 @@ import { bytesFromArrayBuffer } from './utils';
 import { DownloadedImage, ImageVariant } from './types';
 import { getWikimediaAccessToken } from './wikimediaAuth';
 import { config } from './config';
+import { bandwidthThrottler } from './bandwidthThrottle';
 
 /**
  * Download an image from Wikimedia Commons with proper authentication and rate limiting
@@ -31,6 +32,9 @@ export async function downloadImage(variant: ImageVariant): Promise<DownloadedIm
   
   while (retryCount <= maxRetries) {
     try {
+      // Check bandwidth before starting download
+      await bandwidthThrottler.waitIfNeeded();
+      
       const res = await fetch(variant.url, { headers });
       
       // Handle rate limiting (429)
@@ -59,10 +63,11 @@ export async function downloadImage(variant: ImageVariant): Promise<DownloadedIm
       const sha256 = crypto.createHash('sha256').update(buffer).digest('hex');
       const ext = extensionFromMime(variant.mime);
 
-      // Delay after successful download to be respectful of rate limits
-      // Wikimedia recommends limiting bandwidth and respecting rate limits
-      // Increased delay to 500ms to reduce rate limit issues
-      await new Promise(resolve => setTimeout(resolve, 500)); // 500ms delay
+      // Record download for bandwidth throttling (25 Mbps limit)
+      await bandwidthThrottler.recordDownload(buffer.byteLength);
+      
+      // Small delay after successful download to be respectful of rate limits
+      await new Promise(resolve => setTimeout(resolve, 200)); // Small delay between downloads
 
       return {
         ...variant,

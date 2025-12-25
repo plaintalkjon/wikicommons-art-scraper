@@ -3,10 +3,23 @@ import { fetchImageInfoByTitle, pickBestVariant } from './wikimedia';
 import { slugify } from './utils';
 import { downloadImage } from './downloader';
 import { uploadToStorage } from './storage';
-import { WikimediaImage } from './types';
+import { WikimediaImage, DownloadedImage } from './types';
 import { ensureArtist, insertArtAsset, linkArtTags, upsertArt, upsertArtSource, upsertTags } from './db';
 import { fetchWikidataItemTags } from './wikidata';
 import { saveFailure } from './failureTracker';
+import { supabase } from './supabaseClient';
+
+function extensionFromMime(mime: string): string {
+  const map: Record<string, string> = {
+    'image/jpeg': 'jpg',
+    'image/png': 'png',
+    'image/gif': 'gif',
+    'image/webp': 'webp',
+    'image/tiff': 'tif',
+    'image/svg+xml': 'svg',
+  };
+  return map[mime] ?? 'img';
+}
 
 export interface FetchOptions {
   artist: string;
@@ -189,6 +202,24 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
       if (options.dryRun) {
         console.log(`  [DRY RUN] Would upload: ${artwork.commonsTitle}`);
         skipped++;
+        return;
+      }
+      
+      // Check if artwork already exists in database (caching)
+      // If file exists in storage, it should already be linked in the database via art_assets
+      const normalizedTitle = cleanTitle(normalizeTitle(image.title), options.artist);
+      const existingArt = await supabase
+        .from('arts')
+        .select('id')
+        .eq('artist_id', artistId)
+        .eq('title', normalizedTitle)
+        .limit(1)
+        .maybeSingle();
+      
+      if (existingArt.data?.id) {
+        console.log(`  ✓ Artwork already exists in database, skipping`);
+        skipped++;
+        logStats();
         return;
       }
       
