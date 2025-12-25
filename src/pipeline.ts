@@ -47,40 +47,75 @@ async function processInParallel<T>(
 
 export async function fetchAndStoreArtworks(options: FetchOptions): Promise<FetchResult> {
   const limit = options.limit ?? 10000;
-  const CONCURRENCY = 2; // Process 2 images in parallel to avoid overwhelming Wikidata
+  const CONCURRENCY = 2; // Process 2 images in parallel
   const maxUploads = options.maxUploads;
   
   console.log(`Fetching artworks for: ${options.artist}...`);
   
-  // Since findArtistQID was removed, we'll use Wikimedia Commons directly
-  // This is a fallback approach - ideally artist QID should be provided
-  const images = await fetchImagesForArtist({ artist: options.artist, limit });
+  // Step 1: Find artist QID
+  console.log(`\n${'='.repeat(60)}`);
+  console.log(`Step 1: Finding artist in Wikidata`);
+  console.log(`${'='.repeat(60)}`);
+  console.log(`→ Searching for artist: "${options.artist}"...`);
   
-  if (images.length === 0) {
-    console.log('No images found via Wikimedia Commons categories');
-    return { attempted: 0, uploaded: 0, skipped: 0, errors: [] };
-  }
+  let artistQID: string | null = null;
+  let artworks: Array<{ itemQid: string; imageUrl: string; commonsTitle: string }> = [];
   
-  console.log(`Found ${images.length} images to process`);
-  
-  // Step 1: Batch query Wikidata for all items with collections (or load from cache)
-  console.log(`\n→ Loading Wikidata items with images and collections...`);
-  let wikidataMap: Map<string, string>;
   try {
-    wikidataMap = await batchFindItemsWithCollections();
-    console.log(`✓ Loaded ${wikidataMap.size} Wikidata items with collections`);
+    const { findArtistQID, findArtworksByArtist } = await import('./wikidata');
+    const startTime = Date.now();
+    artistQID = await findArtistQID(options.artist);
+    const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+    
+    if (artistQID) {
+      console.log(`✓ Found artist QID: ${artistQID} (took ${elapsed}s)`);
+      console.log(`\n${'='.repeat(60)}`);
+      console.log(`Step 2: Querying artworks by ${options.artist}`);
+      console.log(`${'='.repeat(60)}`);
+      console.log(`→ Querying Wikidata for artworks by artist ${artistQID}...`);
+      console.log(`  (Looking for items with: creator=${artistQID}, has image, has collection)`);
+      
+      const queryStartTime = Date.now();
+      artworks = await findArtworksByArtist(artistQID);
+      const queryElapsed = ((Date.now() - queryStartTime) / 1000).toFixed(1);
+      
+      console.log(`✓ Query complete (took ${queryElapsed}s)`);
+      console.log(`✓ Found ${artworks.length} artworks with images and collections`);
+      
+      if (artworks.length === 0) {
+        console.log(`⚠ No artworks found for ${options.artist} with images and collections`);
+        return { attempted: 0, uploaded: 0, skipped: 0, errors: [] };
+      }
+    } else {
+      console.log(`⚠ Could not find artist QID for "${options.artist}" (took ${elapsed}s)`);
+      console.log(`  Possible reasons:`);
+      console.log(`    - Artist name doesn't match Wikidata label exactly`);
+      console.log(`    - Artist doesn't have a Wikidata entry`);
+      console.log(`    - Query timed out`);
+      return { attempted: 0, uploaded: 0, skipped: 0, errors: [] };
+    }
   } catch (err) {
     const errorMessage = (err as Error).message;
     const isRateLimit = errorMessage.includes('429') || errorMessage.includes('rate limit');
+    const isTimeout = errorMessage.includes('timeout');
+    
+    console.error(`\n✗ Error during artist lookup or artwork query:`);
+    console.error(`  Error: ${errorMessage}`);
+    
     if (isRateLimit) {
-      console.error(`✗ Batch Wikidata query rate limited: ${errorMessage}`);
-      console.log(`  Will use per-image queries (may be slower)...`);
+      console.error(`  → This is a rate limit error (429)`);
+    } else if (isTimeout) {
+      console.error(`  → This is a timeout error`);
     } else {
-      console.error(`✗ Batch Wikidata query failed: ${errorMessage}`);
-      console.log(`  Falling back to per-image queries...`);
+      console.error(`  → Unexpected error type`);
     }
-    wikidataMap = new Map(); // Empty map, will fall back to individual queries
+    
+    return { attempted: 0, uploaded: 0, skipped: 0, errors: [] };
   }
+  
+  console.log(`\n${'='.repeat(60)}`);
+  console.log(`Step 3: Processing ${artworks.length} artworks from Wikidata`);
+  console.log(`${'='.repeat(60)}`);
   
   const artistId = await ensureArtist(options.artist);
   const errors: Array<{ title: string; message: string }> = [];
@@ -94,181 +129,84 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
     console.log(`\n📊 Progress: Attempted=${attempted} | Uploaded=${uploaded} | Skipped=${skipped} | Errors=${errors.length} | Rate Limits=${rateLimitErrors}\n`);
   };
   
-  const processImage = async (image: WikimediaImage) => {
+  const processArtwork = async (artwork: { itemQid: string; imageUrl: string; commonsTitle: string }) => {
     if (maxUploads && uploaded >= maxUploads) {
       skipped++;
       return;
     }
     
     attempted++;
-    console.log(`[${attempted}/${images.length}] Processing: ${image.title}`);
-    
-    // Filter: must have a collection/museum (P195 property in Wikidata)
-    // Try to find Wikidata item from batch query first, fall back to individual query if needed
-    let itemId: string | null = image.sourceItem || null;
-    
-    if (!itemId) {
-      // Extract filename from Commons title (remove "File:" prefix)
-      const filename = image.title.replace(/^File:/i, '').trim();
-      
-      // Try batch map first - try multiple variations for matching
-      if (wikidataMap.size > 0) {
-        // Try exact matches first
-        itemId = wikidataMap.get(image.title) || 
-                 wikidataMap.get(filename) ||
-                 // Try URL-encoded versions
-                 wikidataMap.get(encodeURIComponent(filename)) ||
-                 wikidataMap.get(`File:${encodeURIComponent(filename)}`) ||
-                 null;
-        
-        // If still not found, try case-insensitive and normalized matching
-        if (!itemId) {
-          const normalizedTitle = image.title.toLowerCase().trim();
-          const normalizedFilename = filename.toLowerCase().trim();
-          for (const [key, value] of wikidataMap.entries()) {
-            const normalizedKey = key.toLowerCase().trim();
-            if (normalizedKey === normalizedTitle || normalizedKey === normalizedFilename) {
-              itemId = value;
-              console.log(`  ✓ Found Wikidata item via case-insensitive match: ${itemId}`);
-              break;
-            }
-          }
-        }
-        
-        if (itemId) {
-          console.log(`  ✓ Found Wikidata item with collection (from batch): ${itemId}`);
-          image.sourceItem = itemId;
-        } else {
-          console.log(`  → Not found in batch map (${wikidataMap.size} items), trying individual query...`);
-        }
-        if (itemId) {
-          console.log(`  ✓ Found Wikidata item with collection (from batch): ${itemId}`);
-          image.sourceItem = itemId;
-        }
-      }
-      
-      // Fall back to individual query if batch didn't find it
-      if (!itemId) {
-        console.log(`  → Looking up Wikidata item individually (not in batch): ${image.title}`);
-        try {
-          itemId = await findItemFromCommonsFile(image.title);
-          if (itemId) {
-            console.log(`  ✓ Found Wikidata item with collection: ${itemId}`);
-            image.sourceItem = itemId;
-          } else {
-            console.log(`  ⚠ No Wikidata item found, skipping`);
-            skipped++;
-            await saveFailure({
-              artist: options.artist,
-              title: image.title,
-              imageUrl: image.original?.url || image.thumb?.url || '',
-              error: 'No Wikidata item found for Commons file',
-              timestamp: new Date().toISOString(),
-              retryCount: 0,
-            });
-            logStats();
-            return;
-          }
-        } catch (err) {
-          const errorMessage = (err as Error).message;
-          const isRateLimit = errorMessage.includes('429') || errorMessage.includes('rate limit');
-          if (isRateLimit) rateLimitErrors++;
-          
-          console.log(`  ✗ Error finding Wikidata item: ${errorMessage}${isRateLimit ? ' [RATE LIMIT - skipping]' : ''}`);
-          skipped++;
-          errors.push({ title: image.title, message: errorMessage });
-          await saveFailure({
-            artist: options.artist,
-            title: image.title,
-            imageUrl: image.original?.url || image.thumb?.url || '',
-            error: `Wikidata lookup failed: ${errorMessage}`,
-            timestamp: new Date().toISOString(),
-            retryCount: 0,
-          });
-          logStats();
-          return; // Move on immediately, don't wait
-        }
-      }
-    } else {
-      // If itemId was pre-set, verify it has a collection (only if not in batch map)
-      if (wikidataMap.size === 0 || !wikidataMap.has(image.title)) {
-        console.log(`  → Verifying pre-set Wikidata item ${itemId} has a collection/museum`);
-        try {
-          const hasMuseum = await hasCollection(itemId);
-          if (!hasMuseum) {
-            console.log(`  ⚠ No collection/museum found, skipping`);
-            skipped++;
-            await saveFailure({
-              artist: options.artist,
-              title: image.title,
-              imageUrl: image.original?.url || image.thumb?.url || '',
-              error: 'Wikidata item does not have a collection/museum (P195)',
-              timestamp: new Date().toISOString(),
-              retryCount: 0,
-            });
-            logStats();
-            return;
-          }
-          console.log(`  ✓ Collection/museum verified`);
-        } catch (err) {
-          const errorMessage = (err as Error).message;
-          const isRateLimit = errorMessage.includes('429') || errorMessage.includes('rate limit');
-          if (isRateLimit) rateLimitErrors++;
-          
-          console.log(`  ✗ Error checking collection: ${errorMessage}${isRateLimit ? ' [RATE LIMIT - skipping]' : ''}`);
-          skipped++;
-          errors.push({ title: image.title, message: errorMessage });
-          await saveFailure({
-            artist: options.artist,
-            title: image.title,
-            imageUrl: image.original?.url || image.thumb?.url || '',
-            error: `Collection check failed: ${errorMessage}`,
-            timestamp: new Date().toISOString(),
-            retryCount: 0,
-          });
-          logStats();
-          return; // Move on immediately, don't wait
-        }
-      } else {
-        console.log(`  ✓ Pre-set Wikidata item verified (in batch map): ${itemId}`);
-      }
-    }
+    console.log(`[${attempted}/${artworks.length}] Processing: ${artwork.commonsTitle} (QID: ${artwork.itemQid})`);
     
     try {
+      // Fetch Commons file info using the title from Wikidata
+      console.log(`  → Fetching Commons file info for: "${artwork.commonsTitle}"...`);
+      const { fetchImageInfoByTitle } = await import('./wikimedia');
+      const fetchStartTime = Date.now();
+      const image = await fetchImageInfoByTitle(artwork.commonsTitle);
+      const fetchElapsed = ((Date.now() - fetchStartTime) / 1000).toFixed(1);
+      
+      if (!image) {
+        console.log(`  ⚠ Could not fetch Commons file info (took ${fetchElapsed}s), skipping`);
+        skipped++;
+        await saveFailure({
+          artist: options.artist,
+          title: artwork.commonsTitle,
+          imageUrl: artwork.imageUrl,
+          error: 'Could not fetch Commons file info',
+          timestamp: new Date().toISOString(),
+          retryCount: 0,
+        });
+        logStats();
+        return;
+      }
+      
+      console.log(`  ✓ Fetched Commons file info (took ${fetchElapsed}s)`);
+      image.sourceItem = artwork.itemQid; // Set Wikidata QID
+      
+      // Check size requirements
       console.log(`  → Selecting best image variant`);
+      const { pickBestVariant } = await import('./wikimedia');
       const variant = pickBestVariant(image);
-        if (!variant) {
-          console.log(`  ⚠ No suitable variant found (size requirements not met), skipping`);
-          skipped++;
-          await saveFailure({
-            artist: options.artist,
-            title: image.title,
-            imageUrl: image.original?.url || image.thumb?.url || '',
-            error: 'No suitable image variant found (does not meet size requirements)',
-            timestamp: new Date().toISOString(),
-            retryCount: 0,
-          });
-          logStats();
-          return;
-        }
+      
+      if (!variant) {
+        console.log(`  ⚠ No suitable variant found (size requirements not met), skipping`);
+        skipped++;
+        await saveFailure({
+          artist: options.artist,
+          title: artwork.commonsTitle,
+          imageUrl: artwork.imageUrl,
+          error: 'No suitable image variant found (does not meet size requirements)',
+          timestamp: new Date().toISOString(),
+          retryCount: 0,
+        });
+        logStats();
+        return;
+      }
+      
       console.log(`  ✓ Selected variant: ${variant.width}x${variant.height}`);
       
       if (options.dryRun) {
-        console.log(`  [DRY RUN] Would upload: ${image.title}`);
+        console.log(`  [DRY RUN] Would upload: ${artwork.commonsTitle}`);
         skipped++;
         return;
       }
       
+      // Download and upload
       console.log(`  → Downloading image...`);
+      const { downloadImage } = await import('./downloader');
       const downloaded = await downloadImage(variant);
       console.log(`  ✓ Downloaded: ${downloaded.width}x${downloaded.height}, ${(downloaded.fileSize / 1024 / 1024).toFixed(2)}MB`);
       
       const storagePath = buildStoragePath(options.artist, image, downloaded.ext);
       console.log(`  → Uploading to storage: ${storagePath}`);
+      const { uploadToStorage } = await import('./storage');
       const upload = await uploadToStorage(storagePath, downloaded);
       console.log(`  ✓ Uploaded to storage`);
       
+      // Create database records
       console.log(`  → Creating art record...`);
+      const { upsertArt } = await import('./db');
       const artId = await upsertArt({
         title: cleanTitle(normalizeTitle(image.title), options.artist),
         description: image.description ?? null,
@@ -277,22 +215,23 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
       });
       console.log(`  ✓ Art record created: ${artId}`);
       
-      // Get Wikidata tags if available
+      // Get Wikidata tags
       let normalizedTags: string[] = [];
-      if (image.sourceItem) {
-        console.log(`  → Fetching Wikidata tags...`);
-        try {
-          const wikidataTags = await fetchWikidataItemTags(image.sourceItem);
-          normalizedTags = normalizeWikidataTags(wikidataTags, image.museum);
-          console.log(`  ✓ Found ${normalizedTags.length} tags: ${normalizedTags.join(', ')}`);
-        } catch (err) {
-          console.log(`  ⚠ Could not fetch tags: ${(err as Error).message}`);
-        }
+      console.log(`  → Fetching Wikidata tags...`);
+      try {
+        const { fetchWikidataItemTags } = await import('./wikidata');
+        const { normalizeWikidataTags } = await import('./pipeline');
+        const wikidataTags = await fetchWikidataItemTags(artwork.itemQid);
+        normalizedTags = normalizeWikidataTags(wikidataTags, image.museum);
+        console.log(`  ✓ Found ${normalizedTags.length} tags: ${normalizedTags.join(', ')}`);
+      } catch (err) {
+        console.log(`  ⚠ Could not fetch tags: ${(err as Error).message}`);
       }
       
       // Upsert tags
       if (normalizedTags.length > 0) {
         console.log(`  → Linking tags...`);
+        const { upsertTags, linkArtTags } = await import('./db');
         const tagIds = await upsertTags(normalizedTags).then((rows) => rows.map((r) => r.id));
         await linkArtTags(artId, tagIds);
         console.log(`  ✓ Linked ${tagIds.length} tags`);
@@ -300,6 +239,7 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
       
       // Upsert source
       console.log(`  → Adding source information...`);
+      const { upsertArtSource } = await import('./db');
       await upsertArtSource({
         artId,
         source: 'wikimedia',
@@ -311,6 +251,7 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
       
       // Insert asset
       console.log(`  → Creating asset record...`);
+      const { insertArtAsset } = await import('./db');
       await insertArtAsset({
         artId,
         storagePath: upload.path,
@@ -324,7 +265,7 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
       console.log(`  ✓ Asset record created`);
       
       uploaded++;
-      console.log(`  ✓✓✓ Successfully uploaded: ${image.title}`);
+      console.log(`  ✓✓✓ Successfully uploaded: ${artwork.commonsTitle}`);
       logStats();
       
     } catch (err) {
@@ -333,11 +274,11 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
       if (isRateLimit) rateLimitErrors++;
       
       console.log(`  ✗✗✗ Failed: ${errorMessage}${isRateLimit ? ' [RATE LIMIT]' : ''}`);
-      errors.push({ title: image.title, message: errorMessage });
+      errors.push({ title: artwork.commonsTitle, message: errorMessage });
       await saveFailure({
         artist: options.artist,
-        title: image.title,
-        imageUrl: image.original?.url || image.thumb?.url || '',
+        title: artwork.commonsTitle,
+        imageUrl: artwork.imageUrl,
         error: errorMessage,
         timestamp: new Date().toISOString(),
         retryCount: 0,
@@ -346,8 +287,8 @@ export async function fetchAndStoreArtworks(options: FetchOptions): Promise<Fetc
     }
   };
   
-  console.log(`\nStarting to process ${images.length} images with concurrency=${CONCURRENCY}...\n`);
-  await processInParallel(images, processImage, CONCURRENCY);
+  console.log(`\nStarting to process ${artworks.length} artworks with concurrency=${CONCURRENCY}...\n`);
+  await processInParallel(artworks, processArtwork, CONCURRENCY);
   
   console.log(`\n${'='.repeat(60)}`);
   console.log(`Processing complete for ${options.artist}`);

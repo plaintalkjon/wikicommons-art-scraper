@@ -1,5 +1,6 @@
 import { config } from './config';
 import { WikimediaImage, ImageVariant } from './types';
+import { getWikimediaAccessToken } from './wikimediaAuth';
 
 const API_ENDPOINT = 'https://commons.wikimedia.org/w/api.php';
 const MAX_RETRIES = 3;
@@ -175,20 +176,50 @@ export async function fetchImageInfoByTitle(title: string): Promise<WikimediaIma
   };
 }
 
-async function fetchWithRetry(url: string): Promise<Response> {
+async function fetchWithRetry(url: string, useAuth = true): Promise<Response> {
   let attempt = 0;
+  
+  // Get OAuth token if available
+  let accessToken: string | null = null;
+  if (useAuth) {
+    accessToken = await getWikimediaAccessToken();
+  }
   let lastError: Error | undefined;
 
   while (attempt < MAX_RETRIES) {
-    const res = await fetch(url);
+    // Build headers with OAuth token if available
+    const headers: HeadersInit = {
+      'User-Agent': config.wikimediaClientId 
+        ? `wikicommons-art-scraper/1.0 (OAuth client: ${config.wikimediaClientId})`
+        : 'wikicommons-art-scraper/1.0 (contact: developer@example.com)',
+    };
+    
+    if (accessToken) {
+      headers['Authorization'] = `Bearer ${accessToken}`;
+    }
+    
+    const res = await fetch(url, {
+      method: 'GET',
+      headers,
+    });
+    
     if (res.ok) return res;
 
     lastError = new Error(`Wikimedia request failed: ${res.status} ${res.statusText}`);
-    if (res.status === 429 || res.status >= 500) {
+    
+    // For 429 (rate limit), throw immediately - don't retry
+    if (res.status === 429) {
+      throw new Error(`Wikimedia rate limit (429) - ${res.statusText}`);
+    }
+    
+    // For 500+ errors, retry with exponential backoff
+    if (res.status >= 500) {
       attempt += 1;
       await delay(RETRY_DELAY_MS * attempt);
       continue;
     }
+    
+    // For other errors, throw immediately
     throw lastError;
   }
 
@@ -209,9 +240,9 @@ export function pickBestVariant(image: WikimediaImage): ImageVariant | null {
   const candidates: ImageVariant[] = [];
   if (image.thumb) candidates.push(image.thumb);
   if (image.original) candidates.push(image.original);
-  // Filter: must be at least MIN_VARIANT_WIDTH and not bad mime type
+  // Filter: must be at least MIN_VARIANT_WIDTH (width OR height) and not bad mime type
   const filtered = candidates.filter(
-    (c) => c.width >= MIN_VARIANT_WIDTH && !isBadMime(c.mime),
+    (c) => (c.width >= MIN_VARIANT_WIDTH || c.height >= MIN_VARIANT_WIDTH) && !isBadMime(c.mime),
   );
   if (!filtered.length) return null;
 

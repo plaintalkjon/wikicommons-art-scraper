@@ -16,5 +16,8 @@ export const config = {
   supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY!,
   supabaseBucket: process.env.SUPABASE_BUCKET!,
   targetWidth: 1280,
+  // Wikimedia OAuth (optional - for higher rate limits)
+  wikimediaClientId: process.env.WIKIMEDIA_CLIENT_ID,
+  wikimediaClientSecret: process.env.WIKIMEDIA_CLIENT_SECRET,
 };
 
