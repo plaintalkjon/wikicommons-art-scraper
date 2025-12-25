@@ -55,9 +55,16 @@ function toVariant(info: ImageInfo | undefined, preferThumb: boolean): ImageVari
 }
 
 export async function fetchImagesForArtist(options: CategoryOptions): Promise<WikimediaImage[]> {
-  const limit = options.limit ?? 50;
-  const gcmtitle = options.categoryTitle ?? `Category:Paintings by ${options.artist}`;
+  const limit = options.limit ?? 10000;
+  
+  // If a specific category is provided, use it; otherwise use the most general category
+  // The artist name category is recursive and includes all subcategories (Paintings by, Sculptures by, etc.)
+  const gcmtitle = options.categoryTitle ?? `Category:${options.artist}`;
+  
+  return fetchImagesFromCategory(gcmtitle, limit);
+}
 
+async function fetchImagesFromCategory(gcmtitle: string, limit: number): Promise<WikimediaImage[]> {
   let gcmcontinue: string | undefined;
   const results: WikimediaImage[] = [];
 
@@ -120,7 +127,7 @@ export async function fetchImagesForArtist(options: CategoryOptions): Promise<Wi
     gcmcontinue = data.continue.gcmcontinue;
   }
 
-  return results.slice(0, limit);
+  return results;
 }
 
 export async function fetchImageInfoByTitle(title: string): Promise<WikimediaImage | null> {

@@ -115,6 +115,9 @@ export async function findItemFromCommonsFile(commonsTitle: string): Promise<str
   `;
 
   try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+    
     const res = await fetch(SPARQL_ENDPOINT, {
       method: 'POST',
       headers: {
@@ -123,7 +126,10 @@ export async function findItemFromCommonsFile(commonsTitle: string): Promise<str
         'User-Agent': 'wikicommons-art-scraper/1.0 (contact: developer@example.com)',
       },
       body: query,
+      signal: controller.signal,
     });
+
+    clearTimeout(timeoutId);
 
     if (!res.ok) {
       return null;
@@ -138,8 +144,11 @@ export async function findItemFromCommonsFile(commonsTitle: string): Promise<str
       return binding.item.value.replace('http://www.wikidata.org/entity/', '');
     }
     return null;
-  } catch {
-    return null;
+  } catch (err) {
+    if (err instanceof Error && err.name === 'AbortError') {
+      throw new Error('Wikidata query timeout (30s)');
+    }
+    throw err;
   }
 }
 
@@ -158,6 +167,9 @@ export async function hasCollection(itemId: string): Promise<boolean> {
   `;
 
   try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+    
     const res = await fetch(SPARQL_ENDPOINT, {
       method: 'POST',
       headers: {
@@ -166,7 +178,10 @@ export async function hasCollection(itemId: string): Promise<boolean> {
         'User-Agent': 'wikicommons-art-scraper/1.0 (contact: developer@example.com)',
       },
       body: query,
+      signal: controller.signal,
     });
+
+    clearTimeout(timeoutId);
 
     if (!res.ok) {
       return false;
@@ -174,8 +189,11 @@ export async function hasCollection(itemId: string): Promise<boolean> {
 
     const data = (await res.json()) as { boolean: boolean };
     return data.boolean ?? false;
-  } catch {
-    return false;
+  } catch (err) {
+    if (err instanceof Error && err.name === 'AbortError') {
+      throw new Error('Wikidata query timeout (30s)');
+    }
+    throw err;
   }
 }
 

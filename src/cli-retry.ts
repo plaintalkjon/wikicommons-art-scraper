@@ -27,7 +27,7 @@ function parseArgs() {
   return parsed;
 }
 
-async function retryFailures(artist: string): Promise<void> {
+async function retryFailures(artist: string, limit?: number): Promise<void> {
   const failures = await loadFailures(artist);
   
   if (failures.length === 0) {
@@ -35,13 +35,14 @@ async function retryFailures(artist: string): Promise<void> {
     return;
   }
   
-  console.log(`Found ${failures.length} failures for ${artist}. Retrying...`);
+  const failuresToRetry = limit ? failures.slice(0, limit) : failures;
+  console.log(`Found ${failures.length} failures for ${artist}. Retrying ${failuresToRetry.length}...`);
   
   const artistId = await ensureArtist(artist);
   let succeeded = 0;
   let failed = 0;
   
-  for (const failure of failures) {
+  for (const failure of failuresToRetry) {
     try {
       console.log(`Retrying: ${failure.title}`);
       
@@ -124,10 +125,11 @@ async function retryFailures(artist: string): Promise<void> {
 async function main() {
   const args = parseArgs();
   const artist = args.artist as string | undefined;
+  const limit = args.limit ? Number(args.limit) : undefined;
   
   if (artist) {
     // Retry specific artist
-    await retryFailures(artist);
+    await retryFailures(artist, limit);
   } else {
     // List all artists with failures
     const artists = await getArtistsWithFailures();
