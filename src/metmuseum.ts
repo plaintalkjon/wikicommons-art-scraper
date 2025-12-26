@@ -93,6 +93,7 @@ export interface MetArtwork {
   artistDisplayName?: string;
   primaryImage?: string;
   objectDate?: string;
+  wikidataQID?: string; // Wikidata QID for the artwork (required for tags)
 }
 
 /**
@@ -155,32 +156,54 @@ export async function findArtworksByArtist(artistQID: string): Promise<MetArtwor
       return [];
     }
     
-    // Extract Met object IDs and fetch details
-    const objectIDs = bindings
-      .map(b => b.metId?.value)
-      .filter((id): id is string => Boolean(id))
-      .map(id => parseInt(id, 10))
-      .filter(id => !isNaN(id));
+    // Extract Met object IDs and Wikidata QIDs, create mapping
+    const objectIdToQID = new Map<number, string>();
+    const objectIDs: number[] = [];
+    
+    for (const binding of bindings) {
+      const metIdStr = binding.metId?.value;
+      const itemQID = binding.item?.value?.replace('http://www.wikidata.org/entity/', '');
+      
+      if (metIdStr && itemQID) {
+        const metId = parseInt(metIdStr, 10);
+        if (!isNaN(metId)) {
+          objectIdToQID.set(metId, itemQID);
+          if (!objectIDs.includes(metId)) {
+            objectIDs.push(metId);
+          }
+        }
+      }
+    }
     
     console.log(`  → Fetching object details for ${objectIDs.length} Met objects...`);
     
     const artworks: MetArtwork[] = [];
-    const BATCH_SIZE = 10;
-    const DELAY_BETWEEN_BATCHES = 200; // 200ms between batches = ~50 req/sec (well under 80/sec limit)
+    const BATCH_SIZE = 5; // Reduced batch size to be more conservative
+    const DELAY_BETWEEN_BATCHES = 1000; // 1 second between batches to avoid bot detection
     
     for (let i = 0; i < objectIDs.length; i += BATCH_SIZE) {
       const batch = objectIDs.slice(i, i + BATCH_SIZE);
       
       const batchPromises = batch.map(async (objectID): Promise<MetArtwork | null> => {
         try {
-          const object = await fetchObjectDetails(objectID);
+          // Use fewer retries during batch discovery (faster, but may miss some)
+          // Retries will happen again during processing if needed
+          const object = await fetchObjectDetails(objectID, 1, 500); // 1 retry, 500ms delay
           if (object && object.primaryImage) {
+            const wikidataQID = objectIdToQID.get(objectID);
+            if (!wikidataQID) {
+              // Skip artworks without Wikidata QID (required for tags)
+              console.log(`  ⚠ Skipping object ${objectID}: no Wikidata QID found`);
+              return null;
+            }
+            
             return {
               objectID: object.objectID,
               title: object.title || `Object ${objectID}`,
               artistDisplayName: object.artistDisplayName,
               primaryImage: object.primaryImage,
               objectDate: object.objectDate,
+              wikidataQID,
             };
           }
           // Object might be restricted (403) or have no image - silently skip
@@ -217,43 +240,79 @@ export async function findArtworksByArtist(artistQID: string): Promise<MetArtwor
 /**
  * Fetch detailed object information by object ID
  * Returns null if object is restricted (403) or doesn't exist (404)
+ * Includes retry logic with exponential backoff for 403 errors (bot protection)
  */
-export async function fetchObjectDetails(objectID: number): Promise<MetObject | null> {
+export async function fetchObjectDetails(
+  objectID: number,
+  retries: number = 3,
+  baseDelay: number = 1000
+): Promise<MetObject | null> {
   const url = `${MET_API_BASE}/objects/${objectID}`;
   
-  try {
-    const res = await fetch(url, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (compatible; wikicommons-art-scraper/1.0; +https://github.com/plaintalkjon/wikicommons-art-scraper)',
-      },
-    });
-    
-    if (!res.ok) {
-      if (res.status === 404) {
-        return null; // Object doesn't exist
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      // Add delay before request (except first attempt)
+      if (attempt > 0) {
+        const delay = baseDelay * Math.pow(2, attempt - 1); // Exponential backoff: 1s, 2s, 4s
+        console.log(`    → Retry attempt ${attempt}/${retries} after ${delay}ms delay...`);
+        await new Promise(resolve => setTimeout(resolve, delay));
       }
-      if (res.status === 403) {
-        // Object is restricted (not in public domain or access denied)
-        return null;
+      
+      const res = await fetch(url, {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          'Accept': 'application/json',
+          'Accept-Language': 'en-US,en;q=0.9',
+          'Referer': 'https://www.metmuseum.org/',
+        },
+      });
+      
+      if (!res.ok) {
+        if (res.status === 404) {
+          return null; // Object doesn't exist
+        }
+        if (res.status === 403) {
+          // Bot protection - retry with delay if attempts remain
+          if (attempt < retries) {
+            continue; // Retry
+          }
+          // Final attempt failed - return null
+          return null;
+        }
+        if (res.status === 429) {
+          // Rate limit - check for Retry-After header
+          const retryAfter = res.headers.get('Retry-After');
+          if (retryAfter && attempt < retries) {
+            const delay = parseInt(retryAfter, 10) * 1000;
+            console.log(`    → Rate limited, waiting ${delay}ms (Retry-After: ${retryAfter}s)...`);
+            await new Promise(resolve => setTimeout(resolve, delay));
+            continue; // Retry
+          }
+          throw new Error('Met Museum API rate limit (429)');
+        }
+        throw new Error(`Met Museum API error: ${res.status} ${res.statusText}`);
       }
-      if (res.status === 429) {
-        throw new Error('Met Museum API rate limit (429)');
+      
+      const object = await res.json() as MetObject;
+      return object;
+    } catch (err) {
+      // Network errors - retry if attempts remain
+      if (attempt < retries && err instanceof Error && !err.message.includes('429')) {
+        continue; // Retry
       }
-      throw new Error(`Met Museum API error: ${res.status} ${res.statusText}`);
+      
+      if (err instanceof Error && err.message.includes('429')) {
+        throw err;
+      }
+      
+      // Final attempt failed
+      if (attempt === retries) {
+        throw new Error(`Failed to fetch Met object ${objectID} after ${retries + 1} attempts: ${(err as Error).message}`);
+      }
     }
-    
-    const object = await res.json() as MetObject;
-    return object;
-  } catch (err) {
-    if (err instanceof Error && err.message.includes('429')) {
-      throw err;
-    }
-    // For other errors, return null (object might be restricted)
-    if (err instanceof Error && err.message.includes('403')) {
-      return null;
-    }
-    throw new Error(`Failed to fetch Met object ${objectID}: ${(err as Error).message}`);
   }
+  
+  return null; // All retries exhausted
 }
 
 /**
@@ -268,6 +327,53 @@ export function normalizeMetTags(tags: MetTag[] | undefined): string[] {
   return tags
     .map(tag => tag.term?.toLowerCase().trim())
     .filter((term): term is string => Boolean(term));
+}
+
+/**
+ * Extract all tags from a Met object including:
+ * - department
+ * - classification
+ * - culture
+ * - period
+ * - medium
+ * - tags array
+ * 
+ * Returns a normalized array of tag strings (lowercased, trimmed, deduplicated)
+ */
+export function extractAllMetTags(object: MetObject): string[] {
+  const tags: string[] = [];
+  
+  // Department
+  if (object.department) {
+    tags.push(object.department.toLowerCase().trim());
+  }
+  
+  // Classification
+  if (object.classification) {
+    tags.push(object.classification.toLowerCase().trim());
+  }
+  
+  // Culture
+  if (object.culture) {
+    tags.push(object.culture.toLowerCase().trim());
+  }
+  
+  // Period
+  if (object.period) {
+    tags.push(object.period.toLowerCase().trim());
+  }
+  
+  // Medium
+  if (object.medium) {
+    tags.push(object.medium.toLowerCase().trim());
+  }
+  
+  // Tags array
+  const tagTerms = normalizeMetTags(object.tags);
+  tags.push(...tagTerms);
+  
+  // Deduplicate and filter empty strings
+  return Array.from(new Set(tags.filter(tag => tag.length > 0)));
 }
 
 /**

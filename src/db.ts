@@ -74,13 +74,100 @@ export async function linkArtTags(artId: string, tagIds: string[]): Promise<void
   }
 }
 
+/**
+ * Get existing tags for an artwork
+ * Returns array of tag names
+ */
+export async function getArtTags(artId: string): Promise<string[]> {
+  const result = await supabase
+    .from('art_tags')
+    .select('tag_id, tags(name)')
+    .eq('art_id', artId);
+  
+  if (result.error) {
+    throw new Error(`Failed to get art tags: ${result.error.message}`);
+  }
+  
+  return (result.data ?? [])
+    .map((row: any) => row.tags?.name)
+    .filter((name): name is string => Boolean(name));
+}
+
+/**
+ * Check if an artwork has a Met source
+ * Returns true if art_sources has a record with source='metmuseum' for this art
+ */
+export async function hasMetSource(artId: string): Promise<boolean> {
+  const result = await supabase
+    .from('art_sources')
+    .select('id')
+    .eq('art_id', artId)
+    .eq('source', 'metmuseum')
+    .limit(1)
+    .maybeSingle();
+  
+  if (result.error && result.error.code !== 'PGRST116') {
+    throw new Error(`Failed to check Met source: ${result.error.message}`);
+  }
+  
+  return result.data !== null;
+}
+
+/**
+ * Find existing artwork by Wikidata QID
+ * Returns the art ID if found, null otherwise
+ * 
+ * Requires: art_sources table must have a wikidata_qid column (text/nullable)
+ */
+export async function findArtByWikidataQID(wikidataQID: string, artistId: string): Promise<string | null> {
+  // Query art_sources for artworks with this Wikidata QID
+  const sourcesResult = await supabase
+    .from('art_sources')
+    .select('art_id')
+    .eq('wikidata_qid', wikidataQID)
+    .limit(10); // Get multiple in case there are duplicates
+  
+  if (sourcesResult.error && sourcesResult.error.code !== 'PGRST116') {
+    throw new Error(`Failed to lookup art by Wikidata QID: ${sourcesResult.error.message}`);
+  }
+  
+  if (!sourcesResult.data || sourcesResult.data.length === 0) {
+    return null;
+  }
+  
+  // Get unique art IDs
+  const artIds = Array.from(new Set(sourcesResult.data.map((s: any) => s.art_id).filter(Boolean)));
+  
+  if (artIds.length === 0) {
+    return null;
+  }
+  
+  // Check which art belongs to this artist
+  const artsResult = await supabase
+    .from('arts')
+    .select('id')
+    .eq('artist_id', artistId)
+    .in('id', artIds)
+    .limit(1)
+    .maybeSingle();
+  
+  if (artsResult.error && artsResult.error.code !== 'PGRST116') {
+    throw new Error(`Failed to lookup art by Wikidata QID: ${artsResult.error.message}`);
+  }
+  
+  return artsResult.data?.id ?? null;
+}
+
 export async function upsertArtSource(payload: {
   artId: string;
   source: string;
   sourcePageId?: number;
   sourceTitle?: string;
   sourceUrl?: string;
+  wikidataQID?: string;
 }): Promise<void> {
+  // Store Wikidata QID in dedicated wikidata_qid column
+  // Requires: art_sources table must have a wikidata_qid column (text/nullable)
   const result = await supabase
     .from('art_sources')
     .upsert(
@@ -90,6 +177,7 @@ export async function upsertArtSource(payload: {
         source_pageid: payload.sourcePageId ?? null,
         source_title: payload.sourceTitle ?? null,
         source_url: payload.sourceUrl ?? null,
+        wikidata_qid: payload.wikidataQID ?? null,
       },
       { onConflict: 'source,source_pageid' },
     );

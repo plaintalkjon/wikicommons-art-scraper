@@ -8,7 +8,18 @@
     "fetch": "npm run build && node dist/cli.js",
     "retry": "npm run build && node dist/cli-retry.js",
     "delete-art": "npm run build && node dist/cli-delete.js",
-    "show-tags": "npm run build && node dist/show-tags.js"
+    "show-tags": "npm run build && node dist/show-tags.js",
+    "extract-met-artists": "npm run build && node dist/cli-extract-met-artists.js",
+    "batch-met-top50": "npm run build && node dist/cli-batch-met-top50.js",
+    "batch-met-small": "npm run build && node dist/cli-batch-met-small.js",
+    "batch-met-continuous": "npm run build && node dist/cli-batch-met-continuous.js",
+    "batch-met-large": "npm run build && node dist/cli-batch-met-large.js",
+    "check-met-batch-status": "npm run build && node dist/cli-check-met-batch-status.js",
+    "scrape-met-department": "npm run build && node dist/cli-scrape-met-department.js",
+    "test-met-only": "npm run build && node dist/cli-test-met-only.js",
+    "monitor-batch": "npm run build && node dist/cli-monitor-batch.js",
+    "backfill-wikimedia-qids": "npm run build && node dist/cli-backfill-wikimedia-qids.js",
+    "backfill-all-qids": "npm run build && node dist/cli-backfill-all-qids.js"
   },
   "repository": {
     "type": "git",

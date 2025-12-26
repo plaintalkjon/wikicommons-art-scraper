@@ -235,7 +235,22 @@ async function fetchAndStoreFromWikimedia(options: FetchOptions): Promise<FetchR
       }
       
       // Check if artwork already exists in database (caching)
-      // If file exists in storage, it should already be linked in the database via art_assets
+      // First check by Wikidata QID (most reliable), then by title
+      const { findArtByWikidataQID } = await import('./db');
+      let existingArtId: string | null = null;
+      
+      // Check by Wikidata QID first
+      if (artwork.itemQid) {
+        existingArtId = await findArtByWikidataQID(artwork.itemQid, artistId);
+        if (existingArtId) {
+          console.log(`  ✓ Artwork already exists in database (matched by Wikidata QID: ${artwork.itemQid}), skipping`);
+          skipped++;
+          logStats();
+          return;
+        }
+      }
+      
+      // Fallback: check by normalized title
       const normalizedTitle = cleanTitle(normalizeTitle(image.title), options.artist);
       const existingArt = await supabase
         .from('arts')
@@ -246,7 +261,7 @@ async function fetchAndStoreFromWikimedia(options: FetchOptions): Promise<FetchR
         .maybeSingle();
       
       if (existingArt.data?.id) {
-        console.log(`  ✓ Artwork already exists in database, skipping`);
+        console.log(`  ✓ Artwork already exists in database (matched by title), skipping`);
         skipped++;
         logStats();
         return;
@@ -306,6 +321,7 @@ async function fetchAndStoreFromWikimedia(options: FetchOptions): Promise<FetchR
         sourcePageId: image.pageid,
         sourceTitle: image.title,
         sourceUrl: image.pageUrl,
+        wikidataQID: artwork.itemQid, // Store Wikidata QID for deduplication
       });
       console.log(`  ✓ Source added`);
       
@@ -379,7 +395,7 @@ async function fetchAndStoreFromMetMuseum(options: FetchOptions): Promise<FetchR
   
   // First, find the artist QID (same as Wikimedia flow)
   let artistQID: string | null = null;
-  let artworks: Array<{ objectID: number; title: string; artistDisplayName?: string; primaryImage?: string; objectDate?: string }> = [];
+  let artworks: Array<{ objectID: number; title: string; artistDisplayName?: string; primaryImage?: string; objectDate?: string; wikidataQID?: string }> = [];
   
   try {
     const { findArtistQID } = await import('./wikidata');
@@ -442,7 +458,7 @@ async function fetchAndStoreFromMetMuseum(options: FetchOptions): Promise<FetchR
     console.log(`\n📊 Progress: Attempted=${attempted} | Uploaded=${uploaded} | Skipped=${skipped} | Errors=${errors.length} | Rate Limits=${rateLimitErrors}\n`);
   };
   
-  const processArtwork = async (artwork: { objectID: number; title: string; artistDisplayName?: string; primaryImage?: string; objectDate?: string }) => {
+  const processArtwork = async (artwork: { objectID: number; title: string; artistDisplayName?: string; primaryImage?: string; objectDate?: string; wikidataQID?: string }) => {
     if (maxUploads && uploaded >= maxUploads) {
       skipped++;
       return;
@@ -451,7 +467,27 @@ async function fetchAndStoreFromMetMuseum(options: FetchOptions): Promise<FetchR
     attempted++;
     console.log(`[${attempted}/${artworks.length}] Processing: ${artwork.title} (Object ID: ${artwork.objectID})`);
     
+    // Require Wikidata QID for tags
+    if (!artwork.wikidataQID) {
+      console.log(`  ⚠ Skipping: artwork has no Wikidata QID (required for tags)`);
+      skipped++;
+      await saveFailure({
+        artist: options.artist,
+        title: artwork.title,
+        imageUrl: artwork.primaryImage || '',
+        error: 'No Wikidata QID found (required for tags)',
+        timestamp: new Date().toISOString(),
+        retryCount: 0,
+      });
+      logStats();
+      return;
+    }
+    
     try {
+      // Add delay between Met API requests to avoid overwhelming the API
+      // This helps reduce 403 bot protection errors
+      await new Promise(resolve => setTimeout(resolve, 1000)); // 1 second delay to be more conservative
+      
       // Fetch full object details
       console.log(`  → Fetching object details for ID ${artwork.objectID}...`);
       const { fetchObjectDetails, normalizeMetTags, extractImageDimensions } = await import('./metmuseum');
@@ -477,6 +513,22 @@ async function fetchAndStoreFromMetMuseum(options: FetchOptions): Promise<FetchR
       console.log(`  ✓ Fetched object details (took ${fetchElapsed}s)`);
       
       // Check if artwork already exists in database
+      // First check by Wikidata QID (most reliable), then by title
+      const { findArtByWikidataQID } = await import('./db');
+      let existingArtId: string | null = null;
+      
+      // Check by Wikidata QID first
+      if (artwork.wikidataQID) {
+        existingArtId = await findArtByWikidataQID(artwork.wikidataQID, artistId);
+        if (existingArtId) {
+          console.log(`  ✓ Artwork already exists in database (matched by Wikidata QID: ${artwork.wikidataQID}), skipping`);
+          skipped++;
+          logStats();
+          return;
+        }
+      }
+      
+      // Fallback: check by normalized title
       const normalizedTitle = cleanTitle(object.title, options.artist);
       const existingArt = await supabase
         .from('arts')
@@ -487,7 +539,7 @@ async function fetchAndStoreFromMetMuseum(options: FetchOptions): Promise<FetchR
         .maybeSingle();
       
       if (existingArt.data?.id) {
-        console.log(`  ✓ Artwork already exists in database, skipping`);
+        console.log(`  ✓ Artwork already exists in database (matched by title), skipping`);
         skipped++;
         logStats();
         return;
@@ -553,17 +605,33 @@ async function fetchAndStoreFromMetMuseum(options: FetchOptions): Promise<FetchR
       });
       console.log(`  ✓ Art record created: ${artId}`);
       
-      // Get tags from Met object
+      // Get tags from both Wikidata and Met object
       let normalizedTags: string[] = [];
-      console.log(`  → Processing tags...`);
+      console.log(`  → Fetching Wikidata tags (QID: ${artwork.wikidataQID})...`);
       try {
-        normalizedTags = normalizeMetTags(object.tags);
+        const { fetchWikidataItemTags } = await import('./wikidata');
+        const { normalizeWikidataTags } = await import('./pipeline');
+        const wikidataTags = await fetchWikidataItemTags(artwork.wikidataQID);
+        const wikidataNormalized = normalizeWikidataTags(wikidataTags, object.department);
+        normalizedTags.push(...wikidataNormalized);
+        console.log(`  ✓ Found ${wikidataNormalized.length} Wikidata tags: ${wikidataNormalized.join(', ')}`);
+      } catch (err) {
+        console.log(`  ⚠ Could not fetch Wikidata tags: ${(err as Error).message}`);
+      }
+      
+      // Also add Met tags (as supplementary)
+      try {
+        const { normalizeMetTags } = await import('./metmuseum');
+        const metTags = normalizeMetTags(object.tags);
+        normalizedTags.push(...metTags);
         if (object.department) {
           normalizedTags.push(object.department.toLowerCase().trim());
         }
-        console.log(`  ✓ Found ${normalizedTags.length} tags: ${normalizedTags.join(', ')}`);
+        // Deduplicate
+        normalizedTags = Array.from(new Set(normalizedTags));
+        console.log(`  ✓ Total tags (Wikidata + Met): ${normalizedTags.length}`);
       } catch (err) {
-        console.log(`  ⚠ Could not process tags: ${(err as Error).message}`);
+        console.log(`  ⚠ Could not process Met tags: ${(err as Error).message}`);
       }
       
       // Upsert tags
@@ -584,6 +652,7 @@ async function fetchAndStoreFromMetMuseum(options: FetchOptions): Promise<FetchR
         sourcePageId: object.objectID,
         sourceTitle: object.title,
         sourceUrl: object.objectURL || `https://www.metmuseum.org/art/collection/search/${object.objectID}`,
+        wikidataQID: artwork.wikidataQID, // Store Wikidata QID for deduplication
       });
       console.log(`  ✓ Source added`);
       
