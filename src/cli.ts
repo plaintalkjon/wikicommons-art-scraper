@@ -26,7 +26,7 @@ async function main() {
   const limit = args.limit ? Number(args.limit) : undefined;
   const dryRun = Boolean(args['dry-run'] ?? args.dryRun);
   const maxUploads = args['max-uploads'] ? Number(args['max-uploads']) : undefined;
-  const source = (args.source as 'wikimedia' | 'metmuseum' | 'both') || 'wikimedia';
+  const source = 'wikimedia';
 
   console.log(
     `Fetching artworks for: ${artist} (${dryRun ? 'dry run' : 'uploading'})${

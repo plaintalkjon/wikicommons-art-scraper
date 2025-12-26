@@ -8,7 +8,7 @@ export interface FailedUpload {
   error: string;
   timestamp: string;
   retryCount: number;
-  source?: 'wikimedia' | 'metmuseum'; // Track source for failed uploads
+  source?: 'wikimedia'; // Track source for failed uploads
 }
 
 const FAILURES_DIR = path.join(process.cwd(), '.failures');

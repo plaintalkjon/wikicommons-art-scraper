@@ -338,15 +338,6 @@ export async function findArtworksByArtist(artistQID: string): Promise<WikidataA
 }
 
 /**
- * @deprecated This function is no longer used. We now use artist-specific queries via findArtworksByArtist()
- * This is a stub that returns an empty Map. It may be removed in a future version.
- */
-export async function batchFindItemsWithCollections(): Promise<Map<string, string>> {
-  console.warn('batchFindItemsWithCollections() is deprecated. Use findArtworksByArtist() instead.');
-  return new Map<string, string>();
-}
-
-/**
  * Fetch curated tags from Wikidata item properties:
  * - P136: genre (e.g., "landscape art")
  * - P135: movement (e.g., "Post-Impressionism")
@@ -420,4 +411,5 @@ export async function fetchWikidataItemTags(itemId: string): Promise<WikidataIte
     return {};
   }
 }
+
 

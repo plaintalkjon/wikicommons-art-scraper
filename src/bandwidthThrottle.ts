@@ -62,25 +62,9 @@ class BandwidthThrottler {
     this.windows.push({ bytes, startTime: now });
   }
 
-  /**
-   * Get current bandwidth usage in Mbps
-   */
-  getCurrentBandwidth(): number {
-    const now = Date.now();
-    const recentWindows = this.windows.filter(w => now - w.startTime < WINDOW_MS);
-    const bytesInLastSecond = recentWindows.reduce((sum, w) => sum + w.bytes, 0);
-    return (bytesInLastSecond / 1024 / 1024) * 8; // Convert to Mbps
-  }
-
-  /**
-   * Reset the throttler (useful for testing or long-running processes)
-   */
-  reset(): void {
-    this.windows = [];
-    this.totalBytes = 0;
-  }
 }
 
 // Singleton instance
 export const bandwidthThrottler = new BandwidthThrottler();
+
 

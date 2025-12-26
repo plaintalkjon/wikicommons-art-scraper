@@ -1,18 +1,64 @@
 import { supabase } from './supabaseClient';
 
+/**
+ * Normalize artist name for consistent storage
+ * Removes parenthetical notes, normalizes whitespace
+ */
+function normalizeArtistName(name: string): string {
+  return name
+    .trim()
+    .replace(/\s+/g, ' ')           // Multiple spaces to single
+    .replace(/\([^)]*\)/g, '')      // Remove parenthetical notes
+    .trim();
+}
+
 export async function ensureArtist(name: string): Promise<string> {
-  const existing = await supabase.from('artists').select('id').eq('name', name).maybeSingle();
+  // Normalize the name first
+  const normalized = normalizeArtistName(name);
+  
+  // Try to get existing first
+  const existing = await supabase
+    .from('artists')
+    .select('id')
+    .eq('name', normalized)
+    .maybeSingle();
+  
   if (existing.error && existing.error.code !== 'PGRST116') {
     throw new Error(`Failed to lookup artist: ${existing.error.message}`);
   }
+  
   if (existing.data?.id) {
     return existing.data.id;
   }
 
-  const inserted = await supabase.from('artists').insert({ name }).select('id').single();
-  if (inserted.error || !inserted.data?.id) {
-    throw new Error(`Failed to insert artist: ${inserted.error?.message ?? 'unknown error'}`);
+  // Use upsert to handle race conditions (if another process inserts between check and insert)
+  // Note: Supabase doesn't support ON CONFLICT directly, so we'll use a try-catch approach
+  const inserted = await supabase
+    .from('artists')
+    .insert({ name: normalized })
+    .select('id')
+    .single();
+  
+  if (inserted.error) {
+    // If duplicate key error, try to fetch the existing artist
+    if (inserted.error.code === '23505' || inserted.error.message.includes('duplicate key')) {
+      const retry = await supabase
+        .from('artists')
+        .select('id')
+        .eq('name', normalized)
+        .single();
+      
+      if (retry.data?.id) {
+        return retry.data.id;
+      }
+    }
+    throw new Error(`Failed to insert artist: ${inserted.error.message}`);
   }
+  
+  if (!inserted.data?.id) {
+    throw new Error(`Failed to insert artist: unknown error`);
+  }
+  
   return inserted.data.id;
 }
 
@@ -72,45 +118,6 @@ export async function linkArtTags(artId: string, tagIds: string[]): Promise<void
   if (result.error) {
     throw new Error(`Failed to link art tags: ${result.error.message}`);
   }
-}
-
-/**
- * Get existing tags for an artwork
- * Returns array of tag names
- */
-export async function getArtTags(artId: string): Promise<string[]> {
-  const result = await supabase
-    .from('art_tags')
-    .select('tag_id, tags(name)')
-    .eq('art_id', artId);
-  
-  if (result.error) {
-    throw new Error(`Failed to get art tags: ${result.error.message}`);
-  }
-  
-  return (result.data ?? [])
-    .map((row: any) => row.tags?.name)
-    .filter((name): name is string => Boolean(name));
-}
-
-/**
- * Check if an artwork has a Met source
- * Returns true if art_sources has a record with source='metmuseum' for this art
- */
-export async function hasMetSource(artId: string): Promise<boolean> {
-  const result = await supabase
-    .from('art_sources')
-    .select('id')
-    .eq('art_id', artId)
-    .eq('source', 'metmuseum')
-    .limit(1)
-    .maybeSingle();
-  
-  if (result.error && result.error.code !== 'PGRST116') {
-    throw new Error(`Failed to check Met source: ${result.error.message}`);
-  }
-  
-  return result.data !== null;
 }
 
 /**

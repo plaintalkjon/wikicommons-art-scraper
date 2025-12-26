@@ -234,16 +234,16 @@ export function pickBestVariant(image: WikimediaImage): ImageVariant | null {
   if (!filtered.length) return null;
 
   // Pick the variant closest to target (1280px) but not smaller than MIN_VARIANT_WIDTH
-  let best = filtered[0];
-  let bestScore = Math.abs(best.width - target);
-  for (const candidate of filtered.slice(1)) {
-    const score = Math.abs(candidate.width - target);
-    if (score < bestScore) {
-      best = candidate;
-      bestScore = score;
-    }
+  // Prefer variants >= 1280px width, pick the smallest one that's >= 1280px
+  const candidatesAtLeast1280 = filtered.filter(c => c.width >= target);
+  if (candidatesAtLeast1280.length > 0) {
+    // Pick the smallest width that's >= 1280px
+    return candidatesAtLeast1280.reduce((best, candidate) => 
+      candidate.width < best.width ? candidate : best
+    );
   }
-  return best;
+  // Fallback: if no variant >= 1280px width, pick the one with width closest to 1280px (but still >= 1280px height)
+  return filtered[0];
 }
 
 function isBadMime(mime: string): boolean {

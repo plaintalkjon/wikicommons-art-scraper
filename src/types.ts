@@ -26,22 +26,4 @@ export interface DownloadedImage extends ImageVariant {
   fileSize: number;
 }
 
-export interface MetImage {
-  objectID: number;
-  title: string;
-  pageUrl: string;
-  primaryImage: string;
-  primaryImageSmall?: string;
-  additionalImages?: string[];
-  description?: string;
-  objectDate?: string;
-  medium?: string;
-  dimensions?: string;
-  department?: string;
-  tags?: string[];
-  artistDisplayName?: string;
-  artistNationality?: string;
-  artistBeginDate?: string;
-  artistEndDate?: string;
-}
 
