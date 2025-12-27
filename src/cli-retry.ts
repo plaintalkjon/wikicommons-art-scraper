@@ -1,31 +1,10 @@
 #!/usr/bin/env node
 import { loadFailures, removeFailure, getArtistsWithFailures } from './failureTracker';
 import { fetchImageInfoByTitle, pickBestVariant } from './wikimedia';
-import { ensureArtist, upsertArt, upsertTags, linkArtTags, upsertArtSource, insertArtAsset } from './db';
-import { fetchWikidataItemTags } from './wikidata';
-import { uploadToStorage } from './storage';
+import { ensureArtist } from './db';
 import { downloadImage } from './downloader';
-import { normalizeTitle, normalizeWikidataTags } from './pipeline';
-import { buildStoragePath } from './pipeline';
-
-function parseArgs() {
-  const args = process.argv.slice(2);
-  const parsed: Record<string, string | boolean> = {};
-  for (let i = 0; i < args.length; i += 1) {
-    const arg = args[i];
-    if (arg.startsWith('--')) {
-      const key = arg.replace(/^--/, '');
-      const next = args[i + 1];
-      if (next && !next.startsWith('--')) {
-        parsed[key] = next;
-        i += 1;
-      } else {
-        parsed[key] = true;
-      }
-    }
-  }
-  return parsed;
-}
+import { parseArgs } from './utils';
+import { retrySingleFailure } from './retryUtils';
 
 async function retryFailures(artist: string, limit?: number): Promise<void> {
   const failures = await loadFailures(artist);
@@ -38,7 +17,7 @@ async function retryFailures(artist: string, limit?: number): Promise<void> {
   const failuresToRetry = limit ? failures.slice(0, limit) : failures;
   console.log(`Found ${failures.length} failures for ${artist}. Retrying ${failuresToRetry.length}...`);
   
-  const artistId = await ensureArtist(artist);
+  await ensureArtist(artist);
   let succeeded = 0;
   let failed = 0;
   
@@ -49,7 +28,8 @@ async function retryFailures(artist: string, limit?: number): Promise<void> {
       // Fetch image info
       const image = await fetchImageInfoByTitle(failure.title);
       if (!image) {
-        console.log(`  ⚠ Could not fetch image info, skipping`);
+        console.log(`  ⚠ Could not fetch image info, removing from error list`);
+        await removeFailure(artist, failure.title);
         failed++;
         continue;
       }
@@ -57,59 +37,28 @@ async function retryFailures(artist: string, limit?: number): Promise<void> {
       // Pick best variant
       const variant = pickBestVariant(image);
       if (!variant) {
-        console.log(`  ⚠ No suitable variant found, skipping`);
+        console.log(`  ⚠ No suitable variant found (quality requirements not met), removing from error list`);
+        await removeFailure(artist, failure.title);
         failed++;
         continue;
       }
       
-      // Download and upload
+      // Download image
       const downloaded = await downloadImage(variant);
-      const path = buildStoragePath(artist, image, downloaded.ext);
       
-      const upload = await uploadToStorage(path, downloaded);
-      const artId = await upsertArt({
-        title: normalizeTitle(image.title),
-        description: image.description ?? null,
-        imageUrl: upload.publicUrl,
-        artistId,
-      });
+      // Use shared retry logic
+      const result = await retrySingleFailure(failure, image, variant, downloaded, false);
       
-      // Add tags if we have source item
-      if (image.sourceItem) {
-        const wikidataTags = await fetchWikidataItemTags(image.sourceItem);
-        const normalizedTags = normalizeWikidataTags(wikidataTags, image.museum);
-        const tagIds = await upsertTags(normalizedTags).then((rows) => rows.map((r) => r.id));
-        await linkArtTags(artId, tagIds);
+      if (result.success) {
+        console.log(`  ✓ Successfully uploaded`);
+        succeeded++;
+        // Small delay to avoid rate limits
+        await new Promise(resolve => setTimeout(resolve, 2000));
+      } else {
+        console.log(`  ✗ Failed: ${result.error}`);
+        failed++;
+        // Don't remove from failures list, will retry again later
       }
-      
-      // Add source
-      await upsertArtSource({
-        artId,
-        source: 'wikidata',
-        sourcePageId: image.pageid,
-        sourceTitle: image.title,
-        sourceUrl: image.pageUrl,
-      });
-      
-      // Add asset
-      await insertArtAsset({
-        artId,
-        storagePath: upload.path,
-        publicUrl: upload.publicUrl,
-        width: downloaded.width,
-        height: downloaded.height,
-        fileSize: downloaded.fileSize,
-        mimeType: downloaded.mime,
-        sha256: downloaded.sha256,
-      });
-      
-      // Remove from failures list
-      await removeFailure(artist, failure.title);
-      console.log(`  ✓ Successfully uploaded`);
-      succeeded++;
-      
-      // Small delay to avoid rate limits
-      await new Promise(resolve => setTimeout(resolve, 2000));
       
     } catch (err) {
       console.log(`  ✗ Failed: ${(err as Error).message}`);

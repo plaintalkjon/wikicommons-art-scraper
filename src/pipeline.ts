@@ -1,21 +1,17 @@
-import { config } from './config';
+import { config, supabase } from './config';
 import { fetchImageInfoByTitle, pickBestVariant } from './wikimedia';
-import { slugify } from './utils';
 import { downloadImage } from './downloader';
-import { uploadToStorage } from './storage';
 import { WikimediaImage, DownloadedImage } from './types';
-import { ensureArtist, insertArtAsset, linkArtTags, upsertArt, upsertArtSource, upsertTags } from './db';
+import { ensureArtist, insertArtAsset, linkArtTags, upsertArt, upsertArtSource, upsertTags, uploadToStorage } from './db';
 import { fetchWikidataItemTags } from './wikidata';
 import { saveFailure } from './failureTracker';
-import { supabase } from './supabaseClient';
+import { normalizeTitle, cleanTitle, buildStoragePath, normalizeWikidataTags } from './artUtils';
 
 export interface FetchOptions {
   artist: string;
   limit?: number;
   dryRun?: boolean;
-  paintingsOnly?: boolean; // Kept for CLI compatibility but not used (wikidata.ts only fetches paintings now)
   maxUploads?: number;
-  source?: 'wikimedia'; // Default: 'wikimedia'
 }
 
 export interface FetchResult {
@@ -48,14 +44,7 @@ async function processInParallel<T>(
 }
 
 export async function fetchAndStoreArtworks(options: FetchOptions): Promise<FetchResult> {
-  const limit = options.limit ?? 10000;
-  const CONCURRENCY = 2; // Process 2 images in parallel (matches Wikimedia's max concurrent download limit)
-  const maxUploads = options.maxUploads;
-  const source = options.source || 'wikimedia';
-  
-  console.log(`Fetching artworks for: ${options.artist} (source: ${source})...`);
-  
-  // Use Wikimedia source
+  console.log(`Fetching artworks for: ${options.artist}...`);
   return await fetchAndStoreFromWikimedia(options);
 }
 
@@ -245,7 +234,7 @@ async function fetchAndStoreFromWikimedia(options: FetchOptions): Promise<FetchR
       
       const storagePath = buildStoragePath(options.artist, image, downloaded.ext);
       console.log(`  → Uploading to storage: ${storagePath}`);
-      const { uploadToStorage } = await import('./storage');
+      const { uploadToStorage } = await import('./db');
       const upload = await uploadToStorage(storagePath, downloaded);
       console.log(`  ✓ Uploaded to storage`);
       
@@ -265,7 +254,7 @@ async function fetchAndStoreFromWikimedia(options: FetchOptions): Promise<FetchR
       console.log(`  → Fetching Wikidata tags...`);
       try {
         const { fetchWikidataItemTags } = await import('./wikidata');
-        const { normalizeWikidataTags } = await import('./pipeline');
+        const { normalizeWikidataTags } = await import('./artUtils');
         const wikidataTags = await fetchWikidataItemTags(artwork.itemQid);
         normalizedTags = normalizeWikidataTags(wikidataTags, image.museum);
         console.log(`  ✓ Found ${normalizedTags.length} tags: ${normalizedTags.join(', ')}`);
@@ -356,80 +345,3 @@ async function fetchAndStoreFromWikimedia(options: FetchOptions): Promise<FetchR
 
 // Met Museum scraper removed - entire function deleted
 
-export function buildStoragePath(artist: string, image: WikimediaImage, ext: string): string {
-  const artistSlug = slugify(artist);
-  const titleSlug = slugify(image.title.replace(/^File:/i, ''));
-  const safeTitle = titleSlug || `image-${image.pageid}`;
-  return `${artistSlug}/${safeTitle}.${ext}`;
-}
-
-export function normalizeTitle(title: string): string {
-  return title.replace(/^File:/i, '').trim();
-}
-
-/**
- * Clean up artwork titles by removing filename artifacts, artist names, museum names, and IDs
- */
-export function cleanTitle(title: string, artistName?: string): string {
-  let cleaned = title.trim();
-  
-  // Remove "File:" prefix
-  cleaned = cleaned.replace(/^File:\s*/i, '');
-  
-  // Remove file extensions
-  cleaned = cleaned.replace(/\.(jpg|jpeg|png|gif|tiff|tif|webp|svg)$/i, '');
-  
-  // Remove leading numbers and dashes (like "001", "0 Title")
-  cleaned = cleaned.replace(/^\d+\s*[-.]?\s*/, '');
-  
-  // Remove parenthetical location info at start (like "(Albi)")
-  cleaned = cleaned.replace(/^\([^)]+\)\s*[-.]?\s*/i, '');
-  
-  // Remove artist birth/death years in parentheses
-  cleaned = cleaned.replace(/\s*\(\d{4}\s*-\s*\d{4}\)\s*[-.]?\s*/g, '');
-  
-  // Remove quotes around title
-  cleaned = cleaned.replace(/^['"]\s*([^'"]+)\s*['"]\s*/, '$1');
-  
-  // Remove "by Artist Name" patterns
-  if (artistName) {
-    const artistPattern = new RegExp(`\\s*by\\s+${artistName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*$`, 'i');
-    cleaned = cleaned.replace(artistPattern, '');
-  }
-  
-  // Remove common museum/institution suffixes
-  cleaned = cleaned.replace(/\s*-\s*(museum|gallery|collection|institute|foundation).*$/i, '');
-  
-  // Remove location suffixes (common patterns)
-  cleaned = cleaned.replace(/\s*,\s*[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\s*$/, '');
-  
-  // Remove file hash suffixes (like "abc123def")
-  cleaned = cleaned.replace(/[a-f0-9]{8,}\s*$/i, '');
-  
-  // Remove duplicate spaces
-  cleaned = cleaned.replace(/\s+/g, ' ').trim();
-  
-  return cleaned;
-}
-
-export function normalizeWikidataTags(
-  tags: { genre?: string; movement?: string; inceptionDate?: string },
-  museum?: string,
-): string[] {
-  const result: string[] = [];
-
-  if (tags.genre) {
-    result.push(tags.genre.toLowerCase().trim());
-  }
-  if (tags.movement) {
-    result.push(tags.movement.toLowerCase().trim());
-  }
-  if (tags.inceptionDate) {
-    result.push(tags.inceptionDate.toLowerCase().trim());
-  }
-  if (museum) {
-    result.push(museum.toLowerCase().trim());
-  }
-
-  return Array.from(new Set(result.filter(Boolean)));
-}

@@ -5,6 +5,7 @@ import { DownloadedImage, ImageVariant } from './types';
 import { getWikimediaAccessToken } from './wikimediaAuth';
 import { config } from './config';
 import { bandwidthThrottler } from './bandwidthThrottle';
+import { rateLimiter } from './rateLimiter';
 
 /**
  * Download an image from Wikimedia Commons with proper authentication and rate limiting
@@ -33,7 +34,8 @@ export async function downloadImage(variant: ImageVariant): Promise<DownloadedIm
   
   while (retryCount <= maxRetries) {
     try {
-      // Check bandwidth before starting download
+      // Check rate limits before starting download
+      await rateLimiter.waitIfNeeded();
       await bandwidthThrottler.waitIfNeeded();
       
       const res = await fetch(variant.url, { headers });
@@ -41,12 +43,33 @@ export async function downloadImage(variant: ImageVariant): Promise<DownloadedIm
       // Handle rate limiting (429)
       if (res.status === 429) {
         const retryAfter = res.headers.get('Retry-After');
-        const delayMs = retryAfter 
-          ? parseInt(retryAfter, 10) * 1000 
-          : Math.min(1000 * Math.pow(2, retryCount), 10000); // Exponential backoff, max 10s
+        let delayMs: number;
+        
+        if (retryAfter) {
+          // Respect Retry-After header (can be in seconds or HTTP-date)
+          const retryAfterNum = parseInt(retryAfter, 10);
+          if (!isNaN(retryAfterNum)) {
+            // It's a number (seconds)
+            delayMs = retryAfterNum * 1000;
+          } else {
+            // It's an HTTP-date, parse it
+            const retryDate = new Date(retryAfter);
+            if (!isNaN(retryDate.getTime())) {
+              delayMs = Math.max(0, retryDate.getTime() - Date.now());
+            } else {
+              // Fallback to exponential backoff
+              delayMs = Math.min(1000 * Math.pow(2, retryCount), 60000); // Max 60s
+            }
+          }
+          // Add some buffer and ensure minimum delay
+          delayMs = Math.max(delayMs + 1000, 5000); // At least 5 seconds after 429
+        } else {
+          // Exponential backoff with longer delays
+          delayMs = Math.min(5000 * Math.pow(2, retryCount), 60000); // 5s, 10s, 20s, max 60s
+        }
         
         if (retryCount < maxRetries) {
-          console.log(`  ⚠ Rate limited (429), waiting ${delayMs}ms before retry ${retryCount + 1}/${maxRetries}...`);
+          console.log(`  ⚠ Rate limited (429), waiting ${Math.ceil(delayMs / 1000)}s before retry ${retryCount + 1}/${maxRetries}...`);
           await new Promise(resolve => setTimeout(resolve, delayMs));
           retryCount++;
           continue;

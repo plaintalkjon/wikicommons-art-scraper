@@ -8,17 +8,12 @@
  *   npm run retry-rate-limits -- --limit 100
  */
 
-import { promises as fs } from 'fs';
-import path from 'path';
 import { FailedUpload, loadFailures, getArtistsWithFailures, removeFailure } from './failureTracker';
 import { fetchImageInfoByTitle, pickBestVariant } from './wikimedia';
-import { ensureArtist, upsertArt, upsertTags, linkArtTags, upsertArtSource, insertArtAsset } from './db';
-import { fetchWikidataItemTags } from './wikidata';
-import { uploadToStorage } from './storage';
+import { ensureArtist } from './db';
 import { downloadImage } from './downloader';
-import { normalizeTitle, normalizeWikidataTags, buildStoragePath } from './pipeline';
-
-const FAILURES_DIR = path.join(process.cwd(), '.failures');
+import { parseArgs } from './utils';
+import { retrySingleFailure } from './retryUtils';
 
 /**
  * Check if error is a rate limit error
@@ -79,92 +74,46 @@ async function retryFailure(failure: FailedUpload): Promise<boolean> {
   console.log(`  Previous error: ${failure.error.substring(0, 100)}...`);
   
   try {
-    const artistId = await ensureArtist(failure.artist);
+    await ensureArtist(failure.artist);
     
     // Fetch image info using the title (Commons file title)
     console.log(`  → Fetching image info for: "${failure.title}"...`);
     const image = await fetchImageInfoByTitle(failure.title);
     if (!image) {
-      console.log(`  ⚠ Could not fetch image info, skipping`);
+      console.log(`  ⚠ Could not fetch image info, removing from error list`);
+      await removeFailure(failure.artist, failure.title);
       return false;
     }
-    
-    console.log(`  ✓ Fetched image info`);
     
     // Pick best variant
     console.log(`  → Selecting best variant...`);
     const variant = pickBestVariant(image);
     if (!variant) {
-      console.log(`  ⚠ No suitable variant found (quality requirements not met), skipping`);
+      console.log(`  ⚠ No suitable variant found (quality requirements not met), removing from error list`);
+      await removeFailure(failure.artist, failure.title);
       return false;
     }
-    
-    console.log(`  ✓ Selected variant: ${variant.width}x${variant.height}`);
     
     // Download image (this is where rate limits usually occur)
     console.log(`  → Downloading image...`);
     const downloaded = await downloadImage(variant);
-    console.log(`  ✓ Downloaded: ${downloaded.width}x${downloaded.height}, ${(downloaded.fileSize / 1024 / 1024).toFixed(2)}MB`);
     
-    // Build storage path
-    const storagePath = buildStoragePath(failure.artist, image, downloaded.ext);
-    console.log(`  → Uploading to storage: ${storagePath}`);
-    const upload = await uploadToStorage(storagePath, downloaded);
-    console.log(`  ✓ Uploaded to storage`);
+    // Use shared retry logic
+    const result = await retrySingleFailure(failure, image, variant, downloaded, true);
     
-    // Create art record
-    console.log(`  → Creating art record...`);
-    const artId = await upsertArt({
-      title: normalizeTitle(image.title),
-      description: image.description ?? null,
-      imageUrl: upload.publicUrl,
-      artistId,
-    });
-    console.log(`  ✓ Art record created: ${artId}`);
-    
-    // Add tags if we have source item
-    if (image.sourceItem) {
-      console.log(`  → Fetching Wikidata tags (QID: ${image.sourceItem})...`);
-      const wikidataTags = await fetchWikidataItemTags(image.sourceItem);
-      const normalizedTags = normalizeWikidataTags(wikidataTags, image.museum);
-      if (normalizedTags.length > 0) {
-        console.log(`  ✓ Found ${normalizedTags.length} Wikidata tags: ${normalizedTags.join(', ')}`);
-        const tagIds = await upsertTags(normalizedTags).then((rows) => rows.map((r) => r.id));
-        await linkArtTags(artId, tagIds);
-        console.log(`  ✓ Linked ${tagIds.length} tags`);
+    if (result.success) {
+      // Extra delay after successful upload to be respectful
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      return true;
+    } else {
+      const isRateLimit = result.error?.includes('429') || result.error?.includes('rate limit') || result.error?.includes('Too many requests');
+      if (isRateLimit) {
+        console.log(`  ✗ Still rate limited: ${result.error}`);
+      } else {
+        console.log(`  ✗ Failed: ${result.error}`);
       }
+      return false;
     }
-    
-    // Add source
-    console.log(`  → Adding source information...`);
-    await upsertArtSource({
-      artId,
-      source: 'wikimedia',
-      sourcePageId: image.pageid,
-      sourceTitle: image.title,
-      sourceUrl: image.pageUrl,
-      wikidataQID: image.sourceItem,
-    });
-    console.log(`  ✓ Source added`);
-    
-    // Add asset
-    console.log(`  → Creating asset record...`);
-    await insertArtAsset({
-      artId,
-      storagePath: upload.path,
-      publicUrl: upload.publicUrl,
-      width: downloaded.width,
-      height: downloaded.height,
-      fileSize: downloaded.fileSize,
-      mimeType: downloaded.mime,
-      sha256: downloaded.sha256,
-    });
-    console.log(`  ✓ Asset record created`);
-    
-    // Remove from failures list
-    await removeFailure(failure.artist, failure.title);
-    console.log(`  ✓✓✓ Successfully uploaded: ${failure.title}`);
-    return true;
     
   } catch (err) {
     const errorMessage = (err as Error).message;
@@ -180,17 +129,8 @@ async function retryFailure(failure: FailedUpload): Promise<boolean> {
 }
 
 async function main() {
-  const args = process.argv.slice(2);
-  let limit = 50;
-  
-  // Parse arguments
-  for (let i = 0; i < args.length; i++) {
-    const arg = args[i];
-    if (arg === '--limit' && args[i + 1]) {
-      limit = parseInt(args[i + 1], 10);
-      i++;
-    }
-  }
+  const args = parseArgs();
+  const limit = args.limit ? parseInt(args.limit as string, 10) : 50;
   
   console.log('Retrying Wikimedia Rate Limit Failures\n');
   console.log('='.repeat(60));
@@ -245,10 +185,10 @@ async function main() {
           totalFailed++;
         }
         
-        // Small delay between retries to avoid hitting rate limits again
+        // Rate limiter handles delays, but add extra buffer between retries
         if (totalRetried < limit && totalRetried < failures.length) {
-          console.log(`  Waiting 2 seconds before next retry...`);
-          await new Promise(resolve => setTimeout(resolve, 2000));
+          // Rate limiter already enforces 1 second minimum, add 1 more second buffer
+          await new Promise(resolve => setTimeout(resolve, 1000));
         }
       }
       
@@ -256,10 +196,10 @@ async function main() {
         break;
       }
       
-      // Delay between artists
+      // Delay between artists (rate limiter handles per-request delays)
       if (totalRetried < limit) {
-        console.log(`\n  Waiting 3 seconds before next artist...`);
-        await new Promise(resolve => setTimeout(resolve, 3000));
+        console.log(`\n  Waiting 5 seconds before next artist...`);
+        await new Promise(resolve => setTimeout(resolve, 5000));
       }
     }
     
@@ -281,3 +221,4 @@ main().catch((err) => {
   console.error('Error:', err.message);
   process.exit(1);
 });
+

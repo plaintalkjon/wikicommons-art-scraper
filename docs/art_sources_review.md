@@ -117,3 +117,4 @@ GROUP BY source;
 - If old code stored QIDs in `source_pageid`, they need to be migrated
 - Database schema might need `wikidata_qid` column added (see previous conversation)
 
+

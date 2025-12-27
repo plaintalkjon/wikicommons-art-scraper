@@ -1,3 +1,5 @@
+import { rateLimiter } from './rateLimiter';
+
 const SPARQL_ENDPOINT = 'https://query.wikidata.org/sparql';
 
 // Note: Wikidata SPARQL endpoint doesn't use OAuth, but we can still use
@@ -9,12 +11,7 @@ export interface WikidataItemTags {
   inceptionDate?: string; // P571
 }
 
-/**
- * Remove accents/diacritics from a string
- */
-function removeAccents(str: string): string {
-  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-}
+import { removeAccents } from './utils';
 
 /**
  * Generate name variations for searching
@@ -124,6 +121,9 @@ async function searchArtistQIDByName(name: string): Promise<string | null> {
     const { config } = await import('./config');
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s per variation
+    
+    // Check rate limits before making request
+    await rateLimiter.waitIfNeeded();
     
     const headers: HeadersInit = {
       'Content-Type': 'application/sparql-query',

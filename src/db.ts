@@ -1,4 +1,4 @@
-import { supabase } from './supabaseClient';
+import { supabase } from './config';
 
 /**
  * Normalize artist name for consistent storage
@@ -219,5 +219,22 @@ export async function insertArtAsset(payload: {
   if (result.error) {
     throw new Error(`Failed to upsert art asset: ${result.error.message}`);
   }
+}
+
+/**
+ * Upload image to Supabase storage
+ */
+export async function uploadToStorage(path: string, image: { buffer: Buffer; mime: string }): Promise<{ path: string; publicUrl: string }> {
+  const { config, supabase } = await import('./config');
+  const { error } = await supabase.storage.from(config.supabaseBucket).upload(path, image.buffer, {
+    contentType: image.mime,
+    upsert: true,
+  });
+  if (error) {
+    throw new Error(`Supabase upload failed for ${path}: ${error.message}`);
+  }
+
+  const { data } = supabase.storage.from(config.supabaseBucket).getPublicUrl(path);
+  return { path, publicUrl: data.publicUrl };
 }
 

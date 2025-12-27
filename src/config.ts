@@ -1,5 +1,6 @@
 import path from 'path';
 import dotenv from 'dotenv';
+import { createClient } from '@supabase/supabase-js';
 
 // Load .env from project root explicitly to work when executed from dist/
 dotenv.config({ path: path.resolve(process.cwd(), '.env') });
@@ -20,4 +21,7 @@ export const config = {
   wikimediaClientId: process.env.WIKIMEDIA_CLIENT_ID,
   wikimediaClientSecret: process.env.WIKIMEDIA_CLIENT_SECRET,
 };
+
+// Create and export Supabase client
+export const supabase = createClient(config.supabaseUrl, config.supabaseServiceRoleKey);
 

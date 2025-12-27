@@ -120,3 +120,4 @@ The batch script processed only **1 of 50 artists** (Nina M. Davies) before stop
 3. Adjust delays/concurrency based on results
 4. Consider alternative strategies if success rate remains low
 
+

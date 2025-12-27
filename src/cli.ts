@@ -1,24 +1,6 @@
 #!/usr/bin/env node
 import { fetchAndStoreArtworks } from './pipeline';
-
-function parseArgs() {
-  const args = process.argv.slice(2);
-  const parsed: Record<string, string | boolean> = {};
-  for (let i = 0; i < args.length; i += 1) {
-    const arg = args[i];
-    if (arg.startsWith('--')) {
-      const key = arg.replace(/^--/, '');
-      const next = args[i + 1];
-      if (next && !next.startsWith('--')) {
-        parsed[key] = next;
-        i += 1;
-      } else {
-        parsed[key] = true;
-      }
-    }
-  }
-  return parsed;
-}
+import { parseArgs } from './utils';
 
 async function main() {
   const args = parseArgs();
@@ -26,14 +8,12 @@ async function main() {
   const limit = args.limit ? Number(args.limit) : undefined;
   const dryRun = Boolean(args['dry-run'] ?? args.dryRun);
   const maxUploads = args['max-uploads'] ? Number(args['max-uploads']) : undefined;
-  const source = 'wikimedia';
-
   console.log(
     `Fetching artworks for: ${artist} (${dryRun ? 'dry run' : 'uploading'})${
       maxUploads ? ` [max uploads: ${maxUploads}]` : ''
-    } [source: ${source}]`,
+    }`,
   );
-  const result = await fetchAndStoreArtworks({ artist, limit, dryRun, maxUploads, source });
+  const result = await fetchAndStoreArtworks({ artist, limit, dryRun, maxUploads });
 
   console.log(
     `Completed. attempted=${result.attempted} uploaded=${result.uploaded} skipped=${result.skipped} errors=${result.errors.length}`,

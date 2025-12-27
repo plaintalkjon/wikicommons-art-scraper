@@ -1,6 +1,7 @@
 import { config } from './config';
 import { WikimediaImage, ImageVariant } from './types';
 import { getWikimediaAccessToken } from './wikimediaAuth';
+import { rateLimiter } from './rateLimiter';
 
 const API_ENDPOINT = 'https://commons.wikimedia.org/w/api.php';
 const MAX_RETRIES = 3;
@@ -174,6 +175,9 @@ async function fetchWithRetry(url: string, useAuth = true): Promise<Response> {
   let lastError: Error | undefined;
 
   while (attempt < MAX_RETRIES) {
+    // Check rate limits before making request
+    await rateLimiter.waitIfNeeded();
+    
     // Build headers with OAuth token if available
     const headers: HeadersInit = {
       'User-Agent': config.wikimediaClientId 
