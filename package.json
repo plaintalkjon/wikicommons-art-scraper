@@ -7,7 +7,12 @@
     "build": "tsc --project tsconfig.json",
     "fetch": "npm run build && node dist/cli.js",
     "retry": "npm run build && node dist/cli-retry.js",
-    "retry-rate-limits": "npm run build && node dist/cli-retry-rate-limits.js"
+    "retry-rate-limits": "npm run build && node dist/cli-retry-rate-limits.js",
+    "delete-artworks": "npm run build && node dist/cli-delete.js",
+    "list-assets": "npm run build && node dist/cli-list-assets.js",
+    "merge-goya": "npm run build && node dist/maintenance/mergeGoya.js",
+    "artic-list": "npm run build && node dist/cli-artic-list.js",
+    "artic-import": "npm run build && node dist/cli-artic-import.js"
   },
   "repository": {
     "type": "git",

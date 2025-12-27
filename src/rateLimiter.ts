@@ -5,6 +5,10 @@
 
 import { config } from './config';
 
+const gentleMode =
+  (process.env.GENTLE_MODE || '').toLowerCase() === '1' ||
+  (process.env.GENTLE_MODE || '').toLowerCase() === 'true';
+
 interface RequestWindow {
   timestamp: number;
   count: number;
@@ -19,10 +23,11 @@ class RateLimiter {
   constructor() {
     // Conservative limits to avoid rate limiting
     // Authenticated: 5000/hour = ~83/minute = ~1.4/second
-    // We'll be more conservative: 30 requests/minute, 1 request/second
-    this.maxRequestsPerMinute = 30;
-    this.maxRequestsPerSecond = 1;
-    this.minDelayBetweenRequests = 1000; // 1 second minimum between requests
+    // Default: 30 requests/minute, 1 request/second
+    // Gentle mode: much slower to escape throttling (about 6/minute, 1 per 5s)
+    this.maxRequestsPerMinute = gentleMode ? 6 : 30;
+    this.maxRequestsPerSecond = gentleMode ? 1 : 1;
+    this.minDelayBetweenRequests = gentleMode ? 5000 : 1000; // 5s vs 1s minimum between requests
   }
 
   /**
@@ -52,7 +57,11 @@ class RateLimiter {
           .filter(w => w.timestamp > oneSecondAgo)
           .map(w => w.timestamp)
       );
-      const waitTime = 1000 - (now - oldestInLastSecond) + 100; // Add 100ms buffer
+      let waitTime = 1000 - (now - oldestInLastSecond) + 100; // Add 100ms buffer
+      if (gentleMode) {
+        // Add jitter up to 500ms to avoid synchronized bursts
+        waitTime += Math.floor(Math.random() * 500);
+      }
       if (waitTime > 0) {
         console.log(`  ⏳ Rate limiter: ${requestsLastSecond} requests in last second, waiting ${waitTime}ms...`);
         await new Promise(resolve => setTimeout(resolve, waitTime));
@@ -62,7 +71,11 @@ class RateLimiter {
     // Check per-minute limit
     if (requestsLastMinute >= this.maxRequestsPerMinute) {
       const oldestInLastMinute = Math.min(...this.requestHistory.map(w => w.timestamp));
-      const waitTime = 60000 - (now - oldestInLastMinute) + 1000; // Add 1s buffer
+      let waitTime = 60000 - (now - oldestInLastMinute) + 1000; // Add 1s buffer
+      if (gentleMode) {
+        // Add jitter up to 5s
+        waitTime += Math.floor(Math.random() * 5000);
+      }
       if (waitTime > 0) {
         console.log(`  ⏳ Rate limiter: ${requestsLastMinute} requests in last minute, waiting ${Math.ceil(waitTime / 1000)}s...`);
         await new Promise(resolve => setTimeout(resolve, waitTime));
@@ -74,7 +87,10 @@ class RateLimiter {
       const lastRequest = Math.max(...this.requestHistory.map(w => w.timestamp));
       const timeSinceLastRequest = now - lastRequest;
       if (timeSinceLastRequest < this.minDelayBetweenRequests) {
-        const waitTime = this.minDelayBetweenRequests - timeSinceLastRequest;
+        let waitTime = this.minDelayBetweenRequests - timeSinceLastRequest;
+        if (gentleMode) {
+          waitTime += Math.floor(Math.random() * 500); // jitter
+        }
         await new Promise(resolve => setTimeout(resolve, waitTime));
       }
     }
@@ -103,5 +119,11 @@ class RateLimiter {
 
 // Singleton instance
 export const rateLimiter = new RateLimiter();
+
+
+
+
+
+
 
 

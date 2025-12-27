@@ -26,4 +26,21 @@ export interface DownloadedImage extends ImageVariant {
   fileSize: number;
 }
 
+export interface NGAArtwork {
+  objectid: string;
+  title: string;
+  imageUrl: string | null;
+  width: number | null;
+  height: number | null;
+  displaydate?: string;
+  medium?: string;
+  dimensions?: string;
+  classification?: string;
+  culture?: string;
+  period?: string;
+  creditline?: string;
+  dated?: string;
+  wikidataQID?: string;
+}
+
 

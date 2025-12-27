@@ -7,6 +7,10 @@ import { config } from './config';
 import { bandwidthThrottler } from './bandwidthThrottle';
 import { rateLimiter } from './rateLimiter';
 
+const gentleMode =
+  (process.env.GENTLE_MODE || '').toLowerCase() === '1' ||
+  (process.env.GENTLE_MODE || '').toLowerCase() === 'true';
+
 /**
  * Download an image from Wikimedia Commons with proper authentication and rate limiting
  * Includes OAuth headers and User-Agent for better rate limit handling
@@ -29,7 +33,7 @@ export async function downloadImage(variant: ImageVariant): Promise<DownloadedIm
   }
   
   let retryCount = 0;
-  const maxRetries = 3;
+  const maxRetries = gentleMode ? 4 : 3;
   let lastError: Error | null = null;
   
   while (retryCount <= maxRetries) {
@@ -62,14 +66,24 @@ export async function downloadImage(variant: ImageVariant): Promise<DownloadedIm
             }
           }
           // Add some buffer and ensure minimum delay
-          delayMs = Math.max(delayMs + 1000, 5000); // At least 5 seconds after 429
+          delayMs = Math.max(delayMs + 1000, gentleMode ? 20000 : 5000); // At least 20s in gentle mode
         } else {
           // Exponential backoff with longer delays
-          delayMs = Math.min(5000 * Math.pow(2, retryCount), 60000); // 5s, 10s, 20s, max 60s
+          if (gentleMode) {
+            // Start with 20s and grow; add jitter to avoid thundering herd
+            delayMs = Math.min(20000 * Math.pow(2, retryCount), 180000); // up to 3 minutes
+            delayMs += Math.floor(Math.random() * 5000);
+          } else {
+            delayMs = Math.min(5000 * Math.pow(2, retryCount), 60000); // 5s, 10s, 20s, max 60s
+          }
         }
         
         if (retryCount < maxRetries) {
-          console.log(`  ⚠ Rate limited (429), waiting ${Math.ceil(delayMs / 1000)}s before retry ${retryCount + 1}/${maxRetries}...`);
+          console.log(
+            `  ⚠ Rate limited (429), waiting ${Math.ceil(delayMs / 1000)}s before retry ${retryCount + 1}/${maxRetries}...${
+              gentleMode ? ' [gentle mode]' : ''
+            }`,
+          );
           await new Promise(resolve => setTimeout(resolve, delayMs));
           retryCount++;
           continue;
@@ -111,7 +125,12 @@ export async function downloadImage(variant: ImageVariant): Promise<DownloadedIm
       await bandwidthThrottler.recordDownload(buffer.byteLength);
       
       // Small delay after successful download to be respectful of rate limits
-      await new Promise(resolve => setTimeout(resolve, 200)); // Small delay between downloads
+      if (gentleMode) {
+        const delayMs = 2000 + Math.floor(Math.random() * 2000); // 2-4s pause
+        await new Promise(resolve => setTimeout(resolve, delayMs));
+      } else {
+        await new Promise(resolve => setTimeout(resolve, 200)); // Small delay between downloads
+      }
 
       return {
         ...variant,
@@ -127,7 +146,11 @@ export async function downloadImage(variant: ImageVariant): Promise<DownloadedIm
       
       // If it's a network error and we have retries left, try again
       if (retryCount < maxRetries && !lastError.message.includes('429')) {
-        const delayMs = 1000 * Math.pow(2, retryCount); // Exponential backoff
+        let delayMs = 1000 * Math.pow(2, retryCount); // Exponential backoff
+        if (gentleMode) {
+          delayMs = Math.min(5000 + 5000 * retryCount, 30000); // 5-30s with steps
+          delayMs += Math.floor(Math.random() * 2000);
+        }
         console.log(`  ⚠ Download error, retrying in ${delayMs}ms... (${retryCount + 1}/${maxRetries})`);
         await new Promise(resolve => setTimeout(resolve, delayMs));
         retryCount++;
