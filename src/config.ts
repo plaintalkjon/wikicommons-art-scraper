@@ -17,6 +17,8 @@ export const config = {
   supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY!,
   supabaseBucket: process.env.SUPABASE_BUCKET!,
   targetWidth: 1280,
+  // Rijksmuseum (optional API key; API may work keyless per docs)
+  rijksApiKey: process.env.RIJKS_API_KEY,
   // Wikimedia OAuth (optional - for higher rate limits)
   wikimediaClientId: process.env.WIKIMEDIA_CLIENT_ID,
   wikimediaClientSecret: process.env.WIKIMEDIA_CLIENT_SECRET,
