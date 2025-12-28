@@ -60,21 +60,6 @@ async function fetchAssetsByExact(paths: string[]): Promise<ArtAsset[]> {
   return results;
 }
 
-async function fetchAssetsByBasename(basenames: string[]): Promise<ArtAsset[]> {
-  // Use suffix match to catch storage paths like "artist-slug/title-slug.jpg".
-  const results: ArtAsset[] = [];
-  for (const name of basenames) {
-    const pattern = `%${name}`;
-    const { data, error } = await supabase
-      .from('art_assets')
-      .select('art_id,storage_path,public_url')
-      .ilike('storage_path', pattern);
-    if (error) throw new Error(`Failed to fetch art_assets (basename=${name}): ${error.message}`);
-    if (data) results.push(...data);
-  }
-  return results;
-}
-
 async function main() {
   const args = parseArgs();
   const listPath = (args.file || args.f) as string | undefined;
@@ -95,18 +80,21 @@ async function main() {
   }
 
   const exactPaths = Array.from(new Set(entries.map((e) => e.full).filter(Boolean) as string[]));
-  const basenames = Array.from(new Set(entries.map((e) => e.basename)));
+  const missingPaths = entries.filter((e) => !e.full).map((e) => e.raw);
 
   console.log(`Loaded ${entries.length} entries from ${listPath}`);
   if (exactPaths.length) console.log(`  Exact paths: ${exactPaths.length}`);
-  if (basenames.length) console.log(`  Basenames: ${basenames.length}`);
+  if (missingPaths.length) {
+    console.log(
+      `  Skipped ${missingPaths.length} entries without a folder prefix (requires full storage path with '/'): ${missingPaths.join(
+        ', ',
+      )}`,
+    );
+  }
 
   const assetMatches: ArtAsset[] = [];
   if (exactPaths.length) {
     assetMatches.push(...(await fetchAssetsByExact(exactPaths)));
-  }
-  if (basenames.length) {
-    assetMatches.push(...(await fetchAssetsByBasename(basenames)));
   }
 
   // Deduplicate by art_id + storage_path

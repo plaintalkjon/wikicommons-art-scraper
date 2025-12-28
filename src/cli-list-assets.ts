@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 /**
- * Generate a local HTML gallery (or CSV) of stored assets with metadata.
+ * Generate a local HTML gallery (or CSV) of stored assets (path-only).
  *
  * Usage examples:
- *   npm run list-assets -- --html ./gallery.html         # HTML gallery (default)
- *   npm run list-assets -- --csv ./assets.csv            # CSV output
- *   npm run list-assets -- --source nga                  # filter by source
- *   npm run list-assets -- --artist "vangogh"            # case-insensitive substring match on artist name
- *   npm run list-assets -- --limit 1000                  # limit rows (default 500)
+ *   npm run list-assets -- --html ./gallery.html                 # single page (default limit=500)
+ *   npm run list-assets -- --html ./gallery.html --limit 1000    # single page, custom size
+ *   npm run list-assets -- --all --page-size 500 --html ./gallery.html
+ *     -> generates paginated files: gallery-page-1.html, gallery-page-2.html, ...
+ *   npm run list-assets -- --csv ./assets.csv                    # CSV output
  *
  * Notes:
  *   - Uses public_url from art_assets; if your bucket is private, adjust to signed URLs.
@@ -15,6 +15,7 @@
  */
 
 import { writeFile } from 'fs/promises';
+import path from 'path';
 import { supabase } from './config';
 import { parseArgs } from './utils';
 
@@ -61,8 +62,12 @@ function toCsv(rows: AssetRow[]): string {
   return lines.join('\n');
 }
 
-function renderHtml(rows: AssetRow[]): string {
+function renderHtml(
+  rows: AssetRow[],
+  meta: { limit: number; offset: number; total?: number | null; page?: number | null; pageCount?: number | null },
+): string {
   const data = JSON.stringify(rows);
+  const info = JSON.stringify(meta);
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -88,15 +93,18 @@ function renderHtml(rows: AssetRow[]): string {
     <button id="copy">Copy selected paths</button>
     <input type="search" id="filter" placeholder="Filter by path" size="40" />
     <span class="count" id="count"></span>
+    <span class="count" id="pageInfo"></span>
   </div>
   <div class="grid" id="grid"></div>
   <script>
     const data = ${data};
+    const meta = ${info};
     const grid = document.getElementById('grid');
     const selectAll = document.getElementById('selectAll');
     const copyBtn = document.getElementById('copy');
     const filterInput = document.getElementById('filter');
     const count = document.getElementById('count');
+    const pageInfo = document.getElementById('pageInfo');
 
     function render(list) {
       grid.innerHTML = '';
@@ -115,6 +123,11 @@ function renderHtml(rows: AssetRow[]): string {
         grid.appendChild(card);
       }
       count.textContent = \`Showing \${list.length} item(s)\`;
+      const pageText = meta.page != null && meta.pageCount != null
+        ? \`Page \${meta.page + 1} / \${meta.pageCount}\`
+        : '';
+      const totalText = meta.total != null ? \`Total: \${meta.total}\` : '';
+      pageInfo.textContent = [pageText, \`Offset: \${meta.offset}\`, \`Limit: \${meta.limit}\`, totalText].filter(Boolean).join(' | ');
     }
 
     function currentCards() {
@@ -167,15 +180,91 @@ async function main() {
   const args = parseArgs();
   const outHtml = (args.html as string) || './gallery.html';
   const outCsv = args.csv as string | undefined;
-  const limit = args.limit ? parseInt(args.limit as string, 10) : 500;
-  const offset = args.offset ? parseInt(args.offset as string, 10) : 0;
+  const allPages = Boolean(args.all);
+  const limitArg = args.limit ? parseInt(args.limit as string, 10) : 500;
+  const pageSize = args['page-size'] ? parseInt(args['page-size'] as string, 10) : limitArg;
+  const limit = allPages ? pageSize : limitArg;
+  const page = args.page ? parseInt(args.page as string, 10) : 0;
+  const offset = args.offset ? parseInt(args.offset as string, 10) : page * limit;
+  const orderArg = (args.order as string | undefined) || 'created_at.desc';
 
-  // Fetch art_assets (paged)
-  const { data: assets, error: assetsErr } = await supabase
-    .from('art_assets')
-    .select('art_id,storage_path,public_url,width,height,file_size')
-    .range(offset, offset + limit - 1);
-  if (assetsErr) throw new Error(`Failed to fetch assets: ${assetsErr.message}`);
+  const parseOrder = (value: string): { column: string; ascending: boolean } => {
+    const parts = value.split('.');
+    if (parts.length === 2) {
+      return { column: parts[0], ascending: parts[1].toLowerCase() !== 'desc' };
+    }
+    return { column: value, ascending: true };
+  };
+
+  const { column: orderColumn, ascending } = parseOrder(orderArg);
+
+  // Helper to fetch a page of assets
+  const fetchPage = async (rangeStart: number, rangeEnd: number) => {
+    try {
+      const { data, error } = await supabase
+        .from('art_assets')
+        .select('art_id,storage_path,public_url,width,height,file_size')
+        .order(orderColumn, { ascending })
+        .range(rangeStart, rangeEnd);
+      if (error) throw error;
+      return data ?? [];
+    } catch (err: any) {
+      console.warn(`Warning: could not order by ${orderColumn} (${err?.message ?? err}). Falling back to unordered fetch.`);
+      const { data, error } = await supabase
+        .from('art_assets')
+        .select('art_id,storage_path,public_url,width,height,file_size')
+        .range(rangeStart, rangeEnd);
+      if (error) throw new Error(`Failed to fetch assets: ${error.message}`);
+      return data ?? [];
+    }
+  };
+
+  // If generating all pages, compute total and iterate
+  if (allPages) {
+    // Count total rows
+    const { count, error: countErr } = await supabase
+      .from('art_assets')
+      .select('art_id', { count: 'exact', head: true });
+    if (countErr) throw new Error(`Failed to count assets: ${countErr.message}`);
+    const total = count ?? 0;
+    const pageCount = Math.ceil(total / limit) || 1;
+
+    const { dir, name, ext } = path.parse(outHtml);
+    const baseExt = ext || '.html';
+    const pageFiles: string[] = [];
+
+    for (let p = 0; p < pageCount; p++) {
+      const pageOffset = p * limit;
+      const pageAssets = await fetchPage(pageOffset, pageOffset + limit - 1);
+      const rows: AssetRow[] = pageAssets.map((asset: any) => ({
+        art_id: asset.art_id,
+        storage_path: asset.storage_path,
+        public_url: asset.public_url,
+        width: asset.width,
+        height: asset.height,
+        file_size: asset.file_size,
+      }));
+      const html = renderHtml(rows, { limit, offset: pageOffset, total, page: p, pageCount });
+      const filename = path.join(dir || '.', `${name || 'gallery'}-page-${p + 1}${baseExt}`);
+      await writeFile(filename, html, 'utf8');
+      pageFiles.push(filename);
+      console.log(`HTML page written: ${filename} (${rows.length} rows)`);
+    }
+
+    // Write a simple index file linking to all pages
+    const indexHtml = `<!doctype html>
+<html><head><meta charset="UTF-8"><title>Gallery Index</title></head>
+<body><h1>Gallery Pages</h1><ul>
+${pageFiles.map((f) => `<li><a href="${path.basename(f)}">${path.basename(f)}</a></li>`).join('\n')}
+</ul></body></html>`;
+    const indexFile = path.join(dir || '.', `${name || 'gallery'}-index${baseExt}`);
+    await writeFile(indexFile, indexHtml, 'utf8');
+    console.log(`Index written: ${indexFile} (${pageFiles.length} pages, total assets: ${total})`);
+    return;
+  }
+
+  // Single page mode
+  const assets = await fetchPage(offset, offset + limit - 1);
 
   if (!assets || assets.length === 0) {
     const emptyRows: AssetRow[] = [];
@@ -184,7 +273,7 @@ async function main() {
       await writeFile(outCsv, csv, 'utf8');
       console.log(`CSV written to ${outCsv} (0 rows)`);
     } else {
-      const html = renderHtml(emptyRows);
+      const html = renderHtml(emptyRows, { limit, offset, total: null });
       await writeFile(outHtml, html, 'utf8');
       console.log(`HTML gallery written to ${outHtml} (0 rows)`);
     }
@@ -210,7 +299,7 @@ async function main() {
     await writeFile(outCsv, csv, 'utf8');
     console.log(`CSV written to ${outCsv} (${filtered.length} rows)`);
   } else {
-    const html = renderHtml(filtered);
+    const html = renderHtml(filtered, { limit, offset, total: null });
     await writeFile(outHtml, html, 'utf8');
     console.log(`HTML gallery written to ${outHtml} (${filtered.length} rows)`);
   }
