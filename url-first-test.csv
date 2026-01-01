@@ -1,0 +1,11 @@
+url,status,filename,title,artist,tags,description,date,medium,dimensions,museum,scraped_at,error
+https://artsandculture.google.com/asset/the-lovers-marc-chagall/jQEveVgIzd6-Og,FAILED,2936.jpg,,,,,,,,,2026-01-01T14:11:41.907Z,URL extraction failed + Request failed with status code 429
+https://artsandculture.google.com/asset/a-spiritualistic-s%C3%A9ance-kunnas-v%C3%A4in%C3%B6/BAG6lhZPN6IXzQ,FAILED,10356.jpg,,,,,,,,,2026-01-01T14:11:54.865Z,URL extraction failed + Request failed with status code 429
+https://artsandculture.google.com/asset/edmund-rubbra-juliet-kathleen-pannett/eAG-31hnr2osVg,FAILED,7655.jpg,,,,,,,,,2026-01-01T14:12:08.049Z,URL extraction failed + Request failed with status code 429
+https://artsandculture.google.com/asset/portrait-of-an-unidentified-woman-unidentified-artist/KwEdf2NN18VLjA,FAILED,15849.jpg,,,,,,,,,2026-01-01T14:12:21.186Z,URL extraction failed + Request failed with status code 429
+https://artsandculture.google.com/asset/a-woman-with-a-dog-giacomo-ceruti/7QGozoQynvNhxQ,FAILED,14497.jpg,,,,,,,,,2026-01-01T14:12:34.078Z,URL extraction failed + Request failed with status code 429
+https://artsandculture.google.com/asset/visage-hatem-el-mekki/TgHEb_1iJn18eQ,FAILED,8472.jpg,,,,,,,,,2026-01-01T14:12:46.965Z,URL extraction failed + Request failed with status code 429
+https://artsandculture.google.com/asset/guests-iskander-valiullovich-rafikov/JAHmORLJBtrAtA,FAILED,2662.jpg,,,,,,,,,2026-01-01T14:12:59.796Z,URL extraction failed + Request failed with status code 429
+https://artsandculture.google.com/asset/cow-in-a-cabbage-field-rudolf-koller/tAGs1iVJ-Mohtw,FAILED,14877.jpg,,,,,,,,,2026-01-01T14:13:12.439Z,URL extraction failed + Request failed with status code 429
+https://artsandculture.google.com/asset/gioconda-revisited-felipe-san-pedro/ZQHFPxLG0xQ66A,FAILED,15000.jpg,,,,,,,,,2026-01-01T14:13:25.294Z,URL extraction failed + Request failed with status code 429
+https://artsandculture.google.com/asset/on-the-oise/MwEXIShy9zPksg,FAILED,10455.jpg,,,,,,,,,2026-01-01T14:13:38.206Z,URL extraction failed + Request failed with status code 429

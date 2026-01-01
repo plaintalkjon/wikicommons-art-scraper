@@ -1,0 +1,11 @@
+{
+  "last_stopped": "2025-12-30T12:01:00.161Z",
+  "artworks_processed": 664,
+  "total_artworks": 16311,
+  "progress_percentage": "4.07%",
+  "remaining_artworks": 15647,
+  "estimated_completion_days": "~3.3",
+  "resume_command": "npm run googlearts-import -- --csv downloads/GoogleImages.csv --images downloads/GoogleImages --resume",
+  "status": "STOPPED_DUE_TO_RATE_LIMIT",
+  "next_action": "Wait 24+ hours for rate limits to reset, then resume with --resume flag"
+}

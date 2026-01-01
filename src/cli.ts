@@ -5,7 +5,7 @@ import { parseArgs } from './utils';
 async function main() {
   const args = parseArgs();
   const artist = (args.artist as string) ?? 'Vincent van Gogh';
-  const source = (args.source as 'wikimedia' | 'nga') || 'wikimedia';
+  const source = (args.source as 'wikimedia' | 'smithsonian') || 'wikimedia';
   const limit = args.limit ? Number(args.limit) : undefined;
   const dryRun = Boolean(args['dry-run'] ?? args.dryRun);
   const maxUploads = args['max-uploads'] ? Number(args['max-uploads']) : undefined;

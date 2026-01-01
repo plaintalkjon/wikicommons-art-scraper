@@ -1,6 +1,8 @@
-## Outstanding tasks / reminders
+## Completed Tasks
 
-- Rerun large NGA artists without per-artist limit (remove `--limit` when batching) after the current batches complete; ensure media/exclude flags are set as desired (e.g., `--media all --exclude-drawings` or other filters).
+- **NGA Scraping Completed & Removed** - NGA collections focus on prints/drawings/photos rather than paintings/sculptures. All tested artists yielded 0 paintings. Code and data files removed.
+
+## Outstanding tasks / reminders
 
 
 

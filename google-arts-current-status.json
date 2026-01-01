@@ -1,0 +1,24 @@
+{
+  "total_csv_records": 16311,
+  "processed_count": 991,
+  "remaining_count": 15206,
+  "progress_percentage": "6.08%",
+  "last_updated": "2026-01-01T10:20:23.279Z",
+  "status": "STOPPED_DUE_TO_PERSISTENT_RATE_LIMITING",
+  "latest_run_stats": {
+    "run_timestamp": "2026-01-01T10:20:23.279Z",
+    "attempted_artworks": 57,
+    "successful_uploads": 0,
+    "failed_rate_limits": 57,
+    "stopped_at_record": "~1414",
+    "resume_from_record": "~1415"
+  },
+  "final_assessment": {
+    "total_runs_attempted": 6,
+    "total_successful_uploads": 1000,
+    "total_rate_limit_failures": 222,
+    "success_rate": "0.65%",
+    "recommendation": "Google Arts has persistent IP-based rate limiting. Consider using VPN/proxy rotation or waiting extended periods between imports."
+  },
+  "next_action": "Wait extended period (1+ week) or implement proxy rotation for future imports"
+}

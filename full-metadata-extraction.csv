@@ -1,0 +1,21 @@
+url,status,filename,title,artist,tags,description,date,medium,dimensions,museum,scraped_at,error
+https://artsandculture.google.com/asset/the-lovers-marc-chagall/jQEveVgIzd6-Og,SUCCESS,2936.jpg,The Lovers,Marc chagall,,,,,,,2026-01-01T14:22:17.593Z,
+https://artsandculture.google.com/asset/a-spiritualistic-s%C3%A9ance-kunnas-v%C3%A4in%C3%B6/BAG6lhZPN6IXzQ,FAILED,10356.jpg,,,,,,,,,2026-01-01T14:22:30.892Z,All extraction methods failed: Request failed with status code 429
+https://artsandculture.google.com/asset/edmund-rubbra-juliet-kathleen-pannett/eAG-31hnr2osVg,FAILED,7655.jpg,,,,,,,,,2026-01-01T14:22:44.339Z,All extraction methods failed: Request failed with status code 429
+https://artsandculture.google.com/asset/portrait-of-an-unidentified-woman-unidentified-artist/KwEdf2NN18VLjA,FAILED,15849.jpg,,,,,,,,,2026-01-01T14:22:58.698Z,All extraction methods failed: Request failed with status code 429
+https://artsandculture.google.com/asset/a-woman-with-a-dog-giacomo-ceruti/7QGozoQynvNhxQ,FAILED,14497.jpg,,,,,,,,,2026-01-01T14:23:13.446Z,All extraction methods failed: Request failed with status code 429
+https://artsandculture.google.com/asset/visage-hatem-el-mekki/TgHEb_1iJn18eQ,FAILED,8472.jpg,,,,,,,,,2026-01-01T14:23:26.753Z,All extraction methods failed: Request failed with status code 429
+https://artsandculture.google.com/asset/guests-iskander-valiullovich-rafikov/JAHmORLJBtrAtA,FAILED,2662.jpg,,,,,,,,,2026-01-01T14:23:41.768Z,All extraction methods failed: Request failed with status code 429
+https://artsandculture.google.com/asset/cow-in-a-cabbage-field-rudolf-koller/tAGs1iVJ-Mohtw,FAILED,14877.jpg,,,,,,,,,2026-01-01T14:23:55.864Z,All extraction methods failed: Request failed with status code 429
+https://artsandculture.google.com/asset/gioconda-revisited-felipe-san-pedro/ZQHFPxLG0xQ66A,FAILED,15000.jpg,,,,,,,,,2026-01-01T14:24:09.481Z,All extraction methods failed: Request failed with status code 429
+https://artsandculture.google.com/asset/on-the-oise/MwEXIShy9zPksg,FAILED,10455.jpg,,,,,,,,,2026-01-01T14:24:25.383Z,All extraction methods failed: Request failed with status code 429
+https://artsandculture.google.com/asset/portrait-of-a-lady/sAF6y4C3kkOT0A,FAILED,15381.jpg,,,,,,,,,2026-01-01T14:24:38.762Z,All extraction methods failed: Request failed with status code 429
+https://artsandculture.google.com/asset/mother-and-child-jamini-roy/_QFHH4EfSKw24A,FAILED,12098.jpg,,,,,,,,,2026-01-01T14:24:53.069Z,All extraction methods failed: Request failed with status code 429
+https://artsandculture.google.com/asset/the-judgement-of-tengu-manami-koike/xgHuvKZI8EsOaA,FAILED,1783.jpg,,,,,,,,,2026-01-01T14:25:11.809Z,All extraction methods failed: Request failed with status code 429
+https://artsandculture.google.com/asset/fountain-of-venus-fran%C3%A7ois-boucher-french-1703-1770/iQGQpusgSA5f4g,FAILED,12595.jpg,,,,,,,,,2026-01-01T14:25:36.537Z,All extraction methods failed: Client network socket disconnected before secure TLS connection was established
+https://artsandculture.google.com/asset/fire-aisha-cahn/qgF-rQlzXOJkBw,FAILED,7650.jpg,,,,,,,,,2026-01-01T14:25:52.147Z,All extraction methods failed: Request failed with status code 429
+https://artsandculture.google.com/asset/falkland-palace-and-the-howe-of-fife-alexander-keirincx/VAH8DCKrvlUHJA,FAILED,7538.jpg,,,,,,,,,2026-01-01T14:26:06.146Z,All extraction methods failed: Request failed with status code 429
+https://artsandculture.google.com/asset/alexander-hamilton-john-trumbull/YwG4HdRB_hMBIA,FAILED,13784.jpg,,,,,,,,,2026-01-01T14:26:24.318Z,All extraction methods failed: Request failed with status code 429
+https://artsandculture.google.com/asset/untitled-nighttime-street-scene-reinhold-rossig/YAFa_jN4a_udjw,FAILED,3705.jpg,,,,,,,,,2026-01-01T14:26:38.883Z,All extraction methods failed: Request failed with status code 429
+https://artsandculture.google.com/asset/patria-mea-juliette-mahieux-bartoli/eAGVTfkwdLdgJQ,FAILED,5423.jpg,,,,,,,,,2026-01-01T14:26:53.415Z,All extraction methods failed: Request failed with status code 429
+https://artsandculture.google.com/asset/the-greek-lovers-henry-peters-gray/BgFJZTv15m27RA,FAILED,13860.jpg,,,,,,,,,2026-01-01T14:27:08.842Z,All extraction methods failed: Request failed with status code 429

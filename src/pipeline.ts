@@ -9,7 +9,7 @@ import { normalizeTitle, cleanTitle, buildStoragePath, normalizeWikidataTags } f
 
 export interface FetchOptions {
   artist: string;
-  source?: 'wikimedia' | 'nga';
+  source?: 'wikimedia' | 'smithsonian';
   limit?: number;
   dryRun?: boolean;
   maxUploads?: number;
@@ -49,11 +49,11 @@ async function processInParallel<T>(
 export async function fetchAndStoreArtworks(options: FetchOptions): Promise<FetchResult> {
   const source = options.source || 'wikimedia';
   console.log(`Fetching artworks for: ${options.artist} from ${source}...`);
-  
-  if (source === 'nga') {
-    return await fetchAndStoreFromNGA(options);
+
+  if (source === 'smithsonian') {
+    return await fetchAndStoreFromSmithsonian(options);
   }
-  
+
   return await fetchAndStoreFromWikimedia(options);
 }
 
@@ -352,20 +352,21 @@ async function fetchAndStoreFromWikimedia(options: FetchOptions): Promise<FetchR
   return { attempted, uploaded, skipped, errors };
 }
 
-async function fetchAndStoreFromNGA(options: FetchOptions): Promise<FetchResult> {
-  const limit = options.limit ?? 10000;
+async function fetchAndStoreFromSmithsonian(options: FetchOptions): Promise<FetchResult> {
+  const limit = options.limit ?? 1000;
   const CONCURRENCY = 2;
   const maxUploads = options.maxUploads;
   const allowedMedia = (options.media?.length ? options.media : ['painting', 'sculpture']).map((m) => m.toLowerCase());
   const excludeDrawings = options.excludeDrawings !== undefined ? options.excludeDrawings : true;
-  const matchesMediaFilter = (classification?: string | null, medium?: string | null): boolean => {
+
+  const matchesMediaFilter = (classification?: string, medium?: string): boolean => {
     if (allowedMedia.includes('all')) return true;
     const cls = (classification ?? '').toLowerCase();
     const med = (medium ?? '').toLowerCase();
     return allowedMedia.some((token) => cls.includes(token) || med.includes(token));
   };
 
-  const isDrawingLike = (classification?: string | null, medium?: string | null): boolean => {
+  const isDrawingLike = (classification?: string, medium?: string): boolean => {
     const cls = (classification ?? '').toLowerCase();
     const med = (medium ?? '').toLowerCase();
     const drawingTokens = [
@@ -383,296 +384,201 @@ async function fetchAndStoreFromNGA(options: FetchOptions): Promise<FetchResult>
     ];
     return drawingTokens.some((t) => cls.includes(t) || med.includes(t));
   };
-  
-  // Step 1: Find artist in NGA
+
+  // Step 1: Find artist in Smithsonian
   console.log(`\n${'='.repeat(60)}`);
-  console.log(`Step 1: Finding artist in NGA`);
+  console.log(`Step 1: Finding artworks by "${options.artist}" in Smithsonian`);
   console.log(`${'='.repeat(60)}`);
-  console.log(`→ Searching for artist: "${options.artist}"...`);
-  
-  let constituentId: string | null = null;
-  let artworks: Array<{ object: any; image: any }> = [];
-  
+
+  let artworks: Array<any> = [];
+
   try {
-    const { findNGAArtist, findArtworksByConstituent } = await import('./nga');
+    const { searchSmithsonianArtworks } = await import('./smithsonian');
     const startTime = Date.now();
-    const artist = await findNGAArtist(options.artist);
+    artworks = await searchSmithsonianArtworks(options.artist, limit);
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
-    
-    if (artist) {
-      constituentId = artist.constituentid;
-      console.log(`✓ Found artist: ${artist.name} (ID: ${constituentId}, took ${elapsed}s)`);
-      if (artist.wikidataid) {
-        console.log(`  Wikidata ID: ${artist.wikidataid}`);
-      }
-      
-      console.log(`\n${'='.repeat(60)}`);
-      console.log(`Step 2: Querying artworks by ${artist.name}`);
-      console.log(`${'='.repeat(60)}`);
-      console.log(`→ Querying NGA for artworks by constituent ${constituentId}...`);
-      
-      const queryStartTime = Date.now();
-      artworks = await findArtworksByConstituent(constituentId);
-      const queryElapsed = ((Date.now() - queryStartTime) / 1000).toFixed(1);
-      
-      console.log(`✓ Query complete (took ${queryElapsed}s)`);
-      console.log(`✓ Found ${artworks.length} artworks`);
-      
-      if (artworks.length === 0) {
-        console.log(`⚠ No artworks found for ${options.artist} in NGA collection`);
-        return { attempted: 0, uploaded: 0, skipped: 0, errors: [] };
-      }
-    } else {
-      console.log(`⚠ Could not find artist "${options.artist}" in NGA (took ${elapsed}s)`);
+
+    console.log(`✓ Search complete (took ${elapsed}s)`);
+    console.log(`✓ Found ${artworks.length} artworks`);
+
+    if (artworks.length === 0) {
+      console.log(`⚠ No artworks found for ${options.artist} in Smithsonian collection`);
       return { attempted: 0, uploaded: 0, skipped: 0, errors: [] };
     }
   } catch (err) {
     const errorMessage = (err as Error).message;
-    console.error(`\n✗ Error during artist lookup or artwork query:`);
+    console.error(`\n✗ Error during Smithsonian search:`);
     console.error(`  Error: ${errorMessage}`);
     return { attempted: 0, uploaded: 0, skipped: 0, errors: [] };
   }
-  
+
   console.log(`\n${'='.repeat(60)}`);
-  console.log(`Step 3: Processing ${artworks.length} artworks from NGA`);
+  console.log(`Step 2: Processing ${artworks.length} artworks from Smithsonian`);
   console.log(`${'='.repeat(60)}`);
-  
+
   const artistId = await ensureArtist(options.artist);
   const errors: Array<{ title: string; message: string }> = [];
   let uploaded = 0;
   let skipped = 0;
   let attempted = 0;
-  
+
   const logStats = () => {
     console.log(`\n📊 Progress: Attempted=${attempted} | Uploaded=${uploaded} | Skipped=${skipped} | Errors=${errors.length}\n`);
   };
-  
-  const processArtwork = async (artwork: { object: any; image: any }) => {
+
+  const processArtwork = async (artwork: any) => {
     if (maxUploads && uploaded >= maxUploads) {
       skipped++;
       return;
     }
-    
+
     attempted++;
-    const title = artwork.object.title || `Untitled (Object ID: ${artwork.object.objectid})`;
-    console.log(`[${attempted}/${artworks.length}] Processing: ${title} (Object ID: ${artwork.object.objectid})`);
-    
+    const title = artwork.title;
+    console.log(`[${attempted}/${artworks.length}] Processing: ${title} (Object ID: ${artwork.objectId})`);
+
     try {
       // Media filter (classification/medium). Default allows painting & sculpture; override with --media option.
-      if (!matchesMediaFilter(artwork.object.classification, artwork.object.medium)) {
+      if (!matchesMediaFilter(artwork.classification, artwork.medium)) {
         console.log(
-          `  ⚠ Skipping due to media filter (classification="${artwork.object.classification || ''}", medium="${artwork.object.medium || ''}")`,
+          `  ⚠ Skipping due to media filter (classification="${artwork.classification || ''}", medium="${artwork.medium || ''}")`,
         );
         skipped++;
         return;
       }
-      if (excludeDrawings && isDrawingLike(artwork.object.classification, artwork.object.medium)) {
+      if (excludeDrawings && isDrawingLike(artwork.classification, artwork.medium)) {
         console.log(
-          `  ⚠ Skipping drawing-like work (classification="${artwork.object.classification || ''}", medium="${artwork.object.medium || ''}")`,
+          `  ⚠ Skipping drawing-like work (classification="${artwork.classification || ''}", medium="${artwork.medium || ''}")`,
         );
         skipped++;
         return;
       }
-      
-      // Resolve image via published_images first, then fallback to IIIF manifest
-      const { getNGABestImageUrl, getNGADimensions, fetchIIIFImageForObject } = await import('./nga');
-      
-      let imageUrl: string | null = null;
-      let width = 0;
-      let height = 0;
-      
-      if (artwork.image) {
-        imageUrl = getNGABestImageUrl(artwork.image);
-        const dimensions = getNGADimensions(artwork.image);
-        width = dimensions?.width || 0;
-        height = dimensions?.height || 0;
+
+      // Check if artwork already exists in database (caching)
+      // First check by Wikidata QID (most reliable), then by title
+      let existingArtId: string | null = null;
+
+      // Check by title/artist combination (Smithsonian doesn't have Wikidata IDs)
+      const normalizedTitle = cleanTitle(normalizeTitle(title), options.artist);
+      const existingArt = await supabase
+        .from('arts')
+        .select('id')
+        .eq('artist_id', artistId)
+        .eq('title', normalizedTitle)
+        .limit(1)
+        .maybeSingle();
+
+      if (existingArt.data?.id) {
+        console.log(`  ✓ Artwork already exists in database (matched by title), skipping`);
+        skipped++;
+        logStats();
+        return;
       }
-      
-      // Fallback: try IIIF manifest when no published_images entry or URL
+
+      // Get image URL and dimensions
+      const { getSmithsonianBestImageUrl, getSmithsonianDimensions } = await import('./smithsonian');
+
+      const imageUrl = getSmithsonianBestImageUrl(artwork);
+      const dimensions = getSmithsonianDimensions(artwork);
+      let width = dimensions?.width || 0;
+      let height = dimensions?.height || 0;
+
+      // No image found
       if (!imageUrl) {
-        const iiif = await fetchIIIFImageForObject(artwork.object.objectid);
-        if (iiif) {
-          imageUrl = iiif.url;
-          width = iiif.width || width;
-          height = iiif.height || height;
-        }
-      }
-      
-      // No image found after both methods
-      if (!imageUrl) {
-        console.log(`  ⚠ No image available (published_images and IIIF manifest), skipping`);
+        console.log(`  ⚠ No image available, skipping`);
         skipped++;
         await saveFailure({
           artist: options.artist,
           title,
           imageUrl: '',
-          error: 'No image available in NGA published_images or IIIF manifest',
+          error: 'No image available from Smithsonian',
           timestamp: new Date().toISOString(),
           retryCount: 0,
         });
         logStats();
         return;
       }
-      
-      // Check size requirements (same as Wikimedia):
-      // 1. At least one dimension (width OR height) must be >= 1800px
-      // 2. At least one dimension (width OR height) must be >= 1280px
-      const MIN_ORIGINAL_WIDTH = 1800;
-      const MIN_VARIANT_WIDTH = 1280;
-      
-      if (width > 0 && height > 0) {
-        // Check 1800px requirement (at least width OR height >= 1800)
-        if (width < MIN_ORIGINAL_WIDTH && height < MIN_ORIGINAL_WIDTH) {
-          console.log(`  ⚠ Image too small (${width}x${height}), skipping - requires at least 1800px in width or height`);
-          skipped++;
-          await saveFailure({
-            artist: options.artist,
-            title,
-            imageUrl,
-            error: `Image too small: ${width}x${height} (requires at least 1800px in width or height)`,
-            timestamp: new Date().toISOString(),
-            retryCount: 0,
-          });
-          logStats();
-          return;
-        }
-        
-        // Check 1280px requirement (at least width OR height >= 1280)
-        if (width < MIN_VARIANT_WIDTH && height < MIN_VARIANT_WIDTH) {
-          console.log(`  ⚠ Image too small (${width}x${height}), skipping - requires at least 1280px in width or height`);
-          skipped++;
-          await saveFailure({
-            artist: options.artist,
-            title,
-            imageUrl,
-            error: `Image too small: ${width}x${height} (requires at least 1280px in width or height)`,
-            timestamp: new Date().toISOString(),
-            retryCount: 0,
-          });
-          logStats();
-          return;
-        }
-      } else {
-        // If dimensions are missing, we'll still try to download and check actual dimensions
-        // (downloader will extract dimensions from image buffer)
-        console.log(`  ⚠ Dimensions not available in CSV, will check after download`);
-      }
-      
+
       console.log(`  ✓ Image URL: ${imageUrl}`);
       if (width > 0 && height > 0) {
         console.log(`  ✓ Dimensions: ${width}x${height}`);
       }
-      
+
       if (options.dryRun) {
         console.log(`  [DRY RUN] Would upload: ${title}`);
         skipped++;
         return;
       }
-      
-      // Check if artwork already exists
-      const { findArtByNGADbjectId } = await import('./db');
-      const existingArtId = await findArtByNGADbjectId(artwork.object.objectid, artistId);
-      if (existingArtId) {
-        console.log(`  ✓ Artwork already exists in database (matched by NGA Object ID), skipping`);
-        skipped++;
-        logStats();
-        return;
-      }
-      
+
       // Download image
       console.log(`  → Downloading image...`);
-      const { downloadImage } = await import('./downloader');
-      
-      // Create ImageVariant from NGA image
-      const variant: ImageVariant = {
+      const downloaded = await downloadImage({
         url: imageUrl,
         width: width || 0,
         height: height || 0,
-        mime: 'image/jpeg', // NGA images are typically JPEG
-      };
-      
-      const downloaded = await downloadImage(variant);
+        mime: 'image/jpeg', // Smithsonian images are typically JPEG
+      });
       console.log(`  ✓ Downloaded: ${downloaded.width}x${downloaded.height}, ${(downloaded.fileSize / 1024 / 1024).toFixed(2)}MB`);
-      
+
       // Build storage path
-      const { buildStoragePath } = await import('./artUtils');
       const storagePath = buildStoragePath(options.artist, {
         title: title,
-        pageid: parseInt(artwork.object.objectid, 10),
+        pageid: artwork.objectId,
       } as any, downloaded.ext);
-      
+
       console.log(`  → Uploading to storage: ${storagePath}`);
-      const { uploadToStorage } = await import('./db');
       const upload = await uploadToStorage(storagePath, downloaded);
       console.log(`  ✓ Uploaded to storage`);
-      
+
       // Create art record
       console.log(`  → Creating art record...`);
-      const { upsertArt } = await import('./db');
-      const { normalizeTitle, cleanTitle } = await import('./artUtils');
       const artId = await upsertArt({
         title: cleanTitle(normalizeTitle(title), options.artist),
-        description: artwork.object.attribution || artwork.object.creditline || null,
+        description: artwork.medium || artwork.classification || null,
         imageUrl: upload.publicUrl,
         artistId,
       });
       console.log(`  ✓ Art record created: ${artId}`);
-      
-      // Add tags from various NGA fields
+
+      // Add tags from various Smithsonian fields
       const tags: string[] = [];
-      
-      // Classification, culture, period (existing tags)
-      if (artwork.object.classification) tags.push(artwork.object.classification);
-      if (artwork.object.culture) tags.push(artwork.object.culture);
-      if (artwork.object.period) tags.push(artwork.object.period);
-      
-      // Medium (e.g., "oil on canvas", "watercolor")
-      if (artwork.object.medium) tags.push(artwork.object.medium);
-      
-      // Dynasty (for historical works)
-      if (artwork.object.dynasty) tags.push(artwork.object.dynasty);
-      
-      // Series (if part of a series)
-      if (artwork.object.series) tags.push(artwork.object.series);
-      
-      // Extract year from dated or displaydate for time-based filtering
+
+      // Classification and medium
+      if (artwork.classification) tags.push(artwork.classification);
+      if (artwork.medium) tags.push(artwork.medium);
+
+      // Extract year from date
       const extractYear = (dateStr: string | undefined): string | null => {
         if (!dateStr) return null;
-        // Try to extract 4-digit year from various formats:
-        // "1889", "c. 1889", "1889-1890", "1889/1890", etc.
         const yearMatch = dateStr.match(/\b(1[0-9]{3}|2[0-9]{3})\b/);
         return yearMatch ? yearMatch[1] : null;
       };
-      
-      const year = extractYear(artwork.object.dated) || extractYear(artwork.object.displaydate);
+
+      const year = extractYear(artwork.date);
       if (year) {
         tags.push(year);
       }
-      
+
       if (tags.length > 0) {
         console.log(`  → Linking tags: ${tags.join(', ')}...`);
-        const { upsertTags, linkArtTags } = await import('./db');
         const tagIds = await upsertTags(tags).then((rows) => rows.map((r) => r.id));
         await linkArtTags(artId, tagIds);
         console.log(`  ✓ Linked ${tagIds.length} tags`);
       }
-      
+
       // Upsert source
       console.log(`  → Adding source information...`);
-      const { upsertArtSource } = await import('./db');
       await upsertArtSource({
         artId,
-        source: 'nga',
-        sourcePageId: parseInt(artwork.object.objectid, 10),
+        source: 'smithsonian',
+        sourcePageId: null, // Smithsonian IDs are complex strings, not integers
         sourceTitle: title,
-        sourceUrl: `https://www.nga.gov/collection/art-object-page.${artwork.object.objectid}.html`,
-        wikidataQID: undefined, // NGA doesn't always have Wikidata QIDs
+        sourceUrl: artwork.sourceUrl,
+        wikidataQID: undefined,
       });
       console.log(`  ✓ Source added`);
-      
+
       // Insert asset
       console.log(`  → Creating asset record...`);
-      const { insertArtAsset } = await import('./db');
       await insertArtAsset({
         artId,
         storagePath: upload.path,
@@ -684,20 +590,19 @@ async function fetchAndStoreFromNGA(options: FetchOptions): Promise<FetchResult>
         sha256: downloaded.sha256,
       });
       console.log(`  ✓ Asset record created`);
-      
+
       uploaded++;
       console.log(`  ✓✓✓ Successfully uploaded: ${title}`);
       logStats();
-      
+
     } catch (err) {
       const errorMessage = (err as Error).message;
       console.log(`  ✗✗✗ Failed: ${errorMessage}`);
-      const { getNGABestImageUrl } = await import('./nga');
-      errors.push({ title: artwork.object.title || `Object ${artwork.object.objectid}`, message: errorMessage });
+      errors.push({ title: artwork.title, message: errorMessage });
       await saveFailure({
         artist: options.artist,
-        title: artwork.object.title || `Object ${artwork.object.objectid}`,
-        imageUrl: artwork.image ? (getNGABestImageUrl(artwork.image) || '') : '',
+        title: artwork.title,
+        imageUrl: artwork.imageUrl || '',
         error: errorMessage,
         timestamp: new Date().toISOString(),
         retryCount: 0,
@@ -705,10 +610,10 @@ async function fetchAndStoreFromNGA(options: FetchOptions): Promise<FetchResult>
       logStats();
     }
   };
-  
+
   console.log(`\nStarting to process ${artworks.length} artworks with concurrency=${CONCURRENCY}...\n`);
   await processInParallel(artworks, processArtwork, CONCURRENCY);
-  
+
   console.log(`\n${'='.repeat(60)}`);
   console.log(`Processing complete for ${options.artist}`);
   console.log(`  Attempted: ${attempted}`);
@@ -719,7 +624,7 @@ async function fetchAndStoreFromNGA(options: FetchOptions): Promise<FetchResult>
     console.log(`\nErrors saved to: .failures/${options.artist.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')}.json`);
   }
   console.log(`${'='.repeat(60)}\n`);
-  
+
   return { attempted, uploaded, skipped, errors };
 }
 

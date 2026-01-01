@@ -5,6 +5,7 @@ import { ensureArtist } from './db';
 import { downloadImage } from './downloader';
 import { parseArgs } from './utils';
 import { retrySingleFailure } from './retryUtils';
+import { BlockedImagesLogger } from './blockedImagesLogger';
 
 async function retryFailures(artist: string, limit?: number): Promise<void> {
   const failures = await loadFailures(artist);
@@ -22,20 +23,23 @@ async function retryFailures(artist: string, limit?: number): Promise<void> {
   let failed = 0;
   
   for (const failure of failuresToRetry) {
+    let image: any = null;
+    let variant: any = null;
+
     try {
       console.log(`Retrying: ${failure.title}`);
-      
+
       // Fetch image info
-      const image = await fetchImageInfoByTitle(failure.title);
+      image = await fetchImageInfoByTitle(failure.title);
       if (!image) {
         console.log(`  ⚠ Could not fetch image info, removing from error list`);
         await removeFailure(artist, failure.title);
         failed++;
         continue;
       }
-      
+
       // Pick best variant
-      const variant = pickBestVariant(image);
+      variant = pickBestVariant(image);
       if (!variant) {
         console.log(`  ⚠ No suitable variant found (quality requirements not met), removing from error list`);
         await removeFailure(artist, failure.title);
@@ -61,8 +65,33 @@ async function retryFailures(artist: string, limit?: number): Promise<void> {
       }
       
     } catch (err) {
-      console.log(`  ✗ Failed: ${(err as Error).message}`);
+      const errorMessage = (err as Error).message;
+      console.log(`  ✗ Failed: ${errorMessage}`);
       failed++;
+
+      // Log blocked images for pattern analysis
+      if (errorMessage.includes('429') && errorMessage.includes('rate limited')) {
+        try {
+          const logger = BlockedImagesLogger.getInstance();
+          logger.logBlockedImage({
+            timestamp: new Date().toISOString(),
+            artist: artist,
+            title: failure.title,
+            url: variant.url,
+            width: variant.width,
+            height: variant.height,
+            mimeType: variant.mime,
+            museum: image?.museum,
+            sourceItem: image?.sourceItem,
+            error: errorMessage,
+            retryCount: 4, // max retries
+            userAgent: 'wikicommons-art-scraper/1.0'
+          });
+        } catch (logErr) {
+          console.warn('Failed to log blocked image:', logErr);
+        }
+      }
+
       // Don't remove from failures list, will retry again later
     }
 

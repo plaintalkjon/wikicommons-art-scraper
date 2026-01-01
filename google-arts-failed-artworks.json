@@ -1,0 +1,1730 @@
+{
+  "summary": {
+    "total_failed": 222,
+    "rate_limit_errors": 222,
+    "other_errors": 0,
+    "generated_at": "2026-01-01T10:20:16.791Z",
+    "source": "final_resume_attempt_analysis"
+  },
+  "failed_artworks": [
+    {
+      "filename": "546.jpg",
+      "url": "https://artsandculture.google.com/asset/cassetta-frame/AAEpIcdvBwUF_A",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.273Z",
+      "csv_index": 1871
+    },
+    {
+      "filename": "2492.jpg",
+      "url": "https://artsandculture.google.com/asset/pont-neuf-paris/WAFRh_vU9ZvTPg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.275Z",
+      "csv_index": 1872
+    },
+    {
+      "filename": "3420.jpg",
+      "url": "https://artsandculture.google.com/asset/sketch-for-turandot-by-g-puccini-act-ii%C2%B0-part-ii%C2%B0-galileo-chini-1873-1956/egH72DBj3xUW2A",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.275Z",
+      "csv_index": 1873
+    },
+    {
+      "filename": "11755.jpg",
+      "url": "https://artsandculture.google.com/asset/a-river-landscape-with-storks-charles-fran%C3%A7ois-daubigny/hgHxCZ-yOOv0iw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.275Z",
+      "csv_index": 1874
+    },
+    {
+      "filename": "1169.jpg",
+      "url": "https://artsandculture.google.com/asset/free-and-leisure-10-yue-minjun/agHe2bazFRwvIA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.276Z",
+      "csv_index": 1875
+    },
+    {
+      "filename": "7585.jpg",
+      "url": "https://artsandculture.google.com/asset/grapes-and-persian-bowl/7QGQ6P1744idRA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.276Z",
+      "csv_index": 1876
+    },
+    {
+      "filename": "15881.jpg",
+      "url": "https://artsandculture.google.com/asset/the-fort-of-bidjegur-william-hodges-1744%E2%80%931797-british/RAF9E6XKDkFBfw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.276Z",
+      "csv_index": 1877
+    },
+    {
+      "filename": "14338.jpg",
+      "url": "https://artsandculture.google.com/asset/the-caudle-makers-steen-jan/eAH5KnM-9KupYA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.276Z",
+      "csv_index": 1878
+    },
+    {
+      "filename": "2012.jpg",
+      "url": "https://artsandculture.google.com/asset/ba%C3%B1istas/RwHaKXAiW3YigA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.276Z",
+      "csv_index": 1879
+    },
+    {
+      "filename": "5738.jpg",
+      "url": "https://artsandculture.google.com/asset/mary-of-guise-corneille-de-lyon/fwG2lIrXjB0p6g",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.276Z",
+      "csv_index": 1880
+    },
+    {
+      "filename": "16127.jpg",
+      "url": "https://artsandculture.google.com/asset/thomas-stothard/9wHd9PWSC_hFOQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.276Z",
+      "csv_index": 1881
+    },
+    {
+      "filename": "4518.jpg",
+      "url": "https://artsandculture.google.com/asset/henri-christophe-roi-dhaiti-antoine-obin/WAF4nBc9lTYzRg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.276Z",
+      "csv_index": 1882
+    },
+    {
+      "filename": "8830.jpg",
+      "url": "https://artsandculture.google.com/asset/harlet-and-the-lotus-dream-rekha-rodwittiya/RwEZ3AaJS9MCmA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.276Z",
+      "csv_index": 1883
+    },
+    {
+      "filename": "16070.jpg",
+      "url": "https://artsandculture.google.com/asset/portrait-of-a-black-sailor-paul-cuffe-unknown/LAG-NxqaSO3hpg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.276Z",
+      "csv_index": 1884
+    },
+    {
+      "filename": "6947.jpg",
+      "url": "https://artsandculture.google.com/asset/fantasy-paulino-lorenzo/swFEYpgUqcHaeg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.276Z",
+      "csv_index": 1885
+    },
+    {
+      "filename": "10918.jpg",
+      "url": "https://artsandculture.google.com/asset/the-tribute-money-bernardo-strozzi/xAEVa2LdrYZmKA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.276Z",
+      "csv_index": 1886
+    },
+    {
+      "filename": "5650.jpg",
+      "url": "https://artsandculture.google.com/asset/arreau-hautes-pyr%C3%A9n%C3%A9es-lo%C3%AFs-mailou-jones/owFGnqzxe9J9ow",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.276Z",
+      "csv_index": 1887
+    },
+    {
+      "filename": "8008.jpg",
+      "url": "https://artsandculture.google.com/asset/the-city-lit-ant%C3%94nio-bandeira/WAGvMA2meaHNVg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.276Z",
+      "csv_index": 1888
+    },
+    {
+      "filename": "13325.jpg",
+      "url": "https://artsandculture.google.com/asset/christ-on-the-sea-of-galilee/kwFLaEDm6iSuZw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.276Z",
+      "csv_index": 1889
+    },
+    {
+      "filename": "14940.jpg",
+      "url": "https://artsandculture.google.com/asset/landscape-with-the-temptation-of-saint-anthony-roelandt-savery/cQHJVJKrWRAKZQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.276Z",
+      "csv_index": 1890
+    },
+    {
+      "filename": "12304.jpg",
+      "url": "https://artsandculture.google.com/asset/nave-nave-mahana-paul-gauguin/4AGxSv-CLvg8xw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.276Z",
+      "csv_index": 1891
+    },
+    {
+      "filename": "12661.jpg",
+      "url": "https://artsandculture.google.com/asset/nude-lembesis-polychronis/_AFG8XjP_-Q_hg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.276Z",
+      "csv_index": 1892
+    },
+    {
+      "filename": "1395.jpg",
+      "url": "https://artsandculture.google.com/asset/rotterdam-ferry-boat/cgEnCY8swwqz_g",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.276Z",
+      "csv_index": 1893
+    },
+    {
+      "filename": "7731.jpg",
+      "url": "https://artsandculture.google.com/asset/palace-arch-%C3%81ngeles-garc%C3%ADa-quismondo/bgEELQPcLn27zA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.276Z",
+      "csv_index": 1894
+    },
+    {
+      "filename": "1603.jpg",
+      "url": "https://artsandculture.google.com/asset/a-monk-looking-in-a-mirror-carl-bloch/cQGFWbATPVayug",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.277Z",
+      "csv_index": 1895
+    },
+    {
+      "filename": "7880.jpg",
+      "url": "https://artsandculture.google.com/asset/my-window-sopetr%C3%A1n-dom%C3%A8nech/4gH7e48Dtr99Dg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.277Z",
+      "csv_index": 1896
+    },
+    {
+      "filename": "12347.jpg",
+      "url": "https://artsandculture.google.com/asset/portrait-of-a-woman-said-to-be-madame-charles-simon-favart-marie-justine-beno%C3%AEte-duronceray-1727%E2%80%931772-fran%C3%A7ois-hubert-drouais/CQHbFAM17KC-lA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.277Z",
+      "csv_index": 1897
+    },
+    {
+      "filename": "2820.jpg",
+      "url": "https://artsandculture.google.com/asset/mounted-war-party-scouring-a-thicket-george-catlin-born-wilkes-barre-pa-1796-died-jersey-city-nj-1872/EAHJl2tGkQ23nQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.277Z",
+      "csv_index": 1898
+    },
+    {
+      "filename": "9327.jpg",
+      "url": "https://artsandculture.google.com/asset/the-queens-of-persia-at-the-feet-of-alexander-also-called-the-tent-of-darius-charles-le-brun/twFcZPh_L8nOIA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.277Z",
+      "csv_index": 1899
+    },
+    {
+      "filename": "11229.jpg",
+      "url": "https://artsandculture.google.com/asset/sow-with-piglets-antonino-leto/-wGMRpqL5XtgQA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.277Z",
+      "csv_index": 1900
+    },
+    {
+      "filename": "1093.jpg",
+      "url": "https://artsandculture.google.com/asset/untitled-rudolf-stingel/IwFXaYpdiQCFUw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.277Z",
+      "csv_index": 1901
+    },
+    {
+      "filename": "4293.jpg",
+      "url": "https://artsandculture.google.com/asset/pedernal-georgia-o-keeffe/ZQFZYRmomxV-iw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.277Z",
+      "csv_index": 1902
+    },
+    {
+      "filename": "14541.jpg",
+      "url": "https://artsandculture.google.com/asset/cottage-children-the-wood-gatherers-thomas-gainsborough/qAFuS0fuklqS3g",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.277Z",
+      "csv_index": 1903
+    },
+    {
+      "filename": "5527.jpg",
+      "url": "https://artsandculture.google.com/asset/grasshopper-pro-hart/igFbAGGHPM7Mbg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.277Z",
+      "csv_index": 1904
+    },
+    {
+      "filename": "2677.jpg",
+      "url": "https://artsandculture.google.com/asset/rainbow-colored-fantasy-somphong-adulyasarapan/dAHEFhB-bWgcxw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.277Z",
+      "csv_index": 1905
+    },
+    {
+      "filename": "4399.jpg",
+      "url": "https://artsandculture.google.com/asset/four-wooden-sculptures-vier-holzplastiken-recto-ice-skater-schlittschuhl%C3%A4ufer-verso/ygEhTg7TVBXWcg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.277Z",
+      "csv_index": 1906
+    },
+    {
+      "filename": "7175.jpg",
+      "url": "https://artsandculture.google.com/asset/nude-woman-sava-%C5%A0umanovi%C4%87/SQFGXEmvmI_X6Q",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.277Z",
+      "csv_index": 1907
+    },
+    {
+      "filename": "11709.jpg",
+      "url": "https://artsandculture.google.com/asset/portrait-of-c-f-keary-rupert-bunny/AwHqalImUPa7IA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.277Z",
+      "csv_index": 1908
+    },
+    {
+      "filename": "14237.jpg",
+      "url": "https://artsandculture.google.com/asset/the-blue-mantilla-alexej-von-jawlensky/rgGQ79hqlWOOnA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.277Z",
+      "csv_index": 1909
+    },
+    {
+      "filename": "5555.jpg",
+      "url": "https://artsandculture.google.com/asset/sidescape-070317-hong-soun-and-%ED%99%8D%EC%88%9C%EB%AA%85/7gE5ybqKwSaheg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.277Z",
+      "csv_index": 1910
+    },
+    {
+      "filename": "12999.jpg",
+      "url": "https://artsandculture.google.com/asset/allegory-of-justice-giorgio-vasari/RQFFF1t3q01n0g",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.277Z",
+      "csv_index": 1911
+    },
+    {
+      "filename": "6866.jpg",
+      "url": "https://artsandculture.google.com/asset/boats-chetan/dgFbQ1YjdbIFuw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.278Z",
+      "csv_index": 1912
+    },
+    {
+      "filename": "15112.jpg",
+      "url": "https://artsandculture.google.com/asset/st-sebastian-tended-by-the-pious-women-bartolomeo-schedoni/RgEyjOtyVi7UGA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.278Z",
+      "csv_index": 1913
+    },
+    {
+      "filename": "7277.jpg",
+      "url": "https://artsandculture.google.com/asset/sir-thomas-winne-unknown-artist-seventeenth-century/swEngHsThojzcg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.278Z",
+      "csv_index": 1914
+    },
+    {
+      "filename": "4950.jpg",
+      "url": "https://artsandculture.google.com/asset/marine-adrien-manglard/4AEGxIipVhhs6g",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.278Z",
+      "csv_index": 1915
+    },
+    {
+      "filename": "11241.jpg",
+      "url": "https://artsandculture.google.com/asset/pleasure-garden-with-a-maze-lodewijk-toeput/dgEb2PyY1bWa1g",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.278Z",
+      "csv_index": 1916
+    },
+    {
+      "filename": "6821.jpg",
+      "url": "https://artsandculture.google.com/asset/greenfield-ron-donoughe/9gHnE61O-WVCBw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.278Z",
+      "csv_index": 1917
+    },
+    {
+      "filename": "11735.jpg",
+      "url": "https://artsandculture.google.com/asset/the-adoration-of-the-kings-jacopo-bassano/mwEl0egxAGOaKQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.278Z",
+      "csv_index": 1918
+    },
+    {
+      "filename": "12642.jpg",
+      "url": "https://artsandculture.google.com/asset/asteri%C3%A9/wAH5UDOlH8V9zw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.278Z",
+      "csv_index": 1919
+    },
+    {
+      "filename": "2276.jpg",
+      "url": "https://artsandculture.google.com/asset/woman-with-white-blouse-ludwig-meidner-1884-1966/xQEdsS_9mBRn1g",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.278Z",
+      "csv_index": 1920
+    },
+    {
+      "filename": "8482.jpg",
+      "url": "https://artsandculture.google.com/asset/celloplane-1-aisha-cahn/SwH2kMA0NHp-jw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.278Z",
+      "csv_index": 1921
+    },
+    {
+      "filename": "6002.jpg",
+      "url": "https://artsandculture.google.com/asset/women-washing-and-bathing-hendra-gunawan/EgFnEa4IQwxX5g",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.278Z",
+      "csv_index": 1922
+    },
+    {
+      "filename": "14531.jpg",
+      "url": "https://artsandculture.google.com/asset/the-angel-raphael-takes-leave-of-old-tobit-and-his-son-tobias-pieter-lastman/2gEFI7MTfftu5g",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.278Z",
+      "csv_index": 1923
+    },
+    {
+      "filename": "6583.jpg",
+      "url": "https://artsandculture.google.com/asset/karakallou-monastery/mgEP7RBMwo9wGw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.278Z",
+      "csv_index": 1924
+    },
+    {
+      "filename": "1702.jpg",
+      "url": "https://artsandculture.google.com/asset/sensation-of-flight-2-part/nwFyPjJVtmcC7A",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.278Z",
+      "csv_index": 1925
+    },
+    {
+      "filename": "11714.jpg",
+      "url": "https://artsandculture.google.com/asset/campfire-in-the-forest-j%C3%B3zef-rapacki/iAF5Vjh-uWfzKg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.278Z",
+      "csv_index": 1926
+    },
+    {
+      "filename": "15979.jpg",
+      "url": "https://artsandculture.google.com/asset/portrait-of-an-officer-nicolas-de-largillierre/-gFLWOZV0lrfdg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T01:42:48.278Z",
+      "csv_index": 1927
+    },
+    {
+      "filename": "4386.jpg",
+      "url": "https://artsandculture.google.com/asset/paysans-sortant-et-allant-au-marche-philome-obin/uwHgyIvTDpzwHQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.306Z",
+      "csv_index": 759,
+      "run": "latest_run"
+    },
+    {
+      "filename": "13554.jpg",
+      "url": "https://artsandculture.google.com/asset/melpomene-joseph-fagnani/TQEJVnj1B3r7IA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.306Z",
+      "csv_index": 760,
+      "run": "latest_run"
+    },
+    {
+      "filename": "4540.jpg",
+      "url": "https://artsandculture.google.com/asset/the-huis-ten-bosch-at-the-hague-and-its-formal-garden-view-from-the-east-jan-van-der-heyden/KAFv_F7bc4Uk3Q",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.306Z",
+      "csv_index": 761,
+      "run": "latest_run"
+    },
+    {
+      "filename": "385.jpg",
+      "url": "https://artsandculture.google.com/asset/the-muskrat-hunter-william-langson-lathrop/wQHAYn6NIaKhyg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.306Z",
+      "csv_index": 762,
+      "run": "latest_run"
+    },
+    {
+      "filename": "6013.jpg",
+      "url": "https://artsandculture.google.com/asset/dialogue-with-nature-manolo-romero/cwEn0JYQyZqoXQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 763,
+      "run": "latest_run"
+    },
+    {
+      "filename": "9407.jpg",
+      "url": "https://artsandculture.google.com/asset/broken-eggs-jean-baptiste-greuze/bAGjsmQGE2QDxw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 764,
+      "run": "latest_run"
+    },
+    {
+      "filename": "898.jpg",
+      "url": "https://artsandculture.google.com/asset/freedom-bird-ibtihaj-ameen/VgHdtYLO3Wp7iw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 765,
+      "run": "latest_run"
+    },
+    {
+      "filename": "14761.jpg",
+      "url": "https://artsandculture.google.com/asset/adriaen-van-ostade/ggEz5LwAm3dEog",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 766,
+      "run": "latest_run"
+    },
+    {
+      "filename": "1966.jpg",
+      "url": "https://artsandculture.google.com/asset/church-aldo-bonadei/lgFUYBy3zGkFpQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 767,
+      "run": "latest_run"
+    },
+    {
+      "filename": "8244.jpg",
+      "url": "https://artsandculture.google.com/asset/passing-angel-a-life-summer-diary/6AHw3XMaIui-zA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 768,
+      "run": "latest_run"
+    },
+    {
+      "filename": "14918.jpg",
+      "url": "https://artsandculture.google.com/asset/joseph-antoine-moltedo-born-1775/iQGkFIwksixbDg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 769,
+      "run": "latest_run"
+    },
+    {
+      "filename": "7938.jpg",
+      "url": "https://artsandculture.google.com/asset/a-child-lee-in-sung/3QF2t7eQ4Z0nPA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 770,
+      "run": "latest_run"
+    },
+    {
+      "filename": "15870.jpg",
+      "url": "https://artsandculture.google.com/asset/child-with-hoop-pierre-auguste-renoir/SQHHkIFstZg4cQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 771,
+      "run": "latest_run"
+    },
+    {
+      "filename": "8326.jpg",
+      "url": "https://artsandculture.google.com/asset/between-red-062-lee-seahyun-and-%EC%9D%B4%EC%84%B8%ED%98%84/WwG5HuGI23Zffw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 772,
+      "run": "latest_run"
+    },
+    {
+      "filename": "13728.jpg",
+      "url": "https://artsandculture.google.com/asset/seventeenth-century-lady-william-merritt-chase/PwHmUgmJiBR9cQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 773,
+      "run": "latest_run"
+    },
+    {
+      "filename": "5427.jpg",
+      "url": "https://artsandculture.google.com/asset/reconciliation-i-red-tee-douglas-portway/wgFx4fo8lsArxw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 774,
+      "run": "latest_run"
+    },
+    {
+      "filename": "13033.jpg",
+      "url": "https://artsandculture.google.com/asset/la-confidence-elizabeth-jane-gardner-bouguereau/swHAPfGSnSkxpg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 775,
+      "run": "latest_run"
+    },
+    {
+      "filename": "9253.jpg",
+      "url": "https://artsandculture.google.com/asset/diana-and-endymion-francesco-solimena/BwHkto9SogEGGg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 776,
+      "run": "latest_run"
+    },
+    {
+      "filename": "14330.jpg",
+      "url": "https://artsandculture.google.com/asset/st-jerome-and-the-angel-jusepe-de-ribera/6AHEDjjOrIiYtQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 777,
+      "run": "latest_run"
+    },
+    {
+      "filename": "2249.jpg",
+      "url": "https://artsandculture.google.com/asset/silent-ride-mario-davico/UwGOlUBGXMHUXA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 778,
+      "run": "latest_run"
+    },
+    {
+      "filename": "12901.jpg",
+      "url": "https://artsandculture.google.com/asset/the-fifth-plague-of-egypt/ZgF_sQzsqKroTw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 779,
+      "run": "latest_run"
+    },
+    {
+      "filename": "14678.jpg",
+      "url": "https://artsandculture.google.com/asset/jos%C3%A9-mart%C3%AD-herman-norman/eQGdwVhbNnp0lA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 780,
+      "run": "latest_run"
+    },
+    {
+      "filename": "4483.jpg",
+      "url": "https://artsandculture.google.com/asset/morro-da-guia-cabo-frio-rj-djanira/MQGDs6zAOqyxAQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 781,
+      "run": "latest_run"
+    },
+    {
+      "filename": "2645.jpg",
+      "url": "https://artsandculture.google.com/asset/passage-philip-guston/qgFLuRSAcy_YqQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 782,
+      "run": "latest_run"
+    },
+    {
+      "filename": "14374.jpg",
+      "url": "https://artsandculture.google.com/asset/adoration-of-the-shepherds-bernardo-cavallino-italian-1616-1656/QwHs_9PM0c3OSQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 783,
+      "run": "latest_run"
+    },
+    {
+      "filename": "15600.jpg",
+      "url": "https://artsandculture.google.com/asset/jeremiah-platt-john-mare/0AHbLxPweELcXA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 784,
+      "run": "latest_run"
+    },
+    {
+      "filename": "3990.jpg",
+      "url": "https://artsandculture.google.com/asset/ball-play-of-the-choctaw-ball-up/1AHAtjY_wbBZUg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 811,
+      "run": "latest_run"
+    },
+    {
+      "filename": "12225.jpg",
+      "url": "https://artsandculture.google.com/asset/medor-and-angelica-sebastiano-ricci/JwHEE3enQplRGg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 812,
+      "run": "latest_run"
+    },
+    {
+      "filename": "12294.jpg",
+      "url": "https://artsandculture.google.com/asset/portrait-of-count-giacomo-rota-with-his-dog-gaspare-landi/cgF0nXlb9JqhQw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 813,
+      "run": "latest_run"
+    },
+    {
+      "filename": "2141.jpg",
+      "url": "https://artsandculture.google.com/asset/traditions-of-craft-brovdi-larisa/LwERg6iCeVMfdw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 814,
+      "run": "latest_run"
+    },
+    {
+      "filename": "6826.jpg",
+      "url": "https://artsandculture.google.com/asset/west-end-ron-donoughe/_AF_IIj1Yryl8w",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 815,
+      "run": "latest_run"
+    },
+    {
+      "filename": "15938.jpg",
+      "url": "https://artsandculture.google.com/asset/general-john-r-fenwick-gilbert-stuart/3gEGCtB3jJtYhA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 816,
+      "run": "latest_run"
+    },
+    {
+      "filename": "10480.jpg",
+      "url": "https://artsandculture.google.com/asset/unconscious-of-danger-seymour-joseph-guy/fgEYKQkBWnZ1Eg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 817,
+      "run": "latest_run"
+    },
+    {
+      "filename": "9822.jpg",
+      "url": "https://artsandculture.google.com/asset/jatayu-vadh-raja-ravi-varma/dAEGJSOhLbHiJg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 818,
+      "run": "latest_run"
+    },
+    {
+      "filename": "11190.jpg",
+      "url": "https://artsandculture.google.com/asset/favretto-al-liston-eugenio-prati/-AEG6pzN0T4reQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 819,
+      "run": "latest_run"
+    },
+    {
+      "filename": "2798.jpg",
+      "url": "https://artsandculture.google.com/asset/aeropainting/cAFTPxwl79t5jA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 820,
+      "run": "latest_run"
+    },
+    {
+      "filename": "6661.jpg",
+      "url": "https://artsandculture.google.com/asset/conversation-ray-crooke/ygHkOMJgT3cxAQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 821,
+      "run": "latest_run"
+    },
+    {
+      "filename": "1495.jpg",
+      "url": "https://artsandculture.google.com/asset/returning-from-the-haunts-of-the-seafowl-william-collins/owHX9S6BaSf_XQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 822,
+      "run": "latest_run"
+    },
+    {
+      "filename": "11343.jpg",
+      "url": "https://artsandculture.google.com/asset/judith-at-sixteen/BwHCHiHUscZVsQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 823,
+      "run": "latest_run"
+    },
+    {
+      "filename": "5847.jpg",
+      "url": "https://artsandculture.google.com/asset/iris-gogh-vincent-van/dAG8nKO7-lEMAw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 824,
+      "run": "latest_run"
+    },
+    {
+      "filename": "1574.jpg",
+      "url": "https://artsandculture.google.com/asset/nude-portrait-of-dodo-verso-ernst-ludwig-kirchner/PAHyNHwwRhS-6g",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 825,
+      "run": "latest_run"
+    },
+    {
+      "filename": "2359.jpg",
+      "url": "https://artsandculture.google.com/asset/autorretrato-obreg%C3%B3n/-gFSXYGS7HyxZQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 826,
+      "run": "latest_run"
+    },
+    {
+      "filename": "7928.jpg",
+      "url": "https://artsandculture.google.com/asset/portraits-various-17th-century-miniaturists/JAHHU3xbRbG8Og",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 827,
+      "run": "latest_run"
+    },
+    {
+      "filename": "8549.jpg",
+      "url": "https://artsandculture.google.com/asset/paganini-liked-to-grow-tulips-katya-medvedeva/KAHqf-yKwjjPdQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 828,
+      "run": "latest_run"
+    },
+    {
+      "filename": "5838.jpg",
+      "url": "https://artsandculture.google.com/asset/the-funeral-%C3%89douard-manet/hQH1N-JLOhiujQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 829,
+      "run": "latest_run"
+    },
+    {
+      "filename": "9516.jpg",
+      "url": "https://artsandculture.google.com/asset/the-death-of-saint-francis-xavier-la-muerte-de-san-francisco-javier-francisco-de-goya-y-lucientes/3QFBHkrs6K0RYg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 830,
+      "run": "latest_run"
+    },
+    {
+      "filename": "3565.jpg",
+      "url": "https://artsandculture.google.com/asset/re-creation-of-the-world-after-the-great-flood-carl-ray-1943-1978/PQEyMoTOQCItLg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 831,
+      "run": "latest_run"
+    },
+    {
+      "filename": "1878.jpg",
+      "url": "https://artsandculture.google.com/asset/mexico/tAEsuWR52gpAEA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 832,
+      "run": "latest_run"
+    },
+    {
+      "filename": "14629.jpg",
+      "url": "https://artsandculture.google.com/asset/portrait-of-lorenzo-di-credi/lQEylmtgtyOJBQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 833,
+      "run": "latest_run"
+    },
+    {
+      "filename": "3188.jpg",
+      "url": "https://artsandculture.google.com/asset/portrait-of-modesto-s%C3%A1nchez-ortiz-santiago-rusi%C3%B1ol-i-prats/DgE0ObphuNNsGA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.307Z",
+      "csv_index": 834,
+      "run": "latest_run"
+    },
+    {
+      "filename": "7783.jpg",
+      "url": "https://artsandculture.google.com/asset/the-game-flor-verd%C3%BA/SwHOiOjPSdtqCQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T10:54:15.308Z",
+      "csv_index": 835,
+      "run": "latest_run"
+    },
+    {
+      "filename": "13426.jpg",
+      "url": "https://artsandculture.google.com/asset/waterfall-at-mont-dore-achille-etna-michallon/xQHPgPCgvFoZaA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.409Z",
+      "csv_index": 1233,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "15301.jpg",
+      "url": "https://artsandculture.google.com/asset/queen-victoria-baron-heinrich-von-angeli-1840-1925/AwFd7irOP0rKrw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.410Z",
+      "csv_index": 1234,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "14878.jpg",
+      "url": "https://artsandculture.google.com/asset/allegorical-portrait-summer-giuseppe-arcimboldo/FQEqQOMa4_Klgg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.410Z",
+      "csv_index": 1235,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "9412.jpg",
+      "url": "https://artsandculture.google.com/asset/the-entombment-of-christ-theotokopoulos-domenicos/-wHfJS1cVEw4iA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.410Z",
+      "csv_index": 1236,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "1006.jpg",
+      "url": "https://artsandculture.google.com/asset/untitled-constructivist-image-franz-ehrlich/KAH6dgtdIInKTA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.410Z",
+      "csv_index": 1237,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "3722.jpg",
+      "url": "https://artsandculture.google.com/asset/bird-apocalypse-john-hurford/ogG3vPRFkUXbhA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.410Z",
+      "csv_index": 1238,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "8211.jpg",
+      "url": "https://artsandculture.google.com/asset/self-portrait-with-red-background-amrita-sher-gil/OgGl-QU3N8mpTQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.410Z",
+      "csv_index": 1239,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "10014.jpg",
+      "url": "https://artsandculture.google.com/asset/view-of-lake-okanagan-british-columbia-grafton-tyler-brown/XgHRGFDCP3au4Q",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.410Z",
+      "csv_index": 1240,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "1118.jpg",
+      "url": "https://artsandculture.google.com/asset/adam-julia-hall/wQHxW2cyYauHqg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.410Z",
+      "csv_index": 1241,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "10951.jpg",
+      "url": "https://artsandculture.google.com/asset/two-moors-rijn-rembrandt-van/FwGgzIP2-yntpw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.410Z",
+      "csv_index": 1242,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "11469.jpg",
+      "url": "https://artsandculture.google.com/asset/%C3%89tablissement-de-l-h%C3%B4tel-royal-des-invalides-le-marquis-de-louvois-pr%C3%A9sente-%C3%A0-louis-xiv-le-plan-devant-servir-%C3%A0-la-construction-de-l-h%C3%B4tel-des-invalides-pierre-dulin-painter/fwEo4RlXu8PNrg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.410Z",
+      "csv_index": 1243,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "10384.jpg",
+      "url": "https://artsandculture.google.com/asset/isabella-john-everett-millais/8wFit7aHcRWOZQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.410Z",
+      "csv_index": 1244,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "7939.jpg",
+      "url": "https://artsandculture.google.com/asset/an-alley-at-night-1-choi-eun-kyung/2AFDkfJWQNERcw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.410Z",
+      "csv_index": 1245,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "5131.jpg",
+      "url": "https://artsandculture.google.com/asset/naples-pierre-albert-marquet/WgHFtNMA3AQxDw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.410Z",
+      "csv_index": 1246,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "12453.jpg",
+      "url": "https://artsandculture.google.com/asset/the-gower-family-the-children-of-granville-2nd-earl-gower-george-romney/bAF1MDJ3AxFUJQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.410Z",
+      "csv_index": 1247,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "7176.jpg",
+      "url": "https://artsandculture.google.com/asset/dance-of-the-haymakers-music-is-contagious-william-sidney-mount/FgFI5iaav6d0cA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.410Z",
+      "csv_index": 1248,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "992.jpg",
+      "url": "https://artsandculture.google.com/asset/between-red-021-lee-seahyun-and-%EC%9D%B4%EC%84%B8%ED%98%84/5gENOTX6CvGggg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.410Z",
+      "csv_index": 1249,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "11333.jpg",
+      "url": "https://artsandculture.google.com/asset/juliet-about-to-take-her-sleeping-draught-and-or-mary-smirke-1779%E2%80%931853-british-and-robert-smirke-1752%E2%80%931845-british/1wEDO-9aWhZc1g",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1250,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "9928.jpg",
+      "url": "https://artsandculture.google.com/asset/the-baptism-of-the-chamberlain-of-queen-candace-of-ethiopia-balen-hendrik-van-and-brueghel-the-younger-jan/BwEvH168gjvPlQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1251,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "10458.jpg",
+      "url": "https://artsandculture.google.com/asset/young-ladies-on-the-bank-of-the-seine-%E2%80%93-fragment-of-a-painting-woman-with-flowers-on-her-hat-gustave-courbet/VAEf1nIWh5KGRA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1252,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "4135.jpg",
+      "url": "https://artsandculture.google.com/asset/playing-with-a-puppet-hendra-gunawan/bgFeiv518snjfg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1253,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "14609.jpg",
+      "url": "https://artsandculture.google.com/asset/basket-with-apples-quinces-and-pomegranates-juan-de-zurbar%C3%A1n/kwG3W1H57tVdlQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1254,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "12770.jpg",
+      "url": "https://artsandculture.google.com/asset/jael-and-sisera-artemisia-gentileschi/5wFvaxMutFadYw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1255,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "7725.jpg",
+      "url": "https://artsandculture.google.com/asset/painting-chick-wooten/SAFn9Yn_0JdNWw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1256,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "587.jpg",
+      "url": "https://artsandculture.google.com/asset/nude-torso-philip-pearlstein/QQE0t1pU2JQ61w",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1257,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "13989.jpg",
+      "url": "https://artsandculture.google.com/asset/fanny-eaton-joanna-boyce-wells-1831%E2%80%931861-british/VAGY6StmvNXx9w",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1258,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "10522.jpg",
+      "url": "https://artsandculture.google.com/asset/il-ridotto-di-palazzo-dandolo-a-san-mois%C3%A9-francesco-guardi/jwFt1RVzAXpIWw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1259,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "14452.jpg",
+      "url": "https://artsandculture.google.com/asset/violencia-obreg%C3%B3n/rQHWSUjDTqqDNA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1260,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "9437.jpg",
+      "url": "https://artsandculture.google.com/asset/trompe-l-oeil-still-life-samuel-van-hoogstraten/UwF2xOYwyihzyQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1261,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "9734.jpg",
+      "url": "https://artsandculture.google.com/asset/the-continence-of-scipio-nicolas-poussin/FwFk0-aVqQZgww",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1262,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "6088.jpg",
+      "url": "https://artsandculture.google.com/asset/meadowland-henri-rousseau/ogEPEJ7pxk8caQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1263,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "2757.jpg",
+      "url": "https://artsandculture.google.com/asset/portrait-of-a-girl-alexej-jawlensky/CQGbkxuyeuvs-w",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1264,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "5849.jpg",
+      "url": "https://artsandculture.google.com/asset/lake-lucerne/-QG4RUDiL1qxbQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1265,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "15163.jpg",
+      "url": "https://artsandculture.google.com/asset/lazarus-and-the-rich-man-jacopo-bassano-italian-c-1510-1592/FQEX45_yDZY90Q",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1266,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "7879.jpg",
+      "url": "https://artsandculture.google.com/asset/maria-fritz-mamaba-blaar-anti-venom-against-black-mamba-maria-fritz/YAGW-OBCSsy_1g",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1267,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "9711.jpg",
+      "url": "https://artsandculture.google.com/asset/the-age-of-augustus-the-birth-of-christ-jean-l%C3%A9on-g%C3%A9r%C3%B4me/rQGwooq_SRJleA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1268,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "6653.jpg",
+      "url": "https://artsandculture.google.com/asset/untitled-kadar-brock/DQE2FGNDKFbwAQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1269,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "8624.jpg",
+      "url": "https://artsandculture.google.com/asset/soyut-abstract-%C3%96mer-ulu%C3%A7/4gF4NlBMvrQkNg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1270,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "719.jpg",
+      "url": "https://artsandculture.google.com/asset/untitled-todd-norsten/awHJtfeRIhNO7A",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1271,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "8845.jpg",
+      "url": "https://artsandculture.google.com/asset/untitled-ziad-nassir-al-ansi/fgFguWSc0aJIfQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1272,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "14480.jpg",
+      "url": "https://artsandculture.google.com/asset/self-portrait-in-white-jacket-hugh-ramsay/RwHk4bmNYrZV-A",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1273,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "6778.jpg",
+      "url": "https://artsandculture.google.com/asset/the-mountains-from-madrid-gregorio-prieto-mu%C3%B1oz/QgEOHjKdnl-aTA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1274,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "2863.jpg",
+      "url": "https://artsandculture.google.com/asset/sister-sharon-stone-peter-monkman/HgEezOP_vuQSRg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1275,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "11345.jpg",
+      "url": "https://artsandculture.google.com/asset/te-pape-nave-nave-delectable-waters/jQENMZKi4vHZAw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1276,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "7140.jpg",
+      "url": "https://artsandculture.google.com/asset/no-22-special-georgia-o-keeffe/dQEOe495IRBhNg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1277,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "881.jpg",
+      "url": "https://artsandculture.google.com/asset/eternal-sneer-ji-seok-cheol/2wGC-eh_vgO-cg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1278,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "13719.jpg",
+      "url": "https://artsandculture.google.com/asset/bar-gathering-jos%C3%A9-agust%C3%ADn-arrieta/nAGaEn0X2i_QoQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1279,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "12993.jpg",
+      "url": "https://artsandculture.google.com/asset/the-flax-barn-at-laren-max-liebermann/HgHkmprmHJTZ-g",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1280,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "1173.jpg",
+      "url": "https://artsandculture.google.com/asset/%C5%9Eerife-6-7-8/1QHhNlVlrhGLqw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1281,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "12109.jpg",
+      "url": "https://artsandculture.google.com/asset/edward-smith-stanley-1752%E2%80%931834-twelfth-earl-of-derby-with-his-first-wife-lady-elizabeth-hamilton-1753%E2%80%931797-and-their-son-edward-smith-stanley-1775%E2%80%931851-angelica-kauffmann/dAFxh1uaWMLjIg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1282,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "5530.jpg",
+      "url": "https://artsandculture.google.com/asset/ruslan-and-lyudmila-pushkin-s-angel-katya-medvedeva/RgGGkfhbeSOokQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1283,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "7764.jpg",
+      "url": "https://artsandculture.google.com/asset/portrait-with-piotr-klugowski/xwE2HqNHDqbbDw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1284,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "7419.jpg",
+      "url": "https://artsandculture.google.com/asset/samuel-putnam-avery-charles-loring-elliott/WAGbQkJ8qEkkKw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1285,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "9428.jpg",
+      "url": "https://artsandculture.google.com/asset/david-gives-uriah-a-letter-for-joab-pieter-lastman/fgF8VA_NnZtHdg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1286,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "3089.jpg",
+      "url": "https://artsandculture.google.com/asset/blue-star-yi-hee-choung/0gGBN9PqYmNAeQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1287,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "9367.jpg",
+      "url": "https://artsandculture.google.com/asset/frida-and-the-cesarean-unfinished/WwHygwKGIgrl_w",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1288,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "12206.jpg",
+      "url": "https://artsandculture.google.com/asset/lambeth-from-the-river-looking-towards-westminster-bridge-james-stark-1794%E2%80%931859-british/BwF7I1zRewUPdg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2025-12-31T22:22:30.411Z",
+      "csv_index": 1289,
+      "run": "run_after_resume"
+    },
+    {
+      "filename": "7668.jpg",
+      "url": "https://artsandculture.google.com/asset/english-beach-molly-lamb-bobak-1922-2014/RAGahE3zZ2g_Ww",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.789Z",
+      "csv_index": 1354,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "1722.jpg",
+      "url": "https://artsandculture.google.com/asset/quaternary-rhythm-shakir-hassan-al-said/wgGwWoPrn4R3Dg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.789Z",
+      "csv_index": 1355,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "5020.jpg",
+      "url": "https://artsandculture.google.com/asset/renewal-elmer-borlongan/oQHZlbfdm9-ZUQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.789Z",
+      "csv_index": 1356,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "4383.jpg",
+      "url": "https://artsandculture.google.com/asset/windsor-castle-from-the-south-perhaps-jan-griffier-the-elder-ca-1645%E2%80%931718-dutch-active-in-britain-from-ca-1672-after-jan-vorsterman-ca-1643%E2%80%93after-1685-dutch-and-unknown-artist-seventeenth-century/-gGgXwoCiYpkpg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.789Z",
+      "csv_index": 1357,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "6555.jpg",
+      "url": "https://artsandculture.google.com/asset/the-pita-ram%C3%B3n-c%C3%B3rdoba-calder%C3%B3n/FwE7bGX4PMog1w",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.789Z",
+      "csv_index": 1358,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "7301.jpg",
+      "url": "https://artsandculture.google.com/asset/portrait-of-madame-champsaur-claude-%C3%89mile-schuffenecker/CwFdyyNgndgfGw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.789Z",
+      "csv_index": 1359,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "10556.jpg",
+      "url": "https://artsandculture.google.com/asset/ponte-da-tabatinguera-tabatinguera-bridge-almeida-j%C3%BAnior/DgFPuIIud3_QzA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.789Z",
+      "csv_index": 1360,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "7407.jpg",
+      "url": "https://artsandculture.google.com/asset/palimpseste-mohammad-khadda/-QEnqh967n3wWQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.789Z",
+      "csv_index": 1361,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "5771.jpg",
+      "url": "https://artsandculture.google.com/asset/view-of-auvers-vincent-van-gogh/uAEMcOt3lSbkOg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1362,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "4479.jpg",
+      "url": "https://artsandculture.google.com/asset/landscape-trees-hafidh-al-droubi/bAFl_L2N9DzoLg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1363,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "8071.jpg",
+      "url": "https://artsandculture.google.com/asset/portrait-of-a-man-frans-pourbus/GQFpHG0mFALBqg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1364,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "14730.jpg",
+      "url": "https://artsandculture.google.com/asset/bildnis-des-cyriakus-kale-hans-holbein-d-j-augsburg-1497-98-1543-london/YgGGw75Mc6uRow",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1365,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "15656.jpg",
+      "url": "https://artsandculture.google.com/asset/george-iii-benjamin-west-american-1738-1820/BwE-aqydBBpqnA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1366,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "7989.jpg",
+      "url": "https://artsandculture.google.com/asset/the-mud-bath-david-bomberg/DAH13K-Pb6kbvQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1367,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "14861.jpg",
+      "url": "https://artsandculture.google.com/asset/lady-sondes-with-her-infant-son-school-of-benjamin-west/GQGpzbKKBsje7w",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1368,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "517.jpg",
+      "url": "https://artsandculture.google.com/asset/a-man-wearing-a-red-coat-and-stockings-carlevarijs-luca/mAEfciBUHBe4Sw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1369,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "12068.jpg",
+      "url": "https://artsandculture.google.com/asset/sebastiano-venier-giving-thanks-to-the-redeemer-after-the-battle-of-lepanto/7QF1yCXMmNOydg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1370,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "15536.jpg",
+      "url": "https://artsandculture.google.com/asset/martin-luther-1483-1546-lucas-cranach-the-older-and-workshop/MAEZBYZN14XdOA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1371,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "12218.jpg",
+      "url": "https://artsandculture.google.com/asset/the-magician-in-the-barn-ludwig-knaus/cwEYQjWpPk9A4g",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1372,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "3164.jpg",
+      "url": "https://artsandculture.google.com/asset/new-dawn-nashaat-al-alousi/QAEjm20hpkx8Pw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1373,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "13446.jpg",
+      "url": "https://artsandculture.google.com/asset/the-martyrdom-of-saint-pontianus/-QFXTF-9myQPYg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1374,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "2654.jpg",
+      "url": "https://artsandculture.google.com/asset/rotterdam-the-steams-signac-paul/DgEEOeCaNUMUdQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1375,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "368.jpg",
+      "url": "https://artsandculture.google.com/asset/whale-oil-lamp/0QEJjt3RTLYsYQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1376,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "7776.jpg",
+      "url": "https://artsandculture.google.com/asset/detail-entrance-reception-room-unknown-painter/0gGKO2ZQ_JjnNA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1377,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "14262.jpg",
+      "url": "https://artsandculture.google.com/asset/cupid-and-psyche-alphonse-legros/YgEj1V-LewmcjA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1378,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "12097.jpg",
+      "url": "https://artsandculture.google.com/asset/paisagem-landscape-pedro-weing%C3%A4rtner/RAFAtWG6v8lVDw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1379,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "402.jpg",
+      "url": "https://artsandculture.google.com/asset/sean-catherine-wallis/KQFR-TSrElpeOQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1380,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "13575.jpg",
+      "url": "https://artsandculture.google.com/asset/james-monroe/UAHAVCVoaEkw9w",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1381,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "1929.jpg",
+      "url": "https://artsandculture.google.com/asset/petal-flower-with-rosette-gerardo-rodr%C3%ADguez-granda/6gFiLa-eKDgIKA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1382,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "4739.jpg",
+      "url": "https://artsandculture.google.com/asset/basarhan-dalelkan-golden-eagle-basarhan-dalelkan/pgFjoSidC5DhtA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1383,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "1370.jpg",
+      "url": "https://artsandculture.google.com/asset/at-templestowe-arthur-streeton/dAGVBL7fqzed7w",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1384,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "8666.jpg",
+      "url": "https://artsandculture.google.com/asset/abu-nasr-al-farabi-mohammad-ali-shakir/TQFgjcWEbh07-Q",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1385,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "16087.jpg",
+      "url": "https://artsandculture.google.com/asset/the-mocking-of-samson-jan-steen/awGpJB7TI9sPEA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1386,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "3871.jpg",
+      "url": "https://artsandculture.google.com/asset/a-meeting-of-the-minds-jon-jaylo/-QHpDBUjtwrL8Q",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1387,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "2120.jpg",
+      "url": "https://artsandculture.google.com/asset/impermanencia-24-manuel-acu%C3%B1a-esq-reforma-s-n-gustavo-villegas/bgGl1hf1HSI_Ww",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1388,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "12811.jpg",
+      "url": "https://artsandculture.google.com/asset/the-order-of-release-1746-sir-john-everett-millais/cQEhuAQIHc3vIg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1389,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "4634.jpg",
+      "url": "https://artsandculture.google.com/asset/old-quarter-quebec-preston-dickinson/GQGjMlzQmwW5cw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1390,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "2169.jpg",
+      "url": "https://artsandculture.google.com/asset/her-afternoon-seo-sang-ik/ggE3KENfvw1M4w",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1391,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "13608.jpg",
+      "url": "https://artsandculture.google.com/asset/il-camoscio-morto-giovanni-segantini/BQHyKd4bnNtyOw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1392,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "1074.jpg",
+      "url": "https://artsandculture.google.com/asset/song-of-the-nightingale/VAF4yjScafYnOA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1393,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "1851.jpg",
+      "url": "https://artsandculture.google.com/asset/ipswich-dockers-union-banner-1890s/dwHuD8ngsjhrUg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1394,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "4652.jpg",
+      "url": "https://artsandculture.google.com/asset/winter-nocturne-john-fulton-folinsbee/vwEiByACY602dQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.790Z",
+      "csv_index": 1395,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "2762.jpg",
+      "url": "https://artsandculture.google.com/asset/buttonwood-farm-newell-convers-wyeth/GgHZHjGC0LjNyA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.791Z",
+      "csv_index": 1396,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "12136.jpg",
+      "url": "https://artsandculture.google.com/asset/the-garden-of-earthly-delights-hieronymus-bosch-copy/eAEQnj3XiHkojA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.791Z",
+      "csv_index": 1397,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "9067.jpg",
+      "url": "https://artsandculture.google.com/asset/toy-barabas-marton/iwGVrXoGFkeeAg",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.791Z",
+      "csv_index": 1398,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "2747.jpg",
+      "url": "https://artsandculture.google.com/asset/the-table-of-cezanne-the-invited-n-nam-kyung-min/QAFzwf1p3YaB6A",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.791Z",
+      "csv_index": 1399,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "5134.jpg",
+      "url": "https://artsandculture.google.com/asset/l-arr%C3%AAt-de-villainville-tristram-hillier/NAHj2M1mbcyPhw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.791Z",
+      "csv_index": 1400,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "9977.jpg",
+      "url": "https://artsandculture.google.com/asset/pine-grove-of-the-barberini-villa-george-inness/jAEfoegdyUmkLQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.791Z",
+      "csv_index": 1401,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "6895.jpg",
+      "url": "https://artsandculture.google.com/asset/goldfish-ii-hendra-gunawan/OgF4b3icB44ixw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.791Z",
+      "csv_index": 1402,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "4773.jpg",
+      "url": "https://artsandculture.google.com/asset/bay-entrance-of-rio-de-janeiro/zgEjgevW_QZfbA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.791Z",
+      "csv_index": 1403,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "13810.jpg",
+      "url": "https://artsandculture.google.com/asset/christ-crucified-with-toledo-in-the-background/LAHdh3gyMgYpMA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.791Z",
+      "csv_index": 1404,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "10574.jpg",
+      "url": "https://artsandculture.google.com/asset/yuvaraj-kanterava-narasimharaja-wadiyar-in-a-hunting-dress-raja-ravi-varma/lQGBoz-PrkEEDA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.791Z",
+      "csv_index": 1405,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "13586.jpg",
+      "url": "https://artsandculture.google.com/asset/five-artists-in-sintra-jo%C3%A3o-cristino-da-silva/vAHW4it7yjx3Ag",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.791Z",
+      "csv_index": 1406,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "14155.jpg",
+      "url": "https://artsandculture.google.com/asset/mill-at-charenton-fran%C3%A7ois-boucher/WwHF_odPcKX5EQ",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.791Z",
+      "csv_index": 1407,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "8838.jpg",
+      "url": "https://artsandculture.google.com/asset/the-red-room-abdulrahim-sharif/LwHiVPc91P66RA",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.791Z",
+      "csv_index": 1408,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "12436.jpg",
+      "url": "https://artsandculture.google.com/asset/estudo-de-figura-feminina-monteiro-fran%C3%A7a/GQHXnJPl4_XZ0Q",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.791Z",
+      "csv_index": 1409,
+      "run": "final_resume_attempt"
+    },
+    {
+      "filename": "3643.jpg",
+      "url": "https://artsandculture.google.com/asset/untitled-cyclone-clermont-julien-and-clermont-julien/HQE_BhleSkLkrw",
+      "error": "429 Too Many Requests",
+      "timestamp": "2026-01-01T10:20:16.791Z",
+      "csv_index": 1410,
+      "run": "final_resume_attempt"
+    }
+  ]
+}

@@ -26,21 +26,18 @@ export interface DownloadedImage extends ImageVariant {
   fileSize: number;
 }
 
-export interface NGAArtwork {
-  objectid: string;
+export interface SmithsonianArtwork {
+  objectId: string;
   title: string;
-  imageUrl: string | null;
-  width: number | null;
-  height: number | null;
-  displaydate?: string;
-  medium?: string;
-  dimensions?: string;
-  classification?: string;
-  culture?: string;
-  period?: string;
-  creditline?: string;
-  dated?: string;
-  wikidataQID?: string;
+  artist: string;
+  imageUrl: string;
+  width: number;
+  height: number;
+  medium: string;
+  classification: string;
+  date: string;
+  sourceUrl: string;
 }
+
 
 

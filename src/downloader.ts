@@ -6,6 +6,7 @@ import { getWikimediaAccessToken } from './wikimediaAuth';
 import { config } from './config';
 import { bandwidthThrottler } from './bandwidthThrottle';
 import { rateLimiter } from './rateLimiter';
+import { BlockedImagesLogger } from './blockedImagesLogger';
 
 const gentleMode =
   (process.env.GENTLE_MODE || '').toLowerCase() === '1' ||

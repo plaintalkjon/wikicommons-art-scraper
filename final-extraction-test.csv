@@ -1,0 +1,6 @@
+url,status,filename,title,artist,tags,description,date,medium,dimensions,museum,scraped_at,error
+https://artsandculture.google.com/asset/the-lovers-marc-chagall/jQEveVgIzd6-Og,SUCCESS,2936.jpg,The Lovers Marc,Marc chagall,,,,,,,2026-01-01T14:15:08.959Z,
+https://artsandculture.google.com/asset/a-spiritualistic-s%C3%A9ance-kunnas-v%C3%A4in%C3%B6/BAG6lhZPN6IXzQ,FAILED,10356.jpg,,,,,,,,,2026-01-01T14:15:22.287Z,URL extraction failed + Request failed with status code 429
+https://artsandculture.google.com/asset/edmund-rubbra-juliet-kathleen-pannett/eAG-31hnr2osVg,FAILED,7655.jpg,,,,,,,,,2026-01-01T14:15:35.186Z,URL extraction failed + Request failed with status code 429
+https://artsandculture.google.com/asset/portrait-of-an-unidentified-woman-unidentified-artist/KwEdf2NN18VLjA,FAILED,15849.jpg,,,,,,,,,2026-01-01T14:15:47.899Z,URL extraction failed + Request failed with status code 429
+https://artsandculture.google.com/asset/a-woman-with-a-dog-giacomo-ceruti/7QGozoQynvNhxQ,FAILED,14497.jpg,,,,,,,,,2026-01-01T14:16:00.643Z,URL extraction failed + Request failed with status code 429

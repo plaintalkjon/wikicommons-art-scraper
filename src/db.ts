@@ -169,69 +169,34 @@ export async function findArtByWikidataQID(wikidataQID: string, artistId: string
  * Find existing artwork by NGA Object ID
  * Returns the art ID if found, null otherwise
  */
-export async function findArtByNGADbjectId(objectId: string, artistId: string): Promise<string | null> {
-  // Query art_sources for artworks with this NGA object ID
-  const sourcesResult = await supabase
-    .from('art_sources')
-    .select('art_id')
-    .eq('source', 'nga')
-    .eq('source_pageid', parseInt(objectId, 10))
-    .limit(10); // Get multiple in case there are duplicates
-  
-  if (sourcesResult.error && sourcesResult.error.code !== 'PGRST116') {
-    throw new Error(`Failed to lookup art by NGA Object ID: ${sourcesResult.error.message}`);
-  }
-  
-  if (!sourcesResult.data || sourcesResult.data.length === 0) {
-    return null;
-  }
-  
-  // Get unique art IDs
-  const artIds = Array.from(new Set(sourcesResult.data.map((s: any) => s.art_id).filter(Boolean)));
-  
-  if (artIds.length === 0) {
-    return null;
-  }
-  
-  // Check which art belongs to this artist
-  const artsResult = await supabase
-    .from('arts')
-    .select('id')
-    .eq('artist_id', artistId)
-    .in('id', artIds)
-    .limit(1)
-    .maybeSingle();
-  
-  if (artsResult.error && artsResult.error.code !== 'PGRST116') {
-    throw new Error(`Failed to lookup art: ${artsResult.error.message}`);
-  }
-  
-  return artsResult.data?.id ?? null;
-}
 
 export async function upsertArtSource(payload: {
   artId: string;
   source: string;
-  sourcePageId?: number;
+  sourcePageId?: number | string | null;
   sourceTitle?: string;
   sourceUrl?: string;
   wikidataQID?: string;
 }): Promise<void> {
   // Store Wikidata QID in dedicated wikidata_qid column
   // Requires: art_sources table must have a wikidata_qid column (text/nullable)
-  const result = await supabase
-    .from('art_sources')
-    .upsert(
-      {
-        art_id: payload.artId,
-        source: payload.source,
-        source_pageid: payload.sourcePageId ?? null,
-        source_title: payload.sourceTitle ?? null,
-        source_url: payload.sourceUrl ?? null,
-        wikidata_qid: payload.wikidataQID ?? null,
-      },
-      { onConflict: 'source,source_pageid' },
-    );
+  // For sources with page IDs, use conflict resolution; for Smithsonian (no page IDs), allow potential duplicates
+  const upsertData = {
+    art_id: payload.artId,
+    source: payload.source,
+    source_pageid: payload.sourcePageId ?? null,
+    source_title: payload.sourceTitle ?? null,
+    source_url: payload.sourceUrl ?? null,
+    wikidata_qid: payload.wikidataQID ?? null,
+  };
+
+  const result = payload.sourcePageId !== null
+    ? await supabase
+        .from('art_sources')
+        .upsert(upsertData, { onConflict: 'source,source_pageid' })
+    : await supabase
+        .from('art_sources')
+        .insert(upsertData);
   if (result.error) {
     throw new Error(`Failed to upsert art source: ${result.error.message}`);
   }

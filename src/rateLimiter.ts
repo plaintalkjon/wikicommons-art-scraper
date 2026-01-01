@@ -21,13 +21,21 @@ class RateLimiter {
   private readonly minDelayBetweenRequests: number; // milliseconds
 
   constructor() {
-    // Conservative limits to avoid rate limiting
-    // Authenticated: 5000/hour = ~83/minute = ~1.4/second
-    // Default: 30 requests/minute, 1 request/second
-    // Gentle mode: much slower to escape throttling (about 6/minute, 1 per 5s)
-    this.maxRequestsPerMinute = gentleMode ? 6 : 30;
-    this.maxRequestsPerSecond = gentleMode ? 1 : 1;
-    this.minDelayBetweenRequests = gentleMode ? 5000 : 1000; // 5s vs 1s minimum between requests
+    // Smithsonian API is very restrictive - use ultra-conservative limits
+    // Smithsonian: ~10-20 requests/minute max, 1 request/5-10 seconds
+    const isSmithsonianRequest = process.env.SMITHSONIAN_API_KEY !== undefined;
+
+    if (isSmithsonianRequest) {
+      // Extremely conservative for Smithsonian API (very restrictive)
+      this.maxRequestsPerMinute = 3; // 3 requests per minute max
+      this.maxRequestsPerSecond = 1; // 1 request per second max
+      this.minDelayBetweenRequests = 25000; // 25 seconds minimum between requests
+    } else {
+      // Original limits for other APIs (Wikimedia, etc.)
+      this.maxRequestsPerMinute = gentleMode ? 6 : 30;
+      this.maxRequestsPerSecond = gentleMode ? 1 : 1;
+      this.minDelayBetweenRequests = gentleMode ? 5000 : 1000;
+    }
   }
 
   /**
