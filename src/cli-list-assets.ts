@@ -9,15 +9,17 @@
  *     -> generates paginated files: gallery-page-1.html, gallery-page-2.html, ...
  *   npm run list-assets -- --csv ./assets.csv                    # CSV output
  *   npm run list-assets -- --tag "painting" --html ./paintings.html  # filter by tag
+ *   npm run list-assets -- --artist "Vincent van Gogh" --html ./vangogh.html  # filter by artist
  *
  * Options:
- *   --tag <tag_name>    Filter assets by tag (server-side filtering)
- *   --html <file>       Output HTML gallery to file
- *   --csv <file>        Output CSV data to file
- *   --limit <number>    Limit number of assets (default: 500)
- *   --all               Generate paginated gallery for all assets
- *   --page-size <num>   Page size for --all mode
- *   --order <column>    Order by column (default: created_at.desc)
+ *   --tag <tag_name>      Filter assets by tag (server-side filtering)
+ *   --artist <name>       Filter assets by artist name (server-side filtering)
+ *   --html <file>         Output HTML gallery to file
+ *   --csv <file>          Output CSV data to file
+ *   --limit <number>      Limit number of assets (default: 500)
+ *   --all                 Generate paginated gallery for all assets
+ *   --page-size <num>     Page size for --all mode
+ *   --order <column>      Order by column (default: created_at.desc)
  *
  * Notes:
  *   - Uses public_url from art_assets; if your bucket is private, adjust to signed URLs.
@@ -239,6 +241,7 @@ async function main() {
   const offset = args.offset ? parseInt(args.offset as string, 10) : page * limit;
   const orderArg = (args.order as string | undefined) || 'created_at.desc';
   const filterTag = args['tag'] as string | undefined;
+  const filterArtist = args['artist'] as string | undefined;
 
   const parseOrder = (value: string): { column: string; ascending: boolean } => {
     const parts = value.split('.');
@@ -252,45 +255,83 @@ async function main() {
 
   // Helper to fetch a page of assets with metadata
   const fetchPage = async (rangeStart: number, rangeEnd: number): Promise<AssetRow[]> => {
-    // Handle tag filtering separately since it can't be combined with ordering
-    if (filterTag) {
+    // Handle tag or artist filtering separately since they can't be combined with ordering
+    if (filterTag || filterArtist) {
       try {
 
-        // First, find art_ids that have the specified tag
-        const { data: tagData, error: tagError } = await supabase
-          .from('tags')
-          .select('id')
-          .eq('name', filterTag);
+        let artIds: string[];
 
-        if (tagError) {
-          console.error(`Tag lookup error: ${tagError.message}`);
-          return [];
+        if (filterTag) {
+          // First, find art_ids that have the specified tag
+          const { data: tagData, error: tagError } = await supabase
+            .from('tags')
+            .select('id')
+            .eq('name', filterTag);
+
+          if (tagError) {
+            console.error(`Tag lookup error: ${tagError.message}`);
+            return [];
+          }
+
+          if (!tagData || tagData.length === 0) {
+            console.log(`No tag found with name: ${filterTag}`);
+            return [];
+          }
+
+          const tagId = tagData[0].id;
+
+          const { data: artTagData, error: artTagError } = await supabase
+            .from('art_tags')
+            .select('art_id')
+            .eq('tag_id', tagId);
+
+          if (artTagError) {
+            console.error(`Art tags lookup error: ${artTagError.message}`);
+            return [];
+          }
+
+          if (!artTagData || artTagData.length === 0) {
+            console.log(`No artworks found with tag: ${filterTag}`);
+            return [];
+          }
+
+          artIds = artTagData.map(at => at.art_id);
+        } else {
+          // Artist filtering
+          const { data: artistData, error: artistError } = await supabase
+            .from('artists')
+            .select('id')
+            .eq('name', filterArtist);
+
+          if (artistError) {
+            console.error(`Artist lookup error: ${artistError.message}`);
+            return [];
+          }
+
+          if (!artistData || artistData.length === 0) {
+            console.log(`No artist found with name: ${filterArtist}`);
+            return [];
+          }
+
+          const artistId = artistData[0].id;
+
+          const { data: artsData, error: artsError } = await supabase
+            .from('arts')
+            .select('id')
+            .eq('artist_id', artistId);
+
+          if (artsError) {
+            console.error(`Arts lookup error: ${artsError.message}`);
+            return [];
+          }
+
+          if (!artsData || artsData.length === 0) {
+            console.log(`No artworks found for artist: ${filterArtist}`);
+            return [];
+          }
+
+          artIds = artsData.map(art => art.id);
         }
-
-        if (!tagData || tagData.length === 0) {
-          console.log(`No tag found with name: ${filterTag}`);
-          return [];
-        }
-
-        const tagId = tagData[0].id;
-
-        const { data: artTagData, error: artTagError } = await supabase
-          .from('art_tags')
-          .select('art_id')
-          .eq('tag_id', tagId);
-
-        if (artTagError) {
-          console.error(`Art tags lookup error: ${artTagError.message}`);
-          return [];
-        }
-
-        if (!artTagData || artTagData.length === 0) {
-          console.log(`No artworks found with tag: ${filterTag}`);
-          return [];
-        }
-
-        const artIds = artTagData.map(at => at.art_id);
-        console.log(`Found ${artIds.length} artworks with tag`);
 
         // Fetch assets in batches to avoid large in() clauses that can cause timeouts
         const batchSize = 50;
@@ -552,7 +593,7 @@ async function main() {
 
   // If generating all pages, compute total and iterate
   if (allPages) {
-    // Count total rows (respecting tag filter if specified)
+    // Count total rows (respecting tag or artist filter if specified)
     let total: number;
     if (filterTag) {
       const { data: tagData, error: tagError } = await supabase
@@ -569,6 +610,23 @@ async function main() {
           .select('art_id', { count: 'exact', head: true })
           .eq('tag_id', tagData[0].id);
         if (countErr) throw new Error(`Failed to count assets with tag: ${countErr.message}`);
+        total = count ?? 0;
+      }
+    } else if (filterArtist) {
+      const { data: artistData, error: artistError } = await supabase
+        .from('artists')
+        .select('id')
+        .eq('name', filterArtist);
+      if (artistError) throw new Error(`Failed to find artist: ${artistError.message}`);
+      if (!artistData || artistData.length === 0) {
+        console.log(`No artworks found for artist: ${filterArtist}`);
+        total = 0;
+      } else {
+        const { count, error: countErr } = await supabase
+          .from('arts')
+          .select('id', { count: 'exact', head: true })
+          .eq('artist_id', artistData[0].id);
+        if (countErr) throw new Error(`Failed to count artworks for artist: ${countErr.message}`);
         total = count ?? 0;
       }
     } else {

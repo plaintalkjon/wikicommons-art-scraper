@@ -154,7 +154,7 @@ async function main() {
       if (urlMatch) {
         potentialTitle = urlMatch[1]
           .replace(/-/g, ' ')
-          .replace(/\b\w/g, l => l.toUpperCase()); // Title case
+          .replace(/\b\w/g, (l: string) => l.toUpperCase()); // Title case
       }
 
       console.log(`  🔍 Searching WikiData for: "${potentialTitle}"`);
