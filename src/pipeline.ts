@@ -10,6 +10,7 @@ import { normalizeTitle, cleanTitle, buildStoragePath, normalizeWikidataTags } f
 export interface FetchOptions {
   artist: string;
   source?: 'wikimedia' | 'smithsonian';
+  museum?: 'saam' | 'hmsg' | string; // Smithsonian museum: 'saam' (American Art), 'hmsg' (Hirshhorn), etc.
   limit?: number;
   dryRun?: boolean;
   maxUploads?: number;
@@ -395,7 +396,7 @@ async function fetchAndStoreFromSmithsonian(options: FetchOptions): Promise<Fetc
   try {
     const { searchSmithsonianArtworks } = await import('./smithsonian');
     const startTime = Date.now();
-    artworks = await searchSmithsonianArtworks(options.artist, limit);
+    artworks = await searchSmithsonianArtworks(options.artist, limit, options.museum || 'saam');
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
 
     console.log(`✓ Search complete (took ${elapsed}s)`);

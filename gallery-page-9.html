@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Art Assets Gallery</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 16px; background: #f7f7f7; }
+    .controls { margin-bottom: 12px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+    .card { background: #fff; padding: 10px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); display: flex; flex-direction: column; gap: 8px; }
+    .thumb { width: 100%; height: 180px; object-fit: cover; background: #eee; }
+    .meta { font-size: 12px; color: #444; line-height: 1.4; }
+    .artist { font-weight: bold; color: #222; }
+    .title { font-style: italic; color: #666; }
+    .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+    .tag { background: #e3f2fd; color: #1976d2; padding: 2px 6px; border-radius: 10px; font-size: 11px; }
+    label { cursor: pointer; }
+    input[type="search"] { padding: 6px; }
+    button { padding: 6px 10px; cursor: pointer; }
+    .count { font-size: 12px; color: #666; }
+    .path { font-size: 12px; word-break: break-all; color: #222; }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <label><input type="checkbox" id="selectAll" /> Select all</label>
+    <button id="copy">Copy selected paths</button>
+    <input type="search" id="pathFilter" placeholder="Filter by path" size="30" />
+    <input type="search" id="artistFilter" placeholder="Filter by artist" size="25" />
+    <input type="search" id="tagFilter" placeholder="Filter by tag" size="25" />
+    <button id="clearFilters">Clear filters</button>
+    <span class="count" id="count"></span>
+    <span class="count" id="pageInfo"></span>
+  </div>
+  <div class="grid" id="grid"></div>
+  <script>
+    const data = [{"art_id":"66f1075b-062e-4fdf-ba8f-3d9b96851cd6","storage_path":"george-bellows/blue-morning.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/george-bellows/blue-morning.jpg","width":0,"height":0,"file_size":6626,"artist_name":"George Bellows","art_title":"Blue Morning","tags":["1909","oil on canvas","canvas","oil painting"]},{"art_id":"f6aa135e-315a-4ef2-b1ec-1272d1748a52","storage_path":"jacopo-bassano/lazarus-and-the-rich-man.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/jacopo-bassano/lazarus-and-the-rich-man.jpg","width":0,"height":0,"file_size":5146,"artist_name":"Jacopo Bassano","art_title":"Lazarus and the Rich Man","tags":["painting","1550","european painting and sculpture","italy, 16th century","176x251","oil on canvas","canvas","oil painting","p - italian 16th & 17th century","c. 1550"]},{"art_id":"9f6fddf5-98f7-4768-b63c-8e5905556e1d","storage_path":"george-inness/landscape.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/george-inness/landscape.jpg","width":0,"height":0,"file_size":6462,"artist_name":"George Inness","art_title":"Landscape","tags":["painting","american arts","arts of the americas","american - painting","1887","american painting and sculpture","1887–89","79.5x92","oil on canvas","america","canvas","1888","oil painting","united states"]},{"art_id":"fd14d353-1b3f-4e07-aec4-d8697ae887e0","storage_path":"mary-cassatt/the-boating-party.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/mary-cassatt/the-boating-party.jpg","width":0,"height":0,"file_size":6042,"artist_name":"Mary Cassatt","art_title":"The Boating Party","tags":["1893","oil on canvas","canvas","oil painting"]},{"art_id":"c80f641f-a2a4-4f78-86f6-dec59b1b4f0c","storage_path":"mary-cassatt/the-caress.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/mary-cassatt/the-caress.jpg","width":0,"height":0,"file_size":6384,"artist_name":"Mary Cassatt","art_title":"The Caress","tags":["1891","oil on canvas","drypoint on laid paper","canvas","oil painting"]},{"art_id":"8b0bdbc0-c32e-41fe-afdf-6f9e33dd2396","storage_path":"claude-monet/water-lilies.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/claude-monet/water-lilies.jpg","width":1024,"height":768,"file_size":6954,"artist_name":"Claude Monet","art_title":"Water Lilies","tags":["20th century","painting","european painting","french","1906","impressionism","painting and sculpture of europe","france","1920","toledo museum of art","the nelson-atkins museum of art","paint","1922","landscape painting","modern and contemporary art","oil on canvas","canvas","oil painting","oil paintings (visual works)"]},{"art_id":"c0170713-f022-4834-9e42-28b8f5dbd946","storage_path":"paul-gauguin/te-pape-nave-nave-delectable-waters.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/paul-gauguin/te-pape-nave-nave-delectable-waters.jpg","width":0,"height":0,"file_size":4814,"artist_name":"Paul Gauguin","art_title":"Te Pape Nave Nave (Delectable Waters)","tags":["oil on canvas","canvas","oil painting","1898"]},{"art_id":"e0506401-b7bb-424b-a629-f9c288eb91d2","storage_path":"marc-chagall/the-lovers.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/marc-chagall/the-lovers.jpg","width":0,"height":0,"file_size":6056,"artist_name":"Marc Chagall","art_title":"The Lovers","tags":["etching and drypoint in black on laid paper","1922","etching and drypoint","oil on canvas","canvas","oil painting"]},{"art_id":"a4f0e5b2-185b-40e0-8681-73d210cc51c0","storage_path":"raphael/saint-george-and-the-dragon.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/raphael/saint-george-and-the-dragon.jpg","width":0,"height":0,"file_size":7190,"artist_name":"Raphael","art_title":"Saint George and the Dragon","tags":["high renaissance","brush and brown ink heightened with white over black chalk, incised with stylus","painting","1505","1506","religious art","sculpture","hermitage museum","1627","national gallery of art","oil on panel","engraving on laid paper","Drawing"]},{"art_id":"5292ab15-8412-4d39-ba08-61e5b42407fc","storage_path":"edgar-degas/the-old-italian-woman.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/edgar-degas/the-old-italian-woman.jpg","width":0,"height":0,"file_size":5568,"artist_name":"Edgar Degas","art_title":"The Old Italian Woman","tags":["european paintings","1857","women","portraits","oil on canvas","canvas","oil painting","portrait"]},{"art_id":"2e734ba9-1f4c-40c0-b3f3-8331f2825023","storage_path":"gustave-courbet/alphonse-promayet-1822-1872.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/gustave-courbet/alphonse-promayet-1822-1872.jpg","width":0,"height":0,"file_size":2662,"artist_name":"Gustave Courbet","art_title":"Alphonse Promayet (1822–1872)","tags":["european paintings","men","1851","portraits","musicians","oil on canvas","canvas","violins","oil painting","portrait"]},{"art_id":"a9ee431c-9d0e-42de-bff3-9bbfd2707275","storage_path":"edouard-manet/fishing.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/edouard-manet/fishing.jpg","width":0,"height":0,"file_size":6124,"artist_name":"Édouard Manet","art_title":"Fishing","tags":["european paintings","1862","men","boats","women","dogs","fishing","oil on canvas","canvas","oil painting"]},{"art_id":"c3ac7195-3191-47b2-84c6-6f315b87e291","storage_path":"edouard-manet/the-funeral.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/edouard-manet/the-funeral.jpg","width":0,"height":0,"file_size":6324,"artist_name":"Édouard Manet","art_title":"The Funeral","tags":["landscapes","european paintings","landscape painting","funerals","1869","oil on canvas","canvas","oil painting","paris"]},{"art_id":"b5331157-32fd-4df6-9613-0a1cf1e03e9d","storage_path":"paul-cezanne/bathers.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/paul-cezanne/bathers.jpg","width":0,"height":0,"file_size":7888,"artist_name":"Paul Cézanne","art_title":"Bathers","tags":["european paintings","female nudes","1874","bathing","oil on canvas","canvas","nude","oil painting"]},{"art_id":"64dac568-34bc-49b3-b098-a9684bdfd08c","storage_path":"hans-memling/virgin-and-child.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/hans-memling/virgin-and-child.jpg","width":0,"height":0,"file_size":6266,"artist_name":"Hans Memling","art_title":"Virgin and Child","tags":["1470","41.3x31.4","painting","european painting","european paintings","oil on wood","netherlands","painting and sculpture of europe","paint","medieval art","1477","1485","madonna and child","religious art","flanders, bruges","early netherlandish painting","c. 1485","15th century","oil on panel","nursing","c. 1470–80","oil paintings (visual works)","med - medieval art"]},{"art_id":"59222805-40f3-4df0-b6cb-73108a7a7ab7","storage_path":"alfred-sisley/view-of-marly-le-roi-from-coeur-volant.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/alfred-sisley/view-of-marly-le-roi-from-coeur-volant.jpg","width":0,"height":0,"file_size":6460,"artist_name":"Alfred Sisley","art_title":"View of Marly-le-Roi from Coeur-Volant","tags":["european paintings","towns","1876","oil on canvas","canvas","oil painting","gardens"]},{"art_id":"c3e88cbb-9423-44b1-9f96-125311e76e7e","storage_path":"francois-boucher/imaginary-landscape-with-the-palatine-hill-from-campo-vaccino.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/francois-boucher/imaginary-landscape-with-the-palatine-hill-from-campo-vaccino.jpg","width":0,"height":0,"file_size":5328,"artist_name":"François Boucher","art_title":"Imaginary Landscape with the Palatine Hill from Campo Vaccino","tags":["landscapes","european paintings","men","shepherds","oil on canvas","cows","rome","canvas","oil painting","buildings"]},{"art_id":"1a95281b-c499-4bce-a87e-3bcd888b459f","storage_path":"the-argosy/argosy-1923-12-01-cover-the-black-jarl-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-1923-12-01-cover-the-black-jarl-jpgjpg","width":640,"height":860,"file_size":241520,"artist_name":"The Argosy","art_title":"Argosy 1923-12-01--cover--The black jarl","tags":[]},{"art_id":"797dcfa3-c841-433a-8fe2-728388e32b51","storage_path":"the-argosy/argosy-all-story-weekly-19230929-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-all-story-weekly-19230929-jpgjpg","width":400,"height":578,"file_size":98980,"artist_name":"The Argosy","art_title":"Argosy all story weekly 19230929","tags":[]},{"art_id":"8be59b32-971c-471b-a999-9b7401fc6f98","storage_path":"the-argosy/argosy-19200724-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19200724-jpgjpg","width":400,"height":573,"file_size":111033,"artist_name":"The Argosy","art_title":"Argosy 19200724","tags":[]},{"art_id":"7d8478ce-c1bd-42ca-a1f4-29377033b340","storage_path":"the-argosy/argosy-19200710-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19200710-jpgjpg","width":400,"height":574,"file_size":113760,"artist_name":"The Argosy","art_title":"Argosy 19200710","tags":[]},{"art_id":"d83f1caa-244f-4879-a8f8-419c7b13b08b","storage_path":"the-argosy/argosy-19200605-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19200605-jpgjpg","width":400,"height":578,"file_size":116894,"artist_name":"The Argosy","art_title":"Argosy 19200605","tags":[]},{"art_id":"b3acdcbe-9dac-4dbd-9083-7c4f9e73d761","storage_path":"the-argosy/argosy-19200529-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19200529-jpgjpg","width":400,"height":574,"file_size":123340,"artist_name":"The Argosy","art_title":"Argosy 19200529","tags":[]},{"art_id":"727f0ec3-f1e1-46b3-bbbb-3a1fa0841a33","storage_path":"the-argosy/argosy-19200619-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19200619-jpgjpg","width":400,"height":572,"file_size":105927,"artist_name":"The Argosy","art_title":"Argosy 19200619","tags":[]},{"art_id":"6eae838c-3560-4965-b1e8-d56f5d5cc8f8","storage_path":"the-argosy/argosy-19200626-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19200626-jpgjpg","width":400,"height":571,"file_size":120021,"artist_name":"The Argosy","art_title":"Argosy 19200626","tags":[]},{"art_id":"19be6a5b-253a-4815-b031-e076c1a49229","storage_path":"the-argosy/argosy-19200515-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19200515-jpgjpg","width":400,"height":572,"file_size":124342,"artist_name":"The Argosy","art_title":"Argosy 19200515","tags":[]},{"art_id":"c12b07c1-1486-4ca5-83fe-1ce647becdfb","storage_path":"the-argosy/argosy-19200522-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19200522-jpgjpg","width":400,"height":577,"file_size":109964,"artist_name":"The Argosy","art_title":"Argosy 19200522","tags":[]},{"art_id":"72755e73-2db9-4a0c-ac48-04ce03ee06fd","storage_path":"the-argosy/argosy-19200508-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19200508-jpgjpg","width":400,"height":573,"file_size":111818,"artist_name":"The Argosy","art_title":"Argosy 19200508","tags":[]},{"art_id":"399c5325-d477-4083-ba67-f63e8f1d1f6b","storage_path":"the-argosy/argosy-19200501-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19200501-jpgjpg","width":400,"height":574,"file_size":119026,"artist_name":"The Argosy","art_title":"Argosy 19200501","tags":[]},{"art_id":"88f5cd0e-0d03-4478-9b4c-453ff01e020f","storage_path":"the-argosy/metal-monster-sharp-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/metal-monster-sharp-jpgjpg","width":400,"height":573,"file_size":75726,"artist_name":"The Argosy","art_title":"Metal monster sharp","tags":[]},{"art_id":"348044b2-2be6-42d2-94ee-0d928ed4d666","storage_path":"the-argosy/argosy-19200424-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19200424-jpgjpg","width":400,"height":572,"file_size":112890,"artist_name":"The Argosy","art_title":"Argosy 19200424","tags":[]},{"art_id":"d6e307aa-2fd1-4fb2-861b-9e49d242ad4f","storage_path":"the-argosy/argosy-19200410-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19200410-jpgjpg","width":400,"height":569,"file_size":117476,"artist_name":"The Argosy","art_title":"Argosy 19200410","tags":[]},{"art_id":"bc125e97-d101-409e-819d-b5c85228b1b5","storage_path":"the-argosy/argosy-19200417-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19200417-jpgjpg","width":400,"height":572,"file_size":152716,"artist_name":"The Argosy","art_title":"Argosy 19200417","tags":[]},{"art_id":"89141961-c7b5-4cad-b0ef-0fe56b60e0c2","storage_path":"the-argosy/argosy-19200403-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19200403-jpgjpg","width":400,"height":571,"file_size":117004,"artist_name":"The Argosy","art_title":"Argosy 19200403","tags":[]},{"art_id":"4dedd81f-cfdc-485f-9b63-d8ed3844d65c","storage_path":"the-argosy/argosy-19200313-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19200313-jpgjpg","width":400,"height":576,"file_size":128456,"artist_name":"The Argosy","art_title":"Argosy 19200313","tags":[]},{"art_id":"d907ff8c-ef78-4501-9136-cce226577f51","storage_path":"the-argosy/argosy-19200306-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19200306-jpgjpg","width":400,"height":574,"file_size":125349,"artist_name":"The Argosy","art_title":"Argosy 19200306","tags":[]},{"art_id":"880a6f07-2523-4e21-bf4b-216ad2a8e12c","storage_path":"the-argosy/argosy-19200228-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19200228-jpgjpg","width":400,"height":574,"file_size":115947,"artist_name":"The Argosy","art_title":"Argosy 19200228","tags":[]},{"art_id":"a524bbb8-c590-4b27-b9f0-3b147487e02f","storage_path":"the-argosy/argosy-19200221-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19200221-jpgjpg","width":400,"height":572,"file_size":115913,"artist_name":"The Argosy","art_title":"Argosy 19200221","tags":[]},{"art_id":"815e3b4e-905e-4517-8f0a-5f89e950e1ae","storage_path":"the-argosy/argosy-19200207-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19200207-jpgjpg","width":400,"height":573,"file_size":131222,"artist_name":"The Argosy","art_title":"Argosy 19200207","tags":[]},{"art_id":"3a9397a7-66e5-41b7-bdce-0953349c98be","storage_path":"the-argosy/argosy-19200214-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19200214-jpgjpg","width":400,"height":573,"file_size":121760,"artist_name":"The Argosy","art_title":"Argosy 19200214","tags":[]},{"art_id":"db17a5e3-dda6-4cac-a09f-82c7a8a438b9","storage_path":"the-argosy/argosy-19200131-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19200131-jpgjpg","width":400,"height":571,"file_size":126062,"artist_name":"The Argosy","art_title":"Argosy 19200131","tags":[]},{"art_id":"17974b16-825a-45a0-88a7-6dcb04f16e6c","storage_path":"the-argosy/argosy-19200124-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19200124-jpgjpg","width":400,"height":572,"file_size":113258,"artist_name":"The Argosy","art_title":"Argosy 19200124","tags":[]},{"art_id":"3aab6e98-011e-4ec7-b728-6fb888cbc1e6","storage_path":"the-argosy/argosy-19200117-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19200117-jpgjpg","width":400,"height":579,"file_size":115496,"artist_name":"The Argosy","art_title":"Argosy 19200117","tags":[]},{"art_id":"b9a35961-0fd7-4030-8b03-32f5207b7a21","storage_path":"the-argosy/argosy-19200110-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19200110-jpgjpg","width":400,"height":579,"file_size":101957,"artist_name":"The Argosy","art_title":"Argosy 19200110","tags":[]},{"art_id":"bb093fb3-7ad1-4109-ab09-f196ee0e620a","storage_path":"the-argosy/argosy-19200103-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19200103-jpgjpg","width":400,"height":577,"file_size":82713,"artist_name":"The Argosy","art_title":"Argosy 19200103","tags":[]},{"art_id":"7bfb0e7e-8b41-42c2-84a3-cada001e1136","storage_path":"the-argosy/argosy-19191227-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19191227-jpgjpg","width":400,"height":573,"file_size":112396,"artist_name":"The Argosy","art_title":"Argosy 19191227","tags":[]},{"art_id":"fe537d40-6004-4b6a-bd8e-bd5aa3c44b34","storage_path":"the-argosy/argosy-19191122-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19191122-jpgjpg","width":400,"height":575,"file_size":129073,"artist_name":"The Argosy","art_title":"Argosy 19191122","tags":[]},{"art_id":"7e05ff3d-6ec4-472b-bc07-2d59b5225d35","storage_path":"the-argosy/argosy-19191213-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19191213-jpgjpg","width":400,"height":572,"file_size":117376,"artist_name":"The Argosy","art_title":"Argosy 19191213","tags":[]},{"art_id":"e4cb2339-ff33-4cf0-9550-44b6c9b0ec7d","storage_path":"the-argosy/argosy-19191206-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19191206-jpgjpg","width":400,"height":570,"file_size":118212,"artist_name":"The Argosy","art_title":"Argosy 19191206","tags":[]},{"art_id":"e7ee65ec-a3a1-482a-b430-7f053c5f6d13","storage_path":"the-argosy/argosy-19191129-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-19191129-jpgjpg","width":400,"height":574,"file_size":108645,"artist_name":"The Argosy","art_title":"Argosy 19191129","tags":[]}];
+    const meta = {"limit":50,"offset":400,"total":1284,"page":8,"pageCount":26};
+    const grid = document.getElementById('grid');
+    const selectAll = document.getElementById('selectAll');
+    const copyBtn = document.getElementById('copy');
+    const pathFilter = document.getElementById('pathFilter');
+    const artistFilter = document.getElementById('artistFilter');
+    const tagFilter = document.getElementById('tagFilter');
+    const clearFiltersBtn = document.getElementById('clearFilters');
+    const count = document.getElementById('count');
+    const pageInfo = document.getElementById('pageInfo');
+
+    function render(list) {
+      grid.innerHTML = '';
+      for (const row of list) {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.dataset.path = row.storage_path.toLowerCase();
+        card.dataset.artist = (row.artist_name || '').toLowerCase();
+        card.dataset.tags = (row.tags || []).join(' ').toLowerCase();
+        card.innerHTML = `
+          <input type="checkbox" class="chk" data-path="${row.storage_path}">
+          <img class="thumb" src="${row.public_url}" alt="${row.storage_path}">
+          <div class="meta">
+            <div class="path">${row.storage_path}</div>
+            ${row.artist_name ? `<div class="artist">${row.artist_name}</div>` : ''}
+            ${row.art_title ? `<div class="title">${row.art_title}</div>` : ''}
+            ${row.tags && row.tags.length ? `<div class="tags">${row.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>` : ''}
+            <div>Size: ${row.width || '?'} x ${row.height || '?'} | File: ${row.file_size ? (row.file_size/1024/1024).toFixed(2) + ' MB' : '?'}</div>
+          </div>
+        `;
+        grid.appendChild(card);
+      }
+      applyFilters();
+      const pageText = meta.page != null && meta.pageCount != null
+        ? `Page ${meta.page + 1} / ${meta.pageCount}`
+        : '';
+      const totalText = meta.total != null ? `Total: ${meta.total}` : '';
+      pageInfo.textContent = [pageText, `Offset: ${meta.offset}`, `Limit: ${meta.limit}`, totalText].filter(Boolean).join(' | ');
+    }
+
+    function applyFilters() {
+      const pathQuery = pathFilter.value.trim().toLowerCase();
+      const artistQuery = artistFilter.value.trim().toLowerCase();
+      const tagQuery = tagFilter.value.trim().toLowerCase();
+
+      const cards = Array.from(grid.children);
+      let shown = 0;
+      for (const c of cards) {
+        const pathMatch = !pathQuery || c.dataset.path.includes(pathQuery);
+        const artistMatch = !artistQuery || c.dataset.artist.includes(artistQuery);
+        const tagMatch = !tagQuery || c.dataset.tags.includes(tagQuery);
+        const match = pathMatch && artistMatch && tagMatch;
+        c.style.display = match ? '' : 'none';
+        if (match) shown++;
+      }
+      count.textContent = `Showing ${shown} item(s)`;
+    }
+
+    function currentCards() {
+      return Array.from(grid.children).filter(c => c.style.display !== 'none');
+    }
+
+    function clearFilters() {
+      pathFilter.value = '';
+      artistFilter.value = '';
+      tagFilter.value = '';
+      applyFilters();
+    }
+
+    pathFilter.addEventListener('input', applyFilters);
+    artistFilter.addEventListener('input', applyFilters);
+    tagFilter.addEventListener('input', applyFilters);
+    clearFiltersBtn.addEventListener('click', clearFilters);
+
+    selectAll.addEventListener('change', () => {
+      const cards = currentCards();
+      cards.forEach(c => {
+        const chk = c.querySelector('.chk');
+        if (chk) chk.checked = selectAll.checked;
+      });
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      const cards = currentCards();
+      const paths = cards
+        .map(c => c.querySelector('.chk'))
+        .filter(chk => chk && chk.checked)
+        .map(chk => chk.getAttribute('data-path'));
+      if (!paths.length) {
+        alert('No items selected.');
+        return;
+      }
+      await navigator.clipboard.writeText(paths.join('\n'));
+      alert(`Copied ${paths.length} path(s) to clipboard`);
+    });
+
+    render(data);
+  </script>
+</body>
+</html>

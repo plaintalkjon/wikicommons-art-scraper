@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Art Assets Gallery</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 16px; background: #f7f7f7; }
+    .controls { margin-bottom: 12px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+    .card { background: #fff; padding: 10px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); display: flex; flex-direction: column; gap: 8px; }
+    .thumb { width: 100%; height: 180px; object-fit: cover; background: #eee; }
+    .meta { font-size: 12px; color: #444; line-height: 1.4; }
+    .artist { font-weight: bold; color: #222; }
+    .title { font-style: italic; color: #666; }
+    .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+    .tag { background: #e3f2fd; color: #1976d2; padding: 2px 6px; border-radius: 10px; font-size: 11px; }
+    label { cursor: pointer; }
+    input[type="search"] { padding: 6px; }
+    button { padding: 6px 10px; cursor: pointer; }
+    .count { font-size: 12px; color: #666; }
+    .path { font-size: 12px; word-break: break-all; color: #222; }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <label><input type="checkbox" id="selectAll" /> Select all</label>
+    <button id="copy">Copy selected paths</button>
+    <input type="search" id="pathFilter" placeholder="Filter by path" size="30" />
+    <input type="search" id="artistFilter" placeholder="Filter by artist" size="25" />
+    <input type="search" id="tagFilter" placeholder="Filter by tag" size="25" />
+    <button id="clearFilters">Clear filters</button>
+    <span class="count" id="count"></span>
+    <span class="count" id="pageInfo"></span>
+  </div>
+  <div class="grid" id="grid"></div>
+  <script>
+    const data = [{"art_id":"e7def11a-5455-4671-9fc3-26964ae52369","storage_path":"the-argosy/argosy-191008-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-191008-jpgjpg","width":400,"height":576,"file_size":63310,"artist_name":"The Argosy","art_title":"Argosy 191008","tags":[]},{"art_id":"9df2ffaa-5136-481d-9a0e-4122753a5b38","storage_path":"the-argosy/argosy-191012-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-191012-jpgjpg","width":400,"height":583,"file_size":97401,"artist_name":"The Argosy","art_title":"Argosy 191012","tags":[]},{"art_id":"221ec908-b0e8-442a-9bac-7a291f9c0106","storage_path":"the-argosy/argosy-191010-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-191010-jpgjpg","width":400,"height":575,"file_size":81281,"artist_name":"The Argosy","art_title":"Argosy 191010","tags":[]},{"art_id":"9ee5e448-0cf3-4831-9c05-d65d54fe1e19","storage_path":"the-argosy/argosy-191011-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-191011-jpgjpg","width":400,"height":576,"file_size":109405,"artist_name":"The Argosy","art_title":"Argosy 191011","tags":[]},{"art_id":"8e754c11-9213-406b-a297-1299c1ca29d8","storage_path":"the-argosy/argosy-191301-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-191301-jpgjpg","width":400,"height":573,"file_size":88558,"artist_name":"The Argosy","art_title":"Argosy 191301","tags":[]},{"art_id":"a35526f0-67b2-4219-9847-6dc8767b572c","storage_path":"the-argosy/argosy-191302-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-191302-jpgjpg","width":400,"height":570,"file_size":97262,"artist_name":"The Argosy","art_title":"Argosy 191302","tags":[]},{"art_id":"c810ed6e-d365-45ef-a4f6-ffacec29fc6d","storage_path":"the-argosy/argosy-191303-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-191303-jpgjpg","width":400,"height":570,"file_size":73775,"artist_name":"The Argosy","art_title":"Argosy 191303","tags":[]},{"art_id":"41e34912-e918-4d79-84b1-80ac9a224601","storage_path":"the-argosy/argosy-191304-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-191304-jpgjpg","width":400,"height":573,"file_size":93334,"artist_name":"The Argosy","art_title":"Argosy 191304","tags":[]},{"art_id":"518426c5-235a-4cef-801c-f35cbf921c03","storage_path":"the-argosy/argosy-191306-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-191306-jpgjpg","width":400,"height":575,"file_size":98381,"artist_name":"The Argosy","art_title":"Argosy 191306","tags":[]},{"art_id":"4f80c5e4-ec60-48d2-8016-94a65b615cd8","storage_path":"the-argosy/argosy-191305-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-191305-jpgjpg","width":400,"height":570,"file_size":96329,"artist_name":"The Argosy","art_title":"Argosy 191305","tags":[]},{"art_id":"a717a7a9-06cb-4ee6-85a9-00217051b15c","storage_path":"the-argosy/argosy-191308-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-191308-jpgjpg","width":400,"height":578,"file_size":96590,"artist_name":"The Argosy","art_title":"Argosy 191308","tags":[]},{"art_id":"1524e847-11ad-4600-9dc1-d2b5344e2b26","storage_path":"the-argosy/argosy-191309-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-191309-jpgjpg","width":400,"height":571,"file_size":91792,"artist_name":"The Argosy","art_title":"Argosy 191309","tags":[]},{"art_id":"ad3fa9a8-d633-47e7-a4f1-e4556f4ce4ed","storage_path":"the-argosy/argosy-191312-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-191312-jpgjpg","width":400,"height":571,"file_size":100858,"artist_name":"The Argosy","art_title":"Argosy 191312","tags":[]},{"art_id":"92e203a5-da13-4420-bead-9b3dbc3f897a","storage_path":"the-argosy/argosy-191311-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-191311-jpgjpg","width":400,"height":573,"file_size":102094,"artist_name":"The Argosy","art_title":"Argosy 191311","tags":[]},{"art_id":"f17e27c3-6f82-4de6-803d-175e8b8d7bed","storage_path":"the-argosy/argosy-191310-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-191310-jpgjpg","width":400,"height":572,"file_size":71284,"artist_name":"The Argosy","art_title":"Argosy 191310","tags":[]},{"art_id":"69161985-c75e-4c9d-9924-b80aef4b4cb4","storage_path":"the-argosy/argosy-191201-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-191201-jpgjpg","width":400,"height":577,"file_size":103148,"artist_name":"The Argosy","art_title":"Argosy 191201","tags":[]},{"art_id":"8881bbf9-6a33-4976-ac05-5ed6a5d19506","storage_path":"the-argosy/argosy-191202-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-191202-jpgjpg","width":400,"height":572,"file_size":101371,"artist_name":"The Argosy","art_title":"Argosy 191202","tags":[]},{"art_id":"73d8e598-1877-4933-8753-92ad497a1d0f","storage_path":"the-argosy/argosy-191203-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-191203-jpgjpg","width":400,"height":577,"file_size":79660,"artist_name":"The Argosy","art_title":"Argosy 191203","tags":[]},{"art_id":"f4c1ff63-90a9-4679-9cb0-33e0e7438d9c","storage_path":"the-argosy/argosy-191205-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-191205-jpgjpg","width":400,"height":578,"file_size":87283,"artist_name":"The Argosy","art_title":"Argosy 191205","tags":[]},{"art_id":"3e09ff26-6f27-423f-a65b-ef45bf125fed","storage_path":"the-argosy/argosy-191206-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-191206-jpgjpg","width":400,"height":575,"file_size":72507,"artist_name":"The Argosy","art_title":"Argosy 191206","tags":[]},{"art_id":"3b2f8468-200f-4a6a-ae4e-671672920100","storage_path":"the-argosy/argosy-191209-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-191209-jpgjpg","width":400,"height":583,"file_size":96860,"artist_name":"The Argosy","art_title":"Argosy 191209","tags":[]},{"art_id":"71e6006c-5f5e-40c4-be99-739002f9718a","storage_path":"the-argosy/argosy-191211-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-191211-jpgjpg","width":400,"height":586,"file_size":92168,"artist_name":"The Argosy","art_title":"Argosy 191211","tags":[]},{"art_id":"32c309da-12b2-473c-914b-595c04128e89","storage_path":"the-argosy/argosy-191210-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-191210-jpgjpg","width":400,"height":578,"file_size":82316,"artist_name":"The Argosy","art_title":"Argosy 191210","tags":[]},{"art_id":"a9d3a5aa-a1ea-4594-9e1f-1adafd5306c8","storage_path":"the-argosy/argosy-191001-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-191001-jpgjpg","width":400,"height":575,"file_size":97462,"artist_name":"The Argosy","art_title":"Argosy 191001","tags":[]},{"art_id":"d03ed705-a89b-4944-811b-fe4d921e240b","storage_path":"the-argosy/argosy-191212-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-191212-jpgjpg","width":400,"height":577,"file_size":85350,"artist_name":"The Argosy","art_title":"Argosy 191212","tags":[]},{"art_id":"f3fbf28f-d635-487d-9327-4a80eb537ed8","storage_path":"the-argosy/argosy-191002-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-191002-jpgjpg","width":400,"height":574,"file_size":83465,"artist_name":"The Argosy","art_title":"Argosy 191002","tags":[]},{"art_id":"9545e07a-516f-4512-907d-3fee4b0ac53b","storage_path":"the-argosy/argosy-190903-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-190903-jpgjpg","width":400,"height":582,"file_size":111921,"artist_name":"The Argosy","art_title":"Argosy 190903","tags":[]},{"art_id":"224192a5-f4e5-489c-9e75-bebd9229e8af","storage_path":"the-argosy/argosy-190902-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-190902-jpgjpg","width":400,"height":575,"file_size":99003,"artist_name":"The Argosy","art_title":"Argosy 190902","tags":[]},{"art_id":"1869dbc8-0d9d-4c9f-b50d-c955bf6a039a","storage_path":"the-argosy/argosy-190901-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-190901-jpgjpg","width":400,"height":578,"file_size":85606,"artist_name":"The Argosy","art_title":"Argosy 190901","tags":[]},{"art_id":"27d48748-56af-459e-bae2-82275eae3ba3","storage_path":"the-argosy/argosy-190904-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-190904-jpgjpg","width":400,"height":583,"file_size":46017,"artist_name":"The Argosy","art_title":"Argosy 190904","tags":[]},{"art_id":"dc64bf04-7de9-4dc8-9266-d49de0ace5a7","storage_path":"the-argosy/argosy-190905-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-190905-jpgjpg","width":400,"height":575,"file_size":82530,"artist_name":"The Argosy","art_title":"Argosy 190905","tags":[]},{"art_id":"79ba0646-d656-4efc-8c91-fd298b204933","storage_path":"the-argosy/argosy-190909-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-190909-jpgjpg","width":400,"height":579,"file_size":85740,"artist_name":"The Argosy","art_title":"Argosy 190909","tags":[]},{"art_id":"b36f7619-56bc-4420-8600-2d57097db9d2","storage_path":"the-argosy/argosy-190912-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-190912-jpgjpg","width":400,"height":583,"file_size":119725,"artist_name":"The Argosy","art_title":"Argosy 190912","tags":[]},{"art_id":"6611d39e-694f-492a-b29f-6e272800493c","storage_path":"the-argosy/argosy-190906-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-190906-jpgjpg","width":400,"height":578,"file_size":110208,"artist_name":"The Argosy","art_title":"Argosy 190906","tags":[]},{"art_id":"9a35ce9b-eb54-4ceb-aeff-86492227b2d3","storage_path":"the-argosy/argosy-190910-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-190910-jpgjpg","width":400,"height":578,"file_size":92788,"artist_name":"The Argosy","art_title":"Argosy 190910","tags":[]},{"art_id":"fc0957b6-35a5-41f2-9683-ccd91542639f","storage_path":"the-argosy/argosy-190803-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-190803-jpgjpg","width":400,"height":559,"file_size":89686,"artist_name":"The Argosy","art_title":"Argosy 190803","tags":[]},{"art_id":"4ebb6e46-fb99-4785-b1db-1c3062ec7e9e","storage_path":"the-argosy/argosy-190911-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-190911-jpgjpg","width":400,"height":579,"file_size":63756,"artist_name":"The Argosy","art_title":"Argosy 190911","tags":[]},{"art_id":"074652d0-79ab-41c4-a04a-dea1e78ca50d","storage_path":"the-argosy/argosy-190801-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-190801-jpgjpg","width":400,"height":561,"file_size":107701,"artist_name":"The Argosy","art_title":"Argosy 190801","tags":[]},{"art_id":"8aa50fc2-f7a6-45c0-8c61-1260884e7ccd","storage_path":"the-argosy/argosy-190802-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-190802-jpgjpg","width":400,"height":574,"file_size":105493,"artist_name":"The Argosy","art_title":"Argosy 190802","tags":[]},{"art_id":"19ae40af-9e38-4070-8195-bdbb6789701a","storage_path":"the-argosy/argosy-190804-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-190804-jpgjpg","width":400,"height":558,"file_size":123377,"artist_name":"The Argosy","art_title":"Argosy 190804","tags":[]},{"art_id":"0d4551a5-13c9-421a-9923-0e76e8769ad1","storage_path":"the-argosy/argosy-190806-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-190806-jpgjpg","width":400,"height":559,"file_size":108173,"artist_name":"The Argosy","art_title":"Argosy 190806","tags":[]},{"art_id":"c04431ca-53ac-4ce5-b9dc-85ba96cad558","storage_path":"the-argosy/argosy-190807-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-190807-jpgjpg","width":400,"height":579,"file_size":103840,"artist_name":"The Argosy","art_title":"Argosy 190807","tags":[]},{"art_id":"3f701852-deb9-4a3f-b291-79ee0a1fefb8","storage_path":"the-argosy/argosy-190809-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-190809-jpgjpg","width":400,"height":585,"file_size":110918,"artist_name":"The Argosy","art_title":"Argosy 190809","tags":[]},{"art_id":"e86d6f0c-52cd-44dc-9f1c-e5f20d52a595","storage_path":"the-argosy/argosy-190805-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-190805-jpgjpg","width":400,"height":561,"file_size":87866,"artist_name":"The Argosy","art_title":"Argosy 190805","tags":[]},{"art_id":"33c89a1d-3c57-4688-9d5b-4ea4a96e1faf","storage_path":"the-argosy/argosy-190808-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-190808-jpgjpg","width":400,"height":578,"file_size":101126,"artist_name":"The Argosy","art_title":"Argosy 190808","tags":[]},{"art_id":"95d247e7-e18a-46ca-bf3c-b8bbd544b0d6","storage_path":"the-argosy/argosy-190811-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-190811-jpgjpg","width":400,"height":576,"file_size":88258,"artist_name":"The Argosy","art_title":"Argosy 190811","tags":[]},{"art_id":"de3b3e47-8cb7-4cec-b507-1145b3ceb21f","storage_path":"the-argosy/argosy-190812-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-190812-jpgjpg","width":400,"height":574,"file_size":103844,"artist_name":"The Argosy","art_title":"Argosy 190812","tags":[]},{"art_id":"5f66b061-4391-4598-aaeb-6b4888fc1303","storage_path":"the-argosy/argosy-190810-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-190810-jpgjpg","width":400,"height":562,"file_size":113238,"artist_name":"The Argosy","art_title":"Argosy 190810","tags":[]},{"art_id":"f9077707-c860-49cf-bb22-b75ebfcccbb9","storage_path":"the-argosy/argosy-190703-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-190703-jpgjpg","width":400,"height":576,"file_size":81161,"artist_name":"The Argosy","art_title":"Argosy 190703","tags":[]},{"art_id":"56f91707-9abd-46a4-b30f-3e5c6143414d","storage_path":"the-argosy/argosy-190701-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/the-argosy/argosy-190701-jpgjpg","width":400,"height":561,"file_size":81079,"artist_name":"The Argosy","art_title":"Argosy 190701","tags":[]}];
+    const meta = {"limit":50,"offset":600,"total":1284,"page":12,"pageCount":26};
+    const grid = document.getElementById('grid');
+    const selectAll = document.getElementById('selectAll');
+    const copyBtn = document.getElementById('copy');
+    const pathFilter = document.getElementById('pathFilter');
+    const artistFilter = document.getElementById('artistFilter');
+    const tagFilter = document.getElementById('tagFilter');
+    const clearFiltersBtn = document.getElementById('clearFilters');
+    const count = document.getElementById('count');
+    const pageInfo = document.getElementById('pageInfo');
+
+    function render(list) {
+      grid.innerHTML = '';
+      for (const row of list) {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.dataset.path = row.storage_path.toLowerCase();
+        card.dataset.artist = (row.artist_name || '').toLowerCase();
+        card.dataset.tags = (row.tags || []).join(' ').toLowerCase();
+        card.innerHTML = `
+          <input type="checkbox" class="chk" data-path="${row.storage_path}">
+          <img class="thumb" src="${row.public_url}" alt="${row.storage_path}">
+          <div class="meta">
+            <div class="path">${row.storage_path}</div>
+            ${row.artist_name ? `<div class="artist">${row.artist_name}</div>` : ''}
+            ${row.art_title ? `<div class="title">${row.art_title}</div>` : ''}
+            ${row.tags && row.tags.length ? `<div class="tags">${row.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>` : ''}
+            <div>Size: ${row.width || '?'} x ${row.height || '?'} | File: ${row.file_size ? (row.file_size/1024/1024).toFixed(2) + ' MB' : '?'}</div>
+          </div>
+        `;
+        grid.appendChild(card);
+      }
+      applyFilters();
+      const pageText = meta.page != null && meta.pageCount != null
+        ? `Page ${meta.page + 1} / ${meta.pageCount}`
+        : '';
+      const totalText = meta.total != null ? `Total: ${meta.total}` : '';
+      pageInfo.textContent = [pageText, `Offset: ${meta.offset}`, `Limit: ${meta.limit}`, totalText].filter(Boolean).join(' | ');
+    }
+
+    function applyFilters() {
+      const pathQuery = pathFilter.value.trim().toLowerCase();
+      const artistQuery = artistFilter.value.trim().toLowerCase();
+      const tagQuery = tagFilter.value.trim().toLowerCase();
+
+      const cards = Array.from(grid.children);
+      let shown = 0;
+      for (const c of cards) {
+        const pathMatch = !pathQuery || c.dataset.path.includes(pathQuery);
+        const artistMatch = !artistQuery || c.dataset.artist.includes(artistQuery);
+        const tagMatch = !tagQuery || c.dataset.tags.includes(tagQuery);
+        const match = pathMatch && artistMatch && tagMatch;
+        c.style.display = match ? '' : 'none';
+        if (match) shown++;
+      }
+      count.textContent = `Showing ${shown} item(s)`;
+    }
+
+    function currentCards() {
+      return Array.from(grid.children).filter(c => c.style.display !== 'none');
+    }
+
+    function clearFilters() {
+      pathFilter.value = '';
+      artistFilter.value = '';
+      tagFilter.value = '';
+      applyFilters();
+    }
+
+    pathFilter.addEventListener('input', applyFilters);
+    artistFilter.addEventListener('input', applyFilters);
+    tagFilter.addEventListener('input', applyFilters);
+    clearFiltersBtn.addEventListener('click', clearFilters);
+
+    selectAll.addEventListener('change', () => {
+      const cards = currentCards();
+      cards.forEach(c => {
+        const chk = c.querySelector('.chk');
+        if (chk) chk.checked = selectAll.checked;
+      });
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      const cards = currentCards();
+      const paths = cards
+        .map(c => c.querySelector('.chk'))
+        .filter(chk => chk && chk.checked)
+        .map(chk => chk.getAttribute('data-path'));
+      if (!paths.length) {
+        alert('No items selected.');
+        return;
+      }
+      await navigator.clipboard.writeText(paths.join('\n'));
+      alert(`Copied ${paths.length} path(s) to clipboard`);
+    });
+
+    render(data);
+  </script>
+</body>
+</html>

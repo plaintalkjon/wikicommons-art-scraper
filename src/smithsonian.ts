@@ -13,11 +13,13 @@ if (!SMITHSONIAN_API_KEY) {
  */
 export async function searchSmithsonianArtworks(
   artist: string,
-  limit: number = 100
+  limit: number = 100,
+  museum: string = 'saam' // 'saam' for American Art Museum, 'hmsg' for Hirshhorn, etc.
 ): Promise<SmithsonianArtwork[]> {
   // More specific query to focus on artworks, not books/publications
   const query = encodeURIComponent(`"${artist}" AND (painting OR sculpture OR drawing OR print OR artwork)`);
-  const url = `${SMITHSONIAN_API_BASE}/search?api_key=${SMITHSONIAN_API_KEY}&q=${query}&collection=edanmdm-saam&rows=${limit}`;
+  const collectionCode = museum === 'saam' ? 'edanmdm-saam' : museum === 'hmsg' ? 'edanmdm-hmsg' : `edanmdm-${museum}`;
+  const url = `${SMITHSONIAN_API_BASE}/search?api_key=${SMITHSONIAN_API_KEY}&q=${query}&collection=${collectionCode}&rows=${limit}`;
 
   await rateLimiter.waitIfNeeded();
 

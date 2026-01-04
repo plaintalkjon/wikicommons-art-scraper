@@ -94,3 +94,4 @@ async function testCronSystem() {
 }
 
 testCronSystem().catch(console.error);
+

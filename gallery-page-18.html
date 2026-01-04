@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Art Assets Gallery</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 16px; background: #f7f7f7; }
+    .controls { margin-bottom: 12px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+    .card { background: #fff; padding: 10px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); display: flex; flex-direction: column; gap: 8px; }
+    .thumb { width: 100%; height: 180px; object-fit: cover; background: #eee; }
+    .meta { font-size: 12px; color: #444; line-height: 1.4; }
+    .artist { font-weight: bold; color: #222; }
+    .title { font-style: italic; color: #666; }
+    .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+    .tag { background: #e3f2fd; color: #1976d2; padding: 2px 6px; border-radius: 10px; font-size: 11px; }
+    label { cursor: pointer; }
+    input[type="search"] { padding: 6px; }
+    button { padding: 6px 10px; cursor: pointer; }
+    .count { font-size: 12px; color: #666; }
+    .path { font-size: 12px; word-break: break-all; color: #222; }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <label><input type="checkbox" id="selectAll" /> Select all</label>
+    <button id="copy">Copy selected paths</button>
+    <input type="search" id="pathFilter" placeholder="Filter by path" size="30" />
+    <input type="search" id="artistFilter" placeholder="Filter by artist" size="25" />
+    <input type="search" id="tagFilter" placeholder="Filter by tag" size="25" />
+    <button id="clearFilters">Clear filters</button>
+    <span class="count" id="count"></span>
+    <span class="count" id="pageInfo"></span>
+  </div>
+  <div class="grid" id="grid"></div>
+  <script>
+    const data = [{"art_id":"7f6c6e41-9d5c-49c9-aa76-17a8f2866098","storage_path":"adventure/adventure-v01-n04-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v01-n04-jpgjpg","width":400,"height":579,"file_size":117933,"artist_name":"Adventure","art_title":"Adventure v01 n04","tags":[]},{"art_id":"b4bcebf5-0adf-4563-a5b2-dcadaf0d34e0","storage_path":"adventure/adventure-v01-n03-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v01-n03-jpgjpg","width":430,"height":615,"file_size":84906,"artist_name":"Adventure","art_title":"Adventure v01 n03","tags":[]},{"art_id":"0d3f5799-8b89-44d8-a284-84d674298add","storage_path":"adventure/adventure-v01-n01-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v01-n01-jpgjpg","width":400,"height":576,"file_size":88828,"artist_name":"Adventure","art_title":"Adventure v01 n01","tags":[]},{"art_id":"d94b5cba-5ac8-4f71-abbf-a126b77f6f21","storage_path":"adventure/adventure-1927-04-01-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-1927-04-01-jpgjpg","width":650,"height":930,"file_size":94065,"artist_name":"Adventure","art_title":"Adventure 1927-04-01","tags":[]},{"art_id":"b94aac00-66dd-4719-88e6-5b9142cc1982","storage_path":"amazing-stories/amazingstoriesjuly1926-2-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazingstoriesjuly1926-2-jpgjpg","width":756,"height":1046,"file_size":277046,"artist_name":"Amazing Stories","art_title":"AmazingStoriesJuly1926 (2)","tags":[]},{"art_id":"f80bb823-f7db-46df-ad34-90b8e3ac7e39","storage_path":"amazing-stories/amazing-stories-quarterly-1934fal-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-quarterly-1934fal-jpgjpg","width":400,"height":539,"file_size":101617,"artist_name":"Amazing Stories","art_title":"Amazing stories quarterly 1934fal","tags":[]},{"art_id":"8ce966a3-04d2-49cb-9e4a-d0a9ffe7f12f","storage_path":"amazing-stories/amazing-stories-quarterly-1933spr-sum-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-quarterly-1933spr-sum-jpgjpg","width":400,"height":532,"file_size":64910,"artist_name":"Amazing Stories","art_title":"Amazing stories quarterly 1933spr-sum","tags":[]},{"art_id":"83501175-11cc-46ba-b6d9-e4504970a5f2","storage_path":"amazing-stories/amazing-stories-quarterly-1933win-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-quarterly-1933win-jpgjpg","width":400,"height":543,"file_size":92308,"artist_name":"Amazing Stories","art_title":"Amazing stories quarterly 1933win","tags":[]},{"art_id":"a44af655-d5bc-46a7-a44d-98c714bf93af","storage_path":"amazing-stories/amazing-stories-quarterly-1932fal-win-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-quarterly-1932fal-win-jpgjpg","width":410,"height":542,"file_size":47543,"artist_name":"Amazing Stories","art_title":"Amazing stories quarterly 1932fal-win","tags":[]},{"art_id":"70696440-b177-446b-975d-4161098879d2","storage_path":"amazing-stories/amazing-stories-quarterly-1932win-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-quarterly-1932win-jpgjpg","width":400,"height":539,"file_size":101858,"artist_name":"Amazing Stories","art_title":"Amazing stories quarterly 1932win","tags":[]},{"art_id":"aaedb26e-8087-46d5-9bcd-0c32e387c50b","storage_path":"amazing-stories/amazing-stories-quarterly-1932spr-sum-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-quarterly-1932spr-sum-jpgjpg","width":410,"height":550,"file_size":76851,"artist_name":"Amazing Stories","art_title":"Amazing stories quarterly 1932spr-sum","tags":[]},{"art_id":"a74235f5-e141-457b-af9d-4368ffed52a4","storage_path":"amazing-stories/amazing-stories-quarterly-1931sum-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-quarterly-1931sum-jpgjpg","width":400,"height":545,"file_size":102235,"artist_name":"Amazing Stories","art_title":"Amazing stories quarterly 1931sum","tags":[]},{"art_id":"8607987a-6623-4840-a11d-5c81d53deacc","storage_path":"amazing-stories/amazing-stories-quarterly-1931win-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-quarterly-1931win-jpgjpg","width":400,"height":545,"file_size":108148,"artist_name":"Amazing Stories","art_title":"Amazing stories quarterly 1931win","tags":[]},{"art_id":"4e30a8b9-853a-4be1-9b44-681a488573c3","storage_path":"amazing-stories/amazing-stories-quarterly-1931spr-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-quarterly-1931spr-jpgjpg","width":400,"height":541,"file_size":111948,"artist_name":"Amazing Stories","art_title":"Amazing stories quarterly 1931spr","tags":[]},{"art_id":"8e8690cd-5c56-4c9a-b37c-d7eb9f8a6059","storage_path":"amazing-stories/amazing-stories-quarterly-1930win-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-quarterly-1930win-jpgjpg","width":400,"height":551,"file_size":112874,"artist_name":"Amazing Stories","art_title":"Amazing stories quarterly 1930win","tags":[]},{"art_id":"0921e180-2aec-4564-aad3-8351325eb6a1","storage_path":"amazing-stories/amazing-stories-quarterly-1931fal-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-quarterly-1931fal-jpgjpg","width":400,"height":542,"file_size":104008,"artist_name":"Amazing Stories","art_title":"Amazing stories quarterly 1931fal","tags":[]},{"art_id":"290be74b-d700-4042-9b69-135fad504930","storage_path":"amazing-stories/amazing-stories-quarterly-1930fal-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-quarterly-1930fal-jpgjpg","width":400,"height":542,"file_size":109579,"artist_name":"Amazing Stories","art_title":"Amazing stories quarterly 1930fal","tags":[]},{"art_id":"cbfd27c2-5d33-4e98-bb5d-0c341e2ba092","storage_path":"amazing-stories/amazing-stories-quarterly-1930sum-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-quarterly-1930sum-jpgjpg","width":400,"height":546,"file_size":105100,"artist_name":"Amazing Stories","art_title":"Amazing stories quarterly 1930sum","tags":[]},{"art_id":"02859839-698f-48e9-afd9-ecd1979d9f4e","storage_path":"amazing-stories/amazing-stories-quarterly-1930spr-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-quarterly-1930spr-jpgjpg","width":400,"height":539,"file_size":101861,"artist_name":"Amazing Stories","art_title":"Amazing stories quarterly 1930spr","tags":[]},{"art_id":"2f71fe22-df81-4b85-aa64-cd874879b264","storage_path":"amazing-stories/amazing-stories-quarterly-1929win-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-quarterly-1929win-jpgjpg","width":400,"height":547,"file_size":100392,"artist_name":"Amazing Stories","art_title":"Amazing stories quarterly 1929win","tags":[]},{"art_id":"b7a99e3a-4497-4887-a159-1fab4b61cd00","storage_path":"amazing-stories/amazing-stories-quarterly-1929fal-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-quarterly-1929fal-jpgjpg","width":400,"height":547,"file_size":124248,"artist_name":"Amazing Stories","art_title":"Amazing stories quarterly 1929fal","tags":[]},{"art_id":"bfc310e5-c18d-44f3-813f-e1a70bce63fa","storage_path":"amazing-stories/amazing-stories-quarterly-1929spr-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-quarterly-1929spr-jpgjpg","width":400,"height":545,"file_size":111792,"artist_name":"Amazing Stories","art_title":"Amazing stories quarterly 1929spr","tags":[]},{"art_id":"a86d242a-18ad-47b4-8c40-22625462348f","storage_path":"amazing-stories/amazing-stories-quarterly-1929sum-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-quarterly-1929sum-jpgjpg","width":400,"height":545,"file_size":88902,"artist_name":"Amazing Stories","art_title":"Amazing stories quarterly 1929sum","tags":[]},{"art_id":"cd543cdc-ac57-4843-83ba-b69f6aff507d","storage_path":"amazing-stories/amazing-stories-quarterly-1928win-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-quarterly-1928win-jpgjpg","width":400,"height":552,"file_size":128544,"artist_name":"Amazing Stories","art_title":"Amazing stories quarterly 1928win","tags":[]},{"art_id":"9a8e60b5-97c4-4f89-8321-ead8086f5036","storage_path":"amazing-stories/amazing-stories-quarterly-1928spr-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-quarterly-1928spr-jpgjpg","width":400,"height":550,"file_size":104328,"artist_name":"Amazing Stories","art_title":"Amazing stories quarterly 1928spr","tags":[]},{"art_id":"9eb19820-3b1d-4b73-9fcd-498e35ead109","storage_path":"amazing-stories/wonder-stories-193301-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/wonder-stories-193301-jpgjpg","width":400,"height":545,"file_size":136552,"artist_name":"Amazing Stories","art_title":"Wonder stories (193301)","tags":[]},{"art_id":"96f7ce21-e340-421e-92c3-f5c39b9b70ca","storage_path":"amazing-stories/amazing-stories-quarterly-1928sum-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-quarterly-1928sum-jpgjpg","width":400,"height":534,"file_size":116218,"artist_name":"Amazing Stories","art_title":"Amazing stories quarterly 1928sum","tags":[]},{"art_id":"bcd22150-3535-4af7-8d8a-5f76cc554b4a","storage_path":"amazing-stories/wonder-stories-193304-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/wonder-stories-193304-jpgjpg","width":400,"height":544,"file_size":140655,"artist_name":"Amazing Stories","art_title":"Wonder stories (193304)","tags":[]},{"art_id":"ae1d1dc1-4687-4829-abbf-cea5465a8c85","storage_path":"amazing-stories/wonder-stories-193302-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/wonder-stories-193302-jpgjpg","width":400,"height":540,"file_size":137844,"artist_name":"Amazing Stories","art_title":"Wonder stories (193302)","tags":[]},{"art_id":"585757e9-9a16-4be7-bae3-f5eba1624916","storage_path":"amazing-stories/wonder-stories-193303-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/wonder-stories-193303-jpgjpg","width":400,"height":543,"file_size":117546,"artist_name":"Amazing Stories","art_title":"Wonder stories (193303)","tags":[]},{"art_id":"f3c152b8-7847-4672-b6c6-48cf174fb329","storage_path":"amazing-stories/wonder-stories-193306-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/wonder-stories-193306-jpgjpg","width":400,"height":552,"file_size":117584,"artist_name":"Amazing Stories","art_title":"Wonder stories (193306)","tags":[]},{"art_id":"9e98e950-6d44-4930-be19-b4fd5884c93a","storage_path":"amazing-stories/wonder-stories-193308-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/wonder-stories-193308-jpgjpg","width":400,"height":544,"file_size":117174,"artist_name":"Amazing Stories","art_title":"Wonder stories (193308)","tags":[]},{"art_id":"992c5a3e-5e9d-4c6b-8fe0-70d4222bd90f","storage_path":"amazing-stories/wonder-stories-193305-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Covers/amazing-stories/wonder-stories-193305-jpgjpg","width":400,"height":551,"file_size":119693,"artist_name":"Amazing Stories","art_title":"Wonder stories (193305)","tags":[]},{"art_id":"2123c857-f40a-403a-9ec1-f439cfc35d28","storage_path":"amazing-stories/wonder-stories-193310-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Covers/amazing-stories/wonder-stories-193310-jpgjpg","width":400,"height":551,"file_size":109741,"artist_name":"Amazing Stories","art_title":"Wonder stories","tags":[]},{"art_id":"bc2071b7-e20c-4da8-b279-a240626a8308","storage_path":"amazing-stories/wonder-stories-193311-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/wonder-stories-193311-jpgjpg","width":400,"height":574,"file_size":115733,"artist_name":"Amazing Stories","art_title":"Wonder stories (193311)","tags":[]},{"art_id":"a59ce2fe-20d9-4da3-b992-6ebdaaa2bbfe","storage_path":"amazing-stories/wonder-stories-193312-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/wonder-stories-193312-jpgjpg","width":400,"height":571,"file_size":120278,"artist_name":"Amazing Stories","art_title":"Wonder stories (193312)","tags":[]},{"art_id":"0c722d90-1f97-47c1-84d3-9b235736940e","storage_path":"amazing-stories/amazing-stories-october-1926-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Covers/amazing-stories/amazing-stories-october-1926-jpgjpg","width":842,"height":1164,"file_size":373849,"artist_name":"Amazing Stories","art_title":"Amazing Stories October","tags":[]},{"art_id":"1d81eafd-7ddd-48d6-ab53-c9966aeb2779","storage_path":"amazing-stories/amazing-stories-october-1957-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-october-1957-jpgjpg","width":579,"height":800,"file_size":71027,"artist_name":"Amazing Stories","art_title":"Amazing Stories October 1957","tags":[]},{"art_id":"f9b11de0-14b8-428d-b56c-9debecb1d1db","storage_path":"amazing-stories/amazing-stories-quarterly-summer-1931-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Covers/amazing-stories/amazing-stories-quarterly-summer-1931-jpgjpg","width":600,"height":807,"file_size":70695,"artist_name":"Amazing Stories","art_title":"Amazing Stories Quarterly Summer","tags":[]},{"art_id":"4a25dc6b-fef9-4610-af55-923bd2c16bc6","storage_path":"amazing-stories/amazing-stories-august-1946-back-cover-pngpng","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-august-1946-back-cover-pngpng","width":442,"height":635,"file_size":853920,"artist_name":"Amazing Stories","art_title":"Amazing Stories August 1946 back cover","tags":[]},{"art_id":"53a62453-c514-4f4d-a6e5-a520cc85a4b3","storage_path":"amazing-stories/amazing-stories-november-1926-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-november-1926-jpgjpg","width":463,"height":640,"file_size":111974,"artist_name":"Amazing Stories","art_title":"Amazing Stories November","tags":[]},{"art_id":"12cc8edc-2b7d-4b19-95d7-6cb47fffbab9","storage_path":"amazing-stories/amazing-stories-august-1928-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Covers/amazing-stories/amazing-stories-august-1928-jpgjpg","width":567,"height":779,"file_size":208346,"artist_name":"Amazing Stories","art_title":"Amazing Stories, August","tags":[]},{"art_id":"f1a0ab50-faf8-4a4f-967e-1178519dc11b","storage_path":"amazing-stories/amazing-stories-quarterly-1928-spring-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-quarterly-1928-spring-jpgjpg","width":412,"height":579,"file_size":171407,"artist_name":"Amazing Stories","art_title":"Amazing Stories Quarterly 1928 Spring","tags":[]},{"art_id":"d1a88fac-6264-40b4-8e14-026b15a1f543","storage_path":"amazing-stories/amazing-stories-196301-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-196301-jpgjpg","width":400,"height":556,"file_size":118104,"artist_name":"Amazing Stories","art_title":"Amazing stories 196301","tags":[]},{"art_id":"7ab0854c-0396-4eec-83b9-776d49f874dd","storage_path":"amazing-stories/amazing-stories-196303-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-196303-jpgjpg","width":400,"height":555,"file_size":109171,"artist_name":"Amazing Stories","art_title":"Amazing stories 196303","tags":[]},{"art_id":"b0c0ff46-7c43-4ff7-b4a1-59e016b67650","storage_path":"amazing-stories/amazing-stories-196302-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-196302-jpgjpg","width":400,"height":555,"file_size":103277,"artist_name":"Amazing Stories","art_title":"Amazing stories 196302","tags":[]},{"art_id":"e3b53d5d-ce73-40f0-92ba-abcf7f396993","storage_path":"amazing-stories/amazing-stories-196304-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-196304-jpgjpg","width":400,"height":558,"file_size":129525,"artist_name":"Amazing Stories","art_title":"Amazing stories 196304","tags":[]},{"art_id":"99bb4c8f-14cf-4e63-bdbf-a934b4cfdbdd","storage_path":"amazing-stories/amazing-stories-196305-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-196305-jpgjpg","width":400,"height":564,"file_size":99232,"artist_name":"Amazing Stories","art_title":"Amazing stories 196305","tags":[]},{"art_id":"8b31a0a8-91e8-4195-b92b-59729dbd05a3","storage_path":"amazing-stories/amazing-stories-196306-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-196306-jpgjpg","width":400,"height":563,"file_size":116593,"artist_name":"Amazing Stories","art_title":"Amazing stories 196306","tags":[]},{"art_id":"87d1d18e-b70f-4479-a9a2-de9c79d44a16","storage_path":"amazing-stories/amazing-stories-196307-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-stories-196307-jpgjpg","width":400,"height":553,"file_size":121636,"artist_name":"Amazing Stories","art_title":"Amazing stories 196307","tags":[]}];
+    const meta = {"limit":50,"offset":850,"total":1284,"page":17,"pageCount":26};
+    const grid = document.getElementById('grid');
+    const selectAll = document.getElementById('selectAll');
+    const copyBtn = document.getElementById('copy');
+    const pathFilter = document.getElementById('pathFilter');
+    const artistFilter = document.getElementById('artistFilter');
+    const tagFilter = document.getElementById('tagFilter');
+    const clearFiltersBtn = document.getElementById('clearFilters');
+    const count = document.getElementById('count');
+    const pageInfo = document.getElementById('pageInfo');
+
+    function render(list) {
+      grid.innerHTML = '';
+      for (const row of list) {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.dataset.path = row.storage_path.toLowerCase();
+        card.dataset.artist = (row.artist_name || '').toLowerCase();
+        card.dataset.tags = (row.tags || []).join(' ').toLowerCase();
+        card.innerHTML = `
+          <input type="checkbox" class="chk" data-path="${row.storage_path}">
+          <img class="thumb" src="${row.public_url}" alt="${row.storage_path}">
+          <div class="meta">
+            <div class="path">${row.storage_path}</div>
+            ${row.artist_name ? `<div class="artist">${row.artist_name}</div>` : ''}
+            ${row.art_title ? `<div class="title">${row.art_title}</div>` : ''}
+            ${row.tags && row.tags.length ? `<div class="tags">${row.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>` : ''}
+            <div>Size: ${row.width || '?'} x ${row.height || '?'} | File: ${row.file_size ? (row.file_size/1024/1024).toFixed(2) + ' MB' : '?'}</div>
+          </div>
+        `;
+        grid.appendChild(card);
+      }
+      applyFilters();
+      const pageText = meta.page != null && meta.pageCount != null
+        ? `Page ${meta.page + 1} / ${meta.pageCount}`
+        : '';
+      const totalText = meta.total != null ? `Total: ${meta.total}` : '';
+      pageInfo.textContent = [pageText, `Offset: ${meta.offset}`, `Limit: ${meta.limit}`, totalText].filter(Boolean).join(' | ');
+    }
+
+    function applyFilters() {
+      const pathQuery = pathFilter.value.trim().toLowerCase();
+      const artistQuery = artistFilter.value.trim().toLowerCase();
+      const tagQuery = tagFilter.value.trim().toLowerCase();
+
+      const cards = Array.from(grid.children);
+      let shown = 0;
+      for (const c of cards) {
+        const pathMatch = !pathQuery || c.dataset.path.includes(pathQuery);
+        const artistMatch = !artistQuery || c.dataset.artist.includes(artistQuery);
+        const tagMatch = !tagQuery || c.dataset.tags.includes(tagQuery);
+        const match = pathMatch && artistMatch && tagMatch;
+        c.style.display = match ? '' : 'none';
+        if (match) shown++;
+      }
+      count.textContent = `Showing ${shown} item(s)`;
+    }
+
+    function currentCards() {
+      return Array.from(grid.children).filter(c => c.style.display !== 'none');
+    }
+
+    function clearFilters() {
+      pathFilter.value = '';
+      artistFilter.value = '';
+      tagFilter.value = '';
+      applyFilters();
+    }
+
+    pathFilter.addEventListener('input', applyFilters);
+    artistFilter.addEventListener('input', applyFilters);
+    tagFilter.addEventListener('input', applyFilters);
+    clearFiltersBtn.addEventListener('click', clearFilters);
+
+    selectAll.addEventListener('change', () => {
+      const cards = currentCards();
+      cards.forEach(c => {
+        const chk = c.querySelector('.chk');
+        if (chk) chk.checked = selectAll.checked;
+      });
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      const cards = currentCards();
+      const paths = cards
+        .map(c => c.querySelector('.chk'))
+        .filter(chk => chk && chk.checked)
+        .map(chk => chk.getAttribute('data-path'));
+      if (!paths.length) {
+        alert('No items selected.');
+        return;
+      }
+      await navigator.clipboard.writeText(paths.join('\n'));
+      alert(`Copied ${paths.length} path(s) to clipboard`);
+    });
+
+    render(data);
+  </script>
+</body>
+</html>

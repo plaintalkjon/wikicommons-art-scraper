@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Art Assets Gallery</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 16px; background: #f7f7f7; }
+    .controls { margin-bottom: 12px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+    .card { background: #fff; padding: 10px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); display: flex; flex-direction: column; gap: 8px; }
+    .thumb { width: 100%; height: 180px; object-fit: cover; background: #eee; }
+    .meta { font-size: 12px; color: #444; line-height: 1.4; }
+    .artist { font-weight: bold; color: #222; }
+    .title { font-style: italic; color: #666; }
+    .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+    .tag { background: #e3f2fd; color: #1976d2; padding: 2px 6px; border-radius: 10px; font-size: 11px; }
+    label { cursor: pointer; }
+    input[type="search"] { padding: 6px; }
+    button { padding: 6px 10px; cursor: pointer; }
+    .count { font-size: 12px; color: #666; }
+    .path { font-size: 12px; word-break: break-all; color: #222; }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <label><input type="checkbox" id="selectAll" /> Select all</label>
+    <button id="copy">Copy selected paths</button>
+    <input type="search" id="pathFilter" placeholder="Filter by path" size="30" />
+    <input type="search" id="artistFilter" placeholder="Filter by artist" size="25" />
+    <input type="search" id="tagFilter" placeholder="Filter by tag" size="25" />
+    <button id="clearFilters">Clear filters</button>
+    <span class="count" id="count"></span>
+    <span class="count" id="pageInfo"></span>
+  </div>
+  <div class="grid" id="grid"></div>
+  <script>
+    const data = [{"art_id":"4862e344-14bc-4c2c-89ca-a2420fc0cd09","storage_path":"weird-tales/weird-tales-194809-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-194809-jpgjpg","width":400,"height":570,"file_size":98631,"artist_name":"Weird Tales","art_title":"Weird tales 194809","tags":[]},{"art_id":"059f0406-45ec-4807-a868-686448ef7087","storage_path":"weird-tales/weird-tales-193605-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-193605-jpgjpg","width":400,"height":570,"file_size":74922,"artist_name":"Weird Tales","art_title":"Weird tales","tags":[]},{"art_id":"9d55e376-03f2-44ce-a3bb-3e9d1fef30a2","storage_path":"weird-tales/weird-tales-september-1954-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-september-1954-jpgjpg","width":400,"height":563,"file_size":61247,"artist_name":"Weird Tales","art_title":"Weird Tales September 1954","tags":[]},{"art_id":"b3ba1641-b3fb-4039-95ed-417e42ddb61a","storage_path":"weird-tales/weird-tales-may-1953-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-may-1953-jpgjpg","width":418,"height":614,"file_size":74100,"artist_name":"Weird Tales","art_title":"Weird Tales May 1953","tags":[]},{"art_id":"16216091-d9ca-42a1-8cbc-5247e407fda8","storage_path":"weird-tales/weird-tales-march-1954-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-march-1954-jpgjpg","width":400,"height":566,"file_size":61497,"artist_name":"Weird Tales","art_title":"Weird Tales March 1954","tags":[]},{"art_id":"aed85eeb-33c3-4bd3-a4c1-39327ee597c4","storage_path":"weird-tales/weird-tales-july-1954-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-july-1954-jpgjpg","width":800,"height":1147,"file_size":357877,"artist_name":"Weird Tales","art_title":"Weird Tales July 1954","tags":[]},{"art_id":"802e3d25-03e2-4f6e-972d-1816e8cb6bf2","storage_path":"weird-tales/weird-tales-january-1954-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-january-1954-jpgjpg","width":400,"height":563,"file_size":75466,"artist_name":"Weird Tales","art_title":"Weird Tales January 1954","tags":[]},{"art_id":"88ddaee5-d511-40b0-a2d1-098abd6c2364","storage_path":"weird-tales/weird-tales-september-1952-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-september-1952-jpgjpg","width":400,"height":591,"file_size":55518,"artist_name":"Weird Tales","art_title":"Weird Tales September 1952","tags":[]},{"art_id":"0238e203-ae87-4644-9cb5-e874709e969c","storage_path":"weird-tales/weird-tales-september-1951-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-september-1951-jpgjpg","width":400,"height":596,"file_size":69358,"artist_name":"Weird Tales","art_title":"Weird Tales September 1951","tags":[]},{"art_id":"e1e47a40-41f6-4908-a357-b1ddeac0a8b7","storage_path":"weird-tales/weird-tales-november-1951-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-november-1951-jpgjpg","width":400,"height":600,"file_size":68310,"artist_name":"Weird Tales","art_title":"Weird Tales November 1951","tags":[]},{"art_id":"6220d7a7-25e8-4c8f-aaa7-2e79aa98938b","storage_path":"weird-tales/weird-tales-may-1951-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-may-1951-jpgjpg","width":400,"height":591,"file_size":73167,"artist_name":"Weird Tales","art_title":"Weird Tales May 1951","tags":[]},{"art_id":"b2e4ee19-2d1f-42ad-a581-a3f426c387dd","storage_path":"weird-tales/weird-tales-january-1953-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-january-1953-jpgjpg","width":400,"height":593,"file_size":83965,"artist_name":"Weird Tales","art_title":"Weird Tales January 1953","tags":[]},{"art_id":"384c166f-3366-4b0f-aa0c-231315bdd905","storage_path":"weird-tales/weird-tales-january-1952-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-january-1952-jpgjpg","width":400,"height":594,"file_size":67359,"artist_name":"Weird Tales","art_title":"Weird Tales January 1952","tags":[]},{"art_id":"0d7c6509-1b9c-462b-b0be-b350f6186d75","storage_path":"weird-tales/weird-tales-november-1947-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-november-1947-jpgjpg","width":400,"height":594,"file_size":84727,"artist_name":"Weird Tales","art_title":"Weird Tales November 1947","tags":[]},{"art_id":"9a7000de-1021-43b4-bbec-35b2a8028e4d","storage_path":"weird-tales/weird-tales-january-1951-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-january-1951-jpgjpg","width":400,"height":581,"file_size":66680,"artist_name":"Weird Tales","art_title":"Weird Tales January 1951","tags":[]},{"art_id":"958db3af-5fd2-42ad-9139-03982f04b127","storage_path":"weird-tales/weird-tales-september-1949-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-september-1949-jpgjpg","width":400,"height":600,"file_size":75262,"artist_name":"Weird Tales","art_title":"Weird Tales September 1949","tags":[]},{"art_id":"35052f83-bf46-4139-a130-e6960ead67da","storage_path":"weird-tales/weird-tales-november-1950-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-november-1950-jpgjpg","width":411,"height":601,"file_size":67482,"artist_name":"Weird Tales","art_title":"Weird Tales November 1950","tags":[]},{"art_id":"a4429287-8347-4919-b0c4-34d764753ba2","storage_path":"weird-tales/weird-tales-september-1945-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-september-1945-jpgjpg","width":400,"height":598,"file_size":82163,"artist_name":"Weird Tales","art_title":"Weird Tales September 1945","tags":[]},{"art_id":"2a122a1c-79b0-48a0-88f5-99c762937635","storage_path":"weird-tales/weird-tales-november-1949-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-november-1949-jpgjpg","width":400,"height":592,"file_size":81713,"artist_name":"Weird Tales","art_title":"Weird Tales November 1949","tags":[]},{"art_id":"2976471c-3168-4394-be07-72888d9a2cad","storage_path":"weird-tales/weird-tales-november-1945-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-november-1945-jpgjpg","width":400,"height":594,"file_size":66780,"artist_name":"Weird Tales","art_title":"Weird Tales November 1945","tags":[]},{"art_id":"02de7597-c270-47b3-a0a7-7a2209e986b4","storage_path":"weird-tales/weird-tales-november-1948-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-november-1948-jpgjpg","width":400,"height":598,"file_size":71022,"artist_name":"Weird Tales","art_title":"Weird Tales November","tags":[]},{"art_id":"bab831f2-e0b3-4270-a9e5-cf53693bdddd","storage_path":"weird-tales/weird-tales-november-1944-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-november-1944-jpgjpg","width":400,"height":602,"file_size":85968,"artist_name":"Weird Tales","art_title":"Weird Tales November 1944","tags":[]},{"art_id":"66f9cb6f-3dad-430b-8260-de25ba5fce94","storage_path":"weird-tales/weird-tales-may-1948-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-may-1948-jpgjpg","width":400,"height":595,"file_size":80635,"artist_name":"Weird Tales","art_title":"Weird Tales May 1948","tags":[]},{"art_id":"32c84cb0-4b7d-4cc9-8a6d-a8c43da4bd8f","storage_path":"weird-tales/weird-tales-may-1946-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-may-1946-jpgjpg","width":400,"height":594,"file_size":70737,"artist_name":"Weird Tales","art_title":"Weird Tales May 1946","tags":[]},{"art_id":"28be0885-3a93-4b5e-a8ca-f7793638ab61","storage_path":"weird-tales/weird-tales-may-1945-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-may-1945-jpgjpg","width":400,"height":594,"file_size":78488,"artist_name":"Weird Tales","art_title":"Weird Tales May 1945","tags":[]},{"art_id":"4d0869ec-07dc-43e9-80dc-365de1cdc0a9","storage_path":"weird-tales/weird-tales-march-1950-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-march-1950-jpgjpg","width":400,"height":587,"file_size":69779,"artist_name":"Weird Tales","art_title":"Weird Tales March 1950","tags":[]},{"art_id":"85f653d6-87b0-47a9-af69-98460ac73678","storage_path":"weird-tales/weird-tales-march-1949-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-march-1949-jpgjpg","width":400,"height":607,"file_size":68013,"artist_name":"Weird Tales","art_title":"Weird Tales March 1949","tags":[]},{"art_id":"dcde0975-d82e-4e6e-9097-fd66b94e403b","storage_path":"weird-tales/weird-tales-march-1948-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-march-1948-jpgjpg","width":400,"height":592,"file_size":64992,"artist_name":"Weird Tales","art_title":"Weird Tales March 1948","tags":[]},{"art_id":"198733f9-94d4-46c8-beb6-33db130cfed1","storage_path":"weird-tales/weird-tales-march-1945-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-march-1945-jpgjpg","width":400,"height":595,"file_size":87541,"artist_name":"Weird Tales","art_title":"Weird Tales March 1945","tags":[]},{"art_id":"7c392f33-24e7-4c0c-b163-e36d0dedcce0","storage_path":"weird-tales/weird-tales-march-1946-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-march-1946-jpgjpg","width":400,"height":597,"file_size":68654,"artist_name":"Weird Tales","art_title":"Weird Tales March 1946","tags":[]},{"art_id":"ddc1b5ec-549b-4d87-844d-0210eb4e1135","storage_path":"weird-tales/weird-tales-march-1944-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-march-1944-jpgjpg","width":400,"height":592,"file_size":82409,"artist_name":"Weird Tales","art_title":"Weird Tales March 1944","tags":[]},{"art_id":"f216c6f4-9b76-4ed4-8c66-3fb308159273","storage_path":"weird-tales/weird-tales-july-1950-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-july-1950-jpgjpg","width":400,"height":576,"file_size":90788,"artist_name":"Weird Tales","art_title":"Weird Tales July 1950","tags":[]},{"art_id":"796d3ed9-93f7-48d0-965c-9a04115fe889","storage_path":"weird-tales/weird-tales-july-1949-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-july-1949-jpgjpg","width":400,"height":604,"file_size":108312,"artist_name":"Weird Tales","art_title":"Weird Tales July 1949","tags":[]},{"art_id":"6777e827-44b1-4828-a80f-6b4c0cd02d79","storage_path":"weird-tales/weird-tales-july-1946-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-july-1946-jpgjpg","width":400,"height":594,"file_size":54381,"artist_name":"Weird Tales","art_title":"Weird Tales July 1946","tags":[]},{"art_id":"5a7ed781-1ddf-4330-9a7e-d27208548d13","storage_path":"weird-tales/weird-tales-july-1948-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-july-1948-jpgjpg","width":400,"height":597,"file_size":85964,"artist_name":"Weird Tales","art_title":"Weird Tales July 1948","tags":[]},{"art_id":"12012abc-f45a-4eba-b597-9a69537933ed","storage_path":"weird-tales/weird-tales-july-1945-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-july-1945-jpgjpg","width":400,"height":593,"file_size":61863,"artist_name":"Weird Tales","art_title":"Weird Tales July 1945","tags":[]},{"art_id":"abecccc1-772a-4316-9894-9d474d433162","storage_path":"weird-tales/weird-tales-january-1946-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-january-1946-jpgjpg","width":400,"height":591,"file_size":72943,"artist_name":"Weird Tales","art_title":"Weird Tales January 1946","tags":[]},{"art_id":"e176da18-7382-4d76-9eae-00325e045456","storage_path":"weird-tales/weird-tales-january-1950-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-january-1950-jpgjpg","width":412,"height":622,"file_size":82517,"artist_name":"Weird Tales","art_title":"Weird Tales January 1950","tags":[]},{"art_id":"cf497d9d-8d21-45ba-9b77-83dbd5a03308","storage_path":"weird-tales/weird-tales-january-1948-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-january-1948-jpgjpg","width":400,"height":590,"file_size":77726,"artist_name":"Weird Tales","art_title":"Weird Tales January 1948","tags":[]},{"art_id":"58a12d68-d2f4-4c28-8008-ff97593efb63","storage_path":"weird-tales/weird-tales-january-1949-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-january-1949-jpgjpg","width":400,"height":600,"file_size":71498,"artist_name":"Weird Tales","art_title":"Weird Tales January 1949","tags":[]},{"art_id":"cb2aa0e3-bf76-4560-a70c-74c5bb322dd4","storage_path":"weird-tales/weird-tales-september-1943-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-september-1943-jpgjpg","width":400,"height":592,"file_size":105559,"artist_name":"Weird Tales","art_title":"Weird Tales September 1943","tags":[]},{"art_id":"b1de7b47-4fe4-41f5-887c-1bd2d4c913ee","storage_path":"weird-tales/weird-tales-september-1942-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-september-1942-jpgjpg","width":400,"height":605,"file_size":69589,"artist_name":"Weird Tales","art_title":"Weird Tales September 1942","tags":[]},{"art_id":"325226e1-a318-409b-a95e-00a9293d4101","storage_path":"weird-tales/weird-tales-september-1940-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-september-1940-jpgjpg","width":400,"height":586,"file_size":82030,"artist_name":"Weird Tales","art_title":"Weird Tales September 1940","tags":[]},{"art_id":"d088bed1-13d7-4861-853f-61708d9d84cd","storage_path":"weird-tales/weird-tales-november-1943-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-november-1943-jpgjpg","width":400,"height":598,"file_size":99137,"artist_name":"Weird Tales","art_title":"Weird Tales November 1943","tags":[]},{"art_id":"517ff0cf-26b5-445c-9d5d-0d786c8550f6","storage_path":"weird-tales/weird-tales-may-1942-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-may-1942-jpgjpg","width":400,"height":601,"file_size":63391,"artist_name":"Weird Tales","art_title":"Weird Tales May 1942","tags":[]},{"art_id":"92797f28-72ae-4eb5-bcc3-89b8df5e7e6b","storage_path":"weird-tales/weird-tales-may-1943-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-may-1943-jpgjpg","width":400,"height":602,"file_size":82134,"artist_name":"Weird Tales","art_title":"Weird Tales May 1943","tags":[]},{"art_id":"dfafc902-452c-4c5c-a013-b0077c5bfcec","storage_path":"weird-tales/weird-tales-may-1940-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-may-1940-jpgjpg","width":410,"height":602,"file_size":53026,"artist_name":"Weird Tales","art_title":"Weird Tales May 1940","tags":[]},{"art_id":"5d3524ba-3357-477d-95f5-4ce10c9756d6","storage_path":"weird-tales/weird-tales-march-1942-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-march-1942-jpgjpg","width":400,"height":607,"file_size":65630,"artist_name":"Weird Tales","art_title":"Weird Tales March 1942","tags":[]},{"art_id":"651d1604-a909-43ea-a2ad-38bcfa73ac83","storage_path":"weird-tales/weird-tales-march-1940-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-march-1940-jpgjpg","width":400,"height":590,"file_size":79871,"artist_name":"Weird Tales","art_title":"Weird Tales March 1940","tags":[]},{"art_id":"7d604bd0-9e34-43b7-8f2f-8c45d7ff98c4","storage_path":"weird-tales/weird-tales-july-1941-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-july-1941-jpgjpg","width":415,"height":614,"file_size":61442,"artist_name":"Weird Tales","art_title":"Weird Tales July 1941","tags":[]}];
+    const meta = {"limit":50,"offset":3050,"total":3134,"page":61,"pageCount":63};
+    const grid = document.getElementById('grid');
+    const selectAll = document.getElementById('selectAll');
+    const copyBtn = document.getElementById('copy');
+    const pathFilter = document.getElementById('pathFilter');
+    const artistFilter = document.getElementById('artistFilter');
+    const tagFilter = document.getElementById('tagFilter');
+    const clearFiltersBtn = document.getElementById('clearFilters');
+    const count = document.getElementById('count');
+    const pageInfo = document.getElementById('pageInfo');
+
+    function render(list) {
+      grid.innerHTML = '';
+      for (const row of list) {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.dataset.path = row.storage_path.toLowerCase();
+        card.dataset.artist = (row.artist_name || '').toLowerCase();
+        card.dataset.tags = (row.tags || []).join(' ').toLowerCase();
+        card.innerHTML = `
+          <input type="checkbox" class="chk" data-path="${row.storage_path}">
+          <img class="thumb" src="${row.public_url}" alt="${row.storage_path}">
+          <div class="meta">
+            <div class="path">${row.storage_path}</div>
+            ${row.artist_name ? `<div class="artist">${row.artist_name}</div>` : ''}
+            ${row.art_title ? `<div class="title">${row.art_title}</div>` : ''}
+            ${row.tags && row.tags.length ? `<div class="tags">${row.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>` : ''}
+            <div>Size: ${row.width || '?'} x ${row.height || '?'} | File: ${row.file_size ? (row.file_size/1024/1024).toFixed(2) + ' MB' : '?'}</div>
+          </div>
+        `;
+        grid.appendChild(card);
+      }
+      applyFilters();
+      const pageText = meta.page != null && meta.pageCount != null
+        ? `Page ${meta.page + 1} / ${meta.pageCount}`
+        : '';
+      const totalText = meta.total != null ? `Total: ${meta.total}` : '';
+      pageInfo.textContent = [pageText, `Offset: ${meta.offset}`, `Limit: ${meta.limit}`, totalText].filter(Boolean).join(' | ');
+    }
+
+    function applyFilters() {
+      const pathQuery = pathFilter.value.trim().toLowerCase();
+      const artistQuery = artistFilter.value.trim().toLowerCase();
+      const tagQuery = tagFilter.value.trim().toLowerCase();
+
+      const cards = Array.from(grid.children);
+      let shown = 0;
+      for (const c of cards) {
+        const pathMatch = !pathQuery || c.dataset.path.includes(pathQuery);
+        const artistMatch = !artistQuery || c.dataset.artist.includes(artistQuery);
+        const tagMatch = !tagQuery || c.dataset.tags.includes(tagQuery);
+        const match = pathMatch && artistMatch && tagMatch;
+        c.style.display = match ? '' : 'none';
+        if (match) shown++;
+      }
+      count.textContent = `Showing ${shown} item(s)`;
+    }
+
+    function currentCards() {
+      return Array.from(grid.children).filter(c => c.style.display !== 'none');
+    }
+
+    function clearFilters() {
+      pathFilter.value = '';
+      artistFilter.value = '';
+      tagFilter.value = '';
+      applyFilters();
+    }
+
+    pathFilter.addEventListener('input', applyFilters);
+    artistFilter.addEventListener('input', applyFilters);
+    tagFilter.addEventListener('input', applyFilters);
+    clearFiltersBtn.addEventListener('click', clearFilters);
+
+    selectAll.addEventListener('change', () => {
+      const cards = currentCards();
+      cards.forEach(c => {
+        const chk = c.querySelector('.chk');
+        if (chk) chk.checked = selectAll.checked;
+      });
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      const cards = currentCards();
+      const paths = cards
+        .map(c => c.querySelector('.chk'))
+        .filter(chk => chk && chk.checked)
+        .map(chk => chk.getAttribute('data-path'));
+      if (!paths.length) {
+        alert('No items selected.');
+        return;
+      }
+      await navigator.clipboard.writeText(paths.join('\n'));
+      alert(`Copied ${paths.length} path(s) to clipboard`);
+    });
+
+    render(data);
+  </script>
+</body>
+</html>

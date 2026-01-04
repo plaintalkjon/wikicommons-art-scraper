@@ -14,6 +14,7 @@
  * Options:
  *   --tag <tag_name>      Filter assets by tag (server-side filtering)
  *   --artist <name>       Filter assets by artist name (server-side filtering)
+ *   --max-dim <number>    Filter assets where both width and height are < number (server-side filtering)
  *   --html <file>         Output HTML gallery to file
  *   --csv <file>          Output CSV data to file
  *   --limit <number>      Limit number of assets (default: 500)
@@ -242,6 +243,7 @@ async function main() {
   const orderArg = (args.order as string | undefined) || 'created_at.desc';
   const filterTag = args['tag'] as string | undefined;
   const filterArtist = args['artist'] as string | undefined;
+  const maxDim = args['max-dim'] ? parseInt(args['max-dim'] as string, 10) : undefined;
 
   const parseOrder = (value: string): { column: string; ascending: boolean } => {
     const parts = value.split('.');
@@ -339,10 +341,17 @@ async function main() {
 
         for (let i = 0; i < artIds.length; i += batchSize) {
           const batch = artIds.slice(i, i + batchSize);
-          const { data: batchAssets, error: batchError } = await supabase
+          let query = supabase
             .from('art_assets')
             .select('art_id,storage_path,public_url,width,height,file_size')
             .in('art_id', batch);
+
+          // Apply dimension filter if specified
+          if (maxDim) {
+            query = query.lt('width', maxDim).lt('height', maxDim);
+          }
+
+          const { data: batchAssets, error: batchError } = await query;
 
           if (batchError) {
             console.error(`Batch fetch error for batch ${Math.floor(i/batchSize) + 1}: ${batchError.message}`);
@@ -454,9 +463,16 @@ async function main() {
 
     // Non-tag filtering case
     try {
-      const { data: assets, error } = await supabase
+      let query = supabase
         .from('art_assets')
-        .select('art_id,storage_path,public_url,width,height,file_size')
+        .select('art_id,storage_path,public_url,width,height,file_size');
+
+      // Apply dimension filter if specified
+      if (maxDim) {
+        query = query.lt('width', maxDim).lt('height', maxDim);
+      }
+
+      const { data: assets, error } = await query
         .order(orderColumn, { ascending })
         .range(rangeStart, rangeEnd);
       if (error) throw error;
@@ -558,10 +574,17 @@ async function main() {
 
           if (artTagData && artTagData.length > 0) {
             const artIds = artTagData.map(at => at.art_id);
-            const { data: assetsData } = await supabase
+            let query = supabase
               .from('art_assets')
               .select('art_id,storage_path,public_url,width,height,file_size')
               .in('art_id', artIds);
+
+            // Apply dimension filter if specified
+            if (maxDim) {
+              query = query.lt('width', maxDim).lt('height', maxDim);
+            }
+
+            const { data: assetsData } = await query;
             assets = assetsData?.slice(rangeStart, rangeEnd + 1) || [];
           } else {
             assets = [];
@@ -570,10 +593,16 @@ async function main() {
           assets = [];
         }
       } else {
-        const { data: assetsData } = await supabase
+        let query = supabase
           .from('art_assets')
-          .select('art_id,storage_path,public_url,width,height,file_size')
-          .range(rangeStart, rangeEnd);
+          .select('art_id,storage_path,public_url,width,height,file_size');
+
+        // Apply dimension filter if specified
+        if (maxDim) {
+          query = query.lt('width', maxDim).lt('height', maxDim);
+        }
+
+        const { data: assetsData } = await query.range(rangeStart, rangeEnd);
         assets = assetsData || [];
       }
 
@@ -630,9 +659,16 @@ async function main() {
         total = count ?? 0;
       }
     } else {
-      const { count, error: countErr } = await supabase
+      let countQuery = supabase
         .from('art_assets')
         .select('art_id', { count: 'exact', head: true });
+
+      // Apply dimension filter if specified
+      if (maxDim) {
+        countQuery = countQuery.lt('width', maxDim).lt('height', maxDim);
+      }
+
+      const { count, error: countErr } = await countQuery;
       if (countErr) throw new Error(`Failed to count assets: ${countErr.message}`);
       total = count ?? 0;
     }

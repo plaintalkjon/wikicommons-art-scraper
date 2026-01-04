@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Art Assets Gallery</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 16px; background: #f7f7f7; }
+    .controls { margin-bottom: 12px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+    .card { background: #fff; padding: 10px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); display: flex; flex-direction: column; gap: 8px; }
+    .thumb { width: 100%; height: 180px; object-fit: cover; background: #eee; }
+    .meta { font-size: 12px; color: #444; line-height: 1.4; }
+    .artist { font-weight: bold; color: #222; }
+    .title { font-style: italic; color: #666; }
+    .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+    .tag { background: #e3f2fd; color: #1976d2; padding: 2px 6px; border-radius: 10px; font-size: 11px; }
+    label { cursor: pointer; }
+    input[type="search"] { padding: 6px; }
+    button { padding: 6px 10px; cursor: pointer; }
+    .count { font-size: 12px; color: #666; }
+    .path { font-size: 12px; word-break: break-all; color: #222; }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <label><input type="checkbox" id="selectAll" /> Select all</label>
+    <button id="copy">Copy selected paths</button>
+    <input type="search" id="pathFilter" placeholder="Filter by path" size="30" />
+    <input type="search" id="artistFilter" placeholder="Filter by artist" size="25" />
+    <input type="search" id="tagFilter" placeholder="Filter by tag" size="25" />
+    <button id="clearFilters">Clear filters</button>
+    <span class="count" id="count"></span>
+    <span class="count" id="pageInfo"></span>
+  </div>
+  <div class="grid" id="grid"></div>
+  <script>
+    const data = [{"art_id":"b448d471-0367-4126-92a1-da607bbf27ad","storage_path":"paul-cezanne/landscape-from-jas-de-bouffan.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/paul-cezanne/landscape-from-jas-de-bouffan.jpg","width":0,"height":0,"file_size":7244,"artist_name":"Paul Cézanne","art_title":"Landscape from Jas de Bouffan","tags":[]},{"art_id":"4f7aa859-355d-486f-9295-545559f4a8f6","storage_path":"fernando-pena-defillo/azua-39-s-ligt.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/fernando-pena-defillo/azua-39-s-ligt.jpg","width":0,"height":0,"file_size":7556,"artist_name":"Fernando Peña Defilló","art_title":"Azua&#39;s Ligt","tags":[]},{"art_id":"c40403cf-c885-4b4f-8c52-9702bc661ad8","storage_path":"paloma-casado/study.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/paloma-casado/study.jpg","width":0,"height":0,"file_size":4092,"artist_name":"Paloma Casado","art_title":"Study","tags":[]},{"art_id":"2928bb51-1124-4c74-8485-36ffab77526a","storage_path":"aulestia-vazquez-salvador/girl-with-pigeon.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/aulestia-vazquez-salvador/girl-with-pigeon.jpg","width":0,"height":0,"file_size":8892,"artist_name":"Aulèstia Vázquez, Salvador","art_title":"Girl with pigeon","tags":[]},{"art_id":"1e8d4a9b-feb4-4f93-a97d-aba82d901653","storage_path":"ferruh-basaga/abstract.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/ferruh-basaga/abstract.jpg","width":0,"height":0,"file_size":4774,"artist_name":"Ferruh Başağa","art_title":"Abstract","tags":["abstract","oil on canvas","canvas","oil painting"]},{"art_id":"d6055bc1-1979-40e1-87c6-16763bd9e274","storage_path":"julio-romero-de-torres/h-e-mr-juan-zubia-y-bassecourt.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/julio-romero-de-torres/h-e-mr-juan-zubia-y-bassecourt.jpg","width":0,"height":0,"file_size":4600,"artist_name":"Julio Romero De Torres","art_title":"H.E. Mr. Juan Zubía y Bassecourt","tags":[]},{"art_id":"e6701d5d-ae04-4eae-95f5-6110abf69e12","storage_path":"elio-fiorucci/elio-fiorucci-anno-2014.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/elio-fiorucci/elio-fiorucci-anno-2014.jpg","width":0,"height":0,"file_size":6310,"artist_name":"Elio Fiorucci","art_title":"Elio Fiorucci - Anno 2014","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"d1422e52-32c1-4ed0-bc01-043836b50bb5","storage_path":"william-holman-hunt/the-triumph-of-the-innocents.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/william-holman-hunt/the-triumph-of-the-innocents.jpg","width":0,"height":0,"file_size":7400,"artist_name":"William Holman Hunt","art_title":"The Triumph of the Innocents","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"5c5c5cb6-2a97-48fe-97ff-9e6806793167","storage_path":"iryna-vyshtaliuk/birch-trees-on-the-kyiv-sea.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/iryna-vyshtaliuk/birch-trees-on-the-kyiv-sea.jpg","width":0,"height":0,"file_size":6422,"artist_name":"Iryna Vyshtaliuk","art_title":"Birch trees on the Kyiv sea","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"14112c9b-d551-4650-8645-7bfe9918d41e","storage_path":"jose-dominguez-becquer/view-of-the-giralda-from-calle-placentines.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/jose-dominguez-becquer/view-of-the-giralda-from-calle-placentines.jpg","width":0,"height":0,"file_size":3942,"artist_name":"José Domínguez Bécquer","art_title":"View of the Giralda from Calle Placentines","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"59e7dfd8-f542-4347-bda9-3384bbd6749a","storage_path":"sebastiano-conca/the-adoration-of-the-shepherds.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/sebastiano-conca/the-adoration-of-the-shepherds.jpg","width":0,"height":0,"file_size":6770,"artist_name":"Sebastiano Conca","art_title":"The Adoration of the Shepherds","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"5cd1b847-29ec-4925-bbf9-020a6b36d4e7","storage_path":"beheading-between-iii-and-iv-a/saint-blaise.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/beheading-between-iii-and-iv-a/saint-blaise.jpg","width":0,"height":0,"file_size":7166,"artist_name":"beheading between III and IV a","art_title":"Saint Blaise","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"bad2f310-3c5b-40b3-a46e-b8f28c48de79","storage_path":"charles-ernest-cundall/the-new-forth-road-bridge.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/charles-ernest-cundall/the-new-forth-road-bridge.jpg","width":0,"height":0,"file_size":6758,"artist_name":"Charles Ernest Cundall","art_title":"The New Forth Road Bridge","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"40b38c04-8347-4935-bbeb-961f03133699","storage_path":"dario-de-regoyos/good-friday-morning-in-orduna.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/dario-de-regoyos/good-friday-morning-in-orduna.jpg","width":0,"height":0,"file_size":5724,"artist_name":"Darío De Regoyos","art_title":"Good Friday Morning in Orduña","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"4cd06053-051a-4b49-9dfb-c5c5b25846b7","storage_path":"oleksandra-ekster/bridge-sevres.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/oleksandra-ekster/bridge-sevres.jpg","width":0,"height":0,"file_size":6086,"artist_name":"Oleksandra Ekster","art_title":"Bridge. Sevres","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"547d56ec-9bbe-467a-9de6-cee334bdd7ce","storage_path":"charles-sydney-hopkinson/calvin-coolidge.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/charles-sydney-hopkinson/calvin-coolidge.jpg","width":0,"height":0,"file_size":4486,"artist_name":"Charles Sydney Hopkinson","art_title":"Calvin Coolidge","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"f4c27ca0-49ac-4697-aaff-9ed040c8db02","storage_path":"edward-mitchell-bannister/untitled-landscape-with-trees-and-woman.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/edward-mitchell-bannister/untitled-landscape-with-trees-and-woman.jpg","width":0,"height":0,"file_size":5042,"artist_name":"Edward Mitchell Bannister","art_title":"Untitled (landscape with trees and woman)","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"9781a8d7-0797-40ea-8b60-1e583874b5e1","storage_path":"antonio-alvarez/no-es-negocio.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/antonio-alvarez/no-es-negocio.jpg","width":0,"height":0,"file_size":7740,"artist_name":"Antonio Álvarez","art_title":"No es negocio","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"bb557b1d-3d3d-4154-9567-45d01f8f7b60","storage_path":"george-catlin/river-bluffs-1320-miles-above-st-louis.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/george-catlin/river-bluffs-1320-miles-above-st-louis.jpg","width":0,"height":0,"file_size":4188,"artist_name":"George Catlin","art_title":"River Bluffs, 1320 Miles above St. Louis","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"307d08d5-ef24-4b30-8538-e4de286db65d","storage_path":"osman-hamdi-bey/portrait-of-naile-han-m.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/osman-hamdi-bey/portrait-of-naile-han-m.jpg","width":0,"height":0,"file_size":7160,"artist_name":"Osman Hamdi Bey","art_title":"Portrait of Naile Hanım","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"259b40e6-d883-4f8f-aa93-eb1c538bae18","storage_path":"jasper-francis-cropsey/the-backwoods-of-america.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/jasper-francis-cropsey/the-backwoods-of-america.jpg","width":0,"height":0,"file_size":6440,"artist_name":"Jasper Francis Cropsey","art_title":"The Backwoods of America","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"2de510ae-d5e5-4a70-b941-eb51197956b7","storage_path":"gulam-mohammed-sheikh/in-and-out-of-story.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/gulam-mohammed-sheikh/in-and-out-of-story.jpg","width":0,"height":0,"file_size":7146,"artist_name":"Gulam Mohammed Sheikh","art_title":"In and Out of Story","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"d4973473-b9b4-44fa-b736-23370cf1024c","storage_path":"talib-mekki/palm-3.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/talib-mekki/palm-3.jpg","width":0,"height":0,"file_size":3500,"artist_name":"Talib MEKKI","art_title":"Palm 3","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"156b6ae5-f58d-4860-97c9-c50b3a04af64","storage_path":"franklin-chow/chaos-grey-area-and-sublimation.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/franklin-chow/chaos-grey-area-and-sublimation.jpg","width":0,"height":0,"file_size":2224,"artist_name":"Franklin Chow","art_title":"Chaos, grey area and sublimation","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"e70f7623-4209-4fa4-ba67-3c36e873f66e","storage_path":"ramon-padro-i-pedret/catalan-volunteers-in-the-spanish-american-war-embarking-in-the-port-of-barcelona.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/ramon-padro-i-pedret/catalan-volunteers-in-the-spanish-american-war-embarking-in-the-port-of-barcelona.jpg","width":0,"height":0,"file_size":3990,"artist_name":"Ramon Padró i Pedret","art_title":"Catalan volunteers in the Spanish-American War embarking in the Port of Barcelona","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"38d07796-0e0b-4f00-b0d8-1ff525c4544c","storage_path":"theobald-chartran/cardinal-james-gibbons.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/theobald-chartran/cardinal-james-gibbons.jpg","width":0,"height":0,"file_size":4340,"artist_name":"Théobald Chartran","art_title":"Cardinal James Gibbons","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"207d64cb-bc2d-4846-b8db-e283f1fbc09b","storage_path":"kenyon-cox/plenty.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/kenyon-cox/plenty.jpg","width":0,"height":0,"file_size":7394,"artist_name":"Kenyon Cox","art_title":"Plenty","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"5a45ce0f-73d4-4343-8230-7d61cf9f574c","storage_path":"hyung-koo-kang/warhol.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/hyung-koo-kang/warhol.jpg","width":0,"height":0,"file_size":3956,"artist_name":"Hyung Koo Kang","art_title":"Warhol","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"1980258f-5771-46f1-b796-49fa5abbce63","storage_path":"enrico-prampolini/composition.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/enrico-prampolini/composition.jpg","width":0,"height":0,"file_size":7082,"artist_name":"Enrico Prampolini","art_title":"Composition","tags":["museum:the conservation and enhancement of the works in the collection"]},{"art_id":"9fc88d67-7bbe-4eba-8585-15a3926d782f","storage_path":"luca-carlevarijs/regatta-on-the-grand-canal-in-honor-of-frederick-iv-king-of-denmark.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/luca-carlevarijs/regatta-on-the-grand-canal-in-honor-of-frederick-iv-king-of-denmark.jpg","width":0,"height":0,"file_size":5374,"artist_name":"Luca Carlevarijs","art_title":"Regatta on the Grand Canal in Honor of Frederick IV, King of Denmark","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"c7fe6055-8bda-4922-9e52-530f96726b87","storage_path":"pietro-putigniano/portrait-of-a-woman.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/pietro-putigniano/portrait-of-a-woman.jpg","width":0,"height":0,"file_size":6652,"artist_name":"Pietro Putigniano","art_title":"Portrait of a woman","tags":[]},{"art_id":"9fd4eae2-0410-4fc9-9283-13cdaa16e891","storage_path":"anthony-van-dyck/crucifixion.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/anthony-van-dyck/crucifixion.jpg","width":0,"height":0,"file_size":4068,"artist_name":"Anthony Van Dyck","art_title":"Crucifixion","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"d34f6f48-dd68-413e-b1d9-a762e32485f7","storage_path":"fred-williams/my-garden.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/fred-williams/my-garden.jpg","width":0,"height":0,"file_size":6596,"artist_name":"Fred Williams","art_title":"My garden","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"bab37691-f124-4f55-af9d-477949181c92","storage_path":"franz-ehrlich/landscape.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/franz-ehrlich/landscape.jpg","width":0,"height":0,"file_size":4632,"artist_name":"Franz Ehrlich","art_title":"Landscape","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"8c14c4a3-6f9a-498c-9534-07150836ed3c","storage_path":"julio-hernandez-aleman/placid-salvadoran-woman.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/julio-hernandez-aleman/placid-salvadoran-woman.jpg","width":0,"height":0,"file_size":8434,"artist_name":"JULIO HERNANDEZ ALEMAN","art_title":"Placid Salvadoran woman","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"ab7466ed-cede-4f2e-a3f6-730ef38612da","storage_path":"sfc-elzie-golden/street-fight.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/sfc-elzie-golden/street-fight.jpg","width":0,"height":0,"file_size":7430,"artist_name":"Sfc. Elzie Golden","art_title":"Street Fight","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"0dddd96d-5357-4522-8fc5-f31c536b5861","storage_path":"yuan-xikun/starring.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/yuan-xikun/starring.jpg","width":0,"height":0,"file_size":7306,"artist_name":"Yuan Xikun","art_title":"Starring","tags":[]},{"art_id":"cffde771-5d30-4b49-bd48-da49eff46c1f","storage_path":"jean-baptiste-camille-corot/orpheus-lamenting-eurydice.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/jean-baptiste-camille-corot/orpheus-lamenting-eurydice.jpg","width":0,"height":0,"file_size":4964,"artist_name":"Jean Baptiste Camille Corot","art_title":"Orpheus Lamenting Eurydice","tags":["museum:an expansion of vision to encompass world history and a new focus on a small number of key objects. the collection now consists of about 350 works that not only epitomize their periods and movements but also touch individual high points of aesthetic beauty and historical importance. ranging in period from antiquity to the 20th century","oil on canvas","canvas","oil painting"]},{"art_id":"306918a3-fa2a-491f-9138-8d52265b6d93","storage_path":"gustave-courbet/the-fishing-boat.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/gustave-courbet/the-fishing-boat.jpg","width":0,"height":0,"file_size":7174,"artist_name":"Gustave Courbet","art_title":"The Fishing Boat","tags":["painting","metropolitan museum of art","oil on canvas","canvas","1865","oil painting","marine art"]},{"art_id":"3a63a631-1be8-4ad1-af17-3acc8f9addcc","storage_path":"johan-christian-dahl/view-of-dresden-by-moonlight.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/johan-christian-dahl/view-of-dresden-by-moonlight.jpg","width":0,"height":0,"file_size":3852,"artist_name":"Johan Christian Dahl","art_title":"View of Dresden by Moonlight","tags":["1838","painting","national museum of art, architecture and design","1839","landscape painting","sculpture","staatliche kunstsammlungen dresden"]},{"art_id":"d4824733-81f5-4ead-9253-349d1e617553","storage_path":"joseph-leon-righini/arredores-da-cidade-the-city-outskirts.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/joseph-leon-righini/arredores-da-cidade-the-city-outskirts.jpg","width":0,"height":0,"file_size":4548,"artist_name":"Joseph Léon Righini","art_title":"Arredores da cidade [The City Outskirts]","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"673ab137-b5c8-4687-90f6-7c09058816fc","storage_path":"nicolas-poussin/the-birth-of-venus.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/nicolas-poussin/the-birth-of-venus.jpg","width":0,"height":0,"file_size":7796,"artist_name":"Nicolas Poussin","art_title":"The Birth of Venus","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"52e2c4d5-faa6-449e-adb6-bc3dd812f2c4","storage_path":"vigilius-eriksen/the-queen-dowager-juliane-marie.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/vigilius-eriksen/the-queen-dowager-juliane-marie.jpg","width":0,"height":0,"file_size":4412,"artist_name":"Vigilius Eriksen","art_title":"The Queen Dowager Juliane Marie","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"7e6db4df-dacb-4bc4-bdcb-85c1d9319bfe","storage_path":"fornasetti/view-of-varenna-from-the-castle-of-vezio.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/fornasetti/view-of-varenna-from-the-castle-of-vezio.jpg","width":0,"height":0,"file_size":6104,"artist_name":"Fornasetti","art_title":"View of Varenna from the Castle of Vezio","tags":["sculpture"]},{"art_id":"10d4b23c-d9ab-4fed-9e0f-377bee97e1f0","storage_path":"yuan-xikun/power-walking.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/yuan-xikun/power-walking.jpg","width":0,"height":0,"file_size":5328,"artist_name":"Yuan Xikun","art_title":"Power-Walking","tags":[]},{"art_id":"e056c32a-935d-4873-bda6-5eb24d5739b0","storage_path":"witold-wojtkiewicz/dolls.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/witold-wojtkiewicz/dolls.jpg","width":0,"height":0,"file_size":5208,"artist_name":"Witold Wojtkiewicz","art_title":"Dolls","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"e17b7939-8ad0-454c-b27b-995ff5247e56","storage_path":"fateev-vladimir/chapaev.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/fateev-vladimir/chapaev.jpg","width":0,"height":0,"file_size":2616,"artist_name":"Fateev Vladimir","art_title":"Chapaev","tags":["museum:one can easily spend the whole day at erarta and keep coming back over and over. the museum stages 40 temporary shows annually","oil on canvas","canvas","oil painting"]},{"art_id":"70fc1ce5-693e-4ccd-9e4a-4e58377259b0","storage_path":"aleksey-antropov/portrait-of-a-m-izmailova.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/aleksey-antropov/portrait-of-a-m-izmailova.jpg","width":0,"height":0,"file_size":4988,"artist_name":"Aleksey Antropov","art_title":"Portrait of A.M.Izmailova","tags":["sculpture"]},{"art_id":"fd44c900-1ee0-446a-82c7-3e03ceb6dd76","storage_path":"william-dobson/endymion-porter.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/william-dobson/endymion-porter.jpg","width":0,"height":0,"file_size":7282,"artist_name":"William Dobson","art_title":"Endymion Porter","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"ac751fca-976e-4723-a14e-b094c8621ff5","storage_path":"kamil-lhotak/two-flying-balloons.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/kamil-lhotak/two-flying-balloons.jpg","width":0,"height":0,"file_size":2154,"artist_name":"Kamil Lhoták","art_title":"Two flying Balloons","tags":["sculpture"]}];
+    const meta = {"limit":50,"offset":50,"total":1284,"page":1,"pageCount":26};
+    const grid = document.getElementById('grid');
+    const selectAll = document.getElementById('selectAll');
+    const copyBtn = document.getElementById('copy');
+    const pathFilter = document.getElementById('pathFilter');
+    const artistFilter = document.getElementById('artistFilter');
+    const tagFilter = document.getElementById('tagFilter');
+    const clearFiltersBtn = document.getElementById('clearFilters');
+    const count = document.getElementById('count');
+    const pageInfo = document.getElementById('pageInfo');
+
+    function render(list) {
+      grid.innerHTML = '';
+      for (const row of list) {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.dataset.path = row.storage_path.toLowerCase();
+        card.dataset.artist = (row.artist_name || '').toLowerCase();
+        card.dataset.tags = (row.tags || []).join(' ').toLowerCase();
+        card.innerHTML = `
+          <input type="checkbox" class="chk" data-path="${row.storage_path}">
+          <img class="thumb" src="${row.public_url}" alt="${row.storage_path}">
+          <div class="meta">
+            <div class="path">${row.storage_path}</div>
+            ${row.artist_name ? `<div class="artist">${row.artist_name}</div>` : ''}
+            ${row.art_title ? `<div class="title">${row.art_title}</div>` : ''}
+            ${row.tags && row.tags.length ? `<div class="tags">${row.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>` : ''}
+            <div>Size: ${row.width || '?'} x ${row.height || '?'} | File: ${row.file_size ? (row.file_size/1024/1024).toFixed(2) + ' MB' : '?'}</div>
+          </div>
+        `;
+        grid.appendChild(card);
+      }
+      applyFilters();
+      const pageText = meta.page != null && meta.pageCount != null
+        ? `Page ${meta.page + 1} / ${meta.pageCount}`
+        : '';
+      const totalText = meta.total != null ? `Total: ${meta.total}` : '';
+      pageInfo.textContent = [pageText, `Offset: ${meta.offset}`, `Limit: ${meta.limit}`, totalText].filter(Boolean).join(' | ');
+    }
+
+    function applyFilters() {
+      const pathQuery = pathFilter.value.trim().toLowerCase();
+      const artistQuery = artistFilter.value.trim().toLowerCase();
+      const tagQuery = tagFilter.value.trim().toLowerCase();
+
+      const cards = Array.from(grid.children);
+      let shown = 0;
+      for (const c of cards) {
+        const pathMatch = !pathQuery || c.dataset.path.includes(pathQuery);
+        const artistMatch = !artistQuery || c.dataset.artist.includes(artistQuery);
+        const tagMatch = !tagQuery || c.dataset.tags.includes(tagQuery);
+        const match = pathMatch && artistMatch && tagMatch;
+        c.style.display = match ? '' : 'none';
+        if (match) shown++;
+      }
+      count.textContent = `Showing ${shown} item(s)`;
+    }
+
+    function currentCards() {
+      return Array.from(grid.children).filter(c => c.style.display !== 'none');
+    }
+
+    function clearFilters() {
+      pathFilter.value = '';
+      artistFilter.value = '';
+      tagFilter.value = '';
+      applyFilters();
+    }
+
+    pathFilter.addEventListener('input', applyFilters);
+    artistFilter.addEventListener('input', applyFilters);
+    tagFilter.addEventListener('input', applyFilters);
+    clearFiltersBtn.addEventListener('click', clearFilters);
+
+    selectAll.addEventListener('change', () => {
+      const cards = currentCards();
+      cards.forEach(c => {
+        const chk = c.querySelector('.chk');
+        if (chk) chk.checked = selectAll.checked;
+      });
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      const cards = currentCards();
+      const paths = cards
+        .map(c => c.querySelector('.chk'))
+        .filter(chk => chk && chk.checked)
+        .map(chk => chk.getAttribute('data-path'));
+      if (!paths.length) {
+        alert('No items selected.');
+        return;
+      }
+      await navigator.clipboard.writeText(paths.join('\n'));
+      alert(`Copied ${paths.length} path(s) to clipboard`);
+    });
+
+    render(data);
+  </script>
+</body>
+</html>

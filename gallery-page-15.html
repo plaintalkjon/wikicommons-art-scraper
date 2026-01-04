@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Art Assets Gallery</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 16px; background: #f7f7f7; }
+    .controls { margin-bottom: 12px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+    .card { background: #fff; padding: 10px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); display: flex; flex-direction: column; gap: 8px; }
+    .thumb { width: 100%; height: 180px; object-fit: cover; background: #eee; }
+    .meta { font-size: 12px; color: #444; line-height: 1.4; }
+    .artist { font-weight: bold; color: #222; }
+    .title { font-style: italic; color: #666; }
+    .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+    .tag { background: #e3f2fd; color: #1976d2; padding: 2px 6px; border-radius: 10px; font-size: 11px; }
+    label { cursor: pointer; }
+    input[type="search"] { padding: 6px; }
+    button { padding: 6px 10px; cursor: pointer; }
+    .count { font-size: 12px; color: #666; }
+    .path { font-size: 12px; word-break: break-all; color: #222; }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <label><input type="checkbox" id="selectAll" /> Select all</label>
+    <button id="copy">Copy selected paths</button>
+    <input type="search" id="pathFilter" placeholder="Filter by path" size="30" />
+    <input type="search" id="artistFilter" placeholder="Filter by artist" size="25" />
+    <input type="search" id="tagFilter" placeholder="Filter by tag" size="25" />
+    <button id="clearFilters">Clear filters</button>
+    <span class="count" id="count"></span>
+    <span class="count" id="pageInfo"></span>
+  </div>
+  <div class="grid" id="grid"></div>
+  <script>
+    const data = [{"art_id":"6bf949cd-acc4-4d08-be37-bdf69a877a7b","storage_path":"adventure/adventure-v43-n02-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v43-n02-jpgjpg","width":400,"height":586,"file_size":90479,"artist_name":"Adventure","art_title":"Adventure v43 n02","tags":[]},{"art_id":"8744fd80-f3b1-498d-adc7-90979d8430c1","storage_path":"adventure/adventure-v43-n05-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v43-n05-jpgjpg","width":400,"height":584,"file_size":60795,"artist_name":"Adventure","art_title":"Adventure v43 n05","tags":[]},{"art_id":"1de05042-27cc-4e7e-b3b9-e83af54bb052","storage_path":"adventure/adventure-v43-n01-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v43-n01-jpgjpg","width":400,"height":576,"file_size":70256,"artist_name":"Adventure","art_title":"Adventure v43 n01","tags":[]},{"art_id":"3f6c8f30-04a7-48f9-9887-e9b53c6e0a76","storage_path":"adventure/adventure-v42-n05-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v42-n05-jpgjpg","width":400,"height":582,"file_size":84765,"artist_name":"Adventure","art_title":"Adventure v42 n05","tags":[]},{"art_id":"60ddca39-c62a-4524-8186-b2869dccadee","storage_path":"adventure/adventure-v42-n01-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v42-n01-jpgjpg","width":400,"height":576,"file_size":70290,"artist_name":"Adventure","art_title":"Adventure v42 n01","tags":[]},{"art_id":"971e6b7b-535d-4d4d-b144-be397741b4f2","storage_path":"adventure/adventure-v42-n04-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v42-n04-jpgjpg","width":400,"height":583,"file_size":78975,"artist_name":"Adventure","art_title":"Adventure v42 n04","tags":[]},{"art_id":"63312c94-ec6c-4054-862b-015c92c5a628","storage_path":"adventure/adventure-v41-n04-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v41-n04-jpgjpg","width":400,"height":582,"file_size":74065,"artist_name":"Adventure","art_title":"Adventure v41 n04","tags":[]},{"art_id":"482f9e93-79f1-4bd2-96a9-298d35d739d0","storage_path":"adventure/adventure-v41-n06-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v41-n06-jpgjpg","width":400,"height":589,"file_size":56986,"artist_name":"Adventure","art_title":"Adventure v41 n06","tags":[]},{"art_id":"12db2faa-c8ed-4f9c-ba47-bc49a3d4d1bf","storage_path":"adventure/adventure-v41-n03-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v41-n03-jpgjpg","width":400,"height":580,"file_size":65982,"artist_name":"Adventure","art_title":"Adventure v41 n03","tags":[]},{"art_id":"761f4a1c-5277-4422-9bd1-a4ff127cc342","storage_path":"adventure/adventure-v41-n05-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v41-n05-jpgjpg","width":400,"height":583,"file_size":72514,"artist_name":"Adventure","art_title":"Adventure v41 n05","tags":[]},{"art_id":"9e0b943d-38d3-4e59-9261-91a722eebd94","storage_path":"adventure/adventure-v41-n02-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v41-n02-jpgjpg","width":400,"height":593,"file_size":61784,"artist_name":"Adventure","art_title":"Adventure v41 n02","tags":[]},{"art_id":"b49c9c04-127a-445c-b8fc-e7b5a3b7d19e","storage_path":"adventure/adventure-v41-n01-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v41-n01-jpgjpg","width":400,"height":581,"file_size":50910,"artist_name":"Adventure","art_title":"Adventure v41 n01","tags":[]},{"art_id":"3cd30a62-9a08-426d-ab82-490e66b42196","storage_path":"adventure/adventure-v40-n06-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v40-n06-jpgjpg","width":400,"height":584,"file_size":61331,"artist_name":"Adventure","art_title":"Adventure v40 n06","tags":[]},{"art_id":"1185746f-29ff-47f3-bc6f-12ed478f2f2d","storage_path":"adventure/adventure-v40-n05-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v40-n05-jpgjpg","width":400,"height":591,"file_size":78341,"artist_name":"Adventure","art_title":"Adventure v40 n05","tags":[]},{"art_id":"33b49ea0-0b79-4ade-84f6-b3b134f0e412","storage_path":"adventure/adventure-v40-n03-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v40-n03-jpgjpg","width":400,"height":579,"file_size":70249,"artist_name":"Adventure","art_title":"Adventure v40 n03","tags":[]},{"art_id":"e115f67c-c561-445f-8bb9-4af6c1ee2da2","storage_path":"adventure/adventure-v40-n04-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v40-n04-jpgjpg","width":400,"height":577,"file_size":75867,"artist_name":"Adventure","art_title":"Adventure v40 n04","tags":[]},{"art_id":"0e9adb4a-51fb-4042-b644-498c6a614cb8","storage_path":"adventure/adventure-v40-n02-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v40-n02-jpgjpg","width":400,"height":562,"file_size":80316,"artist_name":"Adventure","art_title":"Adventure v40 n02","tags":[]},{"art_id":"8e2a8577-6c15-413b-81cb-170ac15cae99","storage_path":"adventure/adventure-v40-n01-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v40-n01-jpgjpg","width":400,"height":588,"file_size":90711,"artist_name":"Adventure","art_title":"Adventure v40 n01","tags":[]},{"art_id":"650ad8d7-17ad-4b4e-b22d-30cbdbeb2e7f","storage_path":"adventure/adventure-v39-n06-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v39-n06-jpgjpg","width":400,"height":582,"file_size":76224,"artist_name":"Adventure","art_title":"Adventure v39 n06","tags":[]},{"art_id":"917b60d6-bc59-481f-bef0-adbdbec18071","storage_path":"adventure/adventure-v39-n05-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v39-n05-jpgjpg","width":400,"height":574,"file_size":78785,"artist_name":"Adventure","art_title":"Adventure v39 n05","tags":[]},{"art_id":"860b6ac0-78dd-4c11-9a28-4bb4545cc395","storage_path":"adventure/adventure-v39-n04-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v39-n04-jpgjpg","width":400,"height":584,"file_size":50371,"artist_name":"Adventure","art_title":"Adventure v39 n04","tags":[]},{"art_id":"6d067500-95a2-4601-85f8-bcf04f314c18","storage_path":"adventure/adventure-v39-n03-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v39-n03-jpgjpg","width":400,"height":588,"file_size":66766,"artist_name":"Adventure","art_title":"Adventure v39 n03","tags":[]},{"art_id":"81ac8573-7933-4e11-b755-07c09342e247","storage_path":"adventure/adventure-v39-n02-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v39-n02-jpgjpg","width":400,"height":585,"file_size":65343,"artist_name":"Adventure","art_title":"Adventure v39 n02","tags":[]},{"art_id":"6ebcfa94-d012-41f2-89e8-e3369d081f5d","storage_path":"adventure/adventure-v38-n06-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v38-n06-jpgjpg","width":400,"height":584,"file_size":74804,"artist_name":"Adventure","art_title":"Adventure v38 n06","tags":[]},{"art_id":"45f8d77e-0d02-4240-8b8c-99c6b615c976","storage_path":"adventure/adventure-v38-n04-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v38-n04-jpgjpg","width":400,"height":573,"file_size":66236,"artist_name":"Adventure","art_title":"Adventure v38 n04","tags":[]},{"art_id":"d85dcd09-0251-407f-a2dc-2df4e6cceb73","storage_path":"adventure/adventure-v39-n01-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v39-n01-jpgjpg","width":400,"height":591,"file_size":73852,"artist_name":"Adventure","art_title":"Adventure v39 n01","tags":[]},{"art_id":"7967e96b-51ac-458a-8c69-f1b737e019cf","storage_path":"adventure/adventure-v34-n2-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v34-n2-jpgjpg","width":400,"height":586,"file_size":85400,"artist_name":"Adventure","art_title":"Adventure v34 n2","tags":[]},{"art_id":"6193a136-107f-47a4-a890-3deaa689b5fc","storage_path":"adventure/adventure-v34-n3-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v34-n3-jpgjpg","width":400,"height":585,"file_size":56989,"artist_name":"Adventure","art_title":"Adventure v34 n3","tags":[]},{"art_id":"a628e85d-5dc3-4157-8e41-8cb6039d8490","storage_path":"adventure/adventure-v33-n5-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v33-n5-jpgjpg","width":400,"height":592,"file_size":81222,"artist_name":"Adventure","art_title":"Adventure v33 n5","tags":[]},{"art_id":"392f58fe-c566-4aff-a37d-64e23a43edbc","storage_path":"adventure/adventure-v33-n6-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v33-n6-jpgjpg","width":400,"height":583,"file_size":86061,"artist_name":"Adventure","art_title":"Adventure v33 n6","tags":[]},{"art_id":"15cb9969-3c43-46d3-80ff-c66be317c677","storage_path":"adventure/adventure-v34-n1-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v34-n1-jpgjpg","width":400,"height":582,"file_size":57872,"artist_name":"Adventure","art_title":"Adventure v34 n1","tags":[]},{"art_id":"7fcbceb3-5ead-4c88-8ca8-f2bc06ff556a","storage_path":"adventure/adventure-v33-n4-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v33-n4-jpgjpg","width":400,"height":584,"file_size":51491,"artist_name":"Adventure","art_title":"Adventure v33 n4","tags":[]},{"art_id":"5cd68d40-f8ec-4ea4-a938-24567cf28dd3","storage_path":"adventure/adventure-v33-n2-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v33-n2-jpgjpg","width":400,"height":588,"file_size":87936,"artist_name":"Adventure","art_title":"Adventure v33 n2","tags":[]},{"art_id":"1fa67282-7456-4cfe-a442-c4777204e603","storage_path":"adventure/adventure-v32-n5-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v32-n5-jpgjpg","width":400,"height":594,"file_size":99697,"artist_name":"Adventure","art_title":"Adventure v32 n5","tags":[]},{"art_id":"8d15f9de-848e-4daa-b338-6bf7f46d3df3","storage_path":"adventure/adventure-v32-n6-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v32-n6-jpgjpg","width":400,"height":591,"file_size":63820,"artist_name":"Adventure","art_title":"Adventure v32 n6","tags":[]},{"art_id":"602c60d4-2b3b-4ba1-a04f-7980d1695e37","storage_path":"adventure/adventure-v32-n4-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v32-n4-jpgjpg","width":400,"height":587,"file_size":81231,"artist_name":"Adventure","art_title":"Adventure v32 n4","tags":[]},{"art_id":"45c87570-0ac7-4ac8-a874-8e57af3f852c","storage_path":"adventure/adventure-v19-n05-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v19-n05-jpgjpg","width":400,"height":572,"file_size":57873,"artist_name":"Adventure","art_title":"Adventure v19 n05","tags":[]},{"art_id":"9d186d67-8b1e-4364-9bee-0eb86c20056c","storage_path":"adventure/adventure-v19-n06-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v19-n06-jpgjpg","width":400,"height":585,"file_size":58231,"artist_name":"Adventure","art_title":"Adventure v19 n06","tags":[]},{"art_id":"c742a755-b5ad-4e3a-a9c2-f25df732a2a1","storage_path":"adventure/adventure-v19-n03-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v19-n03-jpgjpg","width":400,"height":589,"file_size":70116,"artist_name":"Adventure","art_title":"Adventure v19 n03","tags":[]},{"art_id":"9497c8f2-b062-48b2-9ac9-a25feb6ac2c4","storage_path":"adventure/adventure-v19-n04-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v19-n04-jpgjpg","width":400,"height":593,"file_size":68984,"artist_name":"Adventure","art_title":"Adventure v19 n04","tags":[]},{"art_id":"b429832e-63c9-4f03-a628-0a414e7130d4","storage_path":"adventure/adventure-v19-n02-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v19-n02-jpgjpg","width":400,"height":587,"file_size":67074,"artist_name":"Adventure","art_title":"Adventure v19 n02","tags":[]},{"art_id":"89a0a647-1ecc-44aa-b593-fccd438c11ac","storage_path":"adventure/adventure-v19-n01-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v19-n01-jpgjpg","width":400,"height":591,"file_size":73576,"artist_name":"Adventure","art_title":"Adventure v19 n01","tags":[]},{"art_id":"d509218a-cffc-400d-a06d-6f1ed11c342e","storage_path":"adventure/adventure-v18-n06-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v18-n06-jpgjpg","width":400,"height":580,"file_size":54969,"artist_name":"Adventure","art_title":"Adventure v18 n06","tags":[]},{"art_id":"7e96a9c7-23d9-47c2-a591-cf574af03b8d","storage_path":"adventure/adventure-v18-n03-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v18-n03-jpgjpg","width":400,"height":584,"file_size":68044,"artist_name":"Adventure","art_title":"Adventure v18 n03","tags":[]},{"art_id":"bc865709-868f-45b8-834a-80b4aa378cc8","storage_path":"adventure/adventure-v18-n02-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v18-n02-jpgjpg","width":400,"height":586,"file_size":95465,"artist_name":"Adventure","art_title":"Adventure v18 n02","tags":[]},{"art_id":"01a6cdbc-eef3-46b5-b914-c947e268f2d8","storage_path":"adventure/adventure-v18-n05-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v18-n05-jpgjpg","width":400,"height":582,"file_size":75048,"artist_name":"Adventure","art_title":"Adventure v18 n05","tags":[]},{"art_id":"d10e8a25-b2e2-4ddf-bc8d-4ef8a788b4c1","storage_path":"adventure/adventure-v18-n04-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v18-n04-jpgjpg","width":400,"height":588,"file_size":77627,"artist_name":"Adventure","art_title":"Adventure v18 n04","tags":[]},{"art_id":"f5cad0c9-5e52-4625-bc5f-2ce392c2e05c","storage_path":"adventure/adventure-v17-n06-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v17-n06-jpgjpg","width":400,"height":586,"file_size":65561,"artist_name":"Adventure","art_title":"Adventure v17 n06","tags":[]},{"art_id":"b5675913-a41b-4bc0-959b-b46e42e4188d","storage_path":"adventure/adventure-v18-n01-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v18-n01-jpgjpg","width":400,"height":579,"file_size":52228,"artist_name":"Adventure","art_title":"Adventure v18 n01","tags":[]},{"art_id":"421d3c6e-c998-47f0-a47c-299d4787b490","storage_path":"adventure/adventure-v17-n05-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/adventure/adventure-v17-n05-jpgjpg","width":400,"height":586,"file_size":80351,"artist_name":"Adventure","art_title":"Adventure v17 n05","tags":[]}];
+    const meta = {"limit":50,"offset":700,"total":1284,"page":14,"pageCount":26};
+    const grid = document.getElementById('grid');
+    const selectAll = document.getElementById('selectAll');
+    const copyBtn = document.getElementById('copy');
+    const pathFilter = document.getElementById('pathFilter');
+    const artistFilter = document.getElementById('artistFilter');
+    const tagFilter = document.getElementById('tagFilter');
+    const clearFiltersBtn = document.getElementById('clearFilters');
+    const count = document.getElementById('count');
+    const pageInfo = document.getElementById('pageInfo');
+
+    function render(list) {
+      grid.innerHTML = '';
+      for (const row of list) {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.dataset.path = row.storage_path.toLowerCase();
+        card.dataset.artist = (row.artist_name || '').toLowerCase();
+        card.dataset.tags = (row.tags || []).join(' ').toLowerCase();
+        card.innerHTML = `
+          <input type="checkbox" class="chk" data-path="${row.storage_path}">
+          <img class="thumb" src="${row.public_url}" alt="${row.storage_path}">
+          <div class="meta">
+            <div class="path">${row.storage_path}</div>
+            ${row.artist_name ? `<div class="artist">${row.artist_name}</div>` : ''}
+            ${row.art_title ? `<div class="title">${row.art_title}</div>` : ''}
+            ${row.tags && row.tags.length ? `<div class="tags">${row.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>` : ''}
+            <div>Size: ${row.width || '?'} x ${row.height || '?'} | File: ${row.file_size ? (row.file_size/1024/1024).toFixed(2) + ' MB' : '?'}</div>
+          </div>
+        `;
+        grid.appendChild(card);
+      }
+      applyFilters();
+      const pageText = meta.page != null && meta.pageCount != null
+        ? `Page ${meta.page + 1} / ${meta.pageCount}`
+        : '';
+      const totalText = meta.total != null ? `Total: ${meta.total}` : '';
+      pageInfo.textContent = [pageText, `Offset: ${meta.offset}`, `Limit: ${meta.limit}`, totalText].filter(Boolean).join(' | ');
+    }
+
+    function applyFilters() {
+      const pathQuery = pathFilter.value.trim().toLowerCase();
+      const artistQuery = artistFilter.value.trim().toLowerCase();
+      const tagQuery = tagFilter.value.trim().toLowerCase();
+
+      const cards = Array.from(grid.children);
+      let shown = 0;
+      for (const c of cards) {
+        const pathMatch = !pathQuery || c.dataset.path.includes(pathQuery);
+        const artistMatch = !artistQuery || c.dataset.artist.includes(artistQuery);
+        const tagMatch = !tagQuery || c.dataset.tags.includes(tagQuery);
+        const match = pathMatch && artistMatch && tagMatch;
+        c.style.display = match ? '' : 'none';
+        if (match) shown++;
+      }
+      count.textContent = `Showing ${shown} item(s)`;
+    }
+
+    function currentCards() {
+      return Array.from(grid.children).filter(c => c.style.display !== 'none');
+    }
+
+    function clearFilters() {
+      pathFilter.value = '';
+      artistFilter.value = '';
+      tagFilter.value = '';
+      applyFilters();
+    }
+
+    pathFilter.addEventListener('input', applyFilters);
+    artistFilter.addEventListener('input', applyFilters);
+    tagFilter.addEventListener('input', applyFilters);
+    clearFiltersBtn.addEventListener('click', clearFilters);
+
+    selectAll.addEventListener('change', () => {
+      const cards = currentCards();
+      cards.forEach(c => {
+        const chk = c.querySelector('.chk');
+        if (chk) chk.checked = selectAll.checked;
+      });
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      const cards = currentCards();
+      const paths = cards
+        .map(c => c.querySelector('.chk'))
+        .filter(chk => chk && chk.checked)
+        .map(chk => chk.getAttribute('data-path'));
+      if (!paths.length) {
+        alert('No items selected.');
+        return;
+      }
+      await navigator.clipboard.writeText(paths.join('\n'));
+      alert(`Copied ${paths.length} path(s) to clipboard`);
+    });
+
+    render(data);
+  </script>
+</body>
+</html>

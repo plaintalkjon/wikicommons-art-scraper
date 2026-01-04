@@ -102,3 +102,4 @@ npm run wikidata-googlearts -- --csv google-arts-remaining.csv --images download
 ```
 
 This approach provides a much more reliable and scalable solution than scraping Google Arts directly, with access to high-quality structured metadata.
+

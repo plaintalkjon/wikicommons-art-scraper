@@ -16,3 +16,4 @@ Betsy Karel; Odilon Redon; Ron McPherson; Lucas van Leyden; Max Weber; Zigmunds 
 Sir Peter Paul Rubens; Francisco Goya; Frank Stella; Pieter Bruegel the Elder; Augustin Hirschvogel; Benton Spruance; Diana Walker; Emily Sargent; Aristide Maillol; Crispijn van de Passe I; Paul Cezanne; James Reid; Hans Holbein the Younger; Martin Schongauer; John Divola; Joseph Mallord William Turner; Robert Austin; Auguste Lepère; Elihu Vedder; Brigitte Freed; Herman van Swanevelt; Franz Kline; Childe Hassam; Théodore Roussel; Willem de Passe; Edward L. Loper; Master of the Small Landscapes; Emily York; William Hogarth; Léonard Gaultier
 
 
+

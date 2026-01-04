@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Art Assets Gallery</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 16px; background: #f7f7f7; }
+    .controls { margin-bottom: 12px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+    .card { background: #fff; padding: 10px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); display: flex; flex-direction: column; gap: 8px; }
+    .thumb { width: 100%; height: 180px; object-fit: cover; background: #eee; }
+    .meta { font-size: 12px; color: #444; line-height: 1.4; }
+    .artist { font-weight: bold; color: #222; }
+    .title { font-style: italic; color: #666; }
+    .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+    .tag { background: #e3f2fd; color: #1976d2; padding: 2px 6px; border-radius: 10px; font-size: 11px; }
+    label { cursor: pointer; }
+    input[type="search"] { padding: 6px; }
+    button { padding: 6px 10px; cursor: pointer; }
+    .count { font-size: 12px; color: #666; }
+    .path { font-size: 12px; word-break: break-all; color: #222; }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <label><input type="checkbox" id="selectAll" /> Select all</label>
+    <button id="copy">Copy selected paths</button>
+    <input type="search" id="pathFilter" placeholder="Filter by path" size="30" />
+    <input type="search" id="artistFilter" placeholder="Filter by artist" size="25" />
+    <input type="search" id="tagFilter" placeholder="Filter by tag" size="25" />
+    <button id="clearFilters">Clear filters</button>
+    <span class="count" id="count"></span>
+    <span class="count" id="pageInfo"></span>
+  </div>
+  <div class="grid" id="grid"></div>
+  <script>
+    const data = [{"art_id":"0c28842a-8cb6-476b-b29a-9d38b667b61c","storage_path":"bahram-hajou/woman-in-blue.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/bahram-hajou/woman-in-blue.jpg","width":0,"height":0,"file_size":4614,"artist_name":"Bahram Hajou","art_title":"Woman in Blue","tags":[]},{"art_id":"78049e18-f72f-4c0a-9cbd-460e63807167","storage_path":"spiros-papalucas/chapel-with-boat.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/spiros-papalucas/chapel-with-boat.jpg","width":0,"height":0,"file_size":5090,"artist_name":"Spiros Papalucas","art_title":"Chapel with Boat","tags":[]},{"art_id":"4c5dc8b2-e00d-409d-8083-054cc2a85d24","storage_path":"zhang-xiaogang/train-window-the-lonely-violin.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/zhang-xiaogang/train-window-the-lonely-violin.jpg","width":0,"height":0,"file_size":3894,"artist_name":"Zhang Xiaogang","art_title":"Train Window – The Lonely Violin","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"26dee236-1cd9-4fd3-bf39-c848a1f51618","storage_path":"elisabeth-vigee-le-brun/marie-antoinette-with-the-rose.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/elisabeth-vigee-le-brun/marie-antoinette-with-the-rose.jpg","width":0,"height":0,"file_size":5954,"artist_name":"Élisabeth Vigée Le Brun","art_title":"Marie-Antoinette with the Rose","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"0cc5022e-af64-4a0f-b9c4-57e593df7a8e","storage_path":"amedeo-bocchi/la-sorella-anita.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amedeo-bocchi/la-sorella-anita.jpg","width":0,"height":0,"file_size":4074,"artist_name":"Amedeo Bocchi","art_title":"La sorella Anita","tags":["sculpture"]},{"art_id":"cd81f3a7-a074-4e7a-ac60-b6574f6089e8","storage_path":"jean-baptiste-regnault/death-of-cleopatra.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/jean-baptiste-regnault/death-of-cleopatra.jpg","width":0,"height":0,"file_size":5202,"artist_name":"Jean Baptiste Regnault","art_title":"Death of Cleopatra","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"26cb11d1-8edc-4c8a-8a7c-c1707cbab46e","storage_path":"zhang-yuan/the-pearl-on-the-sea.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/zhang-yuan/the-pearl-on-the-sea.jpg","width":0,"height":0,"file_size":9228,"artist_name":"Zhang Yuan","art_title":"The Pearl on the Sea","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"1c8348a8-a919-47ac-8ff9-1c4a54ea8bdf","storage_path":"john-singer-sargent/elizabeth-allen-marquand.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/john-singer-sargent/elizabeth-allen-marquand.jpg","width":0,"height":0,"file_size":3306,"artist_name":"John Singer Sargent","art_title":"Elizabeth Allen Marquand","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"b7e3148e-3d78-4737-9c60-7fc31c949eed","storage_path":"matthijs-naiveu/the-newborn-baby.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/matthijs-naiveu/the-newborn-baby.jpg","width":0,"height":0,"file_size":5418,"artist_name":"Matthijs Naiveu","art_title":"The Newborn Baby","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"15ddae4b-c729-4c2e-9402-1403c1f5e700","storage_path":"fabio-miguez/sem-titulo.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/fabio-miguez/sem-titulo.jpg","width":0,"height":0,"file_size":6772,"artist_name":"Fábio Miguez","art_title":"Sem título","tags":[]},{"art_id":"b21aa30f-0814-4909-b99d-0c67a28ef6c1","storage_path":"hortense-gordon/orange-and-yellows-bound-in-space.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/hortense-gordon/orange-and-yellows-bound-in-space.jpg","width":0,"height":0,"file_size":6620,"artist_name":"Hortense Gordon","art_title":"Orange and Yellows, Bound in Space","tags":[]},{"art_id":"33f66a6e-4ce5-4974-a310-e090b6f01e22","storage_path":"henry-ossawa-tanner/portrait-of-the-artist-39-s-mother.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/henry-ossawa-tanner/portrait-of-the-artist-39-s-mother.jpg","width":0,"height":0,"file_size":1760,"artist_name":"Henry Ossawa Tanner","art_title":"Portrait of the Artist&#39;s Mother","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"96145569-dda2-4a14-aa84-243427dc72e0","storage_path":"giuseppe-crespi/cupid-and-psyche.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/giuseppe-crespi/cupid-and-psyche.jpg","width":0,"height":0,"file_size":5220,"artist_name":"Giuseppe Crespi","art_title":"Cupid and Psyche","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"c7288de9-ee3f-4d77-8835-040fb5e9ae7d","storage_path":"gustave-caillebotte/the-floor-planers.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/gustave-caillebotte/the-floor-planers.jpg","width":0,"height":0,"file_size":5642,"artist_name":"Gustave Caillebotte","art_title":"The Floor Planers","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"f040615c-3b0f-4371-a64c-601a47261ace","storage_path":"vincent-van-gogh/entrance-to-the-public-gardens-in-arle.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/vincent-van-gogh/entrance-to-the-public-gardens-in-arle.jpg","width":0,"height":0,"file_size":10320,"artist_name":"Vincent Van Gogh","art_title":"Entrance to the Public Gardens in Arle","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"4182eb8e-d0ce-498d-ae78-60bf697ec941","storage_path":"jean-baptiste-van-loo/louis-xv-king-of-france-and-navarre.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/jean-baptiste-van-loo/louis-xv-king-of-france-and-navarre.jpg","width":0,"height":0,"file_size":6450,"artist_name":"Jean Baptiste Van Loo","art_title":"Louis XV, king of France and Navarre","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"4461ff0e-9f30-4ae5-97a5-1dbb486d805e","storage_path":"angelica-kauffman/portrait-of-eleanor-countess-of-lauderdale.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/angelica-kauffman/portrait-of-eleanor-countess-of-lauderdale.jpg","width":0,"height":0,"file_size":5416,"artist_name":"Angelica Kauffman","art_title":"Portrait of Eleanor, Countess of Lauderdale","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"2c7f4896-2041-4da5-a1cf-88c659872f4d","storage_path":"paul-gauguin/landscape-with-a-pig-and-a-horse-hiva-oa.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/paul-gauguin/landscape-with-a-pig-and-a-horse-hiva-oa.jpg","width":0,"height":0,"file_size":6882,"artist_name":"Paul Gauguin","art_title":"Landscape with a Pig and a Horse (Hiva Oa)","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"afb28877-5724-4452-93bb-cad461b321a2","storage_path":"clara-klinghoffer/portrait-of-the-artist-39-s-sister-rachel-rachel-in-a-red-dress.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/clara-klinghoffer/portrait-of-the-artist-39-s-sister-rachel-rachel-in-a-red-dress.jpg","width":0,"height":0,"file_size":5720,"artist_name":"Clara Klinghoffer","art_title":"Portrait of the Artist&#39;s Sister Rachel: Rachel in a Red Dress","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"eee3be2d-cc3c-4a34-b836-8df088f88d2b","storage_path":"charlie-billingham/dance-hall-6.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/charlie-billingham/dance-hall-6.jpg","width":0,"height":0,"file_size":6670,"artist_name":"Charlie Billingham","art_title":"Dance Hall 6","tags":["watercolor"]},{"art_id":"91829bcd-2c7d-416c-81ec-eeacd7f0db08","storage_path":"set-byul-li/fascination.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/set-byul-li/fascination.jpg","width":0,"height":0,"file_size":5128,"artist_name":"Set Byul Li","art_title":"Fascination","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"528562a8-0a04-4959-a64d-ac746e44197b","storage_path":"john-brack/nude-with-two-chairs.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/john-brack/nude-with-two-chairs.jpg","width":0,"height":0,"file_size":5064,"artist_name":"John Brack","art_title":"Nude with two chairs","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"395a7448-6d6d-40b3-90a6-4dd224086248","storage_path":"robert-smirke/the-seven-ages-of-man-the-infant-39-as-you-like-it-39-ii-vii.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/robert-smirke/the-seven-ages-of-man-the-infant-39-as-you-like-it-39-ii-vii.jpg","width":0,"height":0,"file_size":4300,"artist_name":"Robert Smirke","art_title":"The Seven Ages of Man: The Infant, &#39;As You Like It,&#39; II, vii","tags":["watercolor"]},{"art_id":"75cbd828-c174-4af9-afeb-76655af51925","storage_path":"armand-jullien-palliere/panorama-da-cidade-de-sao-paulo.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/armand-jullien-palliere/panorama-da-cidade-de-sao-paulo.jpg","width":0,"height":0,"file_size":3322,"artist_name":"Armand Jullien Pallière","art_title":"Panorama da Cidade de São Paulo","tags":[]},{"art_id":"fa788a0e-7155-47c4-bb52-82c6aae98cba","storage_path":"bryson-burroughs/june.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/bryson-burroughs/june.jpg","width":0,"height":0,"file_size":7258,"artist_name":"Bryson Burroughs","art_title":"June","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"fc54c073-d7b3-4bbb-9e4f-ade40bf74d65","storage_path":"patrick-hayman/the-gods-look-down-on-us.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/patrick-hayman/the-gods-look-down-on-us.jpg","width":0,"height":0,"file_size":9110,"artist_name":"Patrick Hayman","art_title":"The Gods Look Down on Us","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"3564dc6a-471a-489d-8538-5a939b8dc059","storage_path":"romulo-maccio/vivir-con-ilusion-living-in-illusion.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/romulo-maccio/vivir-con-ilusion-living-in-illusion.jpg","width":0,"height":0,"file_size":11394,"artist_name":"Rómulo Macció","art_title":"Vivir con ilusión [Living in Illusion]","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"9f0fa463-6a5d-40b5-976b-76d2945b3c78","storage_path":"lucas-cranach-the-elder/melancholy.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/lucas-cranach-the-elder/melancholy.jpg","width":0,"height":0,"file_size":5766,"artist_name":"Lucas Cranach The Elder","art_title":"Melancholy","tags":["sculpture"]},{"art_id":"f6853db3-949e-42bd-a205-ae3965f388ff","storage_path":"dante-gabriel-rossetti/salutation-of-beatrice.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/dante-gabriel-rossetti/salutation-of-beatrice.jpg","width":0,"height":0,"file_size":7560,"artist_name":"Dante Gabriel Rossetti","art_title":"Salutation of Beatrice","tags":["museum:http://emuseum.toledomuseum.org/collections","oil on canvas","canvas","oil painting"]},{"art_id":"ae3c0e61-0a30-4d79-812f-65ad8fc3e328","storage_path":"perez-celis/eco-tiempo-blue.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/perez-celis/eco-tiempo-blue.jpg","width":0,"height":0,"file_size":8248,"artist_name":"Pérez Celis","art_title":"Eco-tiempo Blue","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"1c64a134-2a28-4e31-b011-d4a446d5ed5d","storage_path":"william-walmsley-and-william-walmsley/still-life.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/william-walmsley-and-william-walmsley/still-life.jpg","width":0,"height":0,"file_size":5894,"artist_name":"William Walmsley and William Walmsley","art_title":"Still Life","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"407f5cdd-bf4a-49c8-91fc-452d2e0b43e2","storage_path":"john-linnell/the-sheep-drive.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/john-linnell/the-sheep-drive.jpg","width":0,"height":0,"file_size":8460,"artist_name":"John Linnell","art_title":"The Sheep Drive","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"c88950b3-68db-4e81-8053-7110f2c8783d","storage_path":"rosso-fiorentino/musical-angel.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/rosso-fiorentino/musical-angel.jpg","width":0,"height":0,"file_size":5394,"artist_name":"Rosso Fiorentino","art_title":"Musical Angel","tags":["sculpture"]},{"art_id":"efbe6c27-10ac-4645-aec5-e537ffa2ff54","storage_path":"dante-gabriel-rossetti/regina-cordium.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/dante-gabriel-rossetti/regina-cordium.jpg","width":0,"height":0,"file_size":6438,"artist_name":"Dante Gabriel Rossetti","art_title":"Regina Cordium","tags":[]},{"art_id":"8ab2f6a4-1a14-45b1-b359-0734505255e8","storage_path":"jason-phillips/king-cotton.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/jason-phillips/king-cotton.jpg","width":0,"height":0,"file_size":5384,"artist_name":"Jason Phillips","art_title":"King Cotton","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"84344122-1533-43a5-9767-9cfc16eb2716","storage_path":"octavie-more-painter-and-jean-louis-laneuville/jean-matthieu-philibert-serurier-1742-1819.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/octavie-more-painter-and-jean-louis-laneuville/jean-matthieu-philibert-serurier-1742-1819.jpg","width":0,"height":0,"file_size":4180,"artist_name":"Octavie More  and Jean-Louis Laneuville","art_title":"Jean-Matthieu-Philibert Sérurier (1742–1819)","tags":["20th century","museum:hôtel national des invalides","1903"]},{"art_id":"24dfaf10-3e39-4ace-b737-aa6da27132e0","storage_path":"william-edouard-scott/harbor-scene.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/william-edouard-scott/harbor-scene.jpg","width":0,"height":0,"file_size":6574,"artist_name":"William Edouard Scott","art_title":"Harbor Scene","tags":[]},{"art_id":"afa94121-4cb0-4dac-a319-38fa3072651d","storage_path":"paula-modersohn-becker/still-life-with-sugar-bowl-and-hyacinth-in-the-glass.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/paula-modersohn-becker/still-life-with-sugar-bowl-and-hyacinth-in-the-glass.jpg","width":0,"height":0,"file_size":5932,"artist_name":"Paula Modersohn Becker","art_title":"Still life with sugar bowl and hyacinth in the glass","tags":["sculpture"]},{"art_id":"96565e92-f51e-4b62-a7f4-b31341fc82f2","storage_path":"joseph-wright/an-iron-forge.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/joseph-wright/an-iron-forge.jpg","width":0,"height":0,"file_size":6860,"artist_name":"Joseph Wright","art_title":"An Iron Forge","tags":[]},{"art_id":"5783780c-1e79-4c5b-9c4c-434d7975ce84","storage_path":"sanford-robinson-gifford/tivoli.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/sanford-robinson-gifford/tivoli.jpg","width":0,"height":0,"file_size":3758,"artist_name":"Sanford Robinson Gifford","art_title":"Tivoli","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"b5be9e18-4f3b-4087-83ea-3c2cbc824f4c","storage_path":"joaquin-sorolla-y-bastida/la-siesta.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/joaquin-sorolla-y-bastida/la-siesta.jpg","width":0,"height":0,"file_size":6554,"artist_name":"Joaquín Sorolla y Bastida","art_title":"La Siesta","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"b12948c6-37a0-40b2-b9c1-27361c7141e5","storage_path":"charles-willson-peale/boy-with-toy-horse.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/charles-willson-peale/boy-with-toy-horse.jpg","width":0,"height":0,"file_size":3322,"artist_name":"Charles Willson Peale","art_title":"Boy with Toy Horse","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"39f6ff4c-504a-4b0c-a171-f1bd4c12ebc9","storage_path":"diego-velazquez/mariana-of-austria-1634-1696-queen-of-spain.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/diego-velazquez/mariana-of-austria-1634-1696-queen-of-spain.jpg","width":0,"height":0,"file_size":4376,"artist_name":"Diego Velázquez","art_title":"Mariana of Austria (1634–1696), Queen of Spain","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"50a2f195-cee4-4967-b27d-78b966b4af4e","storage_path":"vincent-van-gogh/cypresses-with-two-figures.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/vincent-van-gogh/cypresses-with-two-figures.jpg","width":0,"height":0,"file_size":10124,"artist_name":"Vincent Van Gogh","art_title":"Cypresses with two figures","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"c2373e85-85d0-4822-8ca7-5b7daaa0fee7","storage_path":"francois-rene-moreaux/the-act-of-the-emperor-coronation.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/francois-rene-moreaux/the-act-of-the-emperor-coronation.jpg","width":0,"height":0,"file_size":5792,"artist_name":"François René Moreaux","art_title":"The Act of the Emperor Coronation","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"56df721b-3020-40db-9923-724a87c9bc0a","storage_path":"ahn-byeongseok/wind-wave.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/ahn-byeongseok/wind-wave.jpg","width":0,"height":0,"file_size":6452,"artist_name":"Ahn Byeongseok","art_title":"Wind Wave","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"3e2c74c5-6f46-4185-99e0-f7b3f34594aa","storage_path":"raja-ravi-varma/sita-bhumipravesh.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/raja-ravi-varma/sita-bhumipravesh.jpg","width":0,"height":0,"file_size":7132,"artist_name":"Raja Ravi Varma","art_title":"Sita Bhumipravesh","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"f1a84972-fb98-4694-8925-213d80b08c4a","storage_path":"lavinia-fontana/portrait-of-a-noblewoman.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/lavinia-fontana/portrait-of-a-noblewoman.jpg","width":0,"height":0,"file_size":5752,"artist_name":"Lavinia Fontana","art_title":"Portrait of a Noblewoman","tags":["museum:women artists from the state hermitage museum","oil on canvas","canvas","oil painting"]},{"art_id":"cc1561e7-473f-4b13-8a97-2e70af812927","storage_path":"luca-carlevarijs/a-lady-seen-from-behind-holding-a-fan.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/luca-carlevarijs/a-lady-seen-from-behind-holding-a-fan.jpg","width":0,"height":0,"file_size":3642,"artist_name":"Luca Carlevarijs","art_title":"A Lady Seen from Behind, Holding a Fan","tags":["oil on canvas","canvas","oil painting"]},{"art_id":"f94f1737-29e5-4c84-a911-c5eefd9c8e2b","storage_path":"pierre-auguste-renoir/gabrielle-reading.jpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/pierre-auguste-renoir/gabrielle-reading.jpg","width":0,"height":0,"file_size":5144,"artist_name":"Pierre Auguste Renoir","art_title":"Gabrielle reading","tags":["oil on canvas","canvas","oil painting"]}];
+    const meta = {"limit":50,"offset":1500,"total":3134,"page":30,"pageCount":63};
+    const grid = document.getElementById('grid');
+    const selectAll = document.getElementById('selectAll');
+    const copyBtn = document.getElementById('copy');
+    const pathFilter = document.getElementById('pathFilter');
+    const artistFilter = document.getElementById('artistFilter');
+    const tagFilter = document.getElementById('tagFilter');
+    const clearFiltersBtn = document.getElementById('clearFilters');
+    const count = document.getElementById('count');
+    const pageInfo = document.getElementById('pageInfo');
+
+    function render(list) {
+      grid.innerHTML = '';
+      for (const row of list) {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.dataset.path = row.storage_path.toLowerCase();
+        card.dataset.artist = (row.artist_name || '').toLowerCase();
+        card.dataset.tags = (row.tags || []).join(' ').toLowerCase();
+        card.innerHTML = `
+          <input type="checkbox" class="chk" data-path="${row.storage_path}">
+          <img class="thumb" src="${row.public_url}" alt="${row.storage_path}">
+          <div class="meta">
+            <div class="path">${row.storage_path}</div>
+            ${row.artist_name ? `<div class="artist">${row.artist_name}</div>` : ''}
+            ${row.art_title ? `<div class="title">${row.art_title}</div>` : ''}
+            ${row.tags && row.tags.length ? `<div class="tags">${row.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>` : ''}
+            <div>Size: ${row.width || '?'} x ${row.height || '?'} | File: ${row.file_size ? (row.file_size/1024/1024).toFixed(2) + ' MB' : '?'}</div>
+          </div>
+        `;
+        grid.appendChild(card);
+      }
+      applyFilters();
+      const pageText = meta.page != null && meta.pageCount != null
+        ? `Page ${meta.page + 1} / ${meta.pageCount}`
+        : '';
+      const totalText = meta.total != null ? `Total: ${meta.total}` : '';
+      pageInfo.textContent = [pageText, `Offset: ${meta.offset}`, `Limit: ${meta.limit}`, totalText].filter(Boolean).join(' | ');
+    }
+
+    function applyFilters() {
+      const pathQuery = pathFilter.value.trim().toLowerCase();
+      const artistQuery = artistFilter.value.trim().toLowerCase();
+      const tagQuery = tagFilter.value.trim().toLowerCase();
+
+      const cards = Array.from(grid.children);
+      let shown = 0;
+      for (const c of cards) {
+        const pathMatch = !pathQuery || c.dataset.path.includes(pathQuery);
+        const artistMatch = !artistQuery || c.dataset.artist.includes(artistQuery);
+        const tagMatch = !tagQuery || c.dataset.tags.includes(tagQuery);
+        const match = pathMatch && artistMatch && tagMatch;
+        c.style.display = match ? '' : 'none';
+        if (match) shown++;
+      }
+      count.textContent = `Showing ${shown} item(s)`;
+    }
+
+    function currentCards() {
+      return Array.from(grid.children).filter(c => c.style.display !== 'none');
+    }
+
+    function clearFilters() {
+      pathFilter.value = '';
+      artistFilter.value = '';
+      tagFilter.value = '';
+      applyFilters();
+    }
+
+    pathFilter.addEventListener('input', applyFilters);
+    artistFilter.addEventListener('input', applyFilters);
+    tagFilter.addEventListener('input', applyFilters);
+    clearFiltersBtn.addEventListener('click', clearFilters);
+
+    selectAll.addEventListener('change', () => {
+      const cards = currentCards();
+      cards.forEach(c => {
+        const chk = c.querySelector('.chk');
+        if (chk) chk.checked = selectAll.checked;
+      });
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      const cards = currentCards();
+      const paths = cards
+        .map(c => c.querySelector('.chk'))
+        .filter(chk => chk && chk.checked)
+        .map(chk => chk.getAttribute('data-path'));
+      if (!paths.length) {
+        alert('No items selected.');
+        return;
+      }
+      await navigator.clipboard.writeText(paths.join('\n'));
+      alert(`Copied ${paths.length} path(s) to clipboard`);
+    });
+
+    render(data);
+  </script>
+</body>
+</html>

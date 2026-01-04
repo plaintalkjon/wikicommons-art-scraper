@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Art Assets Gallery</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 16px; background: #f7f7f7; }
+    .controls { margin-bottom: 12px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+    .card { background: #fff; padding: 10px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); display: flex; flex-direction: column; gap: 8px; }
+    .thumb { width: 100%; height: 180px; object-fit: cover; background: #eee; }
+    .meta { font-size: 12px; color: #444; line-height: 1.4; }
+    .artist { font-weight: bold; color: #222; }
+    .title { font-style: italic; color: #666; }
+    .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+    .tag { background: #e3f2fd; color: #1976d2; padding: 2px 6px; border-radius: 10px; font-size: 11px; }
+    label { cursor: pointer; }
+    input[type="search"] { padding: 6px; }
+    button { padding: 6px 10px; cursor: pointer; }
+    .count { font-size: 12px; color: #666; }
+    .path { font-size: 12px; word-break: break-all; color: #222; }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <label><input type="checkbox" id="selectAll" /> Select all</label>
+    <button id="copy">Copy selected paths</button>
+    <input type="search" id="pathFilter" placeholder="Filter by path" size="30" />
+    <input type="search" id="artistFilter" placeholder="Filter by artist" size="25" />
+    <input type="search" id="tagFilter" placeholder="Filter by tag" size="25" />
+    <button id="clearFilters">Clear filters</button>
+    <span class="count" id="count"></span>
+    <span class="count" id="pageInfo"></span>
+  </div>
+  <div class="grid" id="grid"></div>
+  <script>
+    const data = [{"art_id":"abf180fc-9b83-46cc-b35f-35734e7be758","storage_path":"amazing-stories/amazing-science-fiction-stories-196005-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-science-fiction-stories-196005-jpgjpg","width":400,"height":574,"file_size":107558,"artist_name":"Amazing Stories","art_title":"Amazing science fiction stories (196005)","tags":[]},{"art_id":"32954e80-0520-4e50-8094-1fc8ab0ffd16","storage_path":"amazing-stories/amazing-science-fiction-stories-196004-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Covers/amazing-stories/amazing-science-fiction-stories-196004-jpgjpg","width":400,"height":573,"file_size":101515,"artist_name":"Amazing Stories","art_title":"Amazing science fiction stories (196004)","tags":[]},{"art_id":"7bf44457-d83d-4026-b91e-8ed7364ca07f","storage_path":"amazing-stories/amazing-science-fiction-stories-196009-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-science-fiction-stories-196009-jpgjpg","width":400,"height":552,"file_size":102195,"artist_name":"Amazing Stories","art_title":"Amazing science fiction stories (196009)","tags":[]},{"art_id":"080d635a-d556-4d90-a941-a72fde0cd04d","storage_path":"amazing-stories/amazing-science-fiction-stories-196007-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-science-fiction-stories-196007-jpgjpg","width":400,"height":552,"file_size":91473,"artist_name":"Amazing Stories","art_title":"Amazing science fiction stories","tags":[]},{"art_id":"cb553c5a-15c4-44fc-9188-252647507f27","storage_path":"amazing-stories/amazing-science-fiction-stories-196008-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-science-fiction-stories-196008-jpgjpg","width":400,"height":551,"file_size":99546,"artist_name":"Amazing Stories","art_title":"Amazing science fiction stories (196008)","tags":[]},{"art_id":"55c0a2c5-6c2c-4058-904a-4497a594896b","storage_path":"amazing-stories/amazing-science-fiction-stories-195902-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-science-fiction-stories-195902-jpgjpg","width":400,"height":548,"file_size":118371,"artist_name":"Amazing Stories","art_title":"Amazing science fiction stories (195902)","tags":[]},{"art_id":"3d2528ca-adeb-45f7-81a2-badca49f84d0","storage_path":"amazing-stories/amazing-science-fiction-stories-195901-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-science-fiction-stories-195901-jpgjpg","width":400,"height":553,"file_size":102933,"artist_name":"Amazing Stories","art_title":"Amazing science fiction stories (195901)","tags":[]},{"art_id":"7d67c796-a515-4bc8-8e67-5a9a606c6bcc","storage_path":"amazing-stories/amazing-science-fiction-stories-195903-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-science-fiction-stories-195903-jpgjpg","width":400,"height":554,"file_size":120769,"artist_name":"Amazing Stories","art_title":"Amazing science fiction stories (195903)","tags":[]},{"art_id":"f4e84c99-dc09-4bdf-bcde-64bb1fa4f8cf","storage_path":"amazing-stories/amazing-science-fiction-stories-195904-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-science-fiction-stories-195904-jpgjpg","width":400,"height":562,"file_size":123614,"artist_name":"Amazing Stories","art_title":"Amazing science fiction stories (195904)","tags":[]},{"art_id":"36e5b9e7-fa57-476c-bd49-d66b985e70ef","storage_path":"amazing-stories/amazing-science-fiction-stories-195905-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-science-fiction-stories-195905-jpgjpg","width":400,"height":558,"file_size":112507,"artist_name":"Amazing Stories","art_title":"Amazing science fiction stories (195905)","tags":[]},{"art_id":"ad2717b4-b3c6-4981-a024-63c9611e180d","storage_path":"amazing-stories/amazing-science-fiction-stories-195906-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-science-fiction-stories-195906-jpgjpg","width":400,"height":560,"file_size":96276,"artist_name":"Amazing Stories","art_title":"Amazing science fiction stories (195906)","tags":[]},{"art_id":"9fb34053-99d0-41f9-bc02-d42d7baae8ba","storage_path":"amazing-stories/amazing-science-fiction-stories-195909-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-science-fiction-stories-195909-jpgjpg","width":400,"height":551,"file_size":81321,"artist_name":"Amazing Stories","art_title":"Amazing science fiction stories (195909)","tags":[]},{"art_id":"25b8d165-7c0e-47d0-ab25-26c5fc275bd5","storage_path":"amazing-stories/amazing-science-fiction-stories-195908-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Covers/amazing-stories/amazing-science-fiction-stories-195908-jpgjpg","width":400,"height":550,"file_size":92896,"artist_name":"Amazing Stories","art_title":"Amazing science fiction stories (195908)","tags":[]},{"art_id":"56a21649-d26a-4982-b86b-d9aa6a34cc06","storage_path":"amazing-stories/amazing-science-fiction-stories-195910-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-science-fiction-stories-195910-jpgjpg","width":400,"height":556,"file_size":97698,"artist_name":"Amazing Stories","art_title":"Amazing science fiction stories (195910)","tags":[]},{"art_id":"5bd17b67-6b5e-411b-abff-a5ddbf656a38","storage_path":"amazing-stories/amazing-science-fiction-stories-195912-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-science-fiction-stories-195912-jpgjpg","width":400,"height":555,"file_size":108421,"artist_name":"Amazing Stories","art_title":"Amazing science fiction stories (195912)","tags":[]},{"art_id":"553a1a85-83bc-4c16-ae29-6315678c6f16","storage_path":"amazing-stories/amazing-science-fiction-stories-195911-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-science-fiction-stories-195911-jpgjpg","width":400,"height":566,"file_size":96422,"artist_name":"Amazing Stories","art_title":"Amazing science fiction stories (195911)","tags":[]},{"art_id":"343cebbf-4950-4215-8dec-6e24997c972a","storage_path":"amazing-stories/amazing-science-fiction-stories-195907-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Covers/amazing-stories/amazing-science-fiction-stories-195907-jpgjpg","width":400,"height":561,"file_size":106663,"artist_name":"Amazing Stories","art_title":"Amazing science fiction stories (195907)","tags":[]},{"art_id":"4be8ad9c-7a8a-40bc-88c6-414e1380cd3c","storage_path":"amazing-stories/amazing-science-fiction-195804-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-science-fiction-195804-jpgjpg","width":400,"height":562,"file_size":96040,"artist_name":"Amazing Stories","art_title":"Amazing science fiction (195804)","tags":[]},{"art_id":"e47ca2f7-fef2-4174-9736-16305149d36f","storage_path":"amazing-stories/amazing-science-fiction-stories-195806-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-science-fiction-stories-195806-jpgjpg","width":400,"height":558,"file_size":122311,"artist_name":"Amazing Stories","art_title":"Amazing science fiction stories (195806)","tags":[]},{"art_id":"ec292ce0-49f7-44fb-b979-8a48620d8065","storage_path":"amazing-stories/amazing-science-fiction-195803-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-science-fiction-195803-jpgjpg","width":400,"height":562,"file_size":105517,"artist_name":"Amazing Stories","art_title":"Amazing science fiction (195803)","tags":[]},{"art_id":"5212bf95-0536-4edf-bcc2-e0f2df6cb40d","storage_path":"amazing-stories/amazing-science-fiction-stories-195809-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-science-fiction-stories-195809-jpgjpg","width":400,"height":557,"file_size":117336,"artist_name":"Amazing Stories","art_title":"Amazing science fiction stories (195809)","tags":[]},{"art_id":"d55f8782-4689-4550-8c15-ef2974304122","storage_path":"amazing-stories/amazing-science-fiction-stories-195807-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-science-fiction-stories-195807-jpgjpg","width":400,"height":560,"file_size":116703,"artist_name":"Amazing Stories","art_title":"Amazing science fiction stories (195807)","tags":[]},{"art_id":"a98f0327-af55-4dc1-9ad2-e84c3c510a49","storage_path":"amazing-stories/amazing-science-fiction-stories-195808-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-science-fiction-stories-195808-jpgjpg","width":400,"height":558,"file_size":122406,"artist_name":"Amazing Stories","art_title":"Amazing science fiction stories (195808)","tags":[]},{"art_id":"8099f97c-463b-487a-a9a8-240c87ef8507","storage_path":"amazing-stories/amazing-science-fiction-stories-195811-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-science-fiction-stories-195811-jpgjpg","width":400,"height":551,"file_size":101595,"artist_name":"Amazing Stories","art_title":"Amazing science fiction stories (195811)","tags":[]},{"art_id":"0f7520d0-60c0-423e-8eb9-a642910a2cd9","storage_path":"amazing-stories/amazing-science-fiction-stories-195812-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/amazing-stories/amazing-science-fiction-stories-195812-jpgjpg","width":400,"height":556,"file_size":93508,"artist_name":"Amazing Stories","art_title":"Amazing science fiction stories (195812)","tags":[]},{"art_id":"63b71f12-4166-4642-8d2a-95bcedda28c1","storage_path":"amazing-stories/2605-amazing-stories-may-1926-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Covers/amazing-stories/2605-amazing-stories-may-1926-jpgjpg","width":548,"height":800,"file_size":159501,"artist_name":"Amazing Stories","art_title":"Amazing Stories May","tags":[]},{"art_id":"0899d60d-ab86-43bb-be78-701ed0823510","storage_path":"amazing-stories/2612-amazing-stories-december-1926-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Covers/amazing-stories/2612-amazing-stories-december-1926-jpgjpg","width":832,"height":1164,"file_size":288795,"artist_name":"Amazing Stories","art_title":"Amazing Stories December","tags":[]},{"art_id":"5eb2647f-f3c7-4994-b62d-cfc0e43702e0","storage_path":"weird-tales/weird-tales-192501-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-192501-jpgjpg","width":400,"height":589,"file_size":88895,"artist_name":"Weird Tales","art_title":"Weird tales 192501","tags":[]},{"art_id":"ac4fed67-307b-4c7e-9fc2-5e5cf4a4de4f","storage_path":"weird-tales/weird-tales-192502-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-192502-jpgjpg","width":400,"height":591,"file_size":86691,"artist_name":"Weird Tales","art_title":"Weird tales 192502","tags":[]},{"art_id":"c8825479-c768-4c01-af06-2d0bf73ba221","storage_path":"weird-tales/weird-tales-192503-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-192503-jpgjpg","width":400,"height":598,"file_size":85891,"artist_name":"Weird Tales","art_title":"Weird tales 192503","tags":[]},{"art_id":"c7bdf466-3c2d-4d20-8c10-b6f933122299","storage_path":"weird-tales/weird-tales-192505-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-192505-jpgjpg","width":400,"height":585,"file_size":96837,"artist_name":"Weird Tales","art_title":"Weird tales 192505","tags":[]},{"art_id":"66d8b20a-7f43-4fde-abba-a684085a2993","storage_path":"weird-tales/weird-tales-192509-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-192509-jpgjpg","width":400,"height":582,"file_size":79600,"artist_name":"Weird Tales","art_title":"Weird tales 192509","tags":[]},{"art_id":"072f8968-5fac-41cc-b116-844338d7b351","storage_path":"weird-tales/weird-tales-192507-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-192507-jpgjpg","width":400,"height":584,"file_size":81586,"artist_name":"Weird Tales","art_title":"Weird tales 192507","tags":[]},{"art_id":"b15d001d-6b37-41a9-8e4c-52b2c64027c2","storage_path":"weird-tales/weird-tales-192508-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-192508-jpgjpg","width":400,"height":581,"file_size":78541,"artist_name":"Weird Tales","art_title":"Weird tales 192508","tags":[]},{"art_id":"7957d905-cee2-4a42-9272-adcbb37f19d8","storage_path":"weird-tales/weird-tales-192510-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-192510-jpgjpg","width":400,"height":578,"file_size":86011,"artist_name":"Weird Tales","art_title":"Weird tales 192510","tags":[]},{"art_id":"9cb81c6d-936e-470f-9d4b-b071ac0ea77b","storage_path":"weird-tales/weird-tales-192512-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-192512-jpgjpg","width":400,"height":574,"file_size":89435,"artist_name":"Weird Tales","art_title":"Weird tales 192512","tags":[]},{"art_id":"cb254d5a-0611-4190-a562-c7ef5f0999df","storage_path":"weird-tales/weird-tales-192511-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-192511-jpgjpg","width":400,"height":585,"file_size":109534,"artist_name":"Weird Tales","art_title":"Weird tales 192511","tags":[]},{"art_id":"0c018cb4-18d3-41fb-b861-b79e35a920c1","storage_path":"weird-tales/weird-tales-192402-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-192402-jpgjpg","width":400,"height":537,"file_size":79939,"artist_name":"Weird Tales","art_title":"Weird tales 192402","tags":[]},{"art_id":"2e7254a5-8553-4a36-8dbf-3936f715bbe2","storage_path":"weird-tales/weird-tales-192403-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-192403-jpgjpg","width":725,"height":970,"file_size":171010,"artist_name":"Weird Tales","art_title":"Weird tales 192403","tags":[]},{"art_id":"32a46595-0234-457d-b47e-14fdebc69808","storage_path":"weird-tales/weird-tales-192405-06-07-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-192405-06-07-jpgjpg","width":400,"height":537,"file_size":77004,"artist_name":"Weird Tales","art_title":"Weird tales 192405-06-07","tags":[]},{"art_id":"60e7c2e5-0877-4830-ba57-19b395c3ef9d","storage_path":"weird-tales/weird-tales-192412-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-192412-jpgjpg","width":400,"height":555,"file_size":75699,"artist_name":"Weird Tales","art_title":"Weird tales 192412","tags":[]},{"art_id":"eecc95e2-aaf4-4468-a81f-66fe540e8455","storage_path":"weird-tales/weird-tales-192411-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-192411-jpgjpg","width":400,"height":595,"file_size":91523,"artist_name":"Weird Tales","art_title":"Weird tales 192411","tags":[]},{"art_id":"0dd32f6c-4d29-4e8c-9852-cbb283d16b30","storage_path":"weird-tales/weird-tales-192312-2401-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Covers/weird-tales/weird-tales-192312-2401-jpgjpg","width":410,"height":552,"file_size":57910,"artist_name":"Weird Tales","art_title":"Weird tales 192312","tags":[]},{"art_id":"49f7ac16-8f06-431c-8d2c-8e6229a95ca4","storage_path":"weird-tales/weirdtalesmarch1924-pngpng","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Covers/weird-tales/weirdtalesmarch1924-pngpng","width":848,"height":1140,"file_size":662855,"artist_name":"Weird Tales","art_title":"Weirdtalesmarch","tags":[]},{"art_id":"e738c119-63b3-4561-86e0-b882d96768f0","storage_path":"weird-tales/weird-tales-192306-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-192306-jpgjpg","width":400,"height":529,"file_size":65108,"artist_name":"Weird Tales","art_title":"Weird tales 192306","tags":[]},{"art_id":"69f9720d-b4b5-41e0-a19a-c9d06e362ac2","storage_path":"weird-tales/weird-tales-192304-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-192304-jpgjpg","width":400,"height":592,"file_size":61061,"artist_name":"Weird Tales","art_title":"Weird tales 192304","tags":[]},{"art_id":"6bf15610-c01e-472c-808e-5e4d431a55eb","storage_path":"weird-tales/weird-tales-192307-08-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-192307-08-jpgjpg","width":400,"height":537,"file_size":64231,"artist_name":"Weird Tales","art_title":"Weird tales 192307-08","tags":[]},{"art_id":"478aa772-32af-4725-947f-feda77deea36","storage_path":"weird-tales/weird-tales-192311-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-192311-jpgjpg","width":400,"height":537,"file_size":75580,"artist_name":"Weird Tales","art_title":"Weird tales 192311","tags":[]},{"art_id":"268b33b9-ea15-4a70-b682-9e17863e83d5","storage_path":"weird-tales/weird-tales-192310-v3-n2-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/weird-tales-192310-v3-n2-jpgjpg","width":400,"height":523,"file_size":74234,"artist_name":"Weird Tales","art_title":"Weird tales 192310 v3 n2","tags":[]},{"art_id":"f4042ca4-a10f-4529-9b3b-a4cfc4749fae","storage_path":"weird-tales/us-and-canadian-weird-tales-november-1935-brundage-jpgjpg","public_url":"https://lxtkpwsxupzkxuhhmvvz.supabase.co/storage/v1/object/public/Art/weird-tales/us-and-canadian-weird-tales-november-1935-brundage-jpgjpg","width":663,"height":474,"file_size":261147,"artist_name":"Weird Tales","art_title":"US and Canadian Weird Tales November 1935 Brundage","tags":[]}];
+    const meta = {"limit":50,"offset":1150,"total":1284,"page":23,"pageCount":26};
+    const grid = document.getElementById('grid');
+    const selectAll = document.getElementById('selectAll');
+    const copyBtn = document.getElementById('copy');
+    const pathFilter = document.getElementById('pathFilter');
+    const artistFilter = document.getElementById('artistFilter');
+    const tagFilter = document.getElementById('tagFilter');
+    const clearFiltersBtn = document.getElementById('clearFilters');
+    const count = document.getElementById('count');
+    const pageInfo = document.getElementById('pageInfo');
+
+    function render(list) {
+      grid.innerHTML = '';
+      for (const row of list) {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.dataset.path = row.storage_path.toLowerCase();
+        card.dataset.artist = (row.artist_name || '').toLowerCase();
+        card.dataset.tags = (row.tags || []).join(' ').toLowerCase();
+        card.innerHTML = `
+          <input type="checkbox" class="chk" data-path="${row.storage_path}">
+          <img class="thumb" src="${row.public_url}" alt="${row.storage_path}">
+          <div class="meta">
+            <div class="path">${row.storage_path}</div>
+            ${row.artist_name ? `<div class="artist">${row.artist_name}</div>` : ''}
+            ${row.art_title ? `<div class="title">${row.art_title}</div>` : ''}
+            ${row.tags && row.tags.length ? `<div class="tags">${row.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>` : ''}
+            <div>Size: ${row.width || '?'} x ${row.height || '?'} | File: ${row.file_size ? (row.file_size/1024/1024).toFixed(2) + ' MB' : '?'}</div>
+          </div>
+        `;
+        grid.appendChild(card);
+      }
+      applyFilters();
+      const pageText = meta.page != null && meta.pageCount != null
+        ? `Page ${meta.page + 1} / ${meta.pageCount}`
+        : '';
+      const totalText = meta.total != null ? `Total: ${meta.total}` : '';
+      pageInfo.textContent = [pageText, `Offset: ${meta.offset}`, `Limit: ${meta.limit}`, totalText].filter(Boolean).join(' | ');
+    }
+
+    function applyFilters() {
+      const pathQuery = pathFilter.value.trim().toLowerCase();
+      const artistQuery = artistFilter.value.trim().toLowerCase();
+      const tagQuery = tagFilter.value.trim().toLowerCase();
+
+      const cards = Array.from(grid.children);
+      let shown = 0;
+      for (const c of cards) {
+        const pathMatch = !pathQuery || c.dataset.path.includes(pathQuery);
+        const artistMatch = !artistQuery || c.dataset.artist.includes(artistQuery);
+        const tagMatch = !tagQuery || c.dataset.tags.includes(tagQuery);
+        const match = pathMatch && artistMatch && tagMatch;
+        c.style.display = match ? '' : 'none';
+        if (match) shown++;
+      }
+      count.textContent = `Showing ${shown} item(s)`;
+    }
+
+    function currentCards() {
+      return Array.from(grid.children).filter(c => c.style.display !== 'none');
+    }
+
+    function clearFilters() {
+      pathFilter.value = '';
+      artistFilter.value = '';
+      tagFilter.value = '';
+      applyFilters();
+    }
+
+    pathFilter.addEventListener('input', applyFilters);
+    artistFilter.addEventListener('input', applyFilters);
+    tagFilter.addEventListener('input', applyFilters);
+    clearFiltersBtn.addEventListener('click', clearFilters);
+
+    selectAll.addEventListener('change', () => {
+      const cards = currentCards();
+      cards.forEach(c => {
+        const chk = c.querySelector('.chk');
+        if (chk) chk.checked = selectAll.checked;
+      });
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      const cards = currentCards();
+      const paths = cards
+        .map(c => c.querySelector('.chk'))
+        .filter(chk => chk && chk.checked)
+        .map(chk => chk.getAttribute('data-path'));
+      if (!paths.length) {
+        alert('No items selected.');
+        return;
+      }
+      await navigator.clipboard.writeText(paths.join('\n'));
+      alert(`Copied ${paths.length} path(s) to clipboard`);
+    });
+
+    render(data);
+  </script>
+</body>
+</html>

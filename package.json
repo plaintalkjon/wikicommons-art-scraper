@@ -16,7 +16,6 @@
     "googlearts-import": "npm run build && node dist/cli-googlearts-import.js",
     "googlearts-scrape": "npm run build && node dist/cli-googlearts-scrape.js",
     "googlearts-upload": "npm run build && node dist/cli-googlearts-upload.js",
-    "walters-import": "npm run build && node dist/cli-walters-import.js",
     "add-mastodon-account": "npm run build && node dist/cli-add-mastodon-account.js",
     "test-cron": "npm run build && node dist/cli-test-cron.js",
     "trigger-cron": "npm run build && node dist/cli-trigger-cron.js"
