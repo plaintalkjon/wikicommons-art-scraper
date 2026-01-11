@@ -9,6 +9,39 @@ const RETRY_DELAY_MS = 1500;
 const MIN_VARIANT_WIDTH = 1280;
 const MIN_ORIGINAL_WIDTH = 1800;
 
+// In-memory cache for Commons file info (LRU-like, expires after 1 hour)
+interface CacheEntry {
+  image: WikimediaImage;
+  timestamp: number;
+}
+
+const commonsCache = new Map<string, CacheEntry>();
+const CACHE_TTL_MS = 60 * 60 * 1000; // 1 hour
+
+function getCachedImage(title: string): WikimediaImage | null {
+  const entry = commonsCache.get(title);
+  if (entry && Date.now() - entry.timestamp < CACHE_TTL_MS) {
+    return entry.image;
+  }
+  if (entry) {
+    commonsCache.delete(title); // Remove expired entry
+  }
+  return null;
+}
+
+function setCachedImage(title: string, image: WikimediaImage): void {
+  // Limit cache size to prevent memory issues (keep last 1000 entries)
+  if (commonsCache.size >= 1000) {
+    // Remove oldest entry
+    const oldestKey = Array.from(commonsCache.entries())
+      .sort((a, b) => a[1].timestamp - b[1].timestamp)[0]?.[0];
+    if (oldestKey) {
+      commonsCache.delete(oldestKey);
+    }
+  }
+  commonsCache.set(title, { image, timestamp: Date.now() });
+}
+
 interface ImageInfo {
   url?: string;
   descriptionurl?: string;
@@ -113,9 +146,16 @@ async function fetchImageInfoByTitleCoreREST(title: string): Promise<WikimediaIm
 }
 
 export async function fetchImageInfoByTitle(title: string): Promise<WikimediaImage | null> {
+  // Check cache first
+  const cached = getCachedImage(title);
+  if (cached) {
+    return cached;
+  }
+  
   // Try Core REST API first (modern, better OAuth support)
   const coreRESTResult = await fetchImageInfoByTitleCoreREST(title);
   if (coreRESTResult) {
+    setCachedImage(title, coreRESTResult);
     return coreRESTResult;
   }
   
@@ -151,7 +191,7 @@ export async function fetchImageInfoByTitle(title: string): Promise<WikimediaIma
   const description = extmeta.ImageDescription?.value;
   const dateCreated = extmeta.DateTimeOriginal?.value ?? extmeta.DateTime?.value;
 
-  return {
+  const result: WikimediaImage = {
     pageid: page.pageid,
     title: page.title,
     pageUrl: page.fullurl ?? page.canonicalurl ?? '',
@@ -162,6 +202,10 @@ export async function fetchImageInfoByTitle(title: string): Promise<WikimediaIma
     license,
     dateCreated,
   };
+  
+  // Cache the result
+  setCachedImage(title, result);
+  return result;
 }
 
 async function fetchWithRetry(url: string, useAuth = true): Promise<Response> {
@@ -253,5 +297,68 @@ export function pickBestVariant(image: WikimediaImage): ImageVariant | null {
 function isBadMime(mime: string): boolean {
   const lower = (mime || '').toLowerCase();
   return lower.includes('svg') || lower.includes('gif');
+}
+
+/**
+ * List all file members in a Wikimedia Commons category
+ * Returns array of file titles (e.g., "File:Poster.jpg")
+ * Handles pagination automatically with rate limiting
+ */
+export async function listCategoryMembers(categoryName: string, limit?: number): Promise<string[]> {
+  const files: string[] = [];
+  let continueToken: string | undefined;
+  const maxFiles = limit ?? 10000;
+  
+  // Ensure category name has "Category:" prefix
+  const categoryTitle = categoryName.startsWith('Category:') 
+    ? categoryName 
+    : `Category:${categoryName}`;
+  
+  console.log(`  → Fetching category members (max ${maxFiles} files)...`);
+  
+  while (files.length < maxFiles) {
+    // Rate limit before each request
+    await rateLimiter.waitIfNeeded();
+    
+    const params = new URLSearchParams({
+      action: 'query',
+      format: 'json',
+      formatversion: '2',
+      list: 'categorymembers',
+      cmtitle: categoryTitle,
+      cmtype: 'file', // Only get files, not subcategories
+      cmlimit: '500', // Max per request
+      cmnamespace: '6', // File namespace
+    });
+    
+    if (continueToken) {
+      params.append('cmcontinue', continueToken);
+    }
+    
+    const url = `${API_ENDPOINT}?${params.toString()}`;
+    const res = await fetchWithRetry(url, true);
+    const data = await res.json() as {
+      continue?: { cmcontinue?: string };
+      query?: { categorymembers?: Array<{ title: string }> };
+    };
+    
+    const members = data.query?.categorymembers ?? [];
+    for (const member of members) {
+      if (files.length >= maxFiles) break;
+      files.push(member.title);
+    }
+    
+    if (files.length % 500 === 0 && files.length > 0) {
+      console.log(`  → Fetched ${files.length} files so far...`);
+    }
+    
+    // Check for pagination
+    continueToken = data.continue?.cmcontinue;
+    if (!continueToken || members.length === 0) {
+      break;
+    }
+  }
+  
+  return files.slice(0, maxFiles);
 }
 

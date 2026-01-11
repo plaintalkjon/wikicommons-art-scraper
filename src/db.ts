@@ -166,6 +166,134 @@ export async function findArtByWikidataQID(wikidataQID: string, artistId: string
 }
 
 /**
+ * Batch check multiple artworks by Wikidata QIDs
+ * Returns a Map of QID -> art_id for existing artworks
+ * Much more efficient than checking individually
+ */
+export async function findArtsByWikidataQIDsBatch(
+  wikidataQIDs: string[],
+  artistId: string
+): Promise<Map<string, string>> {
+  if (wikidataQIDs.length === 0) return new Map();
+  
+  // Query art_sources for all QIDs at once
+  const sourcesResult = await supabase
+    .from('art_sources')
+    .select('art_id, wikidata_qid')
+    .in('wikidata_qid', wikidataQIDs);
+  
+  if (sourcesResult.error && sourcesResult.error.code !== 'PGRST116') {
+    throw new Error(`Failed to batch lookup arts by Wikidata QIDs: ${sourcesResult.error.message}`);
+  }
+  
+  if (!sourcesResult.data || sourcesResult.data.length === 0) {
+    return new Map();
+  }
+  
+  // Get unique art IDs
+  const artIds = Array.from(new Set(sourcesResult.data.map((s: any) => s.art_id).filter(Boolean)));
+  
+  if (artIds.length === 0) {
+    return new Map();
+  }
+  
+  // Check which arts belong to this artist
+  const artsResult = await supabase
+    .from('arts')
+    .select('id')
+    .eq('artist_id', artistId)
+    .in('id', artIds);
+  
+  if (artsResult.error) {
+    throw new Error(`Failed to batch lookup arts: ${artsResult.error.message}`);
+  }
+  
+  const validArtIds = new Set((artsResult.data ?? []).map((a: any) => a.id));
+  
+  // Build QID -> art_id map
+  const qidMap = new Map<string, string>();
+  for (const source of sourcesResult.data) {
+    if (source.wikidata_qid && source.art_id && validArtIds.has(source.art_id)) {
+      qidMap.set(source.wikidata_qid, source.art_id);
+    }
+  }
+  
+  return qidMap;
+}
+
+/**
+ * Get Wikidata QID for an artist from existing artworks in the database
+ * Returns the most common QID found, or null if none exists
+ * This allows us to skip Wikidata lookup if we already have artworks for this artist
+ */
+export async function getArtistQIDFromDatabase(artistId: string): Promise<string | null> {
+  // First get all artworks for this artist
+  const { data: arts, error: artsError } = await supabase
+    .from('arts')
+    .select('id')
+    .eq('artist_id', artistId)
+    .limit(100);
+  
+  if (artsError || !arts || arts.length === 0) {
+    return null;
+  }
+  
+  const artIds = arts.map(a => a.id);
+  
+  // Get all art_sources with Wikidata QIDs for these artworks
+  const { data: sources, error: sourcesError } = await supabase
+    .from('art_sources')
+    .select('wikidata_qid')
+    .not('wikidata_qid', 'is', null)
+    .in('art_id', artIds)
+    .limit(100);
+  
+  if (sourcesError || !sources || sources.length === 0) {
+    return null;
+  }
+  
+  // Find most common QID
+  const qidCounts = new Map<string, number>();
+  sources.forEach(s => {
+    if (s.wikidata_qid) {
+      qidCounts.set(s.wikidata_qid, (qidCounts.get(s.wikidata_qid) || 0) + 1);
+    }
+  });
+  
+  if (qidCounts.size === 0) {
+    return null;
+  }
+  
+  // Return the most common QID
+  let maxCount = 0;
+  let mostCommonQID: string | null = null;
+  qidCounts.forEach((count, qid) => {
+    if (count > maxCount) {
+      maxCount = count;
+      mostCommonQID = qid;
+    }
+  });
+  
+  return mostCommonQID;
+}
+
+/**
+ * Get count of existing artworks for an artist
+ */
+export async function getArtistArtworkCount(artistId: string): Promise<number> {
+  const { count, error } = await supabase
+    .from('arts')
+    .select('*', { count: 'exact', head: true })
+    .eq('artist_id', artistId);
+  
+  if (error || count === null) {
+    return 0;
+  }
+  
+  return count;
+}
+
+/**
  * Find existing artwork by NGA Object ID
  * Returns the art ID if found, null otherwise
  */
@@ -180,7 +308,7 @@ export async function upsertArtSource(payload: {
 }): Promise<void> {
   // Store Wikidata QID in dedicated wikidata_qid column
   // Requires: art_sources table must have a wikidata_qid column (text/nullable)
-  // For sources with page IDs, use conflict resolution; for Smithsonian (no page IDs), allow potential duplicates
+  // For sources with page IDs, use conflict resolution
   const upsertData = {
     art_id: payload.artId,
     source: payload.source,

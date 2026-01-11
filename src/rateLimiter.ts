@@ -21,17 +21,16 @@ class RateLimiter {
   private readonly minDelayBetweenRequests: number; // milliseconds
 
   constructor() {
-    // Smithsonian API is very restrictive - use ultra-conservative limits
-    // Smithsonian: ~10-20 requests/minute max, 1 request/5-10 seconds
-    const isSmithsonianRequest = process.env.SMITHSONIAN_API_KEY !== undefined;
-
-    if (isSmithsonianRequest) {
-      // Extremely conservative for Smithsonian API (very restrictive)
-      this.maxRequestsPerMinute = 3; // 3 requests per minute max
-      this.maxRequestsPerSecond = 1; // 1 request per second max
-      this.minDelayBetweenRequests = 25000; // 25 seconds minimum between requests
+    // With OAuth, Wikimedia allows higher rates (up to 500 req/min for authenticated)
+    // Without OAuth, keep conservative (30 req/min)
+    const hasOAuth = process.env.WIKIMEDIA_CLIENT_ID && process.env.WIKIMEDIA_CLIENT_SECRET;
+    if (hasOAuth && !gentleMode) {
+      // Higher limits with OAuth authentication
+      this.maxRequestsPerMinute = 100; // Conservative but much higher than 30
+      this.maxRequestsPerSecond = 2; // Allow 2 req/sec
+      this.minDelayBetweenRequests = 500; // 500ms minimum delay
     } else {
-      // Original limits for other APIs (Wikimedia, etc.)
+      // Original conservative limits
       this.maxRequestsPerMinute = gentleMode ? 6 : 30;
       this.maxRequestsPerSecond = gentleMode ? 1 : 1;
       this.minDelayBetweenRequests = gentleMode ? 5000 : 1000;

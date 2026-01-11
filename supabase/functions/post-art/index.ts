@@ -242,6 +242,11 @@ serve(async (req) => {
               console.log(`🚀 CRON ARTIST: No assets available at all`);
             }
           }
+          
+          // Set post text for artist accounts (just the hashtag)
+          if (artwork) {
+            postText = '#art';
+          }
 
         } else if (account.account_type === 'tag') {
           console.log(`🚀 CRON TAG: Processing tag account, tag_id: ${account.tag_id}`);
@@ -334,6 +339,9 @@ serve(async (req) => {
                 const profileUrl = `${artistBot.mastodon_base_url}/@${artistBot.account_username}`;
                 postText += `\n\n@${artistBot.account_username}@${artistBot.mastodon_base_url}`;
               }
+              
+              // Add #art hashtag
+              postText += '\n\n#art';
             }
           }
 
@@ -541,6 +549,7 @@ serve(async (req) => {
 
         // Create status post
         console.log(`🚀 CRON POSTING: Creating status post`);
+        console.log(`🚀 CRON POST TEXT: "${postText}"`);
 
         const statusData = {
           status: postText,

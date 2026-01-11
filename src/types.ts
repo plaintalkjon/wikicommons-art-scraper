@@ -26,18 +26,3 @@ export interface DownloadedImage extends ImageVariant {
   fileSize: number;
 }
 
-export interface SmithsonianArtwork {
-  objectId: string;
-  title: string;
-  artist: string;
-  imageUrl: string;
-  width: number;
-  height: number;
-  medium: string;
-  classification: string;
-  date: string;
-  sourceUrl: string;
-}
-
-
-

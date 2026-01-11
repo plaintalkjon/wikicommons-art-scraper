@@ -14,6 +14,8 @@ import { ensureArtist } from './db';
 import { downloadImage } from './downloader';
 import { parseArgs } from './utils';
 import { retrySingleFailure } from './retryUtils';
+import { promises as fs } from 'fs';
+import path from 'path';
 
 /**
  * Check if error is a rate limit error
@@ -37,13 +39,13 @@ async function getAllRateLimitFailures(limit?: number): Promise<FailedUpload[]> 
   
   for (const artistSlug of artists) {
     try {
-      // Reconstruct artist name from slug (approximate)
-      const artistName = artistSlug
-        .split('-')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ');
+      // Load failures - the file contains the actual artist name in each failure record
+      // We need to read the file to get the actual artist name
+      const filePath = path.join(process.cwd(), '.failures', `${artistSlug}.json`);
+      const content = await fs.readFile(filePath, 'utf-8');
+      const failures = JSON.parse(content) as FailedUpload[];
       
-      const failures = await loadFailures(artistName);
+      // Filter for rate limit errors
       const rateLimitFailures = failures.filter(f => isRateLimitError(f.error));
       
       for (const failure of rateLimitFailures) {
@@ -221,6 +223,8 @@ main().catch((err) => {
   console.error('Error:', err.message);
   process.exit(1);
 });
+
+
 
 
 

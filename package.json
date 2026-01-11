@@ -17,6 +17,9 @@
     "googlearts-scrape": "npm run build && node dist/cli-googlearts-scrape.js",
     "googlearts-upload": "npm run build && node dist/cli-googlearts-upload.js",
     "add-mastodon-account": "npm run build && node dist/cli-add-mastodon-account.js",
+    "setup-mtg-bot": "npm run build && node dist/cli-setup-mtg-bot.js",
+    "check-cron-jobs": "npm run build && node dist/cli-check-cron-jobs.js",
+    "verify-cron-setup": "npm run build && node dist/cli-verify-cron-setup.js",
     "test-cron": "npm run build && node dist/cli-test-cron.js",
     "trigger-cron": "npm run build && node dist/cli-trigger-cron.js"
   },
@@ -34,7 +37,7 @@
   "devDependencies": {
     "@types/csv-parse": "^1.1.12",
     "@types/node": "^22.7.5",
-    "supabase": "^2.70.5",
+    "supabase": "^2.72.3",
     "typescript": "^5.9.3"
   },
   "dependencies": {

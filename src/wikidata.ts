@@ -181,7 +181,8 @@ export async function findArtistQID(artistName: string): Promise<string | null> 
   
   console.log(`  → Trying ${variations.length} name variation(s): ${variations.join(', ')}`);
   
-  // Try each variation in order
+  // Try variations sequentially to respect rate limits
+  // The rate limiter will handle delays between requests
   for (let i = 0; i < variations.length; i++) {
     const variation = variations[i];
     if (i > 0) {
