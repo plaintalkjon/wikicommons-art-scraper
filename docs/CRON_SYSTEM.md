@@ -46,7 +46,7 @@ The Supabase cron job calls the function on a schedule (exact schedule configure
 3. Then prioritizes oldest `last_posted_at` (least recently posted)
 4. Downloads image from Supabase Storage
 5. Uploads to Mastodon
-6. Creates status post with **empty text** (no title/description for artist accounts)
+6. Creates status post with **#art hashtag** (for artist accounts)
 7. Updates `art_assets.last_posted_at` for the specific artwork
 8. Updates `mastodon_accounts.last_posted_at` for the account
 
@@ -118,17 +118,19 @@ Based on the code:
 ## Post Text Content
 
 ### Artist Accounts
-- **Text**: Empty (no text, just the image)
+- **Text**: `#art` (hashtag only)
 
 ### Tag Accounts  
 - **Text**: Artist name (if available from the artwork)
-- **If artist has a Mastodon bot**: Appends link in format `@username@domain`
+- **If artist has a Mastodon bot**: Appends link in format `@username@domain` (domain extracted from URL, no protocol)
+- **Always includes**: `#art` hashtag at the end
 - The system looks up the artist name from the artwork's storage path by querying:
   1. `art_assets` → `art_id`
   2. `arts` → `artist_id`  
   3. `artists` → `name`
 - Then checks if that artist has an active Mastodon account of type 'artist'
-- If found, constructs the Mastodon profile URL
+- If found, constructs the Mastodon mention in format `@username@domain` (domain without protocol)
+- Format example: `Artist Name\n\n@username@domain\n\n#art`
 
 ### Philosopher Accounts
 - **Text**: Formatted quote text with philosopher name
@@ -140,6 +142,7 @@ Based on the code:
 - Multiple accounts can post in the same cron run if they're all due
 - The system scales automatically as more accounts are added
 - **Note**: The deployed version in Supabase may have additional features not present in the local git history (e.g., enhanced tag account text with artist bot links)
+
 
 
 

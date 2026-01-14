@@ -21,7 +21,13 @@
     "check-cron-jobs": "npm run build && node dist/cli-check-cron-jobs.js",
     "verify-cron-setup": "npm run build && node dist/cli-verify-cron-setup.js",
     "test-cron": "npm run build && node dist/cli-test-cron.js",
-    "trigger-cron": "npm run build && node dist/cli-trigger-cron.js"
+    "trigger-cron": "npm run build && node dist/cli-trigger-cron.js",
+    "wikiquote-scrape": "npm run build && node dist/cli-wikiquote-scrape.js",
+    "list-quotes": "npm run build && node dist/cli-list-quotes.js",
+    "update-quotes": "npm run build && node dist/cli-update-quotes.js",
+    "delete-quotes": "npm run build && node dist/cli-delete-quotes.js",
+    "test-quote-account": "npm run build && node dist/cli-test-quote-account.js",
+    "manage-hashtags": "npm run build && node dist/cli-manage-hashtags.js"
   },
   "repository": {
     "type": "git",

@@ -7,7 +7,7 @@ DROP CONSTRAINT IF EXISTS mastodon_accounts_account_type_check;
 
 ALTER TABLE mastodon_accounts 
 ADD CONSTRAINT mastodon_accounts_account_type_check 
-CHECK (account_type IN ('artist', 'tag', 'philosopher', 'mtg'));
+CHECK (account_type IN ('artist', 'tag', 'quote', 'mtg', 'yugioh'));
 
 -- Step 2: Add the MTG account
 DELETE FROM mastodon_accounts 

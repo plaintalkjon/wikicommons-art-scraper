@@ -375,3 +375,123 @@ export async function uploadToStorage(path: string, image: { buffer: Buffer; mim
   return { path, publicUrl: data.publicUrl };
 }
 
+/**
+ * Upsert a quote for a quote author
+ * Deduplicates by text + author_id + source
+ */
+export async function upsertQuote(payload: {
+  text: string;
+  authorId: string;
+  source?: string | null;
+}): Promise<string> {
+  // Calculate character count
+  const characterCount = payload.text.length;
+  
+  // Check for existing quote with same text, author, and source
+  const existing = await supabase
+    .from('quotes')
+    .select('id')
+    .eq('author_id', payload.authorId)
+    .eq('text', payload.text)
+    .eq('source', payload.source ?? null)
+    .maybeSingle();
+  
+  if (existing.error && existing.error.code !== 'PGRST116') {
+    throw new Error(`Failed to lookup quote: ${existing.error.message}`);
+  }
+  
+  if (existing.data?.id) {
+    // Update existing quote
+    const updated = await supabase
+      .from('quotes')
+      .update({
+        text: payload.text,
+        source: payload.source ?? null,
+        character_count: characterCount,
+      })
+      .eq('id', existing.data.id)
+      .select('id')
+      .single();
+    
+    if (updated.error) {
+      throw new Error(`Failed to update quote: ${updated.error.message}`);
+    }
+    
+    return updated.data!.id;
+  }
+  
+  // Insert new quote
+  const inserted = await supabase
+    .from('quotes')
+    .insert({
+      text: payload.text,
+      author_id: payload.authorId,
+      source: payload.source ?? null,
+      character_count: characterCount,
+    })
+    .select('id')
+    .single();
+  
+  if (inserted.error || !inserted.data?.id) {
+    throw new Error(`Failed to insert quote: ${inserted.error?.message ?? 'unknown error'}`);
+  }
+  
+  return inserted.data.id;
+}
+
+/**
+ * Ensure a quote author exists in the database
+ * Returns the author ID
+ */
+export async function ensureQuoteAuthor(name: string, category: string = 'philosopher'): Promise<string> {
+  // Try to get existing first
+  const existing = await supabase
+    .from('quote_authors')
+    .select('id')
+    .eq('name', name)
+    .maybeSingle();
+  
+  if (existing.error && existing.error.code !== 'PGRST116') {
+    throw new Error(`Failed to lookup quote author: ${existing.error.message}`);
+  }
+  
+  if (existing.data?.id) {
+    // Update category if it's different (allows changing category later)
+    await supabase
+      .from('quote_authors')
+      .update({ category })
+      .eq('id', existing.data.id);
+    
+    return existing.data.id;
+  }
+
+  // Insert new quote author
+  const inserted = await supabase
+    .from('quote_authors')
+    .insert({ name: name.trim(), category })
+    .select('id')
+    .single();
+  
+  if (inserted.error) {
+    // If duplicate key error, try to fetch the existing author
+    if (inserted.error.code === '23505' || inserted.error.message.includes('duplicate key')) {
+      const retry = await supabase
+        .from('quote_authors')
+        .select('id')
+        .eq('name', name.trim())
+        .single();
+      
+      if (retry.data?.id) {
+        return retry.data.id;
+      }
+    }
+    throw new Error(`Failed to insert quote author: ${inserted.error.message}`);
+  }
+  
+  if (!inserted.data?.id) {
+    throw new Error(`Failed to insert quote author: unknown error`);
+  }
+  
+  return inserted.data.id;
+}
+

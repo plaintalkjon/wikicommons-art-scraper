@@ -49,6 +49,23 @@ interface ScryfallCard {
 
 type BotType = "showcase" | "commander" | "secret-lair" | "auto";
 
+/**
+ * Normalize Mastodon base URL to full API URL
+ * Standard format: base URL is stored as "domain.com" (no protocol)
+ * Returns: "https://domain.com" (with protocol, no trailing slash)
+ */
+function normalizeMastodonUrl(baseUrl: string): string {
+  // Remove any existing protocol
+  let url = baseUrl.replace(/^https?:\/\//, '');
+  // Remove trailing slash
+  url = url.replace(/\/$/, '');
+  // Remove any path (keep only domain)
+  const parts = url.split('/');
+  const domain = parts[0];
+  // Add https:// protocol
+  return `https://${domain}`;
+}
+
 interface CardFetchStrategy {
   fetchCard(maxRetries: number): Promise<ScryfallCard | null>;
   getLogPrefix(): string;
@@ -338,7 +355,28 @@ function getFileExtension(url: string): string {
   return "png";
 }
 
-function formatCardPost(card: ScryfallCard, botType: BotType): string {
+/**
+ * Fetch hashtags for an account from the database
+ * Returns array of hashtag strings (e.g., ['#magicthegathering'])
+ */
+async function fetchAccountHashtags(accountId: string, supabase: any): Promise<string[]> {
+  const { data: accountHashtags, error: hashtagError } = await supabase
+    .from("mastodon_account_hashtags")
+    .select(`
+      hashtag_id,
+      hashtags!inner(name)
+    `)
+    .eq("mastodon_account_id", accountId)
+    .order("hashtags(name)", { ascending: true });
+
+  if (!hashtagError && accountHashtags && accountHashtags.length > 0) {
+    return accountHashtags.map((ah: any) => `#${ah.hashtags.name}`);
+  }
+
+  return [];
+}
+
+async function formatCardPost(card: ScryfallCard, botType: BotType, accountId: string, supabase: any): Promise<string> {
   const parts: string[] = [];
   parts.push(card.name);
   if (card.set_name) {
@@ -350,6 +388,15 @@ function formatCardPost(card: ScryfallCard, botType: BotType): string {
   if (botType === "commander" && card.edhrec_rank) {
     parts.push(`\nEDHREC Rank: ${card.edhrec_rank}`);
   }
+  
+  // Fetch hashtags from database
+  const hashtags = await fetchAccountHashtags(accountId, supabase);
+  if (hashtags.length > 0) {
+    parts.push(`\n\n${hashtags.join(' ')}`);
+  } else {
+    parts.push(`\n\n#magicthegathering`); // Fallback if no hashtags assigned
+  }
+  
   return parts.join("");
 }
 
@@ -456,11 +503,12 @@ async function postToMastodon(
     console.log(`${logPrefix} IMAGE: Downloaded ${imageBlob.size} bytes`);
 
     // Upload to Mastodon
-    console.log(`${logPrefix} MASTODON: Uploading media to ${account.mastodon_base_url}`);
+    const mastodonUrl = normalizeMastodonUrl(account.mastodon_base_url);
+    console.log(`${logPrefix} MASTODON: Uploading media to ${mastodonUrl}`);
     const formData = new FormData();
     formData.append("file", imageBlob, `mtg-card.${imageInfo.format}`);
 
-    const mediaResponse = await fetch(`${account.mastodon_base_url}/api/v1/media`, {
+    const mediaResponse = await fetch(`${mastodonUrl}/api/v1/media`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${account.mastodon_access_token}`,
@@ -503,7 +551,7 @@ async function postToMastodon(
       await new Promise((resolve) => setTimeout(resolve, 2000));
       
       // Check media status
-      const statusCheckResponse = await fetch(`${account.mastodon_base_url}/api/v1/media/${mediaId}`, {
+      const statusCheckResponse = await fetch(`${mastodonUrl}/api/v1/media/${mediaId}`, {
         headers: {
           Authorization: `Bearer ${account.mastodon_access_token}`,
         },
@@ -529,7 +577,11 @@ async function postToMastodon(
 
     // Create status post
     console.log(`${logPrefix} POSTING: Creating status post`);
-    const postText = formatCardPost(card, botType);
+    const supabase = createClient(
+      Deno.env.get("SUPABASE_URL") ?? "",
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
+    );
+    const postText = await formatCardPost(card, botType, account.id, supabase);
     console.log(`${logPrefix} POST TEXT: "${postText}"`);
     console.log(`${logPrefix} MEDIA ID: ${mediaId}`);
 
@@ -541,7 +593,7 @@ async function postToMastodon(
 
     console.log(`${logPrefix} STATUS DATA:`, JSON.stringify(statusData));
 
-    const statusResponse = await fetch(`${account.mastodon_base_url}/api/v1/statuses`, {
+    const statusResponse = await fetch(`${mastodonUrl}/api/v1/statuses`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${account.mastodon_access_token}`,

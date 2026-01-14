@@ -1,15 +1,18 @@
 # MTG Card Posting Bot
 
-This bot posts random Showcase frame Magic: The Gathering cards to Mastodon 4 times per day.
+This bot posts random Magic: The Gathering cards to Mastodon for multiple bot accounts. Each account type posts cards matching specific criteria (showcase, commander, secret-lair, etc.).
 
 ## Overview
 
-The bot uses a Supabase Edge Function (`post-mtg-card`) that:
-1. Fetches a random Showcase frame card from Scryfall API
-2. Downloads the card image
-3. Posts it to Mastodon with card name, set, and artist info
+The bot uses a **unified** Supabase Edge Function (`post-mtg-card`) that:
+1. Processes **all MTG accounts** that are due to post
+2. Auto-detects bot type from username (showcase, commander, secret-lair)
+3. Fetches cards matching that bot type's criteria from Scryfall API
+4. Downloads the card image
+5. Posts it to Mastodon with card name, set, and artist info
 
-**No database scraping required** - cards are fetched on-demand from Scryfall.
+**No database scraping required** - cards are fetched on-demand from Scryfall.  
+**Single cron job** - One cron processes all MTG accounts automatically.
 
 ## Setup
 
@@ -91,16 +94,29 @@ SELECT cron.unschedule('post-mtg-card');
 
 ### Posting Schedule
 
-- Posts **4 times per day** (every 6 hours)
-- Uses `last_posted_at` timestamp to determine when account is due
+- **Cron runs**: Every 6 hours (or more frequently if configured)
+- **Account posting interval**: 6 hours (controlled by `last_posted_at` timestamp)
+- **How it works**: 
+  - Cron calls function every 6 hours
+  - Function queries database for all MTG accounts where `last_posted_at` is NULL or older than 6 hours
+  - Processes each due account sequentially
+  - Each account posts independently based on its own `last_posted_at`
 - Skips if posted within last 5 minutes (prevents double-posting)
+- **Note**: Can be configured to run cron more frequently (e.g., every 15 minutes) for faster retry on failures, while still maintaining 6-hour posting interval per account
 
 ### Card Selection
 
-- Fetches random card using Scryfall API: `https://api.scryfall.com/cards/random?q=frame:showcase`
-- Only posts Showcase frame cards
-- Prefers PNG images, falls back to normal JPG
-- Handles double-faced cards (uses first face)
+The function uses **strategy pattern** to fetch cards based on bot type:
+
+- **Showcase bots**: Fetches cards with `frame_effects` containing "showcase"
+- **Commander bots**: Fetches cards with `edhrec_rank < 1000`
+- **Secret Lair bots**: Fetches cards with set code "SLD"
+
+All strategies:
+- Fetch random cards from Scryfall API: `https://api.scryfall.com/cards/random`
+- Filter based on bot type criteria (may require multiple attempts)
+- Prefer PNG images, fall back to normal JPG
+- Handle double-faced cards (uses first face)
 
 ### Post Content
 
@@ -161,13 +177,20 @@ Or use query parameters:
 - Check Mastodon instance is accessible
 - Review Edge Function logs in Supabase dashboard
 
+## Bot Types Supported
+
+The function auto-detects bot type from username:
+- **Showcase**: Username contains "showcase" → Shows showcase frame cards
+- **Commander**: Username contains "commander" → Shows cards with EDHREC rank < 1000
+- **Secret Lair**: Username contains "secretlair" or "secret-lair" → Shows Secret Lair cards
+- **Default**: Falls back to showcase if not detected
+
 ## Future Enhancements
 
 Possible improvements:
 - Filter by specific sets or artists
 - Post different frame types (Extended Art, Borderless, etc.)
 - Track posted cards to avoid duplicates (if desired)
-- Support multiple MTG bot accounts
 - Add card type/color tags
 
 ## Notes

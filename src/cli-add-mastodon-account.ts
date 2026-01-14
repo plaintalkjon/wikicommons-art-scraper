@@ -21,7 +21,7 @@ interface MastodonAccountData {
   active: boolean;
   tag_id?: string;
   artist_id?: string;
-  philosopher_id?: string;
+  author_id?: string; // Renamed from philosopher_id
 }
 
 async function findTagByName(tagName: string): Promise<string | null> {
@@ -52,26 +52,57 @@ async function findArtistByName(artistName: string): Promise<string | null> {
   return data?.id ?? null;
 }
 
-async function findPhilosopherByName(philosopherName: string): Promise<string | null> {
+async function findQuoteAuthorByName(authorName: string): Promise<string | null> {
   const { data, error } = await supabase
-    .from('philosophers')
+    .from('quote_authors')
     .select('id')
-    .eq('name', philosopherName)
-    .single();
+    .eq('name', authorName)
+    .maybeSingle();
 
   if (error && error.code !== 'PGRST116') {
-    throw new Error(`Failed to lookup philosopher "${philosopherName}": ${error.message}`);
+    throw new Error(`Failed to lookup quote author "${authorName}": ${error.message}`);
   }
 
   return data?.id ?? null;
 }
 
+/**
+ * Normalize username to standard format (no @ symbols)
+ */
+function normalizeUsername(username: string): string {
+  return username.replace(/^@+/, '').split('@')[0];
+}
+
+/**
+ * Normalize base URL to standard format (no protocol, no trailing slash, no path)
+ */
+function normalizeBaseUrl(url: string): string {
+  // Remove protocol
+  let normalized = url.replace(/^https?:\/\//, '');
+  // Remove trailing slash
+  normalized = normalized.replace(/\/$/, '');
+  // Remove any path (keep only domain)
+  const parts = normalized.split('/');
+  return parts[0];
+}
+
 async function addMastodonAccount(accountData: MastodonAccountData): Promise<string> {
-  console.log(`Adding ${accountData.account_type} account: @${accountData.account_username}@${accountData.mastodon_base_url}`);
+  // Normalize to standard format before inserting
+  // Convert 'philosopher' to 'quote' for database (CLI accepts 'philosopher' for backward compatibility)
+  const dbAccountType = accountData.account_type === 'philosopher' ? 'quote' : accountData.account_type;
+  
+  const normalizedData = {
+    ...accountData,
+    account_username: normalizeUsername(accountData.account_username),
+    mastodon_base_url: normalizeBaseUrl(accountData.mastodon_base_url),
+    account_type: dbAccountType as 'artist' | 'tag' | 'quote',
+  };
+
+  console.log(`Adding ${normalizedData.account_type} account: @${normalizedData.account_username}@${normalizedData.mastodon_base_url}`);
 
   const { data, error } = await supabase
     .from('mastodon_accounts')
-    .insert(accountData)
+    .insert(normalizedData)
     .select('id')
     .single();
 
@@ -126,7 +157,11 @@ async function linkArtistAccount(accountId: string, artistName: string): Promise
 }
 
 async function createArtistAccountDirectly(username: string, domain: string, token: string, artistName: string): Promise<string> {
-  console.log(`Adding artist account: @${username}@${domain} for "${artistName}"`);
+  // Normalize inputs to standard format
+  const normalizedUsername = normalizeUsername(username);
+  const normalizedDomain = normalizeBaseUrl(domain);
+  
+  console.log(`Adding artist account: @${normalizedUsername}@${normalizedDomain} for "${artistName}"`);
 
   // First find the artist
   const artistId = await findArtistByName(artistName);
@@ -135,8 +170,8 @@ async function createArtistAccountDirectly(username: string, domain: string, tok
   }
 
   const accountData = {
-    account_username: username,
-    mastodon_base_url: domain,
+    account_username: normalizedUsername,
+    mastodon_base_url: normalizedDomain,
     mastodon_access_token: token,
     account_type: 'artist' as const,
     active: true,
@@ -163,22 +198,22 @@ async function createArtistAccountDirectly(username: string, domain: string, tok
 }
 
 async function linkPhilosopherAccount(accountId: string, philosopherName: string): Promise<void> {
-  const philosopherId = await findPhilosopherByName(philosopherName);
-  if (!philosopherId) {
-    throw new Error(`Philosopher "${philosopherName}" not found. Make sure it exists in the philosophers table.`);
+  const authorId = await findQuoteAuthorByName(philosopherName);
+  if (!authorId) {
+    throw new Error(`Quote author "${philosopherName}" not found. Make sure it exists in the quote_authors table.`);
   }
 
-  // For philosopher accounts, we store the philosopher_id directly in the mastodon_accounts table
+  // For philosopher accounts, we store the author_id directly in the mastodon_accounts table
   const { error } = await supabase
     .from('mastodon_accounts')
-    .update({ philosopher_id: philosopherId })
+    .update({ author_id: authorId })
     .eq('id', accountId);
 
   if (error) {
-    throw new Error(`Failed to link account to philosopher "${philosopherName}": ${error.message}`);
+    throw new Error(`Failed to link account to quote author "${philosopherName}": ${error.message}`);
   }
 
-  console.log(`✅ Account linked to philosopher "${philosopherName}" (ID: ${philosopherId})`);
+  console.log(`✅ Account linked to quote author "${philosopherName}" (ID: ${authorId})`);
 }
 
 async function main() {

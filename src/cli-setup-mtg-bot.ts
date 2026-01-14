@@ -28,7 +28,7 @@ async function addMTGAccount(): Promise<{ success: boolean; accountId?: string; 
     
     ALTER TABLE mastodon_accounts 
     ADD CONSTRAINT mastodon_accounts_account_type_check 
-    CHECK (account_type IN ('artist', 'tag', 'philosopher', 'mtg'));
+    CHECK (account_type IN ('artist', 'tag', 'quote', 'mtg', 'yugioh'));
   `;
 
   // Execute SQL via RPC or direct query
@@ -63,11 +63,12 @@ async function addMTGAccount(): Promise<{ success: boolean; accountId?: string; 
     return { success: true, accountId: existing.id };
   }
 
+  // Normalize to standard format: username without @, base_url without protocol
   const { data, error } = await supabase
     .from('mastodon_accounts')
     .insert({
-      account_username: 'CuratedMTGShowcase',
-      mastodon_base_url: 'https://mastodon.social',
+      account_username: 'CuratedMTGShowcase', // Already normalized (no @)
+      mastodon_base_url: 'mastodon.social', // Standard format: no protocol
       mastodon_access_token: 'T7SK9fhzMZQ49ptyqfoQyhBv9m0o4vaTv5O9R3-ZOBc',
       account_type: 'mtg' as any, // Type assertion to bypass TypeScript check
       active: true,

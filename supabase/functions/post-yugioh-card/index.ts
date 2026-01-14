@@ -44,6 +44,23 @@ interface YugiohApiResponse {
   data: YugiohCard[];
 }
 
+/**
+ * Normalize Mastodon base URL to full API URL
+ * Standard format: base URL is stored as "domain.com" (no protocol)
+ * Returns: "https://domain.com" (with protocol, no trailing slash)
+ */
+function normalizeMastodonUrl(baseUrl: string): string {
+  // Remove any existing protocol
+  let url = baseUrl.replace(/^https?:\/\//, '');
+  // Remove trailing slash
+  url = url.replace(/\/$/, '');
+  // Remove any path (keep only domain)
+  const parts = url.split('/');
+  const domain = parts[0];
+  // Add https:// protocol
+  return `https://${domain}`;
+}
+
 // Helper functions
 function getFileExtension(url: string): string {
   if (url.includes(".png")) return "png";
@@ -51,42 +68,32 @@ function getFileExtension(url: string): string {
   return "jpg";
 }
 
-function formatCardPost(card: YugiohCard): string {
-  const parts: string[] = [];
-  parts.push(card.name);
-  
-  // Add card type and stats for monsters
-  if (card.type.includes("Monster")) {
-    if (card.level !== undefined && card.level !== null) {
-      parts.push(`\nLevel ${card.level}`);
-    }
-    if (card.attribute) {
-      parts.push(` / ${card.attribute.toUpperCase()}`);
-    }
-    if (card.race) {
-      parts.push(` / ${card.race}`);
-    }
-    if (card.atk !== undefined && card.atk !== null) {
-      parts.push(`\nATK ${card.atk}`);
-    }
-    if (card.def !== undefined && card.def !== null) {
-      parts.push(` / DEF ${card.def}`);
-    }
-  } else {
-    // For Spell/Trap cards
-    if (card.race) {
-      parts.push(`\n${card.race} ${card.type}`);
-    } else {
-      parts.push(`\n${card.type}`);
-    }
+/**
+ * Fetch hashtags for an account from the database
+ * Returns array of hashtag strings (e.g., ['#yugioh'])
+ */
+async function fetchAccountHashtags(accountId: string, supabase: any): Promise<string[]> {
+  const { data: accountHashtags, error: hashtagError } = await supabase
+    .from("mastodon_account_hashtags")
+    .select(`
+      hashtag_id,
+      hashtags!inner(name)
+    `)
+    .eq("mastodon_account_id", accountId)
+    .order("hashtags(name)", { ascending: true });
+
+  if (!hashtagError && accountHashtags && accountHashtags.length > 0) {
+    return accountHashtags.map((ah: any) => `#${ah.hashtags.name}`);
   }
-  
-  // Add archetype if available
-  if (card.archetype) {
-    parts.push(`\n${card.archetype} archetype`);
-  }
-  
-  return parts.join("");
+
+  return [];
+}
+
+async function formatCardPost(card: YugiohCard, accountId: string, supabase: any): Promise<string> {
+  // Fetch hashtags from database
+  const hashtags = await fetchAccountHashtags(accountId, supabase);
+  const hashtagString = hashtags.length > 0 ? hashtags.join(' ') : '#yugioh'; // Fallback if no hashtags assigned
+  return `${card.name}\n\n${hashtagString}`;
 }
 
 function extractImageUrl(card: YugiohCard): { url: string; format: string } | null {
@@ -189,11 +196,12 @@ async function postToMastodon(
     console.log(`${logPrefix} IMAGE: Downloaded ${imageBlob.size} bytes`);
     
     // Upload to Mastodon
-    console.log(`${logPrefix} MASTODON: Uploading media to ${account.mastodon_base_url}`);
+    const mastodonUrl = normalizeMastodonUrl(account.mastodon_base_url);
+    console.log(`${logPrefix} MASTODON: Uploading media to ${mastodonUrl}`);
     const formData = new FormData();
     formData.append("file", imageBlob, `yugioh-card.${imageInfo.format}`);
     
-    const mediaResponse = await fetch(`${account.mastodon_base_url}/api/v1/media`, {
+    const mediaResponse = await fetch(`${mastodonUrl}/api/v1/media`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${account.mastodon_access_token}`,
@@ -217,7 +225,12 @@ async function postToMastodon(
     
     // Create status post
     console.log(`${logPrefix} POSTING: Creating status post`);
-    const postText = formatCardPost(card);
+    const supabase = createClient(
+      Deno.env.get("SUPABASE_URL") ?? "",
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
+    );
+    const postText = await formatCardPost(card, account.id, supabase);
+    console.log(`${logPrefix} POST TEXT: "${postText}"`);
     
     const statusData = {
       status: postText,
@@ -225,7 +238,7 @@ async function postToMastodon(
       visibility: "public",
     };
     
-    const statusResponse = await fetch(`${account.mastodon_base_url}/api/v1/statuses`, {
+    const statusResponse = await fetch(`${mastodonUrl}/api/v1/statuses`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${account.mastodon_access_token}`,
