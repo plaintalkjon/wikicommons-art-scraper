@@ -37,20 +37,82 @@ function getFileExtension(storagePath: string): string {
  * Returns array of hashtag strings (e.g., ['#art', '#philosophy'])
  */
 async function fetchAccountHashtags(accountId: string, supabase: any): Promise<string[]> {
-  const { data: accountHashtags, error: hashtagError } = await supabase
+  console.log(`🚀 CRON HASHTAG DEBUG: Fetching hashtags for account ${accountId}`);
+  
+  // First, get all hashtag IDs for this account
+  const { data: accountHashtagLinks, error: linkError } = await supabase
     .from("mastodon_account_hashtags")
-    .select(`
-      hashtag_id,
-      hashtags!inner(name)
-    `)
-    .eq("mastodon_account_id", accountId)
-    .order("hashtags(name)", { ascending: true });
+    .select("hashtag_id")
+    .eq("mastodon_account_id", accountId);
 
-  if (!hashtagError && accountHashtags && accountHashtags.length > 0) {
-    return accountHashtags.map((ah: any) => `#${ah.hashtags.name}`);
+  if (linkError) {
+    console.error(`🚀 CRON HASHTAG ERROR: Failed to fetch hashtag links for account ${accountId}:`, JSON.stringify(linkError, null, 2));
+    return [];
   }
 
-  return [];
+  console.log(`🚀 CRON HASHTAG DEBUG: Found ${accountHashtagLinks?.length || 0} hashtag links`);
+
+  if (!accountHashtagLinks || accountHashtagLinks.length === 0) {
+    console.log(`🚀 CRON HASHTAG: No hashtags found for account ${accountId}`);
+    return [];
+  }
+
+      // Extract hashtag IDs - ensure we get all of them
+      const hashtagIds = accountHashtagLinks
+        .map((link: any) => link.hashtag_id)
+        .filter((id: any) => id !== null && id !== undefined);
+      
+      console.log(`🚀 CRON HASHTAG DEBUG: Found ${hashtagIds.length} hashtag IDs:`, JSON.stringify(hashtagIds, null, 2));
+
+      if (hashtagIds.length === 0) {
+        console.log(`🚀 CRON HASHTAG: No valid hashtag IDs found`);
+        return [];
+      }
+
+      // Now fetch the actual hashtag names - use a loop to ensure we get all of them
+      // This avoids any potential issues with .in() query limits or batching
+      const hashtagsData: any[] = [];
+      for (const hashtagId of hashtagIds) {
+        const { data: hashtagData, error: hashtagError } = await supabase
+          .from("hashtags")
+          .select("name")
+          .eq("id", hashtagId)
+          .single();
+        
+        if (hashtagError) {
+          console.error(`🚀 CRON HASHTAG ERROR: Failed to fetch hashtag ${hashtagId}:`, hashtagError);
+          continue;
+        }
+        
+        if (hashtagData) {
+          hashtagsData.push(hashtagData);
+          console.log(`🚀 CRON HASHTAG DEBUG: Fetched hashtag: ${hashtagData.name}`);
+        }
+      }
+
+      console.log(`🚀 CRON HASHTAG DEBUG: Fetched ${hashtagsData.length} hashtag(s) from database`);
+
+      if (hashtagsData.length === 0) {
+        console.log(`🚀 CRON HASHTAG: No hashtag names found`);
+        return [];
+      }
+
+      // Extract hashtag names and format them
+      const hashtags = hashtagsData
+        .map((h: any) => {
+          const name = h.name;
+          if (!name) {
+            console.warn(`🚀 CRON HASHTAG WARNING: Missing name in hashtag:`, JSON.stringify(h));
+            return null;
+          }
+          return `#${name}`;
+        })
+        .filter((h: string | null): h is string => h !== null)
+        .sort(); // Sort alphabetically
+
+      console.log(`🚀 CRON HASHTAG: Found ${hashtags.length} hashtags for account ${accountId}: ${hashtags.join(', ')}`);
+      console.log(`🚀 CRON HASHTAG DEBUG: Final hashtags array:`, JSON.stringify(hashtags, null, 2));
+      return hashtags;
 }
 
 /**
@@ -63,11 +125,16 @@ async function formatQuote(
   accountId: string,
   supabase: any
 ): Promise<string> {
+  console.log(`🚀 CRON FORMAT QUOTE DEBUG: Formatting quote for account ${accountId}`);
+  
   // Try to fetch hashtags from junction table
   let hashtags = await fetchAccountHashtags(accountId, supabase);
+  
+  console.log(`🚀 CRON FORMAT QUOTE DEBUG: Received ${hashtags.length} hashtags:`, JSON.stringify(hashtags, null, 2));
 
   // Fallback to category-based hashtag if none assigned (backward compatibility)
   if (hashtags.length === 0) {
+    console.log(`🚀 CRON FORMAT QUOTE DEBUG: No hashtags found, using fallback based on category: ${quote.category}`);
     let hashtag = '#philosophy';
     if (quote.category) {
       const categoryMap: Record<string, string> = {
@@ -84,7 +151,12 @@ async function formatQuote(
 
   // Author name removed since account name already indicates who the quote is from
   const hashtagString = hashtags.join(' ');
-  return `"${quote.text}"\n\n${hashtagString}`;
+  const formattedQuote = `"${quote.text}"\n\n${hashtagString}`;
+  
+  console.log(`🚀 CRON FORMAT QUOTE DEBUG: Final formatted quote (${formattedQuote.length} chars):`, formattedQuote.substring(0, 200));
+  console.log(`🚀 CRON FORMAT QUOTE DEBUG: Hashtag string: "${hashtagString}"`);
+  
+  return formattedQuote;
 }
 
 /**
@@ -819,6 +891,8 @@ serve(async (req) => {
           }
 
           console.log(`🚀 CRON POSTING: Quote to ${buildMastodonHandle(account.account_username, account.mastodon_base_url)} (${postText.length} chars)`);
+          console.log(`🚀 CRON POST TEXT FINAL: "${postText}"`);
+          console.log(`🚀 CRON POST TEXT DEBUG: Full text with length ${postText.length}:`, JSON.stringify(postText));
 
           const statusResponse = await fetch(`${mastodonUrl}/api/v1/statuses`, {
             method: 'POST',

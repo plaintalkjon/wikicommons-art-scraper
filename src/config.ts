@@ -26,4 +26,3 @@ export const config = {
 
 // Create and export Supabase client
 export const supabase = createClient(config.supabaseUrl, config.supabaseServiceRoleKey);
-

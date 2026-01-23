@@ -27,7 +27,9 @@
     "update-quotes": "npm run build && node dist/cli-update-quotes.js",
     "delete-quotes": "npm run build && node dist/cli-delete-quotes.js",
     "test-quote-account": "npm run build && node dist/cli-test-quote-account.js",
-    "manage-hashtags": "npm run build && node dist/cli-manage-hashtags.js"
+    "check-orwell-quotes": "npm run build && node dist/cli-check-orwell-quotes.js",
+    "manage-hashtags": "npm run build && node dist/cli-manage-hashtags.js",
+    "debug-hashtags": "npm run build && node dist/cli-debug-hashtags.js"
   },
   "repository": {
     "type": "git",

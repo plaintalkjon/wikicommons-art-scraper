@@ -48,4 +48,3 @@ export function parseArgs(): Record<string, string | boolean> {
   }
   return parsed;
 }
-

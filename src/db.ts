@@ -494,4 +494,3 @@ export async function ensureQuoteAuthor(name: string, category: string = 'philos
   
   return inserted.data.id;
 }
-
